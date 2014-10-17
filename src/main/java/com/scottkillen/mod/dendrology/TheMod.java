@@ -8,6 +8,9 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 
 @Mod(modid = TheMod.MOD_ID, name = TheMod.MOD_NAME, version = TheMod.MOD_VERSION, useMetadata = true, guiFactory = TheMod.MOD_GUI_FACTORY)
 public class TheMod
@@ -19,15 +22,15 @@ public class TheMod
 
     public static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
 
-//    @SuppressWarnings("AnonymousInnerClass")
-//    public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
-//    {
-//        @Override
-//        public Item getTabIconItem()
-//        {
-//            return ModItem.mustyJournal;
-//        }
-//    };
+    @SuppressWarnings("AnonymousInnerClass")
+    public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
+    {
+        @Override
+        public Item getTabIconItem()
+        {
+            return Item.getItemFromBlock(Blocks.log);
+        }
+    };
 
     @SuppressWarnings({"StaticVariableOfConcreteClass", "StaticNonFinalField", "PublicField", "StaticVariableMayNotBeInitialized"})
     @Mod.Instance
