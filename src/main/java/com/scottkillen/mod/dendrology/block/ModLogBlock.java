@@ -7,12 +7,12 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
-public class ModLog extends BlockLog
+public class ModLogBlock extends BlockLog
 {
     private IIcon sideIcon;
     private IIcon topIcon;
 
-    public ModLog()
+    public ModLogBlock()
     {
         setCreativeTab(TheMod.CREATIVE_TAB);
     }
