@@ -13,7 +13,7 @@ public class ModBlocks
 
     private static final ImmutableList<String> LOG0_NAMES = ImmutableList.of("cedar", "ironwood", "eucalyptus", "beech");
     private static final ImmutableList<String> LOG1_NAMES = ImmutableList.of("maple", "palm", "walnut", "ginkgo");
-    private static final ImmutableList<String> LOG2_NAMES = ImmutableList.of("poplar", "cherry", "willow");
+    private static final ImmutableList<String> LOG2_NAMES = ImmutableList.of("poplar", "cherry", "willow", "cypress");
 
     public static Block logs0 = new ModLogBlock(LOG0_NAMES);
     public static Block logs1 = new ModLogBlock(LOG1_NAMES);
