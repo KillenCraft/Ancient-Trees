@@ -1,15 +1,21 @@
 package com.scottkillen.mod.dendrology.block;
 
-import com.scottkillen.mod.dendrology.TheMod;
+import com.google.common.collect.ImmutableList;
+import com.scottkillen.mod.dendrology.item.LogItem;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 
-@GameRegistry.ObjectHolder(TheMod.MOD_ID)
 public class ModBlocks
 {
-    // *******
-    // * NOTE: @GameRegistry.ObjectHolder requires these fields to have the same name as the unlocalized name of the
-    // *       object.
-    // *
+    static final int DEFAULT_FIRE_ENCOURAGEMENT = 5;
+    static final int DEFAULT_FLAMMIBILITY = 5;
+
+    private static final ImmutableList<String> LOG0_NAMES = ImmutableList.of("cedar", "ironwood", "eucalyptus", "beech");
+    private static final ImmutableList<String> LOG1_NAMES = ImmutableList.of("maple", "palm", "walnut");
+
+    public static Block logs0 = new ModLogBlock(LOG0_NAMES);
+    public static Block logs1 = new ModLogBlock(LOG1_NAMES);
 
     private ModBlocks()
     {
@@ -18,5 +24,13 @@ public class ModBlocks
 
     public static void init()
     {
+        registerLogBlock(logs0, "logs0", LOG0_NAMES);
+        registerLogBlock(logs1, "logs1", LOG1_NAMES);
+    }
+
+    private static void registerLogBlock(Block block, String name, ImmutableList<String> subblockNames)
+    {
+        GameRegistry.registerBlock(block, LogItem.class, name, block, subblockNames.toArray(new String[0]));
+        Blocks.fire.setFireInfo(block, DEFAULT_FIRE_ENCOURAGEMENT, DEFAULT_FLAMMIBILITY);
     }
 }
