@@ -6,8 +6,5 @@ import net.minecraft.item.ItemMultiTexture;
 
 public class LogItem extends ItemMultiTexture
 {
-    public LogItem(Block block, ModLogBlock log, String[] names)
-    {
-        super(block, log, names);
-    }
+    public LogItem(Block block, ModLogBlock log, String[] names) { super(block, log, names); }
 }
