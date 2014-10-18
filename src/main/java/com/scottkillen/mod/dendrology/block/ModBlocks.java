@@ -9,7 +9,7 @@ import net.minecraft.init.Blocks;
 public class ModBlocks
 {
     static final int DEFAULT_FIRE_ENCOURAGEMENT = 5;
-    static final int DEFAULT_FLAMMIBILITY = 5;
+    static final int DEFAULT_FLAMMABILITY = 5;
 
     private static final ImmutableList<String> LOG0_NAMES = ImmutableList.of("cedar", "ironwood", "eucalyptus", "beech");
     private static final ImmutableList<String> LOG1_NAMES = ImmutableList.of("maple", "palm", "walnut");
@@ -31,6 +31,6 @@ public class ModBlocks
     private static void registerLogBlock(Block block, String name, ImmutableList<String> subblockNames)
     {
         GameRegistry.registerBlock(block, LogItem.class, name, block, subblockNames.toArray(new String[0]));
-        Blocks.fire.setFireInfo(block, DEFAULT_FIRE_ENCOURAGEMENT, DEFAULT_FLAMMIBILITY);
+        Blocks.fire.setFireInfo(block, DEFAULT_FIRE_ENCOURAGEMENT, DEFAULT_FLAMMABILITY);
     }
 }
