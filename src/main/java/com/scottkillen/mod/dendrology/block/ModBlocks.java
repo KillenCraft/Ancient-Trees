@@ -12,10 +12,12 @@ public class ModBlocks
     static final int DEFAULT_FLAMMABILITY = 5;
 
     private static final ImmutableList<String> LOG0_NAMES = ImmutableList.of("cedar", "ironwood", "eucalyptus", "beech");
-    private static final ImmutableList<String> LOG1_NAMES = ImmutableList.of("maple", "palm", "walnut");
+    private static final ImmutableList<String> LOG1_NAMES = ImmutableList.of("maple", "palm", "walnut", "ginkgo");
+    private static final ImmutableList<String> LOG2_NAMES = ImmutableList.of("poplar", "cherry", "willow");
 
     public static Block logs0 = new ModLogBlock(LOG0_NAMES);
     public static Block logs1 = new ModLogBlock(LOG1_NAMES);
+    public static Block logs2 = new ModLogBlock(LOG2_NAMES);
 
     private ModBlocks()
     {
@@ -26,6 +28,7 @@ public class ModBlocks
     {
         registerLogBlock(logs0, "logs0", LOG0_NAMES);
         registerLogBlock(logs1, "logs1", LOG1_NAMES);
+        registerLogBlock(logs2, "logs2", LOG2_NAMES);
     }
 
     private static void registerLogBlock(Block block, String name, ImmutableList<String> subblockNames)
