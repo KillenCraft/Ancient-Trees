@@ -42,6 +42,19 @@ public class ModSaplingBlock extends BlockSapling
         return subblockIcons.get(mask(metadata));
     }
 
+    @SuppressWarnings("WeakerAccess")
+    protected static String getUnwrappedUnlocalizedName(String unlocalizedName)
+    {
+        return unlocalizedName.substring(unlocalizedName.indexOf('.') + 1);
+    }
+
+    @Override
+    public String getUnlocalizedName()
+    {
+        //noinspection StringConcatenationMissingWhitespace
+        return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+    }
+
     @Override
     public void func_149878_d(World world, int x, int y, int z, Random rand)
     {
