@@ -1,10 +1,12 @@
 package com.scottkillen.mod.dendrology.block;
 
-import com.google.common.base.Preconditions;
+import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.dendrology.registry.TreeRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -15,13 +17,22 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import java.util.List;
+import java.util.Random;
+
+import static com.google.common.base.Preconditions.*;
 
 public class ModLeavesBlock extends BlockLeaves
 {
     private static final int CAPACITY = 4;
+    private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<String> subblockNames;
     private final ImmutableList<Colorizer> subblockColorizers;
 
+    @SuppressWarnings({
+            "InnerClassTooDeeplyNested",
+            "DeserializableClassInSecureContext",
+            "SerializableClassInSecureContext"
+    })
     public enum Colorizer
     {
         BASIC,
@@ -40,6 +51,14 @@ public class ModLeavesBlock extends BlockLeaves
                     {
                         return ColorizerFoliage.getFoliageColorPine();
                     }
+                },
+        NONE
+                {
+                    @Override
+                    int getColor()
+                    {
+                        return 0xffffff;
+                    }
                 };
 
         int getColor()
@@ -50,21 +69,39 @@ public class ModLeavesBlock extends BlockLeaves
 
     public ModLeavesBlock(List<String> subblockNames, List<Colorizer> subblockColorizers)
     {
-        Preconditions.checkArgument(!subblockNames.isEmpty());
-        Preconditions.checkArgument(subblockNames.size() <= CAPACITY);
+        checkArgument(!subblockNames.isEmpty());
+        checkArgument(subblockNames.size() <= CAPACITY);
         this.subblockNames = ImmutableList.copyOf(subblockNames);
-        Preconditions.checkArgument(!subblockColorizers.isEmpty());
-        Preconditions.checkArgument(subblockColorizers.size() <= CAPACITY);
+
+        checkArgument(!subblockColorizers.isEmpty());
+        checkArgument(subblockColorizers.size() <= CAPACITY);
         this.subblockColorizers = ImmutableList.copyOf(subblockColorizers);
+
+        checkArgument(subblockNames.size() == subblockColorizers.size());
+
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("leaves");
+    }
+
+    @Override
+    public Item getItemDropped(int metadata, Random unused, int unused2)
+    {
+        return TreeRegistry.getSapling(this, mask(metadata)).left;
+    }
+
+    private static int mask(int metadata) {return metadata & METADATA_MASK;}
+
+    @Override
+    public int damageDropped(int metadata)
+    {
+        return TreeRegistry.getSapling(this, mask(metadata)).right;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public int getRenderColor(int metadata)
     {
-        final Colorizer colorizer = subblockColorizers.get(metadata & 3);
+        final Colorizer colorizer = subblockColorizers.get(mask(metadata));
         return colorizer.getColor();
     }
 
@@ -72,30 +109,53 @@ public class ModLeavesBlock extends BlockLeaves
     @Override
     public int colorMultiplier(IBlockAccess blockAccess, int x, int y, int z)
     {
-        final int metadata = blockAccess.getBlockMetadata(x, y, z) & 3;
-        final Colorizer colorizer = subblockColorizers.get(metadata & 3);
-        switch(colorizer)
-        {
-            case BIRCH:
-            case PINE:
-                return colorizer.getColor();
-            default:
-                return super.colorMultiplier(blockAccess, x, y, z);
-        }
+        final int metadata = mask(blockAccess.getBlockMetadata(x, y, z));
+        final Colorizer colorizer = subblockColorizers.get(mask(metadata));
+        return colorizer.getColor();
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(int unused, int metadata)
     {
-        return field_150129_M[Minecraft.getMinecraft().gameSettings.fancyGraphics ? 0 : 1][metadata & 3];
+        return field_150129_M[isFancyGraphics() ? 0 : 1][mask(metadata)];
     }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return !isFancyGraphics();
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    protected static String getUnwrappedUnlocalizedName(String unlocalizedName)
+    {
+        return unlocalizedName.substring(unlocalizedName.indexOf('.') + 1);
+    }
+
+    @Override
+    public String getUnlocalizedName()
+    {
+        //noinspection StringConcatenationMissingWhitespace
+        return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+    }
+
+    @Override
+    public boolean shouldSideBeRendered(IBlockAccess blockAccess, int x, int y, int z, int side)
+    {
+        Block block = blockAccess.getBlock(x, y, z);
+        if (!isFancyGraphics() && block == this) return false;
+        return side == 0 && this.minY > 0.0D ? true : (side == 1 && this.maxY < 1.0D ? true : (side == 2 && this.minZ > 0.0D ? true : (side == 3 && this.maxZ < 1.0D ? true : (side == 4 && this.minX > 0.0D ? true : (side == 5 && this.maxX < 1.0D ? true : !blockAccess.getBlock(x, y, z).isOpaqueCube())))));
+    }
+
+    private static boolean isFancyGraphics() {return Minecraft.getMinecraft().gameSettings.fancyGraphics;}
 
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
     {
         for (int i = 0; i < subblockNames.size(); i++)
+            //noinspection unchecked,ObjectAllocationInLoop
             subblocks.add(new ItemStack(item, 1, i));
     }
 
@@ -108,7 +168,8 @@ public class ModLeavesBlock extends BlockLeaves
 
         for (int i = 0; i < subblockNames.size(); i++)
         {
-            final String iconName = TheMod.RESOURCE_PREFIX + "leaves_" + subblockNames.get(i);
+            //noinspection StringConcatenationMissingWhitespace
+            final String iconName = TheMod.RESOURCE_PREFIX + "leaves_" + subblockNames.get(i).replace('.', '_');
             field_150129_M[0][i] = iconRegister.registerIcon(iconName);
             field_150129_M[1][i] = iconRegister.registerIcon(iconName + "_opaque");
         }
@@ -118,5 +179,11 @@ public class ModLeavesBlock extends BlockLeaves
     public String[] func_150125_e()
     {
         return subblockNames.toArray(new String[0]);
+    }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("subblockColorizers", subblockColorizers).toString();
     }
 }
