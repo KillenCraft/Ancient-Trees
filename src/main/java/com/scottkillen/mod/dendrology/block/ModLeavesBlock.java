@@ -2,8 +2,8 @@ package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Maps;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.dendrology.registry.TreeRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -16,7 +16,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import static com.google.common.base.Preconditions.*;
@@ -25,6 +27,7 @@ public class ModLeavesBlock extends BlockLeaves
 {
     private static final int CAPACITY = 4;
     private static final int METADATA_MASK = CAPACITY - 1;
+    private static final Map<Leaves, ImmutablePair<Item, Integer>> saplings = Maps.newHashMap();
     private final ImmutableList<String> subblockNames;
     private final ImmutableList<Colorizer> subblockColorizers;
 
@@ -54,6 +57,11 @@ public class ModLeavesBlock extends BlockLeaves
 
     private static boolean isFancyGraphics() {return Minecraft.getMinecraft().gameSettings.fancyGraphics;}
 
+    public static void addSapling(ModLeavesBlock leaves, int leavesMetadata, Block sapling, int saplingMetadata)
+    {
+        saplings.put(new Leaves(leaves, leavesMetadata), ImmutablePair.of(Item.getItemFromBlock(sapling), saplingMetadata));
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public int getRenderColor(int metadata)
@@ -74,13 +82,13 @@ public class ModLeavesBlock extends BlockLeaves
     @Override
     public Item getItemDropped(int metadata, Random unused, int unused2)
     {
-        return TreeRegistry.getSapling(this, mask(metadata)).left;
+        return saplings.get(new Leaves(this, mask(metadata))).left;
     }
 
     @Override
     public int damageDropped(int metadata)
     {
-        return TreeRegistry.getSapling(this, mask(metadata)).right;
+        return saplings.get(new Leaves(this, mask(metadata))).right;
     }
 
     @Override
@@ -142,12 +150,6 @@ public class ModLeavesBlock extends BlockLeaves
         return !(!isFancyGraphics() && block.equals(this)) && (side == 0 && minY > 0.0D || side == 1 && maxY < 1.0D || side == 2 && minZ > 0.0D || side == 3 && maxZ < 1.0D || side == 4 && minX > 0.0D || side == 5 && maxX < 1.0D || !blockAccess.getBlock(x, y, z).isOpaqueCube());
     }
 
-    @Override
-    public String toString()
-    {
-        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("subblockColorizers", subblockColorizers).toString();
-    }
-
     @SuppressWarnings({
             "InnerClassTooDeeplyNested", "DeserializableClassInSecureContext", "SerializableClassInSecureContext"
     })
@@ -184,4 +186,46 @@ public class ModLeavesBlock extends BlockLeaves
             return ColorizerFoliage.getFoliageColorBasic();
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("subblockColorizers", subblockColorizers).toString();
+    }
+
+    private static final class Leaves
+    {
+        private final Block leaves;
+        private final int metadata;
+
+        private Leaves(Block leaves, int metadata)
+        {
+            this.leaves = leaves;
+            this.metadata = metadata;
+        }
+
+        @Override
+        public int hashCode()
+        {
+            return Objects.hashCode(leaves, metadata);
+        }
+
+        @Override
+        public boolean equals(Object o)
+        {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            final Leaves that = (Leaves) o;
+            return metadata == that.metadata && leaves.equals(that.leaves);
+        }
+
+        @Override
+        public String toString()
+        {
+            return Objects.toStringHelper(this).add("leaves", leaves).add("metadata", metadata).toString();
+        }
+    }
+
+
 }
