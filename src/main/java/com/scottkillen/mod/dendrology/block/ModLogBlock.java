@@ -28,15 +28,6 @@ public class ModLogBlock extends BlockLog
         setBlockName("log");
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
-    {
-        for (int i = 0; i < subblockNames.size(); i ++)
-            //noinspection unchecked,ObjectAllocationInLoop
-            subblocks.add(new ItemStack(item, 1, i));
-    }
-
     @SuppressWarnings("WeakerAccess")
     protected static String getUnwrappedUnlocalizedName(String unlocalizedName)
     {
@@ -48,6 +39,15 @@ public class ModLogBlock extends BlockLog
     {
         //noinspection StringConcatenationMissingWhitespace
         return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
+    {
+        for (int i = 0; i < subblockNames.size(); i++)
+            //noinspection unchecked,ObjectAllocationInLoop
+            subblocks.add(new ItemStack(item, 1, i));
     }
 
     @Override

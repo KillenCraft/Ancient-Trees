@@ -2,15 +2,15 @@ package com.scottkillen.mod.dendrology.util.log;
 
 import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.TheMod;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
 
 @SuppressWarnings("WeakerAccess")
 public enum Logger
 {
     INSTANCE;
 
-    @SuppressWarnings({"NonSerializableFieldInSerializableClass", "InstanceVariableMayNotBeInitialized"})
+    @SuppressWarnings({ "NonSerializableFieldInSerializableClass", "InstanceVariableMayNotBeInitialized" })
     private org.apache.logging.log4j.Logger logger;
 
     public static void info(final String format, final Object... args)

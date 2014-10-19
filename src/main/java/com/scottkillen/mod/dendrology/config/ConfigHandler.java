@@ -121,10 +121,6 @@ public enum ConfigHandler
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this)
-                .add("fileRef", fileRef)
-                .add("config", config)
-                .add("configOld", configOld)
-                .toString();
+        return Objects.toStringHelper(this).add("fileRef", fileRef).add("config", config).add("configOld", configOld).toString();
     }
 }

@@ -14,40 +14,6 @@ public enum TreeRegistry
 {
     ;
 
-    private static final class Leaves
-    {
-        private final Block leaves;
-        private final int metadata;
-
-        private Leaves(Block leaves, int metadata)
-        {
-            this.leaves = leaves;
-            this.metadata = metadata;
-        }
-
-        @Override
-        public boolean equals(Object o)
-        {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            final Leaves that = (Leaves) o;
-            return metadata == that.metadata && leaves.equals(that.leaves);
-        }
-
-        @Override
-        public int hashCode()
-        {
-            return Objects.hashCode(leaves, metadata);
-        }
-
-        @Override
-        public String toString()
-        {
-            return Objects.toStringHelper(this).add("leaves", leaves).add("metadata", metadata).toString();
-        }
-    }
-
     private static final Map<Leaves, ImmutablePair<Item, Integer>> mapping = Maps.newHashMap();
 
     public static void addSaplingForLeaves(Block leaves, int leavesMetadata, Block sapling, int saplingMetadata)
@@ -63,5 +29,39 @@ public enum TreeRegistry
     public static void growTree(World world, int x, int y, int z, Random rand)
     {
 
+    }
+
+    private static final class Leaves
+    {
+        private final Block leaves;
+        private final int metadata;
+
+        private Leaves(Block leaves, int metadata)
+        {
+            this.leaves = leaves;
+            this.metadata = metadata;
+        }
+
+        @Override
+        public int hashCode()
+        {
+            return Objects.hashCode(leaves, metadata);
+        }
+
+        @Override
+        public boolean equals(Object o)
+        {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            final Leaves that = (Leaves) o;
+            return metadata == that.metadata && leaves.equals(that.leaves);
+        }
+
+        @Override
+        public String toString()
+        {
+            return Objects.toStringHelper(this).add("leaves", leaves).add("metadata", metadata).toString();
+        }
     }
 }

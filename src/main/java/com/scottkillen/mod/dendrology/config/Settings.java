@@ -13,6 +13,17 @@ public enum Settings
         TreeGen.syncConfig(config);
     }
 
+    @SuppressWarnings("BooleanMethodNameMustStartWithQuestion")
+    private static boolean get(Configuration config, String settingName, String category, boolean defaultValue)
+    {
+        return config.getBoolean(settingName, category, defaultValue, getLocalizedComment(settingName));
+    }
+
+    private static String getLocalizedComment(String settingName)
+    {
+        return StatCollector.translateToLocal("config." + TheMod.MOD_ID + ':' + settingName);
+    }
+
     public enum TreeGen
     {
         ;
@@ -24,16 +35,5 @@ public enum Settings
         private static void syncConfig(Configuration config)
         {
         }
-    }
-
-    @SuppressWarnings("BooleanMethodNameMustStartWithQuestion")
-    private static boolean get(Configuration config, String settingName, String category, boolean defaultValue)
-    {
-        return config.getBoolean(settingName, category, defaultValue, getLocalizedComment(settingName));
-    }
-
-    private static String getLocalizedComment(String settingName)
-    {
-        return StatCollector.translateToLocal("config." + TheMod.MOD_ID + ':' + settingName);
     }
 }

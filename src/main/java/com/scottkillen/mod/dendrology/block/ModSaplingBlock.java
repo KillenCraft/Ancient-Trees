@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Random;
 
-import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.*;
 
 public class ModSaplingBlock extends BlockSapling
 {
@@ -36,24 +36,19 @@ public class ModSaplingBlock extends BlockSapling
         setBlockName("sapling");
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IIcon getIcon(int unused, int metadata)
-    {
-        return subblockIcons.get(mask(metadata));
-    }
-
     @SuppressWarnings("WeakerAccess")
     protected static String getUnwrappedUnlocalizedName(String unlocalizedName)
     {
         return unlocalizedName.substring(unlocalizedName.indexOf('.') + 1);
     }
 
+    private static int mask(int metadata) {return metadata & METADATA_MASK;}
+
+    @SideOnly(Side.CLIENT)
     @Override
-    public String getUnlocalizedName()
+    public IIcon getIcon(int unused, int metadata)
     {
-        //noinspection StringConcatenationMissingWhitespace
-        return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+        return subblockIcons.get(mask(metadata));
     }
 
     @Override
@@ -90,7 +85,12 @@ public class ModSaplingBlock extends BlockSapling
         }
     }
 
-    private static int mask(int metadata) {return metadata & METADATA_MASK;}
+    @Override
+    public String getUnlocalizedName()
+    {
+        //noinspection StringConcatenationMissingWhitespace
+        return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+    }
 
     @Override
     public String toString()

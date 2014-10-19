@@ -15,8 +15,7 @@ public class ConfigGUI extends GuiConfig
 {
     public ConfigGUI(GuiScreen parent)
     {
-        super(parent, getConfigElements(), TheMod.MOD_ID, false, false,
-                GuiConfig.getAbridgedConfigPath(ConfigHandler.INSTANCE.getConfig().toString()));
+        super(parent, getConfigElements(), TheMod.MOD_ID, false, false, GuiConfig.getAbridgedConfigPath(ConfigHandler.INSTANCE.getConfig().toString()));
     }
 
     @SuppressWarnings("unchecked")

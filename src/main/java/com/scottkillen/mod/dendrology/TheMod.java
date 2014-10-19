@@ -17,11 +17,7 @@ public class TheMod
 {
     public static final String MOD_ID = "dendrology";
     public static final String MOD_NAME = "Dendrology";
-    static final String MOD_VERSION = "@MOD_VERSION@";
-    static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
-
     public static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
-
     @SuppressWarnings("AnonymousInnerClass")
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
     {
@@ -31,8 +27,14 @@ public class TheMod
             return Item.getItemFromBlock(Blocks.log);
         }
     };
-
-    @SuppressWarnings({"StaticVariableOfConcreteClass", "StaticNonFinalField", "PublicField", "StaticVariableMayNotBeInitialized"})
+    static final String MOD_VERSION = "@MOD_VERSION@";
+    static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
+    @SuppressWarnings({
+            "StaticVariableOfConcreteClass",
+            "StaticNonFinalField",
+            "PublicField",
+            "StaticVariableMayNotBeInitialized"
+    })
     @Mod.Instance
     public static TheMod instance;
 

@@ -6,5 +6,5 @@ import net.minecraft.item.ItemLeaves;
 
 public class LeavesItem extends ItemLeaves
 {
-    public LeavesItem(Block block) { super((BlockLeaves)block); }
+    public LeavesItem(Block block) { super((BlockLeaves) block); }
 }
