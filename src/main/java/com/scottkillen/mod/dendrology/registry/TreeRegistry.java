@@ -31,6 +31,11 @@ public enum TreeRegistry
 
     }
 
+    public static void generateTrees(World world, Random rand, int chunkX, int chunkZ)
+    {
+
+    }
+
     private static final class Leaves
     {
         private final Block leaves;
