@@ -10,10 +10,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import java.util.List;
 import java.util.Random;
 
@@ -24,13 +26,20 @@ public class ModSaplingBlock extends BlockSapling
     private static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<String> subblockNames;
+    private final ImmutableList<? extends WorldGenerator> treeGens;
     private final List<IIcon> subblockIcons = Lists.newArrayList();
 
-    public ModSaplingBlock(List<String> subblockNames)
+    public ModSaplingBlock(List<String> subblockNames, List<? extends WorldGenerator> treeGens)
     {
         checkArgument(!subblockNames.isEmpty());
         checkArgument(subblockNames.size() <= CAPACITY);
         this.subblockNames = ImmutableList.copyOf(subblockNames);
+
+        checkArgument(!treeGens.isEmpty());
+        checkArgument(treeGens.size() <= CAPACITY);
+        this.treeGens = ImmutableList.copyOf(treeGens);
+
+        checkArgument(subblockNames.size() == treeGens.size());
 
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("sapling");
@@ -54,7 +63,13 @@ public class ModSaplingBlock extends BlockSapling
     @Override
     public void func_149878_d(World world, int x, int y, int z, Random rand)
     {
-        TreeRegistry.growTree(world, x, y, z, rand);
+        if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(world, rand, x, y, z)) return;
+
+        final int metadata = mask(world.getBlockMetadata(x, y, z));
+        WorldGenerator treeGen = treeGens.get(metadata);
+        world.setBlock(x, y, z, Blocks.air, 0, 4);
+        if (!treeGen.generate(world, rand, x, y, z))
+            world.setBlock(x, y, z, this, metadata, 4);
     }
 
     @Override
