@@ -26,6 +26,7 @@ public enum Settings
         }
     }
 
+    @SuppressWarnings("BooleanMethodNameMustStartWithQuestion")
     private static boolean get(Configuration config, String settingName, String category, boolean defaultValue)
     {
         return config.getBoolean(settingName, category, defaultValue, getLocalizedComment(settingName));

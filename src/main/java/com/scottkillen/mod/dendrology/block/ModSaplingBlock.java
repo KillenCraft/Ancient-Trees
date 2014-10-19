@@ -1,5 +1,6 @@
 package com.scottkillen.mod.dendrology.block;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.TheMod;
@@ -23,7 +24,7 @@ public class ModSaplingBlock extends BlockSapling
     private static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<String> subblockNames;
-    private List<IIcon> subblockIcons = Lists.newArrayList();
+    private final List<IIcon> subblockIcons = Lists.newArrayList();
 
     public ModSaplingBlock(List<String> subblockNames)
     {
@@ -72,6 +73,7 @@ public class ModSaplingBlock extends BlockSapling
     public void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
     {
         for (int i = 0; i < subblockNames.size(); i++)
+            //noinspection unchecked,ObjectAllocationInLoop
             subblocks.add(new ItemStack(item, 1, i));
     }
 
@@ -82,10 +84,17 @@ public class ModSaplingBlock extends BlockSapling
 
         for (int i = 0; i < subblockNames.size(); i++)
         {
+            //noinspection StringConcatenationMissingWhitespace
             final String iconName = TheMod.RESOURCE_PREFIX + "sapling_" + subblockNames.get(i);
             subblockIcons.add(i, iconRegister.registerIcon(iconName));
         }
     }
 
     private static int mask(int metadata) {return metadata & METADATA_MASK;}
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("subblockIcons", subblockIcons).toString();
+    }
 }

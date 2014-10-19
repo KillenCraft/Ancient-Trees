@@ -17,8 +17,8 @@ public class TheMod
 {
     public static final String MOD_ID = "dendrology";
     public static final String MOD_NAME = "Dendrology";
-    public static final String MOD_VERSION = "@MOD_VERSION@";
-    public static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
+    static final String MOD_VERSION = "@MOD_VERSION@";
+    static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
 
     public static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
 
@@ -36,6 +36,7 @@ public class TheMod
     @Mod.Instance
     public static TheMod instance;
 
+    @SuppressWarnings("MethodMayBeStatic")
     @Mod.EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
@@ -45,7 +46,7 @@ public class TheMod
         ModBlocks.init();
     }
 
-    @SuppressWarnings("UnusedParameters")
+    @SuppressWarnings({ "UnusedParameters", "MethodMayBeStatic" })
     @Mod.EventHandler
     public void onFMLInitialization(FMLInitializationEvent event)
     {

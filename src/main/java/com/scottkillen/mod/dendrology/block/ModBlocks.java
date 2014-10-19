@@ -8,16 +8,16 @@ import com.scottkillen.mod.dendrology.registry.TreeRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemLeaves;
 
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.*;
 
-public class ModBlocks
+@SuppressWarnings({ "StaticNonFinalField", "UtilityClass", "WeakerAccess", "CanBeFinal", "PublicField" })
+public final class ModBlocks
 {
-    static final int DEFAULT_LEAVES_FIRE_ENCOURAGEMENT = 30;
-    static final int DEFAULT_LOG_FIRE_ENCOURAGEMENT = 5;
-    static final int DEFAULT_LEAVES_FLAMMABILITY = 60;
-    static final int DEFAULT_LOG_FLAMMABILITY = 5;
+    private static final int DEFAULT_LEAVES_FIRE_ENCOURAGEMENT = 30;
+    private static final int DEFAULT_LOG_FIRE_ENCOURAGEMENT = 5;
+    private static final int DEFAULT_LEAVES_FLAMMABILITY = 60;
+    private static final int DEFAULT_LOG_FLAMMABILITY = 5;
 
     private static final ImmutableList<String> LOG0_NAMES = ImmutableList.of("beech", "cedar", "cherry", "cypress");
     private static final ImmutableList<String> LOG1_NAMES = ImmutableList.of("eucalyptus", "ginkgo", "ironwood", "maple");

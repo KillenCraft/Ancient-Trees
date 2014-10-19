@@ -1,5 +1,6 @@
 package com.scottkillen.mod.dendrology.block;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
@@ -32,7 +33,7 @@ public class ModLogBlock extends BlockLog
     public void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
     {
         for (int i = 0; i < subblockNames.size(); i ++)
-            //noinspection unchecked
+            //noinspection unchecked,ObjectAllocationInLoop
             subblocks.add(new ItemStack(item, 1, i));
     }
 
@@ -58,9 +59,16 @@ public class ModLogBlock extends BlockLog
 
         for (int i = 0; i < subblockNames.size(); i++)
         {
+            //noinspection StringConcatenationMissingWhitespace
             final String iconName = TheMod.RESOURCE_PREFIX + "log_" + subblockNames.get(i);
             field_150167_a[i] = iconRegister.registerIcon(iconName);
             field_150166_b[i] = iconRegister.registerIcon(iconName + "_top");
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("subblockNames", subblockNames).toString();
     }
 }

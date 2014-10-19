@@ -14,6 +14,7 @@ import java.util.Date;
 
 import static com.google.common.base.Preconditions.*;
 
+@SuppressWarnings("NonSerializableFieldInSerializableClass")
 public enum ConfigHandler
 {
     INSTANCE;

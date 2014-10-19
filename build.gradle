@@ -44,7 +44,7 @@ processResources
     	expand 'version': project.version, 'mcversion': project.minecraft.version
     }
 
-    // copy everything else, thats we didnt do before
+    // copy everything else, that we didn't do before
     from(sourceSets.main.resources.srcDirs) {
         exclude '**/*.info'
     }
@@ -93,6 +93,7 @@ signing {
     sign configurations.archives
 }
 
+//noinspection GroovyMissingReturnStatement
 uploadArchives {
     repositories {
         mavenDeployer {

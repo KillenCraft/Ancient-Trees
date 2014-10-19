@@ -140,12 +140,12 @@ public class ModLeavesBlock extends BlockLeaves
         return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
+    @SuppressWarnings("OverlyComplexBooleanExpression")
     @Override
     public boolean shouldSideBeRendered(IBlockAccess blockAccess, int x, int y, int z, int side)
     {
-        Block block = blockAccess.getBlock(x, y, z);
-        if (!isFancyGraphics() && block == this) return false;
-        return side == 0 && this.minY > 0.0D ? true : (side == 1 && this.maxY < 1.0D ? true : (side == 2 && this.minZ > 0.0D ? true : (side == 3 && this.maxZ < 1.0D ? true : (side == 4 && this.minX > 0.0D ? true : (side == 5 && this.maxX < 1.0D ? true : !blockAccess.getBlock(x, y, z).isOpaqueCube())))));
+        final Block block = blockAccess.getBlock(x, y, z);
+        return !(!isFancyGraphics() && block.equals(this)) && (side == 0 && minY > 0.0D || side == 1 && maxY < 1.0D || side == 2 && minZ > 0.0D || side == 3 && maxZ < 1.0D || side == 4 && minX > 0.0D || side == 5 && maxX < 1.0D || !blockAccess.getBlock(x, y, z).isOpaqueCube());
     }
 
     private static boolean isFancyGraphics() {return Minecraft.getMinecraft().gameSettings.fancyGraphics;}

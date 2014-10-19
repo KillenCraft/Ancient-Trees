@@ -10,6 +10,7 @@ import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 import java.util.List;
 
+@SuppressWarnings("WeakerAccess")
 public class ConfigGUI extends GuiConfig
 {
     public ConfigGUI(GuiScreen parent)

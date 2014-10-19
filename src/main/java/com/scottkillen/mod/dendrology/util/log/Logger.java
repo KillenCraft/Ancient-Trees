@@ -1,9 +1,11 @@
 package com.scottkillen.mod.dendrology.util.log;
 
+import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.TheMod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Level;
 
+@SuppressWarnings("WeakerAccess")
 public enum Logger
 {
     INSTANCE;
@@ -54,5 +56,11 @@ public enum Logger
     {
         //noinspection ChainedMethodCall
         getLogger().log(level, String.format(format, data));
+    }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("logger", logger).toString();
     }
 }

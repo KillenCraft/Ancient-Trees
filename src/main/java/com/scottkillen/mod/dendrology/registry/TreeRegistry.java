@@ -48,7 +48,7 @@ public enum TreeRegistry
         }
     }
 
-    private static Map<Leaves, ImmutablePair<Item, Integer>> mapping = Maps.newHashMap();
+    private static final Map<Leaves, ImmutablePair<Item, Integer>> mapping = Maps.newHashMap();
 
     public static void addSaplingForLeaves(Block leaves, int leavesMetadata, Block sapling, int saplingMetadata)
     {
