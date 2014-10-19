@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.item.LeavesItem;
 import com.scottkillen.mod.dendrology.item.LogItem;
 import com.scottkillen.mod.dendrology.item.SaplingItem;
+import com.scottkillen.mod.dendrology.registry.TreeRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -58,6 +59,49 @@ public class ModBlocks
         registerLeavesBlock(leaves3, "leaves3");
         registerSaplingBlock(sapling0, "sapling0", SAPLING0_NAMES);
         registerSaplingBlock(sapling1, "sapling1", SAPLING1_NAMES);
+
+        registerSaplingsToLeaves();
+    }
+
+    private static void registerSaplingsToLeaves()
+    {// beech
+        TreeRegistry.addSaplingForLeaves(leaves0, 0, sapling0, 0);
+
+        // cedar
+        TreeRegistry.addSaplingForLeaves(leaves0, 1, sapling0, 1);
+
+        // cypress
+        TreeRegistry.addSaplingForLeaves(leaves0, 2, sapling0, 3);
+
+        // eucalyptus
+        TreeRegistry.addSaplingForLeaves(leaves0, 3, sapling0, 4);
+
+        // ironwood
+        TreeRegistry.addSaplingForLeaves(leaves1, 0, sapling0, 6);
+
+        // ginkgo
+        TreeRegistry.addSaplingForLeaves(leaves1, 1, sapling0, 5);
+        TreeRegistry.addSaplingForLeaves(leaves3, 0, sapling0, 5);
+
+        // palm
+        TreeRegistry.addSaplingForLeaves(leaves1, 2, sapling1, 0);
+
+        // poplar
+        TreeRegistry.addSaplingForLeaves(leaves1, 3, sapling1, 1);
+
+        // cherry
+        TreeRegistry.addSaplingForLeaves(leaves2, 0, sapling0, 2);
+        TreeRegistry.addSaplingForLeaves(leaves2, 1, sapling0, 2);
+
+        // maple
+        TreeRegistry.addSaplingForLeaves(leaves2, 2, sapling0, 7);
+        TreeRegistry.addSaplingForLeaves(leaves2, 3, sapling0, 7);
+
+        // walnut
+        TreeRegistry.addSaplingForLeaves(leaves3, 1, sapling1, 2);
+
+        // willow
+        TreeRegistry.addSaplingForLeaves(leaves3, 2, sapling1, 3);
     }
 
     private static void registerLeavesBlock(Block block, String name)
