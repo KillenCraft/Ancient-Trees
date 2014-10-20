@@ -32,14 +32,6 @@ public class TheMod
     static final String MOD_VERSION = "@MOD_VERSION@";
     @SuppressWarnings("WeakerAccess")
     static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
-    @SuppressWarnings({
-            "StaticVariableOfConcreteClass",
-            "StaticNonFinalField",
-            "PublicField",
-            "StaticVariableMayNotBeInitialized"
-    })
-    @Mod.Instance
-    public static TheMod instance;
 
     @SuppressWarnings("MethodMayBeStatic")
     @Mod.EventHandler
