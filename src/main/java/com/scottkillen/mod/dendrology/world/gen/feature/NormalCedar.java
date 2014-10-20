@@ -8,6 +8,8 @@ import java.util.Random;
 
 class NormalCedar extends ModWorldGenAbstractTree
 {
+    protected int logDirection = 0;
+
     @Override
     protected boolean canBeReplacedByLog(World world, int x, int y, int z)
     {
@@ -53,10 +55,13 @@ class NormalCedar extends ModWorldGenAbstractTree
                 {
                     for (int next = 1; next < 3; next++)
                     {
+                        logDirection = 4;
                         placeLog(world, x + next, y + level - 2, z);
                         placeLog(world, x - next, y + level - 2, z);
+                        logDirection = 8;
                         placeLog(world, x, y + level - 2, z + next);
                         placeLog(world, x, y + level - 2, z - next);
+                        logDirection = 0;
                     }
                     leafGen(world, level == height - 4 ? 3 : 4, x, y + level, z);
                 }
@@ -151,5 +156,5 @@ class NormalCedar extends ModWorldGenAbstractTree
     protected Block getLogBlock() {return ModBlocks.logs0;}
 
     @Override
-    protected int getLogMetadata() {return 1;}
+    protected int getLogMetadata() {return 1 | logDirection;}
 }

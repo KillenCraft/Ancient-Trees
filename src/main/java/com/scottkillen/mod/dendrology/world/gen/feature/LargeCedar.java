@@ -39,10 +39,13 @@ public class LargeCedar extends NormalCedar
                 {
                     for (int next = 1; next < 3; next++)
                     {
+                        logDirection = 4;
                         placeLog(world, x + next, y + level - 2, z);
                         placeLog(world, x - next, y + level - 2, z);
+                        logDirection = 8;
                         placeLog(world, x, y + level - 2, z + next);
                         placeLog(world, x, y + level - 2, z - next);
+                        logDirection = 0;
                     }
                     //noinspection NestedConditionalExpression
                     final int size = level == height - 4 ? 3 : level == height - 7 ? 4 : level == height - 10 ? 5 : rand.nextInt(3) + 2;

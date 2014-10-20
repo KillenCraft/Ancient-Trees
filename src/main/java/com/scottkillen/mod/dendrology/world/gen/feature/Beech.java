@@ -11,6 +11,7 @@ import java.util.Random;
 public class Beech extends ModWorldGenAbstractTree
 {
     private static final ImmutableList<ImmutableSet<ForgeDirection>> branchDirections = ImmutableList.of(WEST, EAST, NORTH, SOUTH, SOUTHWEST, NORTHWEST, SOUTHEAST, NORTHEAST);
+    private int logDirection = 0;
 
     public Beech(boolean isFromSapling)
     {
@@ -55,6 +56,8 @@ public class Beech extends ModWorldGenAbstractTree
         final int length = height - level;
         level += y;
 
+        logDirection = 4; // EAST/WEST
+
         int offsetX = 0;
         int offsetZ = 0;
 
@@ -62,9 +65,14 @@ public class Beech extends ModWorldGenAbstractTree
         {
             offsetX += direction.offsetZ;
             offsetZ += direction.offsetX;
+
+            if (direction == ForgeDirection.NORTH || direction == ForgeDirection.SOUTH)
+                logDirection = 8;
         }
 
         extendBranch(world, rand, x, level, z, length, offsetX, offsetZ);
+
+        logDirection = 0; // UP/DOWN
     }
 
     @SuppressWarnings("AssignmentToMethodParameter")
@@ -146,5 +154,5 @@ public class Beech extends ModWorldGenAbstractTree
     protected Block getLogBlock() {return ModBlocks.logs0;}
 
     @Override
-    protected int getLogMetadata() {return 0;}
+    protected int getLogMetadata() {return 0 | logDirection;}
 }
