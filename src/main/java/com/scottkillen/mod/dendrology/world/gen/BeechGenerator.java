@@ -2,17 +2,14 @@ package com.scottkillen.mod.dendrology.world.gen;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableSet;
-import com.scottkillen.mod.dendrology.util.log.Logger;
+import com.scottkillen.mod.dendrology.util.world.BiomeDictionaryProxy;
 import com.scottkillen.mod.dendrology.world.gen.feature.Beech;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.BiomeDictionary;
-import java.util.Arrays;
-import java.util.EnumSet;
 import java.util.Random;
 
 import static net.minecraftforge.common.BiomeDictionary.Type.COLD;
@@ -30,22 +27,13 @@ public enum BeechGenerator implements IWorldGenerator
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
     {
-        final ImmutableSet<BiomeDictionary.Type> biomeTags = ImmutableSet.copyOf(getBiomeTags(world, chunkX, chunkZ));
+        final ImmutableSet<BiomeDictionary.Type> biomeTags = ImmutableSet.copyOf(BiomeDictionaryProxy.getBiomeTags(world, chunkX, chunkZ));
 
         // Temperate biomes that are not too wet
         if (isTemperateAndNotWet(biomeTags))
         {
             generateBeech(world, random, chunkX, chunkZ);
         }
-    }
-
-    private static ImmutableSet<BiomeDictionary.Type> getBiomeTags(World world, int x, int z)
-    {
-        final BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
-        final EnumSet<BiomeDictionary.Type> set = EnumSet.noneOf(BiomeDictionary.Type.class);
-        final BiomeDictionary.Type[] tags = BiomeDictionary.getTypesForBiome(biome);
-        set.addAll(Arrays.asList(tags));
-        return ImmutableSet.copyOf(set);
     }
 
     private void generateBeech(World world, Random rand, int chunkX, int chunkZ)
