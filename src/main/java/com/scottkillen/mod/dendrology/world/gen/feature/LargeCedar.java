@@ -1,0 +1,59 @@
+package com.scottkillen.mod.dendrology.world.gen.feature;
+
+import com.scottkillen.mod.dendrology.block.ModBlocks;
+import net.minecraft.block.Block;
+import net.minecraft.world.World;
+import java.util.Random;
+
+public class LargeCedar extends NormalCedar
+{
+    public LargeCedar(boolean isFromSapling)
+    {
+        super(isFromSapling);
+    }
+
+    @SuppressWarnings({ "MethodWithMultipleLoops", "OverlyComplexMethod" })
+    @Override
+    public boolean generate(World world, Random rand, int x, int y, int z)
+    {
+        final int height = rand.nextInt(12) + 12;
+
+        if (!goodGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+
+        final Block block = world.getBlock(x, y - 1, z);
+        block.onPlantGrow(world, x, y - 1, z, x, y, z);
+
+        for (int level = height; level >= 0; level--)
+        {
+            placeLog(world, x, y + level, z);
+
+            if (level > 5 && level < height)
+            {
+                if (level == height - 1)
+                {
+                    leafGen(world, 2, x, y + level, z);
+                }
+
+                //noinspection OverlyComplexBooleanExpression
+                if (level == height - 4 || level == height - 7 || level == height - 10 || level == height - 13)
+                {
+                    for (int next = 1; next < 3; next++)
+                    {
+                        placeLog(world, x + next, y + level - 2, z);
+                        placeLog(world, x - next, y + level - 2, z);
+                        placeLog(world, x, y + level - 2, z + next);
+                        placeLog(world, x, y + level - 2, z - next);
+                    }
+                    //noinspection NestedConditionalExpression
+                    final int size = level == height - 4 ? 3 : level == height - 7 ? 4 : level == height - 10 ? 5 : rand.nextInt(3) + 2;
+                    leafGen(world, size, x, y + level, z);
+                }
+            }
+
+            if (level == height)
+                leafTop (world, x, y + level, z);
+        }
+
+        return true;
+    }
+}

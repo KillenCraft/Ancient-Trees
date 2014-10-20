@@ -4,6 +4,7 @@ import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.config.ConfigHandler;
 import com.scottkillen.mod.dendrology.item.ModItems;
 import com.scottkillen.mod.dendrology.world.gen.BeechGenerator;
+import com.scottkillen.mod.dendrology.world.gen.CedarGenerator;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -51,6 +52,7 @@ public class TheMod
 
         // Recipes.init();
         BeechGenerator.init();
+        CedarGenerator.init();
     }
 
     @SuppressWarnings("UnusedParameters")
