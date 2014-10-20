@@ -50,10 +50,7 @@ public enum BeechGenerator implements IWorldGenerator
                 final int y = world.getHeightValue(x, z);
 
                 if (treeGen.generate(world, rand, x, y, z))
-                {
                     treeGen.func_150524_b(world, rand, x, y, z);
-                    Logger.info("Beech: %d, %d, %d", x, y, z);
-                }
             }
         }
     }
