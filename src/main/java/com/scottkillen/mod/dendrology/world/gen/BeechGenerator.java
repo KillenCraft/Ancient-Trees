@@ -2,6 +2,7 @@ package com.scottkillen.mod.dendrology.world.gen;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableSet;
+import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.util.world.BiomeDictionaryProxy;
 import com.scottkillen.mod.dendrology.world.gen.feature.Beech;
 import cpw.mods.fml.common.IWorldGenerator;
@@ -27,6 +28,8 @@ public enum BeechGenerator implements IWorldGenerator
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
     {
+        if (!Settings.TreeGen.doBeechTreeGeneration()) return;
+
         final ImmutableSet<BiomeDictionary.Type> biomeTags = ImmutableSet.copyOf(BiomeDictionaryProxy.getBiomeTags(world, chunkX, chunkZ));
 
         // Temperate biomes that are not too wet
