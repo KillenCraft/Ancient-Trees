@@ -1,0 +1,60 @@
+##############################
+# Dendrology
+#
+# English - UNITED STATES (US) (en_US) localization
+# Author: Scott Killen
+#
+
+#Blocks
+
+### Logs
+tile.dendrology:log.beech.name=Beech Wood
+tile.dendrology:log.cedar.name=Cedar Wood
+tile.dendrology:log.cherry.name=Cherry Wood
+tile.dendrology:log.cypress.name=Cypress Wood
+tile.dendrology:log.eucalyptus.name=Eucalyptus Wood
+tile.dendrology:log.ginkgo.name=Ginkgo Wood
+tile.dendrology:log.ironwood.name=Ironwood Wood
+tile.dendrology:log.maple.name=Maple Wood
+tile.dendrology:log.palm.name=Palm Wood
+tile.dendrology:log.poplar.name=Poplar Wood
+tile.dendrology:log.walnut.name=Walnut Wood
+tile.dendrology:log.willow.name=Willow Wood
+
+### Leaves
+tile.dendrology:leaves.beech.name=Beech Leaves
+tile.dendrology:leaves.cedar.name=Cedar Leaves
+tile.dendrology:leaves.cherry.pink.name=Pink Cherry Leaves
+tile.dendrology:leaves.cherry.white.name=White Cherry Leaves
+tile.dendrology:leaves.cypress.name=Cypress Leaves
+tile.dendrology:leaves.eucalyptus.name=Eucalyptus Leaves
+tile.dendrology:leaves.ginkgo.name=Ginkgo Leaves
+tile.dendrology:leaves.ginkgo.yellow.name=Yellow ginkgo Leaves
+tile.dendrology:leaves.ironwood.name=Ironwood Leaves
+tile.dendrology:leaves.maple.red.name=Red Maple Leaves
+tile.dendrology:leaves.maple.yellow.name=Yellow Maple Leaves
+tile.dendrology:leaves.palm.name=Palm Leaves
+tile.dendrology:leaves.poplar.name=Poplar Leaves
+tile.dendrology:leaves.walnut.name=Walnut Leaves
+tile.dendrology:leaves.willow.name=Willow Leaves
+
+### Saplings
+tile.dendrology:sapling.beech.name=Beech Sapling
+tile.dendrology:sapling.cedar.name=Cedar Sapling
+tile.dendrology:sapling.cherry.name=Cherry Sapling
+tile.dendrology:sapling.cypress.name=Cypress Sapling
+tile.dendrology:sapling.eucalyptus.name=Eucalyptus Sapling
+tile.dendrology:sapling.ginkgo.name=Ginkgo Sapling
+tile.dendrology:sapling.ironwood.name=Ironwood Sapling
+tile.dendrology:sapling.maple.name=Maple Sapling
+tile.dendrology:sapling.palm.name=Palm Sapling
+tile.dendrology:sapling.poplar.name=Poplar Sapling
+tile.dendrology:sapling.walnut.name=Walnut Sapling
+tile.dendrology:sapling.willow.name=Willow Sapling
+
+#Config file comments
+config.dendrology:genBeechTrees=Should beechwood trees be generated in new chunks?
+config.dendrology:genCedarTrees=Should cedar trees be generated in new chunks?
+
+#Creatibe Tabs
+itemGroup.dendrology=Dendrology
