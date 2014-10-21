@@ -37,7 +37,7 @@ public enum CedarGenerator implements IWorldGenerator
 
     private void generateCedar(World world, Random rand, int chunkX, int chunkZ)
     {
-            final int numAttempts = rand.nextInt(3 + 1);
+            final int numAttempts = rand.nextInt(3) + 1;
 
             for (int attempt = 0; attempt < numAttempts; attempt ++)
             {

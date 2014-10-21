@@ -33,14 +33,20 @@ public enum Settings
         // Defaults
         private static boolean genBeechTrees = true;
         private static boolean genCedarTrees = true;
+        private static boolean genCypressTrees = true;
 
         public static boolean doBeechTreeGeneration() { return genBeechTrees; }
+
         public static boolean doCedarTreeGeneration() { return genCedarTrees; }
+
+        public static boolean doCypressTreeGeneration() { return genCypressTrees; }
 
         private static void syncConfig(Configuration config)
         {
             genBeechTrees = get(config, "genBeechTrees", CATEGORY, genBeechTrees);
             genCedarTrees = get(config, "genCedarTrees", CATEGORY, genCedarTrees);
+            genCypressTrees = get(config, "genCypressTrees", CATEGORY, genCypressTrees);
         }
+
     }
 }
