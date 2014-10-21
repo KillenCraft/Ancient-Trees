@@ -31,9 +31,16 @@ public enum Settings
         public static final String CATEGORY = Configuration.CATEGORY_GENERAL + ".treegen";
 
         // Defaults
+        private static boolean genBeechTrees = true;
+        private static boolean genCedarTrees = true;
+
+        public static boolean doBeechTreeGeneration() { return genBeechTrees; }
+        public static boolean doCedarTreeGeneration() { return genCedarTrees; }
 
         private static void syncConfig(Configuration config)
         {
+            genBeechTrees = get(config, "genBeechTrees", CATEGORY, genBeechTrees);
+            genCedarTrees = get(config, "genCedarTrees", CATEGORY, genCedarTrees);
         }
     }
 }
