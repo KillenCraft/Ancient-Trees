@@ -7,14 +7,17 @@ import com.scottkillen.mod.dendrology.util.log.Logger;
 import com.scottkillen.mod.dendrology.util.world.BiomeDictionaryProxy;
 import com.scottkillen.mod.dendrology.world.gen.feature.Cypress;
 import cpw.mods.fml.common.IWorldGenerator;
-import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import java.util.Random;
 
 import static net.minecraftforge.common.BiomeDictionary.Type.SWAMP;
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE;
 
 @SuppressWarnings("NonSerializableFieldInSerializableClass")
 public enum CypressGenerator implements IWorldGenerator
@@ -31,7 +34,15 @@ public enum CypressGenerator implements IWorldGenerator
 
     public static void init()
     {
-        GameRegistry.registerWorldGenerator(INSTANCE, 30);
+        MinecraftForge.TERRAIN_GEN_BUS.register(INSTANCE);
+    }
+
+    @SubscribeEvent
+    public void onDecorateBiome(DecorateBiomeEvent.Decorate event)
+    {
+        if (event.type != TREE) return;
+
+        generate(event.rand, event.chunkX, event.chunkZ, event.world, null, null);
     }
 
     @Override
@@ -49,6 +60,8 @@ public enum CypressGenerator implements IWorldGenerator
 
     private void generateCypress(World world, Random rand, int chunkX, int chunkZ)
     {
+        if (rand.nextInt(10) > 1) return;
+
         final int numAttempts = rand.nextInt(7);
 
         for (int attempt = 0; attempt < numAttempts; attempt++)
