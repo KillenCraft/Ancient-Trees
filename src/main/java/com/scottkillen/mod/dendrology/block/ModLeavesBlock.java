@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +46,13 @@ public class ModLeavesBlock extends BlockLeaves
 
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("leaves");
+    }
+
+    @Override
+    public int getDamageValue(World world, int x, int y, int z)
+    {
+        return world.getBlockMetadata(x, y, z) & 3;
+
     }
 
     private static int mask(int metadata) {return metadata & METADATA_MASK;}
