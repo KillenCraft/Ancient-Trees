@@ -42,7 +42,7 @@ public enum BeechGenerator implements IWorldGenerator
     private void generateBeech(World world, Random rand, int chunkX, int chunkZ)
     {
         // gen 20% of the time
-        if (rand.nextInt(10) < 2)
+        if (rand.nextInt(10) == 0)
         {
             final int numAttempts = 1;
 
