@@ -1,4 +1,4 @@
-package com.scottkillen.mod.dendrology.world.gen.feature;
+package com.scottkillen.mod.dendrology.world.gen.feature.cedar;
 
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import net.minecraft.block.Block;
