@@ -71,10 +71,7 @@ public enum CypressGenerator implements IWorldGenerator
             final int y = world.getHeightValue(x, z);
 
             if (treeGen.generate(world, rand, x, y, z))
-            {
                 treeGen.func_150524_b(world, rand, x, y, z);
-                Logger.info("Cypress: %d, %d, %d", x, y, z);
-            }
         }
     }
 
