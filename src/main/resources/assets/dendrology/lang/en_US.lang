@@ -55,6 +55,7 @@ tile.dendrology:sapling.willow.name=Willow Sapling
 #Config file comments
 config.dendrology:genBeechTrees=Should beechwood trees be generated in new chunks?
 config.dendrology:genCedarTrees=Should cedar trees be generated in new chunks?
+config.dendrology:genCherryTrees=Should cherry trees be generated in new chunks?
 config.dendrology:genCypressTrees=Should cypress trees be generated in new chunks?
 
 #Creatibe Tabs
