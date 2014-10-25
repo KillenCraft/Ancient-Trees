@@ -11,7 +11,7 @@ import java.util.EnumSet;
 import static com.google.common.base.Preconditions.*;
 import static net.minecraftforge.common.util.ForgeDirection.UP;
 
-public abstract class ModWorldGenAbstractTree extends WorldGenAbstractTree
+public abstract class AbstractTree extends WorldGenAbstractTree
 {
     protected static final ImmutableSet<ForgeDirection> WEST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.WEST));
     protected static final ImmutableSet<ForgeDirection> EAST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.EAST));
@@ -22,7 +22,7 @@ public abstract class ModWorldGenAbstractTree extends WorldGenAbstractTree
     protected static final ImmutableSet<ForgeDirection> SOUTHEAST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.SOUTH, ForgeDirection.EAST));
     protected static final ImmutableSet<ForgeDirection> NORTHEAST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.NORTH, ForgeDirection.EAST));
 
-    protected ModWorldGenAbstractTree(boolean isFromSapling)
+    protected AbstractTree(boolean isFromSapling)
     {
         super(isFromSapling);
     }

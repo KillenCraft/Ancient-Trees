@@ -10,7 +10,7 @@ import java.util.Random;
 
 import static net.minecraftforge.common.util.ForgeDirection.UP;
 
-public abstract class AbstractLargeVanillaOak extends ModWorldGenAbstractTree
+public abstract class AbstractLargeVanillaOak extends AbstractTree
 {
     private static final byte[] otherCoordPairs = { (byte) 2, (byte) 0, (byte) 0, (byte) 1, (byte) 2, (byte) 1 };
     private static final double HEIGHT_ATTENUATION = 0.618D;

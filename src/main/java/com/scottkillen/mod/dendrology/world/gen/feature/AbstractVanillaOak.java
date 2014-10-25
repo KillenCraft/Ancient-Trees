@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import java.util.Random;
 
-public abstract class AbstractVanillaOak extends ModWorldGenAbstractTree
+public abstract class AbstractVanillaOak extends AbstractTree
 {
     private final boolean isFromSapling;
 

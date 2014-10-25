@@ -6,7 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import java.util.Random;
 
-class NormalCedar extends ModWorldGenAbstractTree
+class NormalCedar extends AbstractTree
 {
     protected int logDirection = 0;
 
