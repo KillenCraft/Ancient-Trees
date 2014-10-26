@@ -11,7 +11,7 @@
 tile.dendrology:log.lata.name=Lata Wood
 tile.dendrology:log.cedrum.name=Cedrum Wood
 tile.dendrology:log.cerasu.name=Cerasu Wood
-tile.dendrology:log.cypress.name=Cypress Wood
+tile.dendrology:log.kiparis.name=Kiparis Wood
 tile.dendrology:log.eucalyptus.name=Eucalyptus Wood
 tile.dendrology:log.ginkgo.name=Ginkgo Wood
 tile.dendrology:log.ironwood.name=Ironwood Wood
@@ -26,7 +26,7 @@ tile.dendrology:leaves.lata.name=Lata Leaves
 tile.dendrology:leaves.cedrum.name=Cedrum Leaves
 tile.dendrology:leaves.cerasu.pink.name=Pink Cerasu Leaves
 tile.dendrology:leaves.cerasu.white.name=White Cerasu Leaves
-tile.dendrology:leaves.cypress.name=Cypress Leaves
+tile.dendrology:leaves.kiparis.name=Kiparis Leaves
 tile.dendrology:leaves.eucalyptus.name=Eucalyptus Leaves
 tile.dendrology:leaves.ginkgo.name=Ginkgo Leaves
 tile.dendrology:leaves.ginkgo.yellow.name=Yellow ginkgo Leaves
@@ -42,7 +42,7 @@ tile.dendrology:leaves.willow.name=Willow Leaves
 tile.dendrology:sapling.lata.name=Lata Sapling
 tile.dendrology:sapling.cedrum.name=Cedrum Sapling
 tile.dendrology:sapling.cerasu.name=Cerasu Sapling
-tile.dendrology:sapling.cypress.name=Cypress Sapling
+tile.dendrology:sapling.kiparis.name=Kiparis Sapling
 tile.dendrology:sapling.eucalyptus.name=Eucalyptus Sapling
 tile.dendrology:sapling.ginkgo.name=Ginkgo Sapling
 tile.dendrology:sapling.ironwood.name=Ironwood Sapling
@@ -56,7 +56,7 @@ tile.dendrology:sapling.willow.name=Willow Sapling
 config.dendrology:genLataTrees=Should lata trees be generated in new chunks?
 config.dendrology:genCedrumTrees=Should cedrum trees be generated in new chunks?
 config.dendrology:genCerasuTrees=Should cerasu trees be generated in new chunks?
-config.dendrology:genCypressTrees=Should cypress trees be generated in new chunks?
+config.dendrology:genKiparisTrees=Should kiparis trees be generated in new chunks?
 
 #Creatibe Tabs
 itemGroup.dendrology=Dendrology

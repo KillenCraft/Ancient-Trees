@@ -6,9 +6,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import java.util.Random;
 
-public class Cypress extends AbstractTree
+public class KiparisTree extends AbstractTree
 {
-    public Cypress(boolean isFromSapling)
+    public KiparisTree(boolean isFromSapling)
     {
         super(isFromSapling);
     }

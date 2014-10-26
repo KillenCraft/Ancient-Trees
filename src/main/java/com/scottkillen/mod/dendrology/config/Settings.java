@@ -35,7 +35,7 @@ public enum Settings
         private static boolean genLataTrees = true;
         private static boolean genCedrumTrees = true;
         private static boolean genCerasuTrees = true;
-        private static boolean genCypressTrees = true;
+        private static boolean genKiparisTrees = true;
 
         public static boolean doLataTreeGeneration() { return genLataTrees; }
 
@@ -43,14 +43,14 @@ public enum Settings
 
         public static boolean doCerasuTreeGeneration() { return genCerasuTrees; }
 
-        public static boolean doCypressTreeGeneration() { return genCypressTrees; }
+        public static boolean doKiparisTreeGeneration() { return genKiparisTrees; }
 
         private static void syncConfig(Configuration config)
         {
             genLataTrees = get(config, "genLataTrees", CATEGORY, genLataTrees);
             genCedrumTrees = get(config, "genCedrumTrees", CATEGORY, genCedrumTrees);
             genCerasuTrees = get(config, "genCerasuTrees", CATEGORY, genCerasuTrees);
-            genCypressTrees = get(config, "genCypressTrees", CATEGORY, genCypressTrees);
+            genKiparisTrees = get(config, "genKiparisTrees", CATEGORY, genKiparisTrees);
         }
     }
 }

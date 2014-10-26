@@ -4,7 +4,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableSet;
 import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.util.world.BiomeDictionaryProxy;
-import com.scottkillen.mod.dendrology.world.gen.feature.Cypress;
+import com.scottkillen.mod.dendrology.world.gen.feature.KiparisTree;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.world.World;
@@ -19,11 +19,11 @@ import static net.minecraftforge.common.BiomeDictionary.Type.SWAMP;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE;
 
 @SuppressWarnings("NonSerializableFieldInSerializableClass")
-public enum CypressGenerator implements IWorldGenerator
+public enum KiparisTreeGenerator implements IWorldGenerator
 {
     INSTANCE;
 
-    private final WorldGenAbstractTree treeGen = new Cypress(false);
+    private final WorldGenAbstractTree treeGen = new KiparisTree(false);
 
     private static boolean isIdealHabitat(ImmutableSet<BiomeDictionary.Type> biomeTags)
     {
@@ -46,17 +46,17 @@ public enum CypressGenerator implements IWorldGenerator
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
     {
-        if (!Settings.TreeGen.doCypressTreeGeneration()) return;
+        if (!Settings.TreeGen.doKiparisTreeGeneration()) return;
 
         final ImmutableSet<BiomeDictionary.Type> biomeTags = ImmutableSet.copyOf(BiomeDictionaryProxy.getBiomeTags(world, chunkX, chunkZ));
 
         if (isIdealHabitat(biomeTags))
         {
-            generateCypress(world, random, chunkX, chunkZ);
+            generateTree(world, random, chunkX, chunkZ);
         }
     }
 
-    private void generateCypress(World world, Random rand, int chunkX, int chunkZ)
+    private void generateTree(World world, Random rand, int chunkX, int chunkZ)
     {
         if (rand.nextInt(10) > 1) return;
 
