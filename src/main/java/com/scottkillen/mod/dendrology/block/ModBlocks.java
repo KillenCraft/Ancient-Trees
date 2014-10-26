@@ -25,7 +25,7 @@ public final class ModBlocks
     private static final int DEFAULT_LEAVES_FLAMMABILITY = 60;
     private static final int DEFAULT_LOG_FLAMMABILITY = 5;
 
-    private static final ImmutableList<String> LOG0_NAMES = ImmutableList.of("lata", "cedrumr", "cherry", "cypress");
+    private static final ImmutableList<String> LOG0_NAMES = ImmutableList.of("lata", "cedrum", "cherry", "cypress");
     private static final ImmutableList<String> LOG1_NAMES = ImmutableList.of("eucalyptus", "ginkgo", "ironwood", "maple");
     private static final ImmutableList<String> LOG2_NAMES = ImmutableList.of("palm", "poplar", "walnut", "willow");
     private static final ImmutableList<String> LEAVES0_NAMES = ImmutableList.of("lata", "cedrum", "cypress", "eucalyptus");
