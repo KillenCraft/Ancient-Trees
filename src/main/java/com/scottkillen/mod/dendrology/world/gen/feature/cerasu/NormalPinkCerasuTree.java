@@ -1,12 +1,12 @@
-package com.scottkillen.mod.dendrology.world.gen.feature.cherry;
+package com.scottkillen.mod.dendrology.world.gen.feature.cerasu;
 
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractVanillaOak;
 import net.minecraft.block.Block;
 
-public class NormalPinkCherry extends AbstractVanillaOak
+public class NormalPinkCerasuTree extends AbstractVanillaOak
 {
-    public NormalPinkCherry(boolean isFromSapling) { super(isFromSapling); }
+    public NormalPinkCerasuTree(boolean isFromSapling) { super(isFromSapling); }
 
     @Override
     protected Block getLeavesBlock() { return ModBlocks.leaves2; }

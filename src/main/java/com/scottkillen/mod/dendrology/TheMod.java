@@ -4,8 +4,8 @@ import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.config.ConfigHandler;
 import com.scottkillen.mod.dendrology.item.ModItems;
 import com.scottkillen.mod.dendrology.world.gen.CedrumTreeGenerator;
+import com.scottkillen.mod.dendrology.world.gen.CerasuTreeGenerator;
 import com.scottkillen.mod.dendrology.world.gen.LataTreeGenerator;
-import com.scottkillen.mod.dendrology.world.gen.CherryGenerator;
 import com.scottkillen.mod.dendrology.world.gen.CypressGenerator;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -55,7 +55,7 @@ public class TheMod
         // Recipes.init();
         LataTreeGenerator.init();
         CedrumTreeGenerator.init();
-        CherryGenerator.init();
+        CerasuTreeGenerator.init();
         CypressGenerator.init();
     }
 

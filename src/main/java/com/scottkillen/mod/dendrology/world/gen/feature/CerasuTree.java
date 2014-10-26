@@ -1,28 +1,28 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.world.gen.feature.cherry.LargePinkCherry;
-import com.scottkillen.mod.dendrology.world.gen.feature.cherry.LargeWhiteCherry;
-import com.scottkillen.mod.dendrology.world.gen.feature.cherry.NormalPinkCherry;
-import com.scottkillen.mod.dendrology.world.gen.feature.cherry.NormalWhiteCherry;
+import com.scottkillen.mod.dendrology.world.gen.feature.cerasu.LargePinkCerasuTree;
+import com.scottkillen.mod.dendrology.world.gen.feature.cerasu.LargeWhiteCerasuTree;
+import com.scottkillen.mod.dendrology.world.gen.feature.cerasu.NormalPinkCerasuTree;
+import com.scottkillen.mod.dendrology.world.gen.feature.cerasu.NormalWhiteCerasuTree;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import java.util.Random;
 
-public class Cherry extends WorldGenAbstractTree
+public class CerasuTree extends WorldGenAbstractTree
 {
     private final WorldGenAbstractTree treeGenPink;
     private final WorldGenAbstractTree treeGenWhite;
     private final WorldGenAbstractTree largeTreeGenPink;
     private final WorldGenAbstractTree largeTreeGenWhite;
 
-    public Cherry(boolean isFromSapling)
+    public CerasuTree(boolean isFromSapling)
     {
         super(isFromSapling);
-        treeGenPink = new NormalPinkCherry(isFromSapling);
-        largeTreeGenPink = new LargePinkCherry(isFromSapling);
-        treeGenWhite = new NormalWhiteCherry(isFromSapling);
-        largeTreeGenWhite = new LargeWhiteCherry(isFromSapling);
+        treeGenPink = new NormalPinkCerasuTree(isFromSapling);
+        largeTreeGenPink = new LargePinkCerasuTree(isFromSapling);
+        treeGenWhite = new NormalWhiteCerasuTree(isFromSapling);
+        largeTreeGenWhite = new LargeWhiteCerasuTree(isFromSapling);
     }
 
     @Override
