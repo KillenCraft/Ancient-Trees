@@ -32,25 +32,29 @@ public enum Settings
         public static final String CATEGORY = Configuration.CATEGORY_GENERAL + ".treegen";
 
         // Defaults
-        private static boolean genLataTrees = true;
         private static boolean genCedrumTrees = true;
         private static boolean genCerasuTrees = true;
+        private static boolean genEwcalyTrees = true;
         private static boolean genKiparisTrees = true;
-
-        public static boolean doLataTreeGeneration() { return genLataTrees; }
+        private static boolean genLataTrees = true;
 
         public static boolean doCedrumTreeGeneration() { return genCedrumTrees; }
 
         public static boolean doCerasuTreeGeneration() { return genCerasuTrees; }
 
+        public static boolean doEwcalyTreeGeneration() { return genEwcalyTrees; }
+
         public static boolean doKiparisTreeGeneration() { return genKiparisTrees; }
+
+        public static boolean doLataTreeGeneration() { return genLataTrees; }
 
         private static void syncConfig(Configuration config)
         {
-            genLataTrees = get(config, "genLataTrees", CATEGORY, genLataTrees);
             genCedrumTrees = get(config, "genCedrumTrees", CATEGORY, genCedrumTrees);
             genCerasuTrees = get(config, "genCerasuTrees", CATEGORY, genCerasuTrees);
+            genEwcalyTrees = get(config, "genEwcalyTrees", CATEGORY, genEwcalyTrees);
             genKiparisTrees = get(config, "genKiparisTrees", CATEGORY, genKiparisTrees);
+            genLataTrees = get(config, "genLataTrees", CATEGORY, genLataTrees);
         }
     }
 }
