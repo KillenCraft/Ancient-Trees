@@ -57,7 +57,7 @@ public class Cypress extends AbstractTree
         final int size = 1 + (rand.nextInt(7) < 2 ? 1 : 0) + (rand.nextInt(7) < 2 ? 1 : 0) + rand.nextInt(2);
         final int height = 4 * size + 1;
 
-        if (!goodGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);

@@ -1,5 +1,6 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
@@ -23,7 +24,7 @@ public class Beech extends AbstractTree
     {
         final int height = rand.nextInt(15) + 6;
 
-        if (!goodGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -154,5 +155,11 @@ public class Beech extends AbstractTree
     protected Block getLogBlock() {return ModBlocks.logs0;}
 
     @Override
-    protected int getLogMetadata() {return 0 | logDirection;}
+    protected int getLogMetadata() {return logDirection;}
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("logDirection", logDirection).toString();
+    }
 }

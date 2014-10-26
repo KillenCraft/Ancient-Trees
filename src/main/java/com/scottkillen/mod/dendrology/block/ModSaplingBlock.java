@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.event.terraingen.TerrainGen;
 import java.util.List;
 import java.util.Random;
 
@@ -62,10 +63,10 @@ public class ModSaplingBlock extends BlockSapling
     @Override
     public void func_149878_d(World world, int x, int y, int z, Random rand)
     {
-        if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(world, rand, x, y, z)) return;
+        if (!TerrainGen.saplingGrowTree(world, rand, x, y, z)) return;
 
         final int metadata = mask(world.getBlockMetadata(x, y, z));
-        WorldGenerator treeGen = treeGens.get(metadata);
+        final WorldGenerator treeGen = treeGens.get(metadata);
         world.setBlock(x, y, z, Blocks.air, 0, 4);
         if (!treeGen.generate(world, rand, x, y, z))
             world.setBlock(x, y, z, this, metadata, 4);
@@ -109,6 +110,6 @@ public class ModSaplingBlock extends BlockSapling
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("subblockIcons", subblockIcons).toString();
+        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("treeGens", treeGens).add("subblockIcons", subblockIcons).toString();
     }
 }

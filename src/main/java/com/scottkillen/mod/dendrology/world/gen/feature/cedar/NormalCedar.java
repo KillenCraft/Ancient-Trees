@@ -1,5 +1,6 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.cedar;
 
+import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import net.minecraft.block.Block;
@@ -9,7 +10,8 @@ import java.util.Random;
 
 public class NormalCedar extends AbstractTree
 {
-    protected int logDirection = 0;
+    @SuppressWarnings("PackageVisibleField")
+    int logDirection = 0;
 
     @Override
     protected boolean canBeReplacedByLog(World world, int x, int y, int z)
@@ -34,7 +36,7 @@ public class NormalCedar extends AbstractTree
     {
         final int height = rand.nextInt(10) + 9;
 
-        if (!goodGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -158,4 +160,10 @@ public class NormalCedar extends AbstractTree
 
     @Override
     protected int getLogMetadata() {return 1 | logDirection;}
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("logDirection", logDirection).toString();
+    }
 }

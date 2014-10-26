@@ -17,7 +17,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.*;
 
-@SuppressWarnings({ "StaticNonFinalField", "UtilityClass", "WeakerAccess", "PublicField", "CanBeFinal" })
+@SuppressWarnings({ "StaticNonFinalField", "UtilityClass", "PublicField" })
 public final class ModBlocks
 {
     private static final int DEFAULT_LEAVES_FIRE_ENCOURAGEMENT = 30;

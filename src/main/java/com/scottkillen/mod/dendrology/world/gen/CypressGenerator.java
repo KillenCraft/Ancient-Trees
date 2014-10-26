@@ -3,7 +3,6 @@ package com.scottkillen.mod.dendrology.world.gen;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableSet;
 import com.scottkillen.mod.dendrology.config.Settings;
-import com.scottkillen.mod.dendrology.util.log.Logger;
 import com.scottkillen.mod.dendrology.util.world.BiomeDictionaryProxy;
 import com.scottkillen.mod.dendrology.world.gen.feature.Cypress;
 import cpw.mods.fml.common.IWorldGenerator;
@@ -26,7 +25,6 @@ public enum CypressGenerator implements IWorldGenerator
 
     private final WorldGenAbstractTree treeGen = new Cypress(false);
 
-    @SuppressWarnings("SimplifiableIfStatement")
     private static boolean isIdealHabitat(ImmutableSet<BiomeDictionary.Type> biomeTags)
     {
         return biomeTags.contains(SWAMP);

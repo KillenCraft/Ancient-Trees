@@ -38,7 +38,7 @@ public abstract class AbstractVanillaOak extends AbstractTree
     {
         final int height = 4 + rand.nextInt(3) + (isFromSapling ? rand.nextInt(7) : 0);
 
-        if (!goodGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);

@@ -48,7 +48,7 @@ public class TheMod
 
     @SuppressWarnings({ "UnusedParameters", "MethodMayBeStatic" })
     @Mod.EventHandler
-    public void onFMLInitialization(FMLInitializationEvent event)
+    public void onFMLInitialization(FMLInitializationEvent unused)
     {
         FMLCommonHandler.instance().bus().register(ConfigHandler.INSTANCE);
 

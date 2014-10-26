@@ -74,12 +74,12 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
     }
 
     @Override
-    protected boolean goodGrowthConditions(World world, int x, int y, int z, int height, IPlantable plantable)
+    protected boolean isPoorGrowthConditions(World world, int x, int y, int z, int height, IPlantable plantable)
     {
-        if (y < 1 || y + height + 1 > world.getHeight()) return false;
+        if (y < 1 || y + height + 1 > world.getHeight()) return true;
 
         final Block block = world.getBlock(basePos[0], basePos[1] - 1, basePos[2]);
-        return block.canSustainPlant(world, x, y - 1, z, UP, plantable) && hasRoomToGrow(world, x, y, z, height);
+        return !block.canSustainPlant(world, x, y - 1, z, UP, plantable) || !hasRoomToGrow(world, x, y, z, height);
 
     }
 
@@ -109,7 +109,6 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
-        //noinspection UnsecureRandomNumberGeneration
         rng.setSeed(rand.nextLong());
         basePos[0] = x;
         basePos[1] = y;
@@ -117,7 +116,7 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
 
         heightLimit = 5 + rand.nextInt(HEIGHT_LIMIT_LIMIT);
 
-        if (!goodGrowthConditions(world, x, y, z, heightLimit, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, heightLimit, ModBlocks.sapling0)) return false;
 
         final int height = generateLeafNodeList(world);
         generateLeaves(world);

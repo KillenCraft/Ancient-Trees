@@ -18,7 +18,7 @@ public class LargeCedar extends NormalCedar
     {
         final int height = rand.nextInt(12) + 12;
 
-        if (!goodGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);

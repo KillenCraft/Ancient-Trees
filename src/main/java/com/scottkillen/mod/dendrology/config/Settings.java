@@ -24,6 +24,7 @@ public enum Settings
         return StatCollector.translateToLocal("config." + TheMod.MOD_ID + ':' + settingName);
     }
 
+    @SuppressWarnings("StaticNonFinalField")
     public enum TreeGen
     {
         ;
