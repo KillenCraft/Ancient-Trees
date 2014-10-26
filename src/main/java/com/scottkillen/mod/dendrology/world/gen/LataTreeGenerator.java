@@ -4,7 +4,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableSet;
 import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.util.world.BiomeDictionaryProxy;
-import com.scottkillen.mod.dendrology.world.gen.feature.Beech;
+import com.scottkillen.mod.dendrology.world.gen.feature.LataTree;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.world.World;
@@ -19,27 +19,27 @@ import static net.minecraftforge.common.BiomeDictionary.Type.WATER;
 import static net.minecraftforge.common.BiomeDictionary.Type.WET;
 
 @SuppressWarnings("NonSerializableFieldInSerializableClass")
-public enum BeechGenerator implements IWorldGenerator
+public enum LataTreeGenerator implements IWorldGenerator
 {
     INSTANCE;
 
-    private final WorldGenAbstractTree treeGen = new Beech(false);
+    private final WorldGenAbstractTree treeGen = new LataTree(false);
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
     {
-        if (!Settings.TreeGen.doBeechTreeGeneration()) return;
+        if (!Settings.TreeGen.doLataTreeGeneration()) return;
 
         final ImmutableSet<BiomeDictionary.Type> biomeTags = ImmutableSet.copyOf(BiomeDictionaryProxy.getBiomeTags(world, chunkX, chunkZ));
 
         // Temperate biomes that are not too wet
         if (isTemperateAndNotWet(biomeTags))
         {
-            generateBeech(world, random, chunkX, chunkZ);
+            generateTree(world, random, chunkX, chunkZ);
         }
     }
 
-    private void generateBeech(World world, Random rand, int chunkX, int chunkZ)
+    private void generateTree(World world, Random rand, int chunkX, int chunkZ)
     {
         // gen 20% of the time
         if (rand.nextInt(10) == 0)

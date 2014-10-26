@@ -3,7 +3,7 @@ package com.scottkillen.mod.dendrology;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.config.ConfigHandler;
 import com.scottkillen.mod.dendrology.item.ModItems;
-import com.scottkillen.mod.dendrology.world.gen.BeechGenerator;
+import com.scottkillen.mod.dendrology.world.gen.LataTreeGenerator;
 import com.scottkillen.mod.dendrology.world.gen.CedarGenerator;
 import com.scottkillen.mod.dendrology.world.gen.CherryGenerator;
 import com.scottkillen.mod.dendrology.world.gen.CypressGenerator;
@@ -53,7 +53,7 @@ public class TheMod
         FMLCommonHandler.instance().bus().register(ConfigHandler.INSTANCE);
 
         // Recipes.init();
-        BeechGenerator.init();
+        LataTreeGenerator.init();
         CedarGenerator.init();
         CherryGenerator.init();
         CypressGenerator.init();
