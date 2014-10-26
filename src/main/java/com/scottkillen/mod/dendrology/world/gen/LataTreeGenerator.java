@@ -33,7 +33,7 @@ public enum LataTreeGenerator implements IWorldGenerator
         final ImmutableSet<BiomeDictionary.Type> biomeTags = ImmutableSet.copyOf(BiomeDictionaryProxy.getBiomeTags(world, chunkX, chunkZ));
 
         // Temperate biomes that are not too wet
-        if (isTemperateAndNotWet(biomeTags))
+        if (isIdealHabitat(biomeTags))
         {
             generateTree(world, random, chunkX, chunkZ);
         }
@@ -59,7 +59,7 @@ public enum LataTreeGenerator implements IWorldGenerator
     }
 
     @SuppressWarnings({ "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations" })
-    private static boolean isTemperateAndNotWet(ImmutableSet<BiomeDictionary.Type> biomeTags) {
+    private static boolean isIdealHabitat(ImmutableSet<BiomeDictionary.Type> biomeTags) {
         return !biomeTags.contains(COLD) && !biomeTags.contains(HOT) && !biomeTags.contains(WET) && !biomeTags.contains(WATER);
     }
 
