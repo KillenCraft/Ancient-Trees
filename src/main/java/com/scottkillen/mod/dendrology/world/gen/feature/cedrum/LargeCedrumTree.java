@@ -1,13 +1,13 @@
-package com.scottkillen.mod.dendrology.world.gen.feature.cedar;
+package com.scottkillen.mod.dendrology.world.gen.feature.cedrum;
 
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import java.util.Random;
 
-public class LargeCedar extends NormalCedar
+public class LargeCedrumTree extends NormalCedrumTree
 {
-    public LargeCedar(boolean isFromSapling)
+    public LargeCedrumTree(boolean isFromSapling)
     {
         super(isFromSapling);
     }

@@ -1,23 +1,23 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.world.gen.feature.cedar.LargeCedar;
-import com.scottkillen.mod.dendrology.world.gen.feature.cedar.NormalCedar;
+import com.scottkillen.mod.dendrology.world.gen.feature.cedrum.LargeCedrumTree;
+import com.scottkillen.mod.dendrology.world.gen.feature.cedrum.NormalCedrumTree;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import java.util.Random;
 
-public class Cedar extends WorldGenAbstractTree
+public class CedrumTree extends WorldGenAbstractTree
 {
     private final WorldGenAbstractTree treeGen;
     private final WorldGenAbstractTree largeTreeGen;
 
-    public Cedar(boolean isFromSapling)
+    public CedrumTree(boolean isFromSapling)
     {
         super(isFromSapling);
-        treeGen = new NormalCedar(isFromSapling);
-        largeTreeGen = new LargeCedar(isFromSapling);
+        treeGen = new NormalCedrumTree(isFromSapling);
+        largeTreeGen = new LargeCedrumTree(isFromSapling);
     }
 
     @Override

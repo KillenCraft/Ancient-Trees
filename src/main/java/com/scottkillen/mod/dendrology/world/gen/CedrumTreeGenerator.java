@@ -4,7 +4,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableSet;
 import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.util.world.BiomeDictionaryProxy;
-import com.scottkillen.mod.dendrology.world.gen.feature.Cedar;
+import com.scottkillen.mod.dendrology.world.gen.feature.CedrumTree;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.world.World;
@@ -16,26 +16,26 @@ import java.util.Random;
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
 @SuppressWarnings("NonSerializableFieldInSerializableClass")
-public enum CedarGenerator implements IWorldGenerator
+public enum CedrumTreeGenerator implements IWorldGenerator
 {
     INSTANCE;
 
-    private final WorldGenAbstractTree treeGen = new Cedar(false);
+    private final WorldGenAbstractTree treeGen = new CedrumTree(false);
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
     {
-        if (!Settings.TreeGen.doCedarTreeGeneration()) return;
+        if (!Settings.TreeGen.doCedrumTreeGeneration()) return;
 
         final ImmutableSet<BiomeDictionary.Type> biomeTags = ImmutableSet.copyOf(BiomeDictionaryProxy.getBiomeTags(world, chunkX, chunkZ));
 
         if (isIdealHabitat(biomeTags))
         {
-            generateCedar(world, random, chunkX, chunkZ);
+            generateTree(world, random, chunkX, chunkZ);
         }
     }
 
-    private void generateCedar(World world, Random rand, int chunkX, int chunkZ)
+    private void generateTree(World world, Random rand, int chunkX, int chunkZ)
     {
             final int numAttempts = rand.nextInt(3) + 1;
 

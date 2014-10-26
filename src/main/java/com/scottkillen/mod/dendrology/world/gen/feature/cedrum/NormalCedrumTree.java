@@ -1,4 +1,4 @@
-package com.scottkillen.mod.dendrology.world.gen.feature.cedar;
+package com.scottkillen.mod.dendrology.world.gen.feature.cedrum;
 
 import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
@@ -8,7 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import java.util.Random;
 
-public class NormalCedar extends AbstractTree
+public class NormalCedrumTree extends AbstractTree
 {
     @SuppressWarnings("PackageVisibleField")
     int logDirection = 0;
@@ -25,7 +25,7 @@ public class NormalCedar extends AbstractTree
         return super.isReplaceable(world, x, y, z) || world.getBlock(x, y, z).getMaterial().equals(Material.water);
     }
 
-    public NormalCedar(boolean isFromSapling)
+    public NormalCedrumTree(boolean isFromSapling)
     {
         super(isFromSapling);
     }
