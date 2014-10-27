@@ -1,17 +1,20 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import java.util.Random;
 
+@SuppressWarnings({
+        "AssignmentToMethodParameter",
+        "OverlyComplexBooleanExpression",
+        "OverlyComplexMethod",
+        "OverlyLongMethod",
+        "UnsecureRandomNumberGeneration"
+})
 public class LataTree extends AbstractTree
 {
-    private static final ImmutableList<ImmutableSet<ForgeDirection>> branchDirections = ImmutableList.of(WEST, EAST, NORTH, SOUTH, SOUTHWEST, NORTHWEST, SOUTHEAST, NORTHEAST);
     private int logDirection = 0;
 
     public LataTree(boolean isFromSapling)
@@ -22,7 +25,10 @@ public class LataTree extends AbstractTree
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
-        final int height = rand.nextInt(15) + 6;
+        final Random rng = new Random();
+        rng.setSeed(rand.nextLong());
+
+        final int height = rng.nextInt(15) + 6;
 
         if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
 
@@ -31,88 +37,91 @@ public class LataTree extends AbstractTree
 
         for (int level = 0; level <= height; level++)
         {
-            placeLog(world, x, y + level, z);
-
             if (level == height) leafGen(world, x, y + level, z);
+            else placeLog(world, x, y + level, z);
 
             if (level > 3 && level < height)
             {
-                final int hl = height / level + 1;
-                generateBranches(world, rand, x, y, z, height, level, hl);
+                final int branchRarity = height / level + 1;
+
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, -1, 0);
+
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 1, 0);
+
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 0, -1);
+
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 0, 1);
+
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, -1, 1);
+
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, -1, -1);
+
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 1, 1);
+
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 1, -1);
             }
         }
 
         return true;
     }
 
-    private void generateBranches(World world, Random rand, int x, int y, int z, int height, int level, int hl)
+    private void branch(World world, Random rand, int x, int y, int z, int treeHeight, int branchLevel, int dX, int dZ)
     {
-        for (final ImmutableSet<ForgeDirection> direction : branchDirections)
-            if (rand.nextInt(hl) == 0) branch(world, rand, height, x, y, level, z, direction);
-    }
+        final int length = treeHeight - branchLevel;
+        y += branchLevel;
 
-    @SuppressWarnings("AssignmentToMethodParameter")
-    private void branch(World world, Random rand, int height, int x, int y, int level, int z, ImmutableSet<ForgeDirection> directions)
-    {
-        final int length = height - level;
-        level += y;
-
-        logDirection = 4; // EAST/WEST
-
-        int offsetX = 0;
-        int offsetZ = 0;
-
-        for (final ForgeDirection direction : directions)
+        for (int i = 0; i <= length; i++)
         {
-            offsetX += direction.offsetZ;
-            offsetZ += direction.offsetX;
+            if (dX == -1 && rand.nextInt(3) > 0)
+            {
+                x--;
+                logDirection = 4;
 
-            if (direction == ForgeDirection.NORTH || direction == ForgeDirection.SOUTH)
+                if (dZ == 0 && rand.nextInt(4) == 0) z = z + rand.nextInt(3) - 1;
+            }
+
+            if (dX == 1 && rand.nextInt(3) > 0)
+            {
+                x++;
+                logDirection = 4;
+
+                if (dZ == 0 && rand.nextInt(4) == 0) z = z + rand.nextInt(3) - 1;
+            }
+
+            if (dZ == -1 && rand.nextInt(3) > 0)
+            {
+                z--;
                 logDirection = 8;
-        }
 
-        extendBranch(world, rand, x, level, z, length, offsetX, offsetZ);
-
-        logDirection = 0; // UP/DOWN
-    }
-
-    @SuppressWarnings("AssignmentToMethodParameter")
-    private void extendBranch(World world, Random rand, int x, int level, int z, int branchLength, int offsetX, int offsetZ)
-    {
-        int index = 0;
-        while (index <= branchLength)
-        {
-            x += offsetX;
-            z += offsetZ;
-
-            if (offsetX == 0 && rand.nextInt(4) == 0)
-            {
-                x += rand.nextInt(3) - 1;
-            }
-            if (offsetZ == 0 && rand.nextInt(4) == 0)
-            {
-                z += rand.nextInt(3) - 1;
+                if (dX == 0 && rand.nextInt(4) == 0) x = x + rand.nextInt(3) - 1;
             }
 
-            placeLog(world, x, level, z);
+            if (dZ == 1 && rand.nextInt(3) > 0)
+            {
+                z++;
+                logDirection = 8;
+
+                if (dX == 0 && rand.nextInt(4) == 0) x = x + rand.nextInt(3) - 1;
+            }
+
+            placeLog(world, x, y, z);
+            logDirection = 0;
 
             if (rand.nextInt(3) == 0)
             {
-                leafGen(world, x, level, z);
+                leafGen(world, x, y, z);
             }
 
             if (rand.nextInt(3) > 0)
             {
-                level++;
+                y++;
             }
 
-            if (index == branchLength)
+            if (i == length)
             {
-                placeLog(world, x, level, z);
-                leafGen(world, x, level, z);
+                placeLog(world, x, y, z);
+                leafGen(world, x, y, z);
             }
-
-            index++;
         }
     }
 
@@ -120,16 +129,11 @@ public class LataTree extends AbstractTree
     private void leafGen(World world, int x, int y, int z)
     {
         for (int dX = -3; dX <= 3; dX++)
-        {
             for (int dZ = -3; dZ <= 3; dZ++)
             {
-                //noinspection OverlyComplexBooleanExpression
                 if ((Math.abs(dX) != 3 || Math.abs(dZ) != 3) && (Math.abs(dX) != 2 || Math.abs(dZ) != 3) && (Math.abs(dX) != 3 || Math.abs(dZ) != 2))
-                {
                     placeLeaves(world, x + dX, y, z + dZ);
-                }
 
-                //noinspection OverlyComplexBooleanExpression
                 if (Math.abs(dX) < 3 && Math.abs(dZ) < 3 && (Math.abs(dX) != 2 || Math.abs(dZ) != 2))
                 {
                     placeLeaves(world, x + dX, y + 1, z + dZ);
@@ -142,7 +146,6 @@ public class LataTree extends AbstractTree
                     placeLeaves(world, x + dX, y - 2, z + dZ);
                 }
             }
-        }
     }
 
     @Override
