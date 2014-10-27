@@ -16,7 +16,10 @@ public class LargeCedrumTree extends NormalCedrumTree
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
-        final int height = rand.nextInt(12) + 12;
+        Random rng = new Random();
+        rng.setSeed(rand.nextLong());
+
+        final int height = rng.nextInt(12) + 12;
 
         if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
 
@@ -48,7 +51,7 @@ public class LargeCedrumTree extends NormalCedrumTree
                         logDirection = 0;
                     }
                     //noinspection NestedConditionalExpression
-                    final int size = level == height - 4 ? 3 : level == height - 7 ? 4 : level == height - 10 ? 5 : rand.nextInt(3) + 2;
+                    final int size = level == height - 4 ? 3 : level == height - 7 ? 4 : level == height - 10 ? 5 : rng.nextInt(3) + 2;
                     leafGen(world, size, x, y + level, z);
                 }
             }
