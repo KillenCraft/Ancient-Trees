@@ -45,41 +45,44 @@ public class KiparisTree extends AbstractTree
 
     @SuppressWarnings("OverlyComplexMethod")
     @Override
-    public boolean generate(World world, Random random, int i, int j, int k)
+    public boolean generate(World world, Random rand, int x, int y, int z)
     {
-        final int size = 1 + (random.nextInt(7) < 2 ? 1 : 0) + (random.nextInt(7) < 2 ? 1 : 0) + (random.nextInt(2) == 0 ? 1 : 0);
+        Random rng = new Random();
+        rng.setSeed(rand.nextLong());
+
+        final int size = 1 + (rng.nextInt(7) < 2 ? 1 : 0) + (rng.nextInt(7) < 2 ? 1 : 0) + (rng.nextInt(2) == 0 ? 1 : 0);
         final int height = 4 * size + 1;
 
-        if (isPoorGrowthConditions(world, i, j, k, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
 
-        final Block block = world.getBlock(i, j - 1, k);
-        block.onPlantGrow(world, i, j - 1, k, i, j, k);
+        final Block block = world.getBlock(x, y - 1, z);
+        block.onPlantGrow(world, x, y - 1, z, x, y, z);
 
         for (int dY = 0; dY <= height; dY++)
         {
-            if (dY != height) placeLog(world, i, j + dY, k);
+            if (dY != height) placeLog(world, x, y + dY, z);
 
             if (dY >= 1)
             {
                 switch (size)
                 {
                     case 1:
-                        genSmallLeaves(world, i, j + dY, k);
+                        genSmallLeaves(world, x, y + dY, z);
                         break;
                     case 2:
-                        genMediumLeaves(world, i, j, k, dY);
+                        genMediumLeaves(world, x, y, z, dY);
                         break;
                     case 3:
-                        genLargeLeaves(world, i, j, k, dY);
+                        genLargeLeaves(world, x, y, z, dY);
                         break;
                     default:
-                        genExtraLargeLeaves(world, i, j, k, dY);
+                        genExtraLargeLeaves(world, x, y, z, dY);
                         break;
                 }
             }
 
-            if (dY == height) placeLeaves(world, i, j + dY + 1, k);
-            if (dY == height && (size == 4 || size == 3)) placeLeaves(world, i, j + dY + 2, k);
+            if (dY == height) placeLeaves(world, x, y + dY + 1, z);
+            if (dY == height && (size == 4 || size == 3)) placeLeaves(world, x, y + dY + 2, z);
         }
         return true;
     }
