@@ -13,14 +13,14 @@ import static net.minecraftforge.common.util.ForgeDirection.UP;
 
 public abstract class AbstractTree extends WorldGenAbstractTree
 {
-    static final ImmutableSet<ForgeDirection> WEST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.WEST));
-    static final ImmutableSet<ForgeDirection> EAST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.EAST));
-    static final ImmutableSet<ForgeDirection> NORTH = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.NORTH));
-    static final ImmutableSet<ForgeDirection> SOUTH = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.SOUTH));
-    static final ImmutableSet<ForgeDirection> SOUTHWEST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.SOUTH, ForgeDirection.WEST));
-    static final ImmutableSet<ForgeDirection> NORTHWEST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.NORTH, ForgeDirection.WEST));
-    static final ImmutableSet<ForgeDirection> SOUTHEAST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.SOUTH, ForgeDirection.EAST));
-    static final ImmutableSet<ForgeDirection> NORTHEAST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.NORTH, ForgeDirection.EAST));
+    protected static final ImmutableSet<ForgeDirection> WEST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.WEST));
+    protected static final ImmutableSet<ForgeDirection> EAST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.EAST));
+    protected static final ImmutableSet<ForgeDirection> NORTH = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.NORTH));
+    protected static final ImmutableSet<ForgeDirection> SOUTH = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.SOUTH));
+    protected static final ImmutableSet<ForgeDirection> SOUTHWEST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.SOUTH, ForgeDirection.WEST));
+    protected static final ImmutableSet<ForgeDirection> NORTHWEST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.NORTH, ForgeDirection.WEST));
+    protected static final ImmutableSet<ForgeDirection> SOUTHEAST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.SOUTH, ForgeDirection.EAST));
+    protected static final ImmutableSet<ForgeDirection> NORTHEAST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.NORTH, ForgeDirection.EAST));
 
     protected AbstractTree(boolean isFromSapling)
     {

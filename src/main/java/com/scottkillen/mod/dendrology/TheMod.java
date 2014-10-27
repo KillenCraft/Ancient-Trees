@@ -5,6 +5,7 @@ import com.scottkillen.mod.dendrology.config.ConfigHandler;
 import com.scottkillen.mod.dendrology.item.ModItems;
 import com.scottkillen.mod.dendrology.world.gen.CedrumTreeGenerator;
 import com.scottkillen.mod.dendrology.world.gen.CerasuTreeGenerator;
+import com.scottkillen.mod.dendrology.world.gen.EwcalyTreeGenerator;
 import com.scottkillen.mod.dendrology.world.gen.KiparisTreeGenerator;
 import com.scottkillen.mod.dendrology.world.gen.LataTreeGenerator;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -57,6 +58,7 @@ public class TheMod
         CedrumTreeGenerator.init();
         CerasuTreeGenerator.init();
         KiparisTreeGenerator.init();
+        EwcalyTreeGenerator.init();
     }
 
     @SuppressWarnings("UnusedParameters")
