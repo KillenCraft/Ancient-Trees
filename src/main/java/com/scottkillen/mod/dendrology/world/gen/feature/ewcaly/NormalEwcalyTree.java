@@ -32,7 +32,10 @@ public class NormalEwcalyTree extends AbstractTree
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
-        final int height = rand.nextInt(24) + 2;
+        final Random rng = new Random();
+        rng.setSeed(rand.nextLong());
+
+        final int height = rng.nextInt(24) + 2;
 
         if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
 
@@ -45,12 +48,12 @@ public class NormalEwcalyTree extends AbstractTree
         int size = 1;
 
         for (int y1 = y + height / 2; y1 <= y + height; y1++)
-            if (rand.nextInt(5) > 2 || y1 == y + height)
+            if (rng.nextInt(5) > 2 || y1 == y + height)
             {
-                if (rand.nextInt(20) < 1)
+                if (rng.nextInt(20) < 1)
                     size = 2;
 
-                if (rand.nextInt(4) == 0 && y1 - y > 10 && y1 - y < 20)
+                if (rng.nextInt(4) == 0 && y1 - y > 10 && y1 - y < 20)
                     size = 2;
 
                 if (y1 - y >= 20)
@@ -83,44 +86,44 @@ public class NormalEwcalyTree extends AbstractTree
 
         for (int dY = height / 2; dY <= height - 3; dY++)
         {
-            if (rand.nextInt(11) == 0)
+            if (rng.nextInt(11) == 0)
             {
-                branches(world, rand, x, y + dY, z, -1, 0, height);
+                branches(world, rng, x, y + dY, z, -1, 0, height);
             }
 
-            if (rand.nextInt(11) == 0)
+            if (rng.nextInt(11) == 0)
             {
-                branches(world, rand, x, y + dY, z, 1, 0, height);
+                branches(world, rng, x, y + dY, z, 1, 0, height);
             }
 
-            if (rand.nextInt(11) == 0)
+            if (rng.nextInt(11) == 0)
             {
-                branches(world, rand, x, y + dY, z, 0, -1, height);
+                branches(world, rng, x, y + dY, z, 0, -1, height);
             }
 
-            if (rand.nextInt(11) == 0)
+            if (rng.nextInt(11) == 0)
             {
-                branches(world, rand, x, y + dY, z, 0, 1, height);
+                branches(world, rng, x, y + dY, z, 0, 1, height);
             }
 
-            if (rand.nextInt(11) == 0)
+            if (rng.nextInt(11) == 0)
             {
-                branches(world, rand, x, y + dY, z, -1, 1, height);
+                branches(world, rng, x, y + dY, z, -1, 1, height);
             }
 
-            if (rand.nextInt(11) == 0)
+            if (rng.nextInt(11) == 0)
             {
-                branches(world, rand, x, y + dY, z, -1, -1, height);
+                branches(world, rng, x, y + dY, z, -1, -1, height);
             }
 
-            if (rand.nextInt(11) == 0)
+            if (rng.nextInt(11) == 0)
             {
-                branches(world, rand, x, y + dY, z, 1, 1, height);
+                branches(world, rng, x, y + dY, z, 1, 1, height);
             }
 
-            if (rand.nextInt(11) == 0)
+            if (rng.nextInt(11) == 0)
             {
-                branches(world, rand, x, y + dY, z, 1, -1, height);
+                branches(world, rng, x, y + dY, z, 1, -1, height);
             }
         }
 
