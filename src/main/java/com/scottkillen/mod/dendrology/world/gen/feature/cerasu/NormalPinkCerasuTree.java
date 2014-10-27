@@ -1,7 +1,7 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.cerasu;
 
 import com.scottkillen.mod.dendrology.block.ModBlocks;
-import com.scottkillen.mod.dendrology.world.gen.feature.AbstractVanillaOak;
+import com.scottkillen.mod.dendrology.world.gen.feature.vanilla.AbstractVanillaOak;
 import net.minecraft.block.Block;
 
 public class NormalPinkCerasuTree extends AbstractVanillaOak

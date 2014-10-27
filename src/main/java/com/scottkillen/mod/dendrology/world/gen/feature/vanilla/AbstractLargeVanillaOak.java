@@ -1,7 +1,8 @@
-package com.scottkillen.mod.dendrology.world.gen.feature;
+package com.scottkillen.mod.dendrology.world.gen.feature.vanilla;
 
 import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
+import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
