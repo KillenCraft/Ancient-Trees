@@ -1,19 +1,22 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.ewcaly;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import java.util.Random;
 
-@SuppressWarnings("MethodWithMoreThanThreeNegations")
-public class LargeEwcalyTree extends NormalEwcalyTree
+@SuppressWarnings({
+        "MethodWithMoreThanThreeNegations",
+        "AssignmentToMethodParameter",
+        "OverlyComplexBooleanExpression",
+        "MethodWithMultipleLoops"
+})
+public class LargeEwcalyTree extends AbstractTree
 {
-    private static final ImmutableList<ImmutableSet<ForgeDirection>> branchDirections = ImmutableList.of(WEST, EAST, NORTH, SOUTH, SOUTHWEST, NORTHWEST, SOUTHEAST, NORTHEAST);
+    private int logDirection = 0;
 
     public LargeEwcalyTree(boolean isFromSapling)
     {
@@ -37,13 +40,14 @@ public class LargeEwcalyTree extends NormalEwcalyTree
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
 
-        for (int dY = 0; dY <= height; dY++)
-            placeLog(world, x, y + dY, z);
+        for (int dy = 0; dy <= height; dy++)
+            placeLog(world, x, y + dy, z);
 
         int size = 1;
 
         for (int y1 = y + height / 2; y1 <= y + height; y1++)
-            if (y1 == y + height || rand.nextInt(5) > 2)
+        {
+            if (rand.nextInt(5) > 2 || y1 == y + height)
             {
                 if (rand.nextInt(20) < 1) size = 2;
 
@@ -55,9 +59,12 @@ public class LargeEwcalyTree extends NormalEwcalyTree
                     for (int dZ = -size; dZ <= size; dZ++)
                     {
                         placeLeaves(world, x + dX, y1, z + dZ);
+                        if (size != Math.abs(dX) || size != Math.abs(dZ)) placeLeaves(world, x + dX, y1, z + dZ);
 
-                        //noinspection OverlyComplexBooleanExpression
-                        if (!(size == 3 && (Math.abs(dX) == 3 && Math.abs(dZ) == 2 || Math.abs(dX) == 2 && Math.abs(dZ) == 3)) && y1 == y + height && Math.abs(dX) < 3 && Math.abs(dZ) < 3 && (Math.abs(dX) != 2 || Math.abs(dZ) != 2))
+                        if (size == 3 && (Math.abs(dX) == 3 && Math.abs(dZ) == 2 || Math.abs(dX) == 2 && Math.abs(dZ) == 3))
+                            setBlockAndNotifyAdequately(world, x + dX, y1, z + dZ, Blocks.air, 0);
+
+                        if (y1 == y + height && Math.abs(dX) < 3 && Math.abs(dZ) < 3 && (Math.abs(dX) != 2 || Math.abs(dZ) != 2))
                         {
                             if (size > 1) placeLeaves(world, x + dX, y1 + 1, z + dZ);
 
@@ -66,11 +73,102 @@ public class LargeEwcalyTree extends NormalEwcalyTree
                         }
                     }
             }
+        }
 
-        for (int level = height / 2; level <= height - 5; level++)
-            generateBranches(world, rand, x, y, z, height, level);
+        for (int dY = height / 2; dY <= height - 5; dY++)
+        {
+            if (rand.nextInt(9) == 0) branches(world, x, y + dY, z, -1, 0, height);
+
+            if (rand.nextInt(9) == 0) branches(world, x, y + dY, z, 1, 0, height);
+
+            if (rand.nextInt(9) == 0) branches(world, x, y + dY, z, 0, -1, height);
+
+            if (rand.nextInt(9) == 0) branches(world, x, y + dY, z, 0, 1, height);
+
+            if (rand.nextInt(9) == 0) branches(world, x, y + dY, z, -1, 1, height);
+
+            if (rand.nextInt(9) == 0) branches(world, x, y + dY, z, -1, -1, height);
+
+            if (rand.nextInt(9) == 0) branches(world, x, y + dY, z, 1, 1, height);
+
+            if (rand.nextInt(9) == 0) branches(world, x, y + dY, z, 1, -1, height);
+        }
 
         return true;
+    }
+
+    void branches(World world, int x, int y, int z, int dX, int dZ, int height)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            if (dX == -1)
+            {
+                x--;
+                logDirection = 4;
+            }
+
+            if (dX == 1)
+            {
+                x++;
+                logDirection = 4;
+            }
+
+            if (dZ == -1)
+            {
+                z--;
+                logDirection = 8;
+            }
+
+            if (dZ == 1)
+            {
+                z++;
+                logDirection = 8;
+            }
+
+            placeLog(world, x, y, z);
+            logDirection = 0;
+
+            if ((i == 4 || i == 7) && height >= 13) genLeaves(world, x, y, z);
+
+            if ((i == 4 || i == 7) && height < 13) genLeavesS(world, x, y, z);
+
+            y++;
+        }
+    }
+
+    void genLeaves(World world, int x, int y, int z)
+    {
+        for (int dX = -3; dX <= 3; dX++)
+        {
+            for (int dY = -3; dY <= 3; dY++)
+            {
+                if ((Math.abs(dX) != 3 || Math.abs(dY) != 3) && (Math.abs(dX) != 2 || Math.abs(dY) != 3) && (Math.abs(dX) != 3 || Math.abs(dY) != 2))
+                    placeLeaves(world, x + dX, y, z + dY);
+
+                if (Math.abs(dX) < 3 && Math.abs(dY) < 3 && (Math.abs(dX) != 2 || Math.abs(dY) != 2))
+                {
+                    placeLeaves(world, x + dX, y - 1, z + dY);
+                    placeLeaves(world, x + dX, y + 1, z + dY);
+                }
+            }
+        }
+    }
+
+    void genLeavesS(World world, int i3, int j3, int k3)
+    {
+        for (int x = -2; x <= 2; x++)
+        {
+            for (int y = -2; y <= 2; y++)
+            {
+                if (Math.abs(x) != 2 || Math.abs(y) != 2) placeLeaves(world, i3 + x, j3, k3 + y);
+
+                if (Math.abs(x) < 2 && Math.abs(y) < 2 && (Math.abs(x) != 1 || Math.abs(y) != 1))
+                {
+                    placeLeaves(world, i3 + x, j3 + 1, k3 + y);
+                    placeLeaves(world, i3 + x, j3 - 1, k3 + y);
+                }
+            }
+        }
     }
 
     @Override

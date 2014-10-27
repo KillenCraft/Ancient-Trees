@@ -1,11 +1,8 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.world.gen.feature.cedrum.LargeCedrumTree;
-import com.scottkillen.mod.dendrology.world.gen.feature.cedrum.NormalCedrumTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.ewcaly.LargeEwcalyTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.ewcaly.NormalEwcalyTree;
-import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import java.util.Random;
@@ -25,8 +22,8 @@ public class EwcalyTree extends WorldGenAbstractTree
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
-        if (rand.nextInt(7) > 1)
-            return treeGen.generate(world, rand, x, y, z);
+//        if (rand.nextInt(7) > 1)
+//            return treeGen.generate(world, rand, x, y, z);
 
         return largeTreeGen.generate(world, rand, x, y, z);
     }
