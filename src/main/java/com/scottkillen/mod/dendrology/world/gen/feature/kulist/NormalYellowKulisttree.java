@@ -5,9 +5,9 @@ import net.minecraft.block.Block;
 
 public class NormalYellowKulisttree extends NormalKulistTree
 {
-    public NormalYellowKulisttree(boolean isFromSapling)
+    public NormalYellowKulisttree()
     {
-        super(isFromSapling);
+        super();
     }
 
     @Override

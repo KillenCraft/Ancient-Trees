@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class LargeHekurTree extends NormalHekurTree
 {
-    public LargeHekurTree(boolean isFromSapling) { super(isFromSapling); }
+    public LargeHekurTree() { super(); }
 
     @Override
     protected void growTrunk(World world, Random random, int i1, int j1, int k1)

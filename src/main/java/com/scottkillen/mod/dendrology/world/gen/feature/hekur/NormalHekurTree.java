@@ -1,11 +1,13 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.hekur;
 
+import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import java.util.Random;
 
 import static net.minecraftforge.common.util.ForgeDirection.UP;
@@ -14,7 +16,7 @@ public class NormalHekurTree extends AbstractTree
 {
     protected int logDirection = 0;
 
-    public NormalHekurTree(boolean isFromSapling) { super(isFromSapling); }
+    public NormalHekurTree() { super(); }
 
     @Override
     protected boolean isPoorGrowthConditions(World world, int x, int y, int z, int unused, IPlantable plantable)
@@ -58,21 +60,8 @@ public class NormalHekurTree extends AbstractTree
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
 
-        if (random.nextInt(3) == 0) rootGen(world, random, x, y, z, -1, 0);
-
-        if (random.nextInt(3) == 0) rootGen(world, random, x, y, z, 1, 0);
-
-        if (random.nextInt(3) == 0) rootGen(world, random, x, y, z, 0, -1);
-
-        if (random.nextInt(3) == 0) rootGen(world, random, x, y, z, 0, 1);
-
-        if (random.nextInt(3) == 0) rootGen(world, random, x, y, z, -1, 1);
-
-        if (random.nextInt(3) == 0) rootGen(world, random, x, y, z, -1, -1);
-
-        if (random.nextInt(3) == 0) rootGen(world, random, x, y, z, 1, 1);
-
-        if (random.nextInt(3) == 0) rootGen(world, random, x, y, z, 1, -1);
+        for (final ImmutablePair<Integer, Integer> branchDirection : BRANCH_DIRECTIONS)
+            if (random.nextInt(3) == 0) rootGen(world, random, x, y, z, branchDirection.getLeft(), branchDirection.getRight());
 
         rootGen(world, random, x, y, z, 0, 0);
         growTrunk(world, random, x, y, z);
@@ -82,37 +71,35 @@ public class NormalHekurTree extends AbstractTree
 
     protected void rootGen(World world, Random rand, int x, int y, int z, int dX, int dZ)
     {
+        int x1 = x;
+        int y1 = y;
+        int z1 = z;
+
+        if (dX != 0)
+            logDirection = 4;
+
+        if (dZ != 0)
+            logDirection = 8;
+
         for (int i = 0; i < 6; i++)
         {
-            if (dX == -1 && rand.nextInt(3) == 0)
+            if (rand.nextInt(3) == 0)
             {
-                x--;
-                logDirection = 4;
+                if (dX == -1) x1--;
+
+                if (dX == 1 && rand.nextInt(3) == 0) x1++;
+
+                if (dZ == -1 && rand.nextInt(3) == 0) z1--;
+
+                if (dZ == 1 && rand.nextInt(3) == 0) z1++;
             }
 
-            if (dX == 1 && rand.nextInt(3) == 0)
-            {
-                x++;
-                logDirection = 4;
-            }
+            placeRoot(world, x1, y1, z1);
 
-            if (dZ == -1 && rand.nextInt(3) == 0)
-            {
-                z--;
-                logDirection = 8;
-            }
-
-            if (dZ == 1 && rand.nextInt(3) == 0)
-            {
-                z++;
-                logDirection = 8;
-            }
-
-            placeRoot(world, x, y, z);
-            logDirection = 0;
-
-            y--;
+            y1--;
         }
+
+        logDirection = 0;
     }
 
     protected boolean canBeReplacedByRoot(World world, int x, int y, int z)
@@ -171,6 +158,9 @@ public class NormalHekurTree extends AbstractTree
     protected void largeDirect(World world, Random rand, int dX, int dZ, int x, int y, int z, int size, int splitCount,
                                int splitCount1, int splitCount2)
     {
+        int z1 = z;
+        int x1 = x;
+        int y1 = y;
         if (dX != 0) logDirection = 4;
         if (dZ != 0) logDirection = 8;
 
@@ -183,27 +173,27 @@ public class NormalHekurTree extends AbstractTree
 
         for (int next = 0; next <= 5 * size; next++)
         {
-            if (size == 1) y++;
+            if (size == 1) y1++;
 
-            placeLog(world, x, y, z);
+            placeLog(world, x1, y1, z1);
 
-            if (next <= 9 && size == 2) placeLog(world, x - dX, y, z - dZ);
+            if (next <= 9 && size == 2) placeLog(world, x1 - dX, y1, z1 - dZ);
 
-            if (next == 5 * size) branchAndLeaf(world, x, y + 1, z);
+            if (next == 5 * size) branchAndLeaf(world, x1, y1 + 1, z1);
 
-            if (size == 2) y++;
+            if (size == 2) y1++;
 
-            x += dX;
-            z += dZ;
+            x1 += dX;
+            z1 += dZ;
 
             int i3;
             int j3;
             int k3;
             if (next == splitCount)
             {
-                i3 = x;
-                j3 = y;
-                k3 = z;
+                i3 = x1;
+                j3 = y1;
+                k3 = z1;
 
                 for (int i = 0; i <= splitCount; i++)
                 {
@@ -237,9 +227,9 @@ public class NormalHekurTree extends AbstractTree
                     if (i == splitCount) branchAndLeaf(world, i3, j3, k3);
                 }
 
-                i3 = x;
-                j3 = y;
-                k3 = z;
+                i3 = x1;
+                j3 = y1;
+                k3 = z1;
 
                 for (int i = 0; i <= splitCount; i++)
                 {
@@ -276,9 +266,9 @@ public class NormalHekurTree extends AbstractTree
 
             if (next == 3 * size && size == 2)
             {
-                i3 = x;
-                j3 = y;
-                k3 = z;
+                i3 = x1;
+                j3 = y1;
+                k3 = z1;
 
                 for (int i = 0; i <= splitCount1; i++)
                 {
@@ -312,9 +302,9 @@ public class NormalHekurTree extends AbstractTree
                     if (i == splitCount1) branchAndLeaf(world, i3, j3, k3);
                 }
 
-                i3 = x;
-                j3 = y;
-                k3 = z;
+                i3 = x1;
+                j3 = y1;
+                k3 = z1;
 
                 for (int i = 0; i <= splitCount1; i++)
                 {
@@ -351,9 +341,9 @@ public class NormalHekurTree extends AbstractTree
 
             if (next == 3 * size)
             {
-                i3 = x;
-                j3 = y;
-                k3 = z;
+                i3 = x1;
+                j3 = y1;
+                k3 = z1;
 
                 for (int i = 0; i <= 4 * size - dSize; i++)
                 {
@@ -388,9 +378,9 @@ public class NormalHekurTree extends AbstractTree
                     if (i == 4 * size - dSize) branchAndLeaf(world, i3, j3, k3);
                 }
 
-                i3 = x;
-                j3 = y;
-                k3 = z;
+                i3 = x1;
+                j3 = y1;
+                k3 = z1;
 
                 for (int i = 0; i <= 4 * size - dSize; i++)
                 {
@@ -428,9 +418,9 @@ public class NormalHekurTree extends AbstractTree
 
             if (next == 4 * size)
             {
-                i3 = x;
-                j3 = y;
-                k3 = z;
+                i3 = x1;
+                j3 = y1;
+                k3 = z1;
 
                 for (int i = 0; i <= splitCount2; i++)
                 {
@@ -464,9 +454,9 @@ public class NormalHekurTree extends AbstractTree
                     if (i == splitCount2) branchAndLeaf(world, i3, j3, k3);
                 }
 
-                i3 = x;
-                j3 = y;
-                k3 = z;
+                i3 = x1;
+                j3 = y1;
+                k3 = z1;
 
                 for (int i = 0; i <= splitCount2; i++)
                 {
@@ -519,5 +509,11 @@ public class NormalHekurTree extends AbstractTree
                     placeLeaves(world, x + dX, y + 1, z + dZ);
             }
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("logDirection", logDirection).toString();
     }
 }

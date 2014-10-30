@@ -7,16 +7,15 @@ import java.util.Random;
 
 public class LargeCedrumTree extends NormalCedrumTree
 {
-    public LargeCedrumTree(boolean isFromSapling)
+    public LargeCedrumTree()
     {
-        super(isFromSapling);
+        super();
     }
 
-    @SuppressWarnings({ "MethodWithMultipleLoops", "OverlyComplexMethod" })
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
-        Random rng = new Random();
+        final Random rng = new Random();
         rng.setSeed(rand.nextLong());
 
         final int height = rng.nextInt(12) + 12;

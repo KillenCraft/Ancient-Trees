@@ -27,9 +27,9 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
     private int[][] leafNodes = null;
     private int logMetaMask = 0;
 
-    protected AbstractLargeVanillaOak(boolean isFromSapling)
+    protected AbstractLargeVanillaOak()
     {
-        super(isFromSapling);
+        super();
     }
 
     @SuppressWarnings({ "MethodWithMultipleLoops", "NonBooleanMethodNameMayNotStartWithQuestion" })

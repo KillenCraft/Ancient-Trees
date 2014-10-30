@@ -13,11 +13,11 @@ public class CedrumTree extends WorldGenAbstractTree
     private final WorldGenAbstractTree treeGen;
     private final WorldGenAbstractTree largeTreeGen;
 
-    public CedrumTree(boolean isFromSapling)
+    public CedrumTree()
     {
-        super(isFromSapling);
-        treeGen = new NormalCedrumTree(isFromSapling);
-        largeTreeGen = new LargeCedrumTree(isFromSapling);
+        super(true);
+        treeGen = new NormalCedrumTree();
+        largeTreeGen = new LargeCedrumTree();
     }
 
     @Override

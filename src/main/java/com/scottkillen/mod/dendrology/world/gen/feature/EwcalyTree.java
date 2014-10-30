@@ -12,11 +12,11 @@ public class EwcalyTree extends WorldGenAbstractTree
     private final WorldGenAbstractTree treeGen;
     private final WorldGenAbstractTree largeTreeGen;
 
-    public EwcalyTree(boolean isFromSapling)
+    public EwcalyTree()
     {
-        super(isFromSapling);
-        treeGen = new NormalEwcalyTree(isFromSapling);
-        largeTreeGen = new LargeEwcalyTree(isFromSapling);
+        super(true);
+        treeGen = new NormalEwcalyTree();
+        largeTreeGen = new LargeEwcalyTree();
     }
 
     @Override

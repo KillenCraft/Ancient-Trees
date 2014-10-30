@@ -8,27 +8,15 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import java.util.Random;
 
-@SuppressWarnings({
-        "MethodWithMoreThanThreeNegations",
-        "AssignmentToMethodParameter",
-        "OverlyComplexBooleanExpression"
-})
 public class NormalEwcalyTree extends AbstractTree
 {
     private int logDirection = 0;
 
-    public NormalEwcalyTree(boolean isFromSapling)
+    public NormalEwcalyTree()
     {
-        super(isFromSapling);
+        super();
     }
 
-    @SuppressWarnings({
-            "MethodWithMoreThanThreeNegations",
-            "MethodWithMultipleLoops",
-            "OverlyComplexMethod",
-            "OverlyLongMethod",
-            "OverlyNestedMethod"
-    })
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
@@ -132,46 +120,50 @@ public class NormalEwcalyTree extends AbstractTree
 
     private void branches(World world, Random rand, int x, int y, int z, int dX, int dZ, int height)
     {
+        int x1 = x;
+        int y1 = y;
+        int z1 = z;
+
         for (int i = 0; i < 5; i++)
         {
             if (dX == -1 && rand.nextInt(3) == 0)
             {
-                x--;
+                x1--;
                 logDirection = 4;
             }
 
             if (dX == 1 && rand.nextInt(3) == 0)
             {
-                x++;
+                x1++;
                 logDirection = 4;
             }
 
             if (dZ == -1 && rand.nextInt(3) == 0)
             {
-                z--;
+                z1--;
                 logDirection = 8;
             }
 
             if (dZ == 1 && rand.nextInt(3) == 0)
             {
-                z++;
+                z1++;
                 logDirection = 8;
             }
 
-            placeLog(world, x, y, z);
+            placeLog(world, x1, y1, z1);
             logDirection = 0;
 
             if (i == 4 && height >= 18)
             {
-                genLeaves(world, x, y, z);
+                genLeaves(world, x1, y1, z1);
             }
 
             if (i == 4 && height < 18)
             {
-                genLeavesS(world, x, y, z);
+                genLeavesS(world, x1, y1, z1);
             }
 
-            y++;
+            y1++;
         }
     }
 

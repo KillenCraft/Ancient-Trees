@@ -16,13 +16,13 @@ public class CerasuTree extends WorldGenAbstractTree
     private final WorldGenAbstractTree largeTreeGenPink;
     private final WorldGenAbstractTree largeTreeGenWhite;
 
-    public CerasuTree(boolean isFromSapling)
+    public CerasuTree()
     {
-        super(isFromSapling);
-        treeGenPink = new NormalPinkCerasuTree(isFromSapling);
-        largeTreeGenPink = new LargePinkCerasuTree(isFromSapling);
-        treeGenWhite = new NormalWhiteCerasuTree(isFromSapling);
-        largeTreeGenWhite = new LargeWhiteCerasuTree(isFromSapling);
+        super(true);
+        treeGenPink = new NormalPinkCerasuTree();
+        largeTreeGenPink = new LargePinkCerasuTree();
+        treeGenWhite = new NormalWhiteCerasuTree();
+        largeTreeGenWhite = new LargeWhiteCerasuTree();
     }
 
     @Override
@@ -43,6 +43,7 @@ public class CerasuTree extends WorldGenAbstractTree
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("treeGenPink", treeGenPink).add("treeGenWhite", treeGenWhite).add("largeTreeGenPink", largeTreeGenPink).add("largeTreeGenWhite", largeTreeGenWhite).toString();
+        return Objects.toStringHelper(this).add("treeGenPink", treeGenPink).add("treeGenWhite", treeGenWhite).add(
+                "largeTreeGenPink", largeTreeGenPink).add("largeTreeGenWhite", largeTreeGenWhite).toString();
     }
 }

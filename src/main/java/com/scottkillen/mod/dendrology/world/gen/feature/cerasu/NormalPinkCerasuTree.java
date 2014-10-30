@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 
 public class NormalPinkCerasuTree extends AbstractVanillaOak
 {
-    public NormalPinkCerasuTree(boolean isFromSapling) { super(isFromSapling); }
+    public NormalPinkCerasuTree() { super(); }
 
     @Override
     protected Block getLeavesBlock() { return ModBlocks.leaves2; }

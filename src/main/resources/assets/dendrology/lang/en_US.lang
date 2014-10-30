@@ -52,13 +52,5 @@ tile.dendrology:sapling.poplar.name=Poplar Sapling
 tile.dendrology:sapling.walnut.name=Walnut Sapling
 tile.dendrology:sapling.willow.name=Willow Sapling
 
-#Config file comments
-config.dendrology:genLataTrees=Should lata trees be generated in new chunks?
-config.dendrology:genCedrumTrees=Should cedrum trees be generated in new chunks?
-config.dendrology:genCerasuTrees=Should cerasu trees be generated in new chunks?
-config.dendrology:genKiparisTrees=Should kiparis trees be generated in new chunks?
-config.dendrology:genEwcalyTrees=Should ewcaly trees be generated in new chunks?
-config.dendrology:genKulistTrees=Should kulist trees be generated in new chunks?
-
 #Creatibe Tabs
 itemGroup.dendrology=Dendrology

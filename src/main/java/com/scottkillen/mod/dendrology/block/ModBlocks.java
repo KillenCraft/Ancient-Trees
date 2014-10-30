@@ -54,8 +54,8 @@ public final class ModBlocks
     private static final ImmutableList<String> SAPLING1_NAMES = ImmutableList.of("palm", "poplar", "walnut", "willow");
 
     private static final ImmutableList<? extends WorldGenerator> SAPLING0_GENS = ImmutableList
-            .of(new LataTree(true), new CedrumTree(true), new CerasuTree(true), new KiparisTree(true),
-                    new EwcalyTree(true), new KulistTree(true), new HekurTree(true), new WorldGenTaiga1());
+            .of(new LataTree(), new CedrumTree(), new CerasuTree(), new KiparisTree(),
+                    new EwcalyTree(), new KulistTree(), new HekurTree(), new WorldGenTaiga1());
     private static final ImmutableList<? extends WorldGenerator> SAPLING1_GENS =
             ImmutableList.of(new WorldGenTaiga1(), new WorldGenTaiga1(), new WorldGenTaiga1(), new WorldGenTaiga1());
 

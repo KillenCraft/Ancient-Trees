@@ -11,13 +11,12 @@ public abstract class AbstractVanillaOak extends AbstractTree
 {
     private final boolean isFromSapling;
 
-    protected AbstractVanillaOak(boolean isFromSapling)
+    protected AbstractVanillaOak()
     {
-        super(isFromSapling);
-        this.isFromSapling = isFromSapling;
+        super();
+        this.isFromSapling = true;
     }
 
-    @SuppressWarnings({ "NestedConditionalExpression", "MethodWithMultipleLoops", "NumericCastThatLosesPrecision" })
     @Override
     protected boolean hasRoomToGrow(World world, int x, int y, int z, int height)
     {

@@ -25,12 +25,11 @@ public class NormalCedrumTree extends AbstractTree
         return super.isReplaceable(world, x, y, z) || world.getBlock(x, y, z).getMaterial().equals(Material.water);
     }
 
-    public NormalCedrumTree(boolean isFromSapling)
+    public NormalCedrumTree()
     {
-        super(isFromSapling);
+        super();
     }
 
-    @SuppressWarnings({ "MethodWithMultipleLoops", "OverlyComplexMethod" })
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {

@@ -16,13 +16,13 @@ public class KulistTree extends WorldGenAbstractTree
     private final WorldGenAbstractTree largeTreeGen;
     private final WorldGenAbstractTree largeTreeGenYellow;
 
-    public KulistTree(boolean isFromSapling)
+    public KulistTree()
     {
-        super(isFromSapling);
-        treeGen = new NormalKulistTree(isFromSapling);
-        treeGenYellow = new NormalYellowKulisttree(isFromSapling);
-        largeTreeGen = new LargeKulistTree(isFromSapling);
-        largeTreeGenYellow = new LargeYellowKulistTree(isFromSapling);
+        super(true);
+        treeGen = new NormalKulistTree();
+        treeGenYellow = new NormalYellowKulisttree();
+        largeTreeGen = new LargeKulistTree();
+        largeTreeGenYellow = new LargeYellowKulistTree();
     }
 
     @Override
@@ -42,6 +42,7 @@ public class KulistTree extends WorldGenAbstractTree
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("treeGen", treeGen).add("treeGenYellow", treeGenYellow).add("largeTreeGen", largeTreeGen).add("largeTreeGenYellow", largeTreeGenYellow).toString();
+        return Objects.toStringHelper(this).add("treeGen", treeGen).add("treeGenYellow", treeGenYellow).add(
+                "largeTreeGen", largeTreeGen).add("largeTreeGenYellow", largeTreeGenYellow).toString();
     }
 }

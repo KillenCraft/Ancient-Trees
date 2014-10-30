@@ -8,17 +8,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import java.util.Random;
 
-@SuppressWarnings({
-        "OverlyComplexBooleanExpression",
-        "MethodWithMoreThanThreeNegations",
-        "MethodWithMultipleLoops",
-        "AssignmentToMethodParameter"
-})
 public class NormalKulistTree extends AbstractTree
 {
-    public NormalKulistTree(boolean isFromSapling)
+    public NormalKulistTree()
     {
-        super(isFromSapling);
+        super();
     }
 
     @Override
@@ -92,59 +86,56 @@ public class NormalKulistTree extends AbstractTree
         return true;
     }
 
-    void branch(World world, Random rand, int x, int level, int z, int height, int y, int dX, int dZ)
+    void branch(World world, Random rand, int x, int y, int z, int height, int level, int dX, int dZ)
     {
-        final int length = height - y;
-        y += level;
+        int x1 = x;
+        int z1 = z;
+        int level1 = level + y;
+        final int length = height - level;
 
         for (int i = 0; i <= length; i++)
         {
             if (dX == -1 && rand.nextInt(3) > 0)
             {
-                x--;
+                x1--;
                 logDirection = 4;
 
-                if (dZ == 0 && rand.nextInt(4) == 0)
-                    z = z + rand.nextInt(3) - 1;
+                if (dZ == 0 && rand.nextInt(4) == 0) z1 += rand.nextInt(3) - 1;
             }
 
             if (dX == 1 && rand.nextInt(3) > 0)
             {
-                x++;
+                x1++;
                 logDirection = 4;
 
-                if (dZ == 0 && rand.nextInt(4) == 0)
-                    z = z + rand.nextInt(3) - 1;
+                if (dZ == 0 && rand.nextInt(4) == 0) z1 += rand.nextInt(3) - 1;
             }
 
             if (dZ == -1 && rand.nextInt(3) > 0)
             {
-                z--;
+                z1--;
                 logDirection = 8;
 
-                if (dX == 0 && rand.nextInt(4) == 0)
-                    x = x + rand.nextInt(3) - 1;
+                if (dX == 0 && rand.nextInt(4) == 0) x1 += rand.nextInt(3) - 1;
             }
 
             if (dZ == 1 && rand.nextInt(3) > 0)
             {
-                z++;
+                z1++;
                 logDirection = 8;
 
-                if (dX == 0 && rand.nextInt(4) == 0)
-                    x = x + rand.nextInt(3) - 1;
+                if (dX == 0 && rand.nextInt(4) == 0) x1 += rand.nextInt(3) - 1;
             }
 
-                placeLog(world, x, y, z);
+            placeLog(world, x1, level1, z1);
             logDirection = 0;
 
-            if (rand.nextInt(3) > 0)
-                y++;
+            if (rand.nextInt(3) > 0) level1++;
 
             if (i == length)
             {
-                placeLog(world, x, y, z);
-                leafGen(world, x, y, z);
+                placeLog(world, x1, level1, z1);
+                leafGen(world, x1, level1, z1);
             }
         }
     }

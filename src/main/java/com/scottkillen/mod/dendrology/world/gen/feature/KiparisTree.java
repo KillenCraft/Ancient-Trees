@@ -6,12 +6,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import java.util.Random;
 
-@SuppressWarnings({ "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops" })
 public class KiparisTree extends AbstractTree
 {
-    public KiparisTree(boolean isFromSapling)
+    public KiparisTree()
     {
-        super(isFromSapling);
+        super();
     }
 
     private static boolean inRangeInclusive(int value, int min, int max)
@@ -43,11 +42,10 @@ public class KiparisTree extends AbstractTree
         return super.isReplaceable(world, x, y, z) || world.getBlock(x, y, z).getMaterial().equals(Material.water);
     }
 
-    @SuppressWarnings("OverlyComplexMethod")
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
-        Random rng = new Random();
+        final Random rng = new Random();
         rng.setSeed(rand.nextLong());
 
         final int size = 1 + (rng.nextInt(7) < 2 ? 1 : 0) + (rng.nextInt(7) < 2 ? 1 : 0) + (rng.nextInt(2) == 0 ? 1 : 0);

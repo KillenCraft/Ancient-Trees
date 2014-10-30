@@ -7,12 +7,11 @@ import java.util.Random;
 
 public class LargeKulistTree extends NormalKulistTree
 {
-    public LargeKulistTree(boolean isFromSapling)
+    public LargeKulistTree()
     {
-        super(isFromSapling);
+        super();
     }
 
-    @SuppressWarnings({ "OverlyComplexMethod", "OverlyLongMethod" })
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {

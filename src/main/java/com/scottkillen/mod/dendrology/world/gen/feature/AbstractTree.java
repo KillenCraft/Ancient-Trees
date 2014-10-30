@@ -1,30 +1,25 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
-import com.google.common.collect.ImmutableSet;
+import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.util.ForgeDirection;
-import java.util.EnumSet;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import static com.google.common.base.Preconditions.*;
 import static net.minecraftforge.common.util.ForgeDirection.UP;
 
 public abstract class AbstractTree extends WorldGenAbstractTree
 {
-    protected static final ImmutableSet<ForgeDirection> WEST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.WEST));
-    protected static final ImmutableSet<ForgeDirection> EAST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.EAST));
-    protected static final ImmutableSet<ForgeDirection> NORTH = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.NORTH));
-    protected static final ImmutableSet<ForgeDirection> SOUTH = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.SOUTH));
-    protected static final ImmutableSet<ForgeDirection> SOUTHWEST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.SOUTH, ForgeDirection.WEST));
-    protected static final ImmutableSet<ForgeDirection> NORTHWEST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.NORTH, ForgeDirection.WEST));
-    protected static final ImmutableSet<ForgeDirection> SOUTHEAST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.SOUTH, ForgeDirection.EAST));
-    protected static final ImmutableSet<ForgeDirection> NORTHEAST = ImmutableSet.copyOf(EnumSet.of(ForgeDirection.NORTH, ForgeDirection.EAST));
+    protected static final ImmutableList<ImmutablePair<Integer, Integer>> BRANCH_DIRECTIONS = ImmutableList
+            .of(ImmutablePair.of(-1, 0), ImmutablePair.of(1, 0), ImmutablePair.of(0, -1), ImmutablePair.of(0, 1),
+                    ImmutablePair.of(-1, 1), ImmutablePair.of(-1, -1), ImmutablePair.of(1, 1), ImmutablePair.of(1, -1));
 
-    protected AbstractTree(boolean isFromSapling)
+    protected AbstractTree()
     {
-        super(isFromSapling);
+        super(true);
     }
 
     @SuppressWarnings("WeakerAccess")

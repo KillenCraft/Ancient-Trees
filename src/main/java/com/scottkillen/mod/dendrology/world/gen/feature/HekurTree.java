@@ -13,11 +13,11 @@ public class HekurTree extends WorldGenAbstractTree
     private final WorldGenAbstractTree treeGen;
     private final WorldGenAbstractTree largeTreeGen;
 
-    public HekurTree(boolean isFromSapling)
+    public HekurTree()
     {
-        super(isFromSapling);
-        treeGen = new NormalHekurTree(isFromSapling);
-        largeTreeGen = new LargeHekurTree(isFromSapling);
+        super(true);
+        treeGen = new NormalHekurTree();
+        largeTreeGen = new LargeHekurTree();
     }
 
     @Override
