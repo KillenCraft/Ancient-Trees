@@ -3,6 +3,7 @@ package com.scottkillen.mod.dendrology.item;
 import com.scottkillen.mod.dendrology.TheMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 
+@SuppressWarnings("UtilityClass")
 @GameRegistry.ObjectHolder(TheMod.MOD_ID)
 public final class ModItems
 {
