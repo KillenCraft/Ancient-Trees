@@ -26,7 +26,7 @@ public class NormalEwcalyTree extends AbstractTree
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
 
-        for (int dY = 1; dY <= height; dY++)
+        for (int dY = 0; dY <= height; dY++)
             placeLog(world, x, y + dY, z);
 
         int size = 1;
