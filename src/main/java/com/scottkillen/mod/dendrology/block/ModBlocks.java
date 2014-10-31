@@ -11,6 +11,7 @@ import com.scottkillen.mod.dendrology.world.gen.feature.HekurTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.KiparisTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.KulistTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.LataTree;
+import com.scottkillen.mod.dendrology.world.gen.feature.PorfforTree;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
@@ -58,7 +59,7 @@ public final class ModBlocks
             .of(new LataTree(), new CedrumTree(), new CerasuTree(), new KiparisTree(),
                     new EwcalyTree(), new KulistTree(), new HekurTree(), new WorldGenTaiga1());
     private static final ImmutableList<? extends WorldGenerator> SAPLING1_GENS =
-            ImmutableList.of(new WorldGenTaiga1(), new WorldGenTaiga1(), new WorldGenTaiga1(), new WorldGenTaiga1(), new WorldGenTaiga1());
+            ImmutableList.of(new WorldGenTaiga1(), new WorldGenTaiga1(), new WorldGenTaiga1(), new WorldGenTaiga1(), new PorfforTree());
 
     public static Block logs0 = new ModLogBlock(LOG0_NAMES);
     public static Block logs1 = new ModLogBlock(LOG1_NAMES);
