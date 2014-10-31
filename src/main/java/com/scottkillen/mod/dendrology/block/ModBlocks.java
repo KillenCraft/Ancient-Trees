@@ -23,7 +23,7 @@ import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.BIRC
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NONE;
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.PINE;
 
-@SuppressWarnings({ "StaticNonFinalField", "UtilityClass", "PublicField" })
+@SuppressWarnings({ "StaticNonFinalField", "UtilityClass", "PublicField", "WeakerAccess", "CanBeFinal" })
 public final class ModBlocks
 {
     private static final int DEFAULT_LEAVES_FIRE_ENCOURAGEMENT = 30;

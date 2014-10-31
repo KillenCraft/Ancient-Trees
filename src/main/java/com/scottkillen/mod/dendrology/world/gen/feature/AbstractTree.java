@@ -1,6 +1,5 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
-import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;

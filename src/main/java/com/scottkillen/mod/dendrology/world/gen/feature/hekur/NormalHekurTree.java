@@ -12,11 +12,10 @@ import java.util.Random;
 
 import static net.minecraftforge.common.util.ForgeDirection.UP;
 
+@SuppressWarnings("OverlyComplexClass")
 public class NormalHekurTree extends AbstractTree
 {
-    protected int logDirection = 0;
-
-    public NormalHekurTree() { super(); }
+    private int logDirection = 0;
 
     @Override
     protected boolean isPoorGrowthConditions(World world, int x, int y, int z, int unused, IPlantable plantable)
@@ -60,26 +59,28 @@ public class NormalHekurTree extends AbstractTree
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
 
-        for (final ImmutablePair<Integer, Integer> branchDirection : BRANCH_DIRECTIONS)
-            if (random.nextInt(3) == 0) rootGen(world, random, x, y, z, branchDirection.getLeft(), branchDirection.getRight());
-
-        rootGen(world, random, x, y, z, 0, 0);
+        genRoots(world, random, x, y, z);
         growTrunk(world, random, x, y, z);
 
         return true;
     }
 
-    protected void rootGen(World world, Random rand, int x, int y, int z, int dX, int dZ)
+    private void genRoots(World world, Random random, int x, int y, int z)
+    {
+        for (final ImmutablePair<Integer, Integer> branchDirection : BRANCH_DIRECTIONS)
+            if (random.nextInt(3) == 0) genRoot(world, random, x, y, z, branchDirection.getLeft(),
+                    branchDirection.getRight());
+
+        genRoot(world, random, x, y, z, 0, 0);
+    }
+
+    void genRoot(World world, Random rand, int x, int y, int z, int dX, int dZ)
     {
         int x1 = x;
         int y1 = y;
         int z1 = z;
 
-        if (dX != 0)
-            logDirection = 4;
-
-        if (dZ != 0)
-            logDirection = 8;
+        setLogDirection(dX, dZ);
 
         for (int i = 0; i < 6; i++)
         {
@@ -87,11 +88,11 @@ public class NormalHekurTree extends AbstractTree
             {
                 if (dX == -1) x1--;
 
-                if (dX == 1 && rand.nextInt(3) == 0) x1++;
+                if (dX == 1) x1++;
 
-                if (dZ == -1 && rand.nextInt(3) == 0) z1--;
+                if (dZ == -1) z1--;
 
-                if (dZ == 1 && rand.nextInt(3) == 0) z1++;
+                if (dZ == 1) z1++;
             }
 
             placeRoot(world, x1, y1, z1);
@@ -99,10 +100,19 @@ public class NormalHekurTree extends AbstractTree
             y1--;
         }
 
-        logDirection = 0;
+        clearLogDirection();
     }
 
-    protected boolean canBeReplacedByRoot(World world, int x, int y, int z)
+    private void setLogDirection(int dX, int dZ)
+    {
+        if (dX != 0)
+            logDirection = 4;
+
+        if (dZ != 0)
+            logDirection = 8;
+    }
+
+    boolean canBeReplacedByRoot(World world, int x, int y, int z)
     {
         final Block block = world.getBlock(x, y, z);
         final Material material = block.getMaterial();
@@ -110,7 +120,7 @@ public class NormalHekurTree extends AbstractTree
         return canBeReplacedByLog(world, x, y, z) || material.equals(Material.sand) || material.equals(Material.ground);
     }
 
-    protected boolean placeRoot(World world, int x, int y, int z)
+    boolean placeRoot(World world, int x, int y, int z)
     {
         if (canBeReplacedByRoot(world, x, y, z))
         {
@@ -120,7 +130,7 @@ public class NormalHekurTree extends AbstractTree
         return false;
     }
 
-    protected void growTrunk(World world, Random random, int i1, int j1, int k1)
+    void growTrunk(World world, Random random, int i1, int j1, int k1)
     {
         placeLog(world, i1, j1, k1);
 
@@ -154,22 +164,19 @@ public class NormalHekurTree extends AbstractTree
         }
     }
 
-    @SuppressWarnings({ "ConstantConditions", "MethodWithMultipleLoops", "OverlyComplexMethod", "OverlyLongMethod" })
-    protected void largeDirect(World world, Random rand, int dX, int dZ, int x, int y, int z, int size, int splitCount,
-                               int splitCount1, int splitCount2)
+    @SuppressWarnings({ "MethodWithMultipleLoops", "OverlyComplexMethod", "OverlyLongMethod" })
+    void largeDirect(World world, Random rand, int dX, int dZ, int x, int y, int z, int size, int splitCount,
+                     int splitCount1, int splitCount2)
     {
         int z1 = z;
         int x1 = x;
         int y1 = y;
-        if (dX != 0) logDirection = 4;
-        if (dZ != 0) logDirection = 8;
+        setLogDirection(dX, dZ);
 
         int dSize = 0;
 
         if (size == 2)
-        {
             dSize = 2;
-        }
 
         for (int next = 0; next <= 5 * size; next++)
         {
@@ -186,315 +193,246 @@ public class NormalHekurTree extends AbstractTree
             x1 += dX;
             z1 += dZ;
 
-            int i3;
-            int j3;
-            int k3;
             if (next == splitCount)
             {
-                i3 = x1;
-                j3 = y1;
-                k3 = z1;
-
-                for (int i = 0; i <= splitCount; i++)
-                {
-                    if (dX == 1)
-                    {
-                        if (rand.nextInt(5) > 0) i3--;
-
-                        k3 += rand.nextInt(2);
-                    } else if (dX == -1)
-                    {
-                        if (rand.nextInt(5) > 0) i3++;
-
-                        k3 += rand.nextInt(2);
-                    }
-
-                    if (dZ == 1)
-                    {
-                        i3 -= rand.nextInt(2);
-
-                        if (rand.nextInt(5) > 0) k3--;
-                    } else if (dZ == -1)
-                    {
-                        i3 += rand.nextInt(2);
-
-                        if (rand.nextInt(5) > 0) k3++;
-                    }
-
-                    j3++;
-                    placeLog(world, i3, j3, k3);
-
-                    if (i == splitCount) branchAndLeaf(world, i3, j3, k3);
-                }
-
-                i3 = x1;
-                j3 = y1;
-                k3 = z1;
-
-                for (int i = 0; i <= splitCount; i++)
-                {
-                    if (dX == 1)
-                    {
-                        if (rand.nextInt(5) > 0) i3--;
-
-                        k3 -= rand.nextInt(2);
-                    } else if (dX == -1)
-                    {
-                        if (rand.nextInt(5) > 0) i3++;
-
-                        k3 -= rand.nextInt(2);
-                    }
-
-                    if (dZ == 1)
-                    {
-                        i3 += rand.nextInt(2);
-
-                        if (rand.nextInt(5) > 0) k3--;
-                    } else if (dZ == -1)
-                    {
-                        i3 -= rand.nextInt(2);
-
-                        if (rand.nextInt(5) > 0) k3++;
-                    }
-
-                    j3++;
-                    placeLog(world, i3, j3, k3);
-
-                    if (i == splitCount) branchAndLeaf(world, i3, j3, k3);
-                }
+                firstBranchSplit(world, rand, x1, y1, z1, dX, dZ, splitCount);
+                secondBranchSplit(world, rand, x1, y1, z1, dX, dZ, splitCount);
             }
 
             if (next == 3 * size && size == 2)
             {
-                i3 = x1;
-                j3 = y1;
-                k3 = z1;
-
-                for (int i = 0; i <= splitCount1; i++)
-                {
-                    if (dX == 1)
-                    {
-                        i3 -= rand.nextInt(2);
-                        k3 += rand.nextInt(2);
-                    }
-
-                    if (dX == -1)
-                    {
-                        i3 += rand.nextInt(2);
-                        k3 += rand.nextInt(2);
-                    }
-
-                    if (dZ == 1)
-                    {
-                        i3 -= rand.nextInt(2);
-                        k3 -= rand.nextInt(2);
-                    }
-
-                    if (dZ == -1)
-                    {
-                        i3 += rand.nextInt(2);
-                        k3 += rand.nextInt(2);
-                    }
-
-                    j3++;
-                    placeLog(world, i3, j3, k3);
-
-                    if (i == splitCount1) branchAndLeaf(world, i3, j3, k3);
-                }
-
-                i3 = x1;
-                j3 = y1;
-                k3 = z1;
-
-                for (int i = 0; i <= splitCount1; i++)
-                {
-                    if (dX == 1)
-                    {
-                        i3 -= rand.nextInt(2);
-                        k3 -= rand.nextInt(2);
-                    }
-
-                    if (dX == -1)
-                    {
-                        i3 += rand.nextInt(2);
-                        k3 -= rand.nextInt(2);
-                    }
-
-                    if (dZ == 1)
-                    {
-                        i3 += rand.nextInt(2);
-                        k3 -= rand.nextInt(2);
-                    }
-
-                    if (dZ == -1)
-                    {
-                        i3 -= rand.nextInt(2);
-                        k3 += rand.nextInt(2);
-                    }
-
-                    j3++;
-                    placeLog(world, i3, j3, k3);
-
-                    if (i == splitCount1) branchAndLeaf(world, i3, j3, k3);
-                }
+                fifthBranchSplit(world, rand, x1, y1, z1, dX, dZ, splitCount1);
+                sixthBranchSplit(world, rand, x1, y1, z1, dX, dZ, splitCount1);
             }
 
             if (next == 3 * size)
             {
-                i3 = x1;
-                j3 = y1;
-                k3 = z1;
-
-                for (int i = 0; i <= 4 * size - dSize; i++)
-                {
-                    if (dX == 1)
-                    {
-                        i3 += rand.nextInt(2);
-                        k3 += rand.nextInt(2);
-                    }
-
-                    if (dX == -1)
-                    {
-                        i3 -= rand.nextInt(2);
-                        k3 += rand.nextInt(2);
-                    }
-
-                    if (dZ == 1)
-                    {
-                        i3 += rand.nextInt(2);
-                        k3 += rand.nextInt(2);
-                    }
-
-                    if (dZ == -1)
-                    {
-                        i3 += rand.nextInt(2);
-                        k3 -= rand.nextInt(2);
-                    }
-
-                    if (i >= 3) j3 += rand.nextInt(2);
-
-                    placeLog(world, i3, j3, k3);
-
-                    if (i == 4 * size - dSize) branchAndLeaf(world, i3, j3, k3);
-                }
-
-                i3 = x1;
-                j3 = y1;
-                k3 = z1;
-
-                for (int i = 0; i <= 4 * size - dSize; i++)
-                {
-                    if (dX == 1)
-                    {
-                        i3 += rand.nextInt(2);
-                        k3 -= rand.nextInt(2);
-                    }
-
-                    if (dX == -1)
-                    {
-                        i3 -= rand.nextInt(2);
-                        k3 -= rand.nextInt(2);
-                    }
-
-                    if (dZ == 1)
-                    {
-                        i3 -= rand.nextInt(2);
-                        k3 += rand.nextInt(2);
-                    }
-
-                    if (dZ == -1)
-                    {
-                        i3 -= rand.nextInt(2);
-                        k3 -= rand.nextInt(2);
-                    }
-
-                    if (i >= 3) j3 += rand.nextInt(2);
-
-                    placeLog(world, i3, j3, k3);
-
-                    if (i == 4 * size - dSize) branchAndLeaf(world, i3, j3, k3);
-                }
+                thirdBranchSplit(world, rand, x1, y1, z1, dX, dZ, 4 * size - dSize);
+                fourthBranchSplit(world, rand, x1, y1, z1, dX, dZ, 4 * size - dSize);
             }
 
             if (next == 4 * size)
             {
-                i3 = x1;
-                j3 = y1;
-                k3 = z1;
-
-                for (int i = 0; i <= splitCount2; i++)
-                {
-                    if (dX == 1)
-                    {
-                        i3 -= rand.nextInt(2);
-                        k3 += rand.nextInt(2);
-                    }
-
-                    if (dX == -1)
-                    {
-                        i3 += rand.nextInt(2);
-                        k3 += rand.nextInt(2);
-                    }
-
-                    if (dZ == 1)
-                    {
-                        i3 -= rand.nextInt(2);
-                        k3 -= rand.nextInt(2);
-                    }
-
-                    if (dZ == -1)
-                    {
-                        i3 += rand.nextInt(2);
-                        k3 += rand.nextInt(2);
-                    }
-
-                    j3++;
-                    placeLog(world, i3, j3, k3);
-
-                    if (i == splitCount2) branchAndLeaf(world, i3, j3, k3);
-                }
-
-                i3 = x1;
-                j3 = y1;
-                k3 = z1;
-
-                for (int i = 0; i <= splitCount2; i++)
-                {
-                    if (dX == 1)
-                    {
-                        i3 -= rand.nextInt(2);
-                        k3 -= rand.nextInt(2);
-                    }
-
-                    if (dX == -1)
-                    {
-                        i3 += rand.nextInt(2);
-                        k3 -= rand.nextInt(2);
-                    }
-
-                    if (dZ == 1)
-                    {
-                        i3 += rand.nextInt(2);
-                        k3 -= rand.nextInt(2);
-                    }
-
-                    if (dZ == -1)
-                    {
-                        i3 -= rand.nextInt(2);
-                        k3 += rand.nextInt(2);
-                    }
-
-                    j3++;
-                    placeLog(world, i3, j3, k3);
-
-                    if (i == splitCount2) branchAndLeaf(world, i3, j3, k3);
-                }
+                fifthBranchSplit(world, rand, x1, y1, z1, dX, dZ, splitCount2);
+                sixthBranchSplit(world, rand, x1, y1, z1, dX, dZ, splitCount2);
             }
         }
-        logDirection = 0;
+        clearLogDirection();
     }
 
-    protected void branchAndLeaf(World world, int x, int y, int z)
+    private void firstBranchSplit(World world, Random rand, int x, int y, int z, int dX, int dZ, int splitCount)
+    {
+        int x1 = x;
+        int y1 = y;
+        int z1 = z;
+        for (int i = 0; i <= splitCount; i++)
+        {
+            if (dX != 0)
+            {
+                if (rand.nextInt(5) > 0) if (dX == 1) x1--;
+                else x1++;
+                z1 += rand.nextInt(2);
+            }
+
+            if (dZ == 1)
+            {
+                x1 -= rand.nextInt(2);
+
+                if (rand.nextInt(5) > 0) z1--;
+            } else if (dZ == -1)
+            {
+                x1 += rand.nextInt(2);
+
+                if (rand.nextInt(5) > 0) z1++;
+            }
+
+            y1++;
+            placeLog(world, x1, y1, z1);
+
+            if (i == splitCount) branchAndLeaf(world, x1, y1, z1);
+        }
+    }
+
+    private void secondBranchSplit(World world, Random rand, int x, int y, int z, int dX, int dZ, int splitCount)
+    {
+        int x1 = x;
+        int y1 = y;
+        int z1 = z;
+        for (int i = 0; i <= splitCount; i++)
+        {
+            if (dX != 0)
+            {
+                if (rand.nextInt(5) > 0) if (dX == 1) x1--;
+                else x1++;
+                z1 -= rand.nextInt(2);
+            }
+
+            if (dZ == 1)
+            {
+                x1 += rand.nextInt(2);
+
+                if (rand.nextInt(5) > 0) z1--;
+            } else if (dZ == -1)
+            {
+                x1 -= rand.nextInt(2);
+
+                if (rand.nextInt(5) > 0) z1++;
+            }
+
+            y1++;
+            placeLog(world, x1, y1, z1);
+
+            if (i == splitCount) branchAndLeaf(world, x1, y1, z1);
+        }
+    }
+
+    private void thirdBranchSplit(World world, Random rand, int x, int y, int z, int dX, int dZ, int length)
+    {
+        int x1 = x;
+        int y1 = y;
+        int z1 = z;
+
+        for (int i = 0; i <= length; i++)
+        {
+            if (dX != 0)
+            {
+                if (dX == 1)
+                    x1 += rand.nextInt(2);
+                else
+                    x1 -= rand.nextInt(2);
+                z1 += rand.nextInt(2);
+            }
+
+            if (dZ !=0)
+            {
+                if (dZ == 1)
+                    z1 += rand.nextInt(2);
+                else
+                    z1 -= rand.nextInt(2);
+                x1 += rand.nextInt(2);
+            }
+
+            if (i >= 3) y1 += rand.nextInt(2);
+
+            placeLog(world, x1, y1, z1);
+
+            if (i == length) branchAndLeaf(world, x1, y1, z1);
+        }
+    }
+
+    private void fourthBranchSplit(World world, Random rand, int x, int y, int z, int dX, int dZ, int length)
+    {
+        int x1 = x;
+        int y1 = y;
+        int z1 = z;
+
+        for (int i = 0; i <= length; i++)
+        {
+            if (dX != 0)
+            {
+                if (dX == 1) x1 += rand.nextInt(2);
+                else x1 -= rand.nextInt(2);
+                z1 -= rand.nextInt(2);
+            }
+
+            if (dZ != 0)
+            {
+                if (dZ == 1)
+                    z1 += rand.nextInt(2);
+                else
+                    z1 -= rand.nextInt(2);
+
+                x1 -= rand.nextInt(2);
+            }
+            if (i >= 3) y1 += rand.nextInt(2);
+
+            placeLog(world, x1, y1, z1);
+
+            if (i == length) branchAndLeaf(world, x1, y1, z1);
+        }
+    }
+
+    private void fifthBranchSplit(World world, Random rand, int x, int y, int z, int dX, int dZ, int splitCount2)
+    {
+        int x1 = x;
+        int y1 = y;
+        int z1 = z;
+
+        for (int i = 0; i <= splitCount2; i++)
+        {
+            if (dX == 1)
+            {
+                x1 -= rand.nextInt(2);
+                z1 += rand.nextInt(2);
+            }
+
+            if (dX == -1)
+            {
+                x1 += rand.nextInt(2);
+                z1 += rand.nextInt(2);
+            }
+
+            if (dZ == 1)
+            {
+                x1 -= rand.nextInt(2);
+                z1 -= rand.nextInt(2);
+            }
+
+            if (dZ == -1)
+            {
+                x1 += rand.nextInt(2);
+                z1 += rand.nextInt(2);
+            }
+
+            y1++;
+            placeLog(world, x1, y1, z1);
+
+            if (i == splitCount2) branchAndLeaf(world, x1, y1, z1);
+        }
+    }
+
+    private void sixthBranchSplit(World world, Random rand, int x, int y, int z, int dX, int dZ, int splitCount2)
+    {
+        int x1 = x;
+        int y1 = y;
+        int z1 = z;
+        for (int i = 0; i <= splitCount2; i++)
+        {
+            if (dX != 0)
+            {
+                if (dX == 1)
+                {
+                    x1 -= rand.nextInt(2);
+                }
+                else
+                {
+                    x1 += rand.nextInt(2);
+                }
+                z1 -= rand.nextInt(2);
+            }
+
+            if (dZ == 1)
+            {
+                x1 += rand.nextInt(2);
+                z1 -= rand.nextInt(2);
+            }
+            else if (dZ == -1)
+            {
+                x1 -= rand.nextInt(2);
+                z1 += rand.nextInt(2);
+            }
+
+            y1++;
+            placeLog(world, x1, y1, z1);
+
+            if (i == splitCount2) branchAndLeaf(world, x1, y1, z1);
+        }
+    }
+
+    private void clearLogDirection() {logDirection = 0;}
+
+    @SuppressWarnings("OverlyComplexBooleanExpression")
+    void branchAndLeaf(World world, int x, int y, int z)
     {
         placeLog(world, x, y, z);
 

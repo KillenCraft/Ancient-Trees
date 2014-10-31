@@ -7,10 +7,6 @@ import java.util.Random;
 
 public class LargeKulistTree extends NormalKulistTree
 {
-    public LargeKulistTree()
-    {
-        super();
-    }
 
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
@@ -64,15 +60,4 @@ public class LargeKulistTree extends NormalKulistTree
         return true;
     }
 
-    @Override
-    protected Block getLeavesBlock()
-    {
-        return ModBlocks.leaves1;
-    }
-
-    @Override
-    protected int getLeavesMetadata()
-    {
-        return 1;
-    }
 }

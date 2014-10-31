@@ -5,10 +5,6 @@ import net.minecraft.block.Block;
 
 public class LargeYellowKulistTree extends LargeKulistTree
 {
-    public LargeYellowKulistTree()
-    {
-        super();
-    }
 
     @Override
     protected Block getLeavesBlock()

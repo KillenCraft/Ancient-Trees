@@ -10,10 +10,6 @@ import java.util.Random;
 
 public class NormalKulistTree extends AbstractTree
 {
-    public NormalKulistTree()
-    {
-        super();
-    }
 
     @Override
     protected boolean canBeReplacedByLog(World world, int x, int y, int z)
@@ -30,7 +26,7 @@ public class NormalKulistTree extends AbstractTree
     @Override
     protected Block getLogBlock() {return ModBlocks.logs1;}
 
-    protected int logDirection = 0;
+    private int logDirection = 0;
 
     @Override
     protected int getLogMetadata() {return 1 | logDirection;}
@@ -140,6 +136,7 @@ public class NormalKulistTree extends AbstractTree
         }
     }
 
+    @SuppressWarnings("OverlyComplexBooleanExpression")
     void leafGen(World world, int x, int y, int z)
     {
         for (int dX = -3; dX <= 3; dX++)

@@ -10,11 +10,6 @@ public class LataTree extends AbstractTree
 {
     private int logDirection = 0;
 
-    public LataTree()
-    {
-        super();
-    }
-
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
@@ -121,7 +116,8 @@ public class LataTree extends AbstractTree
         }
     }
 
-    @SuppressWarnings({ "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops" })
+    @SuppressWarnings(
+            { "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops", "OverlyComplexBooleanExpression" })
     private void leafGen(World world, int x, int y, int z)
     {
         for (int dX = -3; dX <= 3; dX++)

@@ -12,11 +12,7 @@ public class LargeEwcalyTree extends AbstractTree
 {
     private int logDirection = 0;
 
-    public LargeEwcalyTree()
-    {
-        super();
-    }
-
+    @SuppressWarnings("OverlyComplexBooleanExpression")
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
@@ -129,6 +125,7 @@ public class LargeEwcalyTree extends AbstractTree
         }
     }
 
+    @SuppressWarnings("OverlyComplexBooleanExpression")
     void genLeaves(World world, int x, int y, int z)
     {
         for (int dX = -3; dX <= 3; dX++)
@@ -147,6 +144,7 @@ public class LargeEwcalyTree extends AbstractTree
         }
     }
 
+    @SuppressWarnings("OverlyComplexBooleanExpression")
     void genLeavesS(World world, int i3, int j3, int k3)
     {
         for (int x = -2; x <= 2; x++)

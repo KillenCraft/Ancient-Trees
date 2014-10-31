@@ -29,7 +29,6 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
 
     protected AbstractLargeVanillaOak()
     {
-        super();
     }
 
     @SuppressWarnings({ "MethodWithMultipleLoops", "NonBooleanMethodNameMayNotStartWithQuestion" })

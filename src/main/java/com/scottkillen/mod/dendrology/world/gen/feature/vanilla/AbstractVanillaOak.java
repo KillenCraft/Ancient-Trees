@@ -13,8 +13,7 @@ public abstract class AbstractVanillaOak extends AbstractTree
 
     protected AbstractVanillaOak()
     {
-        super();
-        this.isFromSapling = true;
+        isFromSapling = true;
     }
 
     @Override
@@ -22,7 +21,8 @@ public abstract class AbstractVanillaOak extends AbstractTree
     {
         for (int y1 = y; y1 <= y + 1 + height; ++y1)
         {
-            final byte radius = (byte) (y1 >= y + 1 + height - 2 ? 2 : y1 == y ? 0 : 1);
+            //noinspection NestedConditionalExpression
+            final int radius = y1 >= y + 1 + height - 2 ? 2 : y1 == y ? 0 : 1;
             for (int x1 = x - radius; x1 <= x + radius; ++x1)
                 for (int z1 = z - radius; z1 <= z + radius; ++z1)
                     if (y1 >= 0 && y1 < 256)

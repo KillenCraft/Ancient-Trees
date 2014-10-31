@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 
 public class NormalPinkCerasuTree extends AbstractVanillaOak
 {
-    public NormalPinkCerasuTree() { super(); }
 
     @Override
     protected Block getLeavesBlock() { return ModBlocks.leaves2; }

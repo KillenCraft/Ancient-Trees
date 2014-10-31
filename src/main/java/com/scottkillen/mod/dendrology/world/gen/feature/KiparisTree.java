@@ -8,10 +8,6 @@ import java.util.Random;
 
 public class KiparisTree extends AbstractTree
 {
-    public KiparisTree()
-    {
-        super();
-    }
 
     private static boolean inRangeInclusive(int value, int min, int max)
     {
@@ -85,7 +81,7 @@ public class KiparisTree extends AbstractTree
         return true;
     }
 
-    @SuppressWarnings("ConstantConditions")
+    @SuppressWarnings({ "ConstantConditions", "OverlyComplexBooleanExpression" })
     private void genExtraLargeLeaves(World world, int x, int y, int z, int dY)
     {
         for (int dX = -3; dX <= 3; dX++)
@@ -105,6 +101,7 @@ public class KiparisTree extends AbstractTree
             }
     }
 
+    @SuppressWarnings("OverlyComplexBooleanExpression")
     private void genLargeLeaves(World world, int x, int y, int z, int dY)
     {
         for (int dX = -2; dX <= 2; dX++)
@@ -118,6 +115,7 @@ public class KiparisTree extends AbstractTree
             }
     }
 
+    @SuppressWarnings("OverlyComplexBooleanExpression")
     private void genMediumLeaves(World world, int x, int y, int z, int dY)
     {
         for (int dX = -2; dX <= 2; dX++)

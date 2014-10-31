@@ -7,10 +7,6 @@ import java.util.Random;
 
 public class LargeCedrumTree extends NormalCedrumTree
 {
-    public LargeCedrumTree()
-    {
-        super();
-    }
 
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
