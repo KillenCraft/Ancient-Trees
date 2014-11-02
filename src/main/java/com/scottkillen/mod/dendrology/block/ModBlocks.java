@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.item.LeavesItem;
 import com.scottkillen.mod.dendrology.item.LogItem;
 import com.scottkillen.mod.dendrology.item.SaplingItem;
+import com.scottkillen.mod.dendrology.world.gen.feature.AcemusTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.CedrumTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.CerasuTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.EwcalyTree;
@@ -32,14 +33,14 @@ public final class ModBlocks
     private static final int DEFAULT_LOG_FLAMMABILITY = 5;
 
     private static final ImmutableList<String> LOG0_NAMES = ImmutableList.of("lata", "cedrum", "cerasu", "kiparis");
-    private static final ImmutableList<String> LOG1_NAMES = ImmutableList.of("ewcaly", "kulist", "hekur", "maple");
+    private static final ImmutableList<String> LOG1_NAMES = ImmutableList.of("ewcaly", "kulist", "hekur", "acemus");
     private static final ImmutableList<String> LOG2_NAMES = ImmutableList.of("palm", "poplar", "walnut", "willow");
     private static final ImmutableList<String> LOG3_NAMES = ImmutableList.of("porffor");
 
     private static final ImmutableList<String> LEAVES0_NAMES = ImmutableList.of("lata", "cedrum", "kiparis", "ewcaly");
     private static final ImmutableList<String> LEAVES1_NAMES = ImmutableList.of("hekur", "kulist", "palm", "poplar");
     private static final ImmutableList<String> LEAVES2_NAMES =
-            ImmutableList.of("cerasu.pink", "cerasu.white", "maple");
+            ImmutableList.of("cerasu.pink", "cerasu.white", "acemus");
         private static final ImmutableList<String> LEAVES3_NAMES = ImmutableList.of("kulist.yellow", "walnut", "willow", "porffor");
 
     private static final ImmutableList<ModLeavesBlock.Colorizer> LEAVES0_COLORS =
@@ -51,12 +52,12 @@ public final class ModBlocks
     private static final ImmutableList<ModLeavesBlock.Colorizer> LEAVES3_COLORS = ImmutableList.of(NONE, BASIC, NONE, NONE);
 
     private static final ImmutableList<String> SAPLING0_NAMES =
-            ImmutableList.of("lata", "cedrum", "cerasu", "kiparis", "ewcaly", "kulist", "hekur", "maple");
+            ImmutableList.of("lata", "cedrum", "cerasu", "kiparis", "ewcaly", "kulist", "hekur", "acemus");
     private static final ImmutableList<String> SAPLING1_NAMES = ImmutableList.of("palm", "poplar", "walnut", "willow", "porffor");
 
     private static final ImmutableList<? extends WorldGenerator> SAPLING0_GENS = ImmutableList
             .of(new LataTree(), new CedrumTree(), new CerasuTree(), new KiparisTree(),
-                    new EwcalyTree(), new KulistTree(), new HekurTree(), new WorldGenTaiga1());
+                    new EwcalyTree(), new KulistTree(), new HekurTree(), new AcemusTree());
     private static final ImmutableList<? extends WorldGenerator> SAPLING1_GENS =
             ImmutableList.of(new WorldGenTaiga1(), new WorldGenTaiga1(), new WorldGenTaiga1(), new WorldGenTaiga1(), new PorfforTree());
 
@@ -125,7 +126,7 @@ public final class ModBlocks
         ModLeavesBlock.addSapling(leaves2, 0, sapling0, 2);
         ModLeavesBlock.addSapling(leaves2, 1, sapling0, 2);
 
-        // maple
+        // acemus
         ModLeavesBlock.addSapling(leaves2, 2, sapling0, 7);
 
         // walnut
