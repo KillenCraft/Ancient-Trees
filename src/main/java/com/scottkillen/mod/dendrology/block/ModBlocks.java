@@ -20,8 +20,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.gen.feature.WorldGenTaiga1;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.BASIC;
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.ACEMUS;
+import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.BASIC;
+import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.CERASU;
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NONE;
 
 @SuppressWarnings({ "StaticNonFinalField", "UtilityClass", "PublicField", "WeakerAccess" })
@@ -40,7 +41,7 @@ public final class ModBlocks
     private static final ImmutableList<String> LEAVES0_NAMES = ImmutableList.of("lata", "cedrum", "kiparis", "ewcaly");
     private static final ImmutableList<String> LEAVES1_NAMES = ImmutableList.of("hekur", "kulist", "palm", "poplar");
     private static final ImmutableList<String> LEAVES2_NAMES =
-            ImmutableList.of("cerasu.pink", "cerasu.white", "acemus");
+            ImmutableList.of("cerasu", "acemus");
         private static final ImmutableList<String> LEAVES3_NAMES = ImmutableList.of("kulist.yellow", "walnut", "willow", "porffor");
 
     private static final ImmutableList<ModLeavesBlock.Colorizer> LEAVES0_COLORS =
@@ -48,7 +49,7 @@ public final class ModBlocks
     private static final ImmutableList<ModLeavesBlock.Colorizer> LEAVES1_COLORS =
             ImmutableList.of(BASIC, BASIC, NONE, BASIC);
     private static final ImmutableList<ModLeavesBlock.Colorizer> LEAVES2_COLORS =
-            ImmutableList.of(NONE, NONE, ACEMUS);
+            ImmutableList.of(CERASU, ACEMUS);
     private static final ImmutableList<ModLeavesBlock.Colorizer> LEAVES3_COLORS = ImmutableList.of(NONE, BASIC, NONE, NONE);
 
     private static final ImmutableList<String> SAPLING0_NAMES =

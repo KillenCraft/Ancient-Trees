@@ -25,8 +25,7 @@ tile.dendrology:log.willow.name=Willow Wood
 ### Leaves
 tile.dendrology:leaves.lata.name=Lata Leaves
 tile.dendrology:leaves.cedrum.name=Cedrum Leaves
-tile.dendrology:leaves.cerasu.pink.name=Pink Cerasu Leaves
-tile.dendrology:leaves.cerasu.white.name=White Cerasu Leaves
+tile.dendrology:leaves.cerasu.name=Cerasu Leaves
 tile.dendrology:leaves.kiparis.name=Kiparis Leaves
 tile.dendrology:leaves.ewcaly.name=Ewcaly Leaves
 tile.dendrology:leaves.kulist.name=Kulist Leaves

@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.world.AcemusColorizer;
+import com.scottkillen.mod.dendrology.world.CerasuColorizer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -83,6 +84,8 @@ public class ModLeavesBlock extends BlockLeaves
                 return 0xffffff;
             case ACEMUS:
                 return AcemusColorizer.getAcemusInventoryColor();
+            case CERASU:
+                return CerasuColorizer.getCerasuInventoryColor();
             default:
                 return Blocks.leaves.getRenderColor(0);
         }
@@ -101,6 +104,8 @@ public class ModLeavesBlock extends BlockLeaves
                 return 0xffffff;
             case ACEMUS:
                 return AcemusColorizer.getAcemusColor(x, z);
+            case CERASU:
+                return CerasuColorizer.getCerasuColor(x, y, z);
             default:
                 return Blocks.leaves.colorMultiplier(blockAccess, x, y, z);
         }
@@ -179,8 +184,9 @@ public class ModLeavesBlock extends BlockLeaves
 
     public enum Colorizer
     {
-        BASIC,
         ACEMUS,
+        BASIC,
+        CERASU,
         NONE
     }
 

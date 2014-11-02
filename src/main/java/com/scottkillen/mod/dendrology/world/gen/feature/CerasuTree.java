@@ -1,10 +1,8 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.world.gen.feature.cerasu.LargePinkCerasuTree;
-import com.scottkillen.mod.dendrology.world.gen.feature.cerasu.LargeWhiteCerasuTree;
-import com.scottkillen.mod.dendrology.world.gen.feature.cerasu.NormalPinkCerasuTree;
-import com.scottkillen.mod.dendrology.world.gen.feature.cerasu.NormalWhiteCerasuTree;
+import com.scottkillen.mod.dendrology.world.gen.feature.cerasu.LargeCerasuTree;
+import com.scottkillen.mod.dendrology.world.gen.feature.cerasu.NormalCerasuTree;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import java.util.Random;
@@ -12,17 +10,13 @@ import java.util.Random;
 public class CerasuTree extends WorldGenAbstractTree
 {
     private final WorldGenAbstractTree treeGenPink;
-    private final WorldGenAbstractTree treeGenWhite;
     private final WorldGenAbstractTree largeTreeGenPink;
-    private final WorldGenAbstractTree largeTreeGenWhite;
 
     public CerasuTree()
     {
         super(true);
-        treeGenPink = new NormalPinkCerasuTree();
-        largeTreeGenPink = new LargePinkCerasuTree();
-        treeGenWhite = new NormalWhiteCerasuTree();
-        largeTreeGenWhite = new LargeWhiteCerasuTree();
+        treeGenPink = new NormalCerasuTree();
+        largeTreeGenPink = new LargeCerasuTree();
     }
 
     @Override
@@ -30,12 +24,8 @@ public class CerasuTree extends WorldGenAbstractTree
     {
         if (rand.nextInt(10) < 9)
         {
-            if (rand.nextInt(10) == 0) return treeGenWhite.generate(world, rand, x, y, z);
-
             return treeGenPink.generate(world, rand, x, y, z);
         }
-
-        if (rand.nextInt(10) == 0) return largeTreeGenWhite.generate(world, rand, x, y, z);
 
         return largeTreeGenPink.generate(world, rand, x, y, z);
     }
@@ -43,7 +33,7 @@ public class CerasuTree extends WorldGenAbstractTree
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("treeGenPink", treeGenPink).add("treeGenWhite", treeGenWhite).add(
-                "largeTreeGenPink", largeTreeGenPink).add("largeTreeGenWhite", largeTreeGenWhite).toString();
+        return Objects.toStringHelper(this).add("treeGenPink", treeGenPink).add("largeTreeGenPink", largeTreeGenPink)
+                .toString();
     }
 }

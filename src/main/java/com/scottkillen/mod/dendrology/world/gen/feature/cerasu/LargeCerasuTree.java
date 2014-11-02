@@ -4,7 +4,7 @@ import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.world.gen.feature.vanilla.AbstractLargeVanillaOak;
 import net.minecraft.block.Block;
 
-public class LargePinkCerasuTree extends AbstractLargeVanillaOak
+public class LargeCerasuTree extends AbstractLargeVanillaOak
 {
 
     @Override
