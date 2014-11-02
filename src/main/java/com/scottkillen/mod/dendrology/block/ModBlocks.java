@@ -20,11 +20,10 @@ import net.minecraft.world.gen.feature.WorldGenTaiga1;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.BASIC;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.BIRCH;
+import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.ACEMUS;
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NONE;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.PINE;
 
-@SuppressWarnings({ "StaticNonFinalField", "UtilityClass", "PublicField", "WeakerAccess", "CanBeFinal" })
+@SuppressWarnings({ "StaticNonFinalField", "UtilityClass", "PublicField", "WeakerAccess" })
 public final class ModBlocks
 {
     private static final int DEFAULT_LEAVES_FIRE_ENCOURAGEMENT = 30;
@@ -40,16 +39,16 @@ public final class ModBlocks
     private static final ImmutableList<String> LEAVES0_NAMES = ImmutableList.of("lata", "cedrum", "kiparis", "ewcaly");
     private static final ImmutableList<String> LEAVES1_NAMES = ImmutableList.of("hekur", "kulist", "palm", "poplar");
     private static final ImmutableList<String> LEAVES2_NAMES =
-            ImmutableList.of("cerasu.pink", "cerasu.white", "maple.red", "maple.yellow");
+            ImmutableList.of("cerasu.pink", "cerasu.white", "maple");
         private static final ImmutableList<String> LEAVES3_NAMES = ImmutableList.of("kulist.yellow", "walnut", "willow", "porffor");
 
     private static final ImmutableList<ModLeavesBlock.Colorizer> LEAVES0_COLORS =
-            ImmutableList.of(BASIC, PINE, PINE, BIRCH);
+            ImmutableList.of(BASIC, NONE, NONE, NONE);
     private static final ImmutableList<ModLeavesBlock.Colorizer> LEAVES1_COLORS =
-            ImmutableList.of(BASIC, BASIC, PINE, BASIC);
+            ImmutableList.of(BASIC, BASIC, NONE, BASIC);
     private static final ImmutableList<ModLeavesBlock.Colorizer> LEAVES2_COLORS =
-            ImmutableList.of(NONE, NONE, NONE, NONE);
-    private static final ImmutableList<ModLeavesBlock.Colorizer> LEAVES3_COLORS = ImmutableList.of(NONE, BASIC, BIRCH, NONE);
+            ImmutableList.of(NONE, NONE, ACEMUS);
+    private static final ImmutableList<ModLeavesBlock.Colorizer> LEAVES3_COLORS = ImmutableList.of(NONE, BASIC, NONE, NONE);
 
     private static final ImmutableList<String> SAPLING0_NAMES =
             ImmutableList.of("lata", "cedrum", "cerasu", "kiparis", "ewcaly", "kulist", "hekur", "maple");
@@ -128,7 +127,6 @@ public final class ModBlocks
 
         // maple
         ModLeavesBlock.addSapling(leaves2, 2, sapling0, 7);
-        ModLeavesBlock.addSapling(leaves2, 3, sapling0, 7);
 
         // walnut
         ModLeavesBlock.addSapling(leaves3, 1, sapling1, 2);

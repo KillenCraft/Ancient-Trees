@@ -4,6 +4,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.dendrology.world.AcemusColorizer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -11,10 +12,10 @@ import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -75,7 +76,16 @@ public class ModLeavesBlock extends BlockLeaves
     public int getRenderColor(int metadata)
     {
         final Colorizer colorizer = subblockColorizers.get(mask(metadata));
-        return colorizer.getColor();
+
+        switch (colorizer)
+        {
+            case NONE:
+                return 0xffffff;
+            case ACEMUS:
+                return AcemusColorizer.getAcemusInventoryColor();
+            default:
+                return Blocks.leaves.getRenderColor(0);
+        }
     }
 
     @SideOnly(Side.CLIENT)
@@ -84,7 +94,16 @@ public class ModLeavesBlock extends BlockLeaves
     {
         final int metadata = mask(blockAccess.getBlockMetadata(x, y, z));
         final Colorizer colorizer = subblockColorizers.get(mask(metadata));
-        return colorizer.getColor();
+
+        switch (colorizer)
+        {
+            case NONE:
+                return 0xffffff;
+            case ACEMUS:
+                return AcemusColorizer.getAcemusColor(x, z);
+            default:
+                return Blocks.leaves.colorMultiplier(blockAccess, x, y, z);
+        }
     }
 
     @Override
@@ -158,41 +177,11 @@ public class ModLeavesBlock extends BlockLeaves
         return !(!isFancyGraphics() && block.equals(this)) && (side == 0 && minY > 0.0D || side == 1 && maxY < 1.0D || side == 2 && minZ > 0.0D || side == 3 && maxZ < 1.0D || side == 4 && minX > 0.0D || side == 5 && maxX < 1.0D || !blockAccess.getBlock(x, y, z).isOpaqueCube());
     }
 
-    @SuppressWarnings({
-            "InnerClassTooDeeplyNested", "DeserializableClassInSecureContext", "SerializableClassInSecureContext"
-    })
     public enum Colorizer
     {
         BASIC,
-        BIRCH
-                {
-                    @Override
-                    int getColor()
-                    {
-                        return ColorizerFoliage.getFoliageColorBirch();
-                    }
-                },
-        PINE
-                {
-                    @Override
-                    int getColor()
-                    {
-                        return ColorizerFoliage.getFoliageColorPine();
-                    }
-                },
+        ACEMUS,
         NONE
-                {
-                    @Override
-                    int getColor()
-                    {
-                        return 0xffffff;
-                    }
-                };
-
-        int getColor()
-        {
-            return ColorizerFoliage.getFoliageColorBasic();
-        }
     }
 
     @Override
