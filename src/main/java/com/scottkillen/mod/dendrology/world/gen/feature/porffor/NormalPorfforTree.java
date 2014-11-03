@@ -10,7 +10,7 @@ public class NormalPorfforTree extends AbstractVanillaOak
     protected Block getLeavesBlock() { return ModBlocks.leaves3; }
 
     @Override
-    protected int getLeavesMetadata() { return 3; }
+    protected int getLeavesMetadata() { return 2; }
 
     @Override
     protected Block getLogBlock() { return ModBlocks.logs3; }
