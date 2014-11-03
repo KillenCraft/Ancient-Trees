@@ -10,7 +10,7 @@ public class NormalAcemusTree extends AbstractVanillaOak
     protected Block getLeavesBlock() { return ModBlocks.leaves2; }
 
     @Override
-    protected int getLeavesMetadata() { return 2; }
+    protected int getLeavesMetadata() { return 1; }
 
     @Override
     protected Block getLogBlock() { return ModBlocks.logs1; }
