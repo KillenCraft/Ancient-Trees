@@ -20,12 +20,12 @@ public enum AcemusColorizer implements IResourceManagerReloadListener
     private static int[] buffer = new int[256*256];
     private static final ResourceLocation texture = new ResourceLocation(TheMod.MOD_ID, "textures/colormap/acemus.png");
 
-    public static int getAcemusInventoryColor()
+    public static int getInventoryColor()
     {
         return buffer[0x80 << 8 | 0x80];
     }
 
-    public static int getAcemusColor(int x, int y)
+    public static int getColor(int x, int y)
     {
         int day = 0;
         final World world = Minecraft.getMinecraft().theWorld;

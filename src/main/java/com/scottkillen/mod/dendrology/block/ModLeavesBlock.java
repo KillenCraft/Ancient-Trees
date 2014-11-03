@@ -83,9 +83,9 @@ public class ModLeavesBlock extends BlockLeaves
             case NONE:
                 return 0xffffff;
             case ACEMUS:
-                return AcemusColorizer.getAcemusInventoryColor();
+                return AcemusColorizer.getInventoryColor();
             case CERASU:
-                return CerasuColorizer.getCerasuInventoryColor();
+                return CerasuColorizer.getInventoryColor();
             default:
                 return Blocks.leaves.getRenderColor(0);
         }
@@ -103,9 +103,9 @@ public class ModLeavesBlock extends BlockLeaves
             case NONE:
                 return 0xffffff;
             case ACEMUS:
-                return AcemusColorizer.getAcemusColor(x, z);
+                return AcemusColorizer.getColor(x, z);
             case CERASU:
-                return CerasuColorizer.getCerasuColor(x, y, z);
+                return CerasuColorizer.getColor(x, y, z);
             default:
                 return Blocks.leaves.colorMultiplier(blockAccess, x, y, z);
         }

@@ -20,12 +20,12 @@ public enum CerasuColorizer implements IResourceManagerReloadListener
     private static int[] buffer = new int[256*256];
     private static final ResourceLocation texture = new ResourceLocation(TheMod.MOD_ID, "textures/colormap/cerasu.png");
 
-    public static int getCerasuInventoryColor()
+    public static int getInventoryColor()
     {
         return buffer[0x80 << 8 | 0x80];
     }
 
-    public static int getCerasuColor(int x, int y, int z)
+    public static int getColor(int x, int y, int z)
     {
         final int i = x + y & 0xff;
         final int j = z + y & 0xff;
