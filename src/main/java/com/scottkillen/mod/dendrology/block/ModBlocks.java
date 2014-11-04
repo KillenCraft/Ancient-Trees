@@ -36,11 +36,11 @@ public final class ModBlocks
 
     private static final ImmutableList<String> LOG0_NAMES = ImmutableList.of("lata", "cedrum", "cerasu", "kiparis");
     private static final ImmutableList<String> LOG1_NAMES = ImmutableList.of("ewcaly", "kulist", "hekur", "acemus");
-    private static final ImmutableList<String> LOG2_NAMES = ImmutableList.of("palm", "poplar", "walnut", "willow");
+    private static final ImmutableList<String> LOG2_NAMES = ImmutableList.of("delnas", "poplar", "walnut", "willow");
     private static final ImmutableList<String> LOG3_NAMES = ImmutableList.of("porffor");
 
     private static final ImmutableList<String> LEAVES0_NAMES = ImmutableList.of("lata", "cedrum", "kiparis", "ewcaly");
-    private static final ImmutableList<String> LEAVES1_NAMES = ImmutableList.of("hekur", "kulist", "palm", "poplar");
+    private static final ImmutableList<String> LEAVES1_NAMES = ImmutableList.of("hekur", "kulist", "delnas", "poplar");
     private static final ImmutableList<String> LEAVES2_NAMES = ImmutableList.of("cerasu", "acemus");
         private static final ImmutableList<String> LEAVES3_NAMES = ImmutableList.of("walnut", "willow", "porffor");
 
@@ -51,7 +51,7 @@ public final class ModBlocks
 
     private static final ImmutableList<String> SAPLING0_NAMES =
             ImmutableList.of("lata", "cedrum", "cerasu", "kiparis", "ewcaly", "kulist", "hekur", "acemus");
-    private static final ImmutableList<String> SAPLING1_NAMES = ImmutableList.of("palm", "poplar", "walnut", "willow", "porffor");
+    private static final ImmutableList<String> SAPLING1_NAMES = ImmutableList.of("delnas", "poplar", "walnut", "willow", "porffor");
 
     private static final ImmutableList<? extends WorldGenerator> SAPLING0_GENS = ImmutableList
             .of(new LataTree(), new CedrumTree(), new CerasuTree(), new KiparisTree(),
@@ -113,7 +113,7 @@ public final class ModBlocks
         // kulist
         ModLeavesBlock.addSapling(leaves1, 1, sapling0, 5);
 
-        // palm
+        // delnas
         ModLeavesBlock.addSapling(leaves1, 2, sapling1, 0);
 
         // poplar
