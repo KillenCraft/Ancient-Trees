@@ -1,9 +1,9 @@
 package com.scottkillen.mod.dendrology.block;
 
-import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.dendrology.reference.Tree;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockLog;
@@ -19,13 +19,24 @@ public class ModLogBlock extends BlockLog
     private static final int CAPACITY = 4;
     private final ImmutableList<String> subblockNames;
 
-    public ModLogBlock(List<String> subblockNames)
+    @SuppressWarnings("ReturnOfCollectionOrArrayField")
+    public ImmutableList<String> getSubblockNames()
+    {
+        return subblockNames;
+    }
+
+    private ModLogBlock(List<String> subblockNames)
     {
         Preconditions.checkArgument(!subblockNames.isEmpty());
         Preconditions.checkArgument(subblockNames.size() <= CAPACITY);
         this.subblockNames = ImmutableList.copyOf(subblockNames);
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("log");
+    }
+
+    public static ModLogBlock of(int group)
+    {
+        return new ModLogBlock(Tree.getLogNames(group));
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -41,12 +52,13 @@ public class ModLogBlock extends BlockLog
         return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
     {
         for (int i = 0; i < subblockNames.size(); i++)
-            //noinspection unchecked,ObjectAllocationInLoop
+            //noinspection ObjectAllocationInLoop
             subblocks.add(new ItemStack(item, 1, i));
     }
 
@@ -64,11 +76,5 @@ public class ModLogBlock extends BlockLog
             field_150167_a[i] = iconRegister.registerIcon(iconName);
             field_150166_b[i] = iconRegister.registerIcon(iconName + "_top");
         }
-    }
-
-    @Override
-    public String toString()
-    {
-        return Objects.toStringHelper(this).add("subblockNames", subblockNames).toString();
     }
 }

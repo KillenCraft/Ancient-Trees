@@ -1,22 +1,28 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
+import com.scottkillen.mod.dendrology.reference.Tree;
 import com.scottkillen.mod.dendrology.world.gen.feature.kulist.LargeKulistTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.kulist.NormalKulistTree;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import java.util.Random;
 
-public class KulistTree extends WorldGenAbstractTree
+public class KulistTree extends AbstractTree
 {
-    private final WorldGenAbstractTree treeGen;
-    private final WorldGenAbstractTree largeTreeGen;
+    private final AbstractTree treeGen;
+    private final AbstractTree largeTreeGen;
 
     public KulistTree()
     {
-        super(true);
         treeGen = new NormalKulistTree();
         largeTreeGen = new LargeKulistTree();
+    }
+
+    @Override
+    public void setTree(Tree tree)
+    {
+        treeGen.setTree(tree);
+        largeTreeGen.setTree(tree);
     }
 
     @Override

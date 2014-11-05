@@ -1,6 +1,10 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
+import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
+import com.scottkillen.mod.dendrology.block.ModLogBlock;
+import com.scottkillen.mod.dendrology.reference.Tree;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -15,11 +19,9 @@ public abstract class AbstractTree extends WorldGenAbstractTree
     protected static final ImmutableList<ImmutablePair<Integer, Integer>> BRANCH_DIRECTIONS = ImmutableList
             .of(ImmutablePair.of(-1, 0), ImmutablePair.of(1, 0), ImmutablePair.of(0, -1), ImmutablePair.of(0, 1),
                     ImmutablePair.of(-1, 1), ImmutablePair.of(-1, -1), ImmutablePair.of(1, 1), ImmutablePair.of(1, -1));
+    private Tree tree = null;
 
-    protected AbstractTree()
-    {
-        super(true);
-    }
+    protected AbstractTree() { super(true); }
 
     @SuppressWarnings("WeakerAccess")
     protected boolean canBeReplacedByLog(World world, int x, int y, int z)
@@ -27,6 +29,11 @@ public abstract class AbstractTree extends WorldGenAbstractTree
         final Block block = world.getBlock(x, y, z);
 
         return block.isAir(world, x, y, z) || block.isLeaves(world, x, y, z);
+    }
+
+    public void setTree(Tree tree)
+    {
+        this.tree = tree;
     }
 
     protected boolean isPoorGrowthConditions(World world, int x, int y, int z, int height, IPlantable plantable)
@@ -53,13 +60,13 @@ public abstract class AbstractTree extends WorldGenAbstractTree
         return true;
     }
 
-    protected abstract Block getLeavesBlock();
+    protected ModLeavesBlock getLeavesBlock() { return tree.getLeavesBlock(); }
 
-    protected abstract int getLeavesMetadata();
+    protected int getLeavesMetadata() { return tree.getLeavesMeta(); }
 
-    protected abstract Block getLogBlock();
+    protected ModLogBlock getLogBlock() { return tree.getLogBlock(); }
 
-    protected abstract int getLogMetadata();
+    protected int getLogMetadata() { return tree.getLogMeta(); }
 
     protected boolean placeLeaves(World world, int x, int y, int z)
     {
@@ -79,5 +86,11 @@ public abstract class AbstractTree extends WorldGenAbstractTree
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("tree", tree).toString();
     }
 }

@@ -1,12 +1,15 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
-import com.scottkillen.mod.dendrology.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import java.util.Random;
 
+import static com.scottkillen.mod.dendrology.reference.Tree.DELNAS;
+
 public class DelnasTree extends AbstractTree
 {
+    public DelnasTree() { super(DELNAS); }
+
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
@@ -15,7 +18,7 @@ public class DelnasTree extends AbstractTree
 
         final int height = rng.nextInt(5) + 6;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, DELNAS.getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -95,16 +98,4 @@ public class DelnasTree extends AbstractTree
         }
         leafGen(world, x1, hight + y, z1);
     }
-
-    @Override
-    protected Block getLeavesBlock() {return ModBlocks.leaves1;}
-
-    @Override
-    protected int getLeavesMetadata() {return 2;}
-
-    @Override
-    protected Block getLogBlock() {return ModBlocks.logs2;}
-
-    @Override
-    protected int getLogMetadata() {return 0;}
 }

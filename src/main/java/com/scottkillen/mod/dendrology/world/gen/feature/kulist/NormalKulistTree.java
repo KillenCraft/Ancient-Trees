@@ -1,15 +1,19 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.kulist;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import java.util.Random;
 
+import static com.scottkillen.mod.dendrology.reference.Tree.KULIST;
+
 public class NormalKulistTree extends AbstractTree
 {
+    private int logDirection = 0;
+
+    public NormalKulistTree() { super(KULIST); }
 
     @Override
     protected boolean canBeReplacedByLog(World world, int x, int y, int z)
@@ -18,20 +22,15 @@ public class NormalKulistTree extends AbstractTree
     }
 
     @Override
-    protected Block getLeavesBlock() {return ModBlocks.leaves1;}
+    protected int getLogMetadata() {return super.getLogMetadata() | logDirection;}
 
     @Override
-    protected int getLeavesMetadata() {return 1;}
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("logDirection", logDirection).toString();
+    }
 
-    @Override
-    protected Block getLogBlock() {return ModBlocks.logs1;}
-
-    private int logDirection = 0;
-
-    @Override
-    protected int getLogMetadata() {return 1 | logDirection;}
-
-    @SuppressWarnings("OverlyComplexMethod")
+    @SuppressWarnings({ "OverlyComplexMethod", "OverlyLongMethod" })
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
@@ -40,7 +39,7 @@ public class NormalKulistTree extends AbstractTree
 
         final int height = rng.nextInt(5) + 6;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, KULIST.getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -49,39 +48,31 @@ public class NormalKulistTree extends AbstractTree
         {
             placeLog(world, x, y + level, z);
 
-            if (level == height)
-                leafGen(world, x, y + level, z);
+            if (level == height) leafGen(world, x, y + level, z);
 
             if (level > 2 && level < height)
             {
-                if (rng.nextInt(6) == 0)
-                    branch(world, rng, x, y, z, height, level, -1, 0);
+                if (rng.nextInt(6) == 0) branch(world, rng, x, y, z, height, level, -1, 0);
 
-                if (rng.nextInt(6) == 0)
-                    branch(world, rng, x, y, z, height, level, 1, 0);
+                if (rng.nextInt(6) == 0) branch(world, rng, x, y, z, height, level, 1, 0);
 
-                if (rng.nextInt(6) == 0)
-                    branch(world, rng, x, y, z, height, level, 0, -1);
+                if (rng.nextInt(6) == 0) branch(world, rng, x, y, z, height, level, 0, -1);
 
-                if (rng.nextInt(6) == 0)
-                    branch(world, rng, x, y, z, height, level, 0, 1);
+                if (rng.nextInt(6) == 0) branch(world, rng, x, y, z, height, level, 0, 1);
 
-                if (rng.nextInt(6) == 0)
-                    branch(world, rng, x, y, z, height, level, -1, 1);
+                if (rng.nextInt(6) == 0) branch(world, rng, x, y, z, height, level, -1, 1);
 
-                if (rng.nextInt(6) == 0)
-                    branch(world, rng, x, y, z, height, level, -1, -1);
+                if (rng.nextInt(6) == 0) branch(world, rng, x, y, z, height, level, -1, -1);
 
-                if (rng.nextInt(6) == 0)
-                    branch(world, rng, x, y, z, height, level, 1, 1);
+                if (rng.nextInt(6) == 0) branch(world, rng, x, y, z, height, level, 1, 1);
 
-                if (rng.nextInt(6) == 0)
-                    branch(world, rng, x, y, z, height, level, 1, -1);
+                if (rng.nextInt(6) == 0) branch(world, rng, x, y, z, height, level, 1, -1);
             }
         }
         return true;
     }
 
+    @SuppressWarnings({ "OverlyComplexMethod", "OverlyLongMethod" })
     void branch(World world, Random rand, int x, int y, int z, int height, int level, int dX, int dZ)
     {
         int x1 = x;
@@ -136,32 +127,27 @@ public class NormalKulistTree extends AbstractTree
         }
     }
 
-    @SuppressWarnings("OverlyComplexBooleanExpression")
+    @SuppressWarnings(
+            { "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops" })
     void leafGen(World world, int x, int y, int z)
     {
         for (int dX = -3; dX <= 3; dX++)
             for (int dZ = -3; dZ <= 3; dZ++)
             {
-                if ((Math.abs(dX) != 3 || Math.abs(dZ) != 3) && (Math.abs(dX) != 2 || Math.abs(dZ) != 3) && (Math.abs(dX) != 3 || Math.abs(dZ) != 2))
-                    placeLeaves(world, x + dX, y, z + dZ);
+                if ((Math.abs(dX) != 3 || Math.abs(dZ) != 3) && (Math.abs(dX) != 2 || Math.abs(dZ) != 3) &&
+                        (Math.abs(dX) != 3 || Math.abs(dZ) != 2)) placeLeaves(world, x + dX, y, z + dZ);
 
                 if (Math.abs(dX) < 3 && Math.abs(dZ) < 3 && (Math.abs(dX) != 2 || Math.abs(dZ) != 2))
                 {
-                        placeLeaves(world, x + dX, y + 1, z + dZ);
-                        placeLeaves(world, x + dX, y - 1, z + dZ);
+                    placeLeaves(world, x + dX, y + 1, z + dZ);
+                    placeLeaves(world, x + dX, y - 1, z + dZ);
                 }
 
                 if (Math.abs(dX) + Math.abs(dZ) < 2)
                 {
-                        placeLeaves(world, x + dX, y + 2, z + dZ);
-                        placeLeaves(world, x + dX, y - 2, z + dZ);
+                    placeLeaves(world, x + dX, y + 2, z + dZ);
+                    placeLeaves(world, x + dX, y - 2, z + dZ);
                 }
             }
-    }
-
-    @Override
-    public String toString()
-    {
-        return Objects.toStringHelper(this).add("logDirection", logDirection).toString();
     }
 }

@@ -1,17 +1,23 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.cedrum;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import java.util.Random;
 
+import static com.scottkillen.mod.dendrology.reference.Tree.CEDRUM;
+
 public class NormalCedrumTree extends AbstractTree
 {
     @SuppressWarnings("PackageVisibleField")
     int logDirection = 0;
+
+    public NormalCedrumTree()
+    {
+        super(CEDRUM);
+    }
 
     @Override
     protected boolean canBeReplacedByLog(World world, int x, int y, int z)
@@ -20,17 +26,27 @@ public class NormalCedrumTree extends AbstractTree
     }
 
     @Override
+    protected int getLogMetadata() {return super.getLogMetadata() | logDirection;}
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("logDirection", logDirection).toString();
+    }
+
+    @Override
     protected boolean isReplaceable(World world, int x, int y, int z)
     {
         return super.isReplaceable(world, x, y, z) || world.getBlock(x, y, z).getMaterial().equals(Material.water);
     }
 
+    @SuppressWarnings({ "MethodWithMultipleLoops", "OverlyComplexMethod" })
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
         final int height = rand.nextInt(10) + 9;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, CEDRUM.getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -79,14 +95,11 @@ public class NormalCedrumTree extends AbstractTree
         for (int dX = -2; dX <= 2; dX++)
             for (int dZ = -2; dZ <= 2; dZ++)
             {
-                if (Math.abs(dX) + Math.abs(dZ) < 3)
-                    placeLeaves(world, x + dX, y, z + dZ);
+                if (Math.abs(dX) + Math.abs(dZ) < 3) placeLeaves(world, x + dX, y, z + dZ);
 
-                if (Math.abs(dX) + Math.abs(dZ) < 2)
-                    placeLeaves(world, x + dX, y + 1, z + dZ);
+                if (Math.abs(dX) + Math.abs(dZ) < 2) placeLeaves(world, x + dX, y + 1, z + dZ);
 
-                if (Math.abs(dX) == 0 && Math.abs(dZ) == 0)
-                    placeLeaves(world, x + dX, y + 2, z + dZ);
+                if (Math.abs(dX) == 0 && Math.abs(dZ) == 0) placeLeaves(world, x + dX, y + 2, z + dZ);
             }
     }
 
@@ -132,32 +145,11 @@ public class NormalCedrumTree extends AbstractTree
         for (int dX = -radius; dX <= radius; dX++)
             for (int dZ = -radius; dZ <= radius; dZ++)
             {
-                if (Math.abs(dX) + Math.abs(dZ) < limiter1)
-                    placeLeaves(world, x + dX, y, z + dZ);
+                if (Math.abs(dX) + Math.abs(dZ) < limiter1) placeLeaves(world, x + dX, y, z + dZ);
 
-                if (Math.abs(dX) + Math.abs(dZ) < limiter2)
-                    placeLeaves(world, x + dX, y - 1, z + dZ);
+                if (Math.abs(dX) + Math.abs(dZ) < limiter2) placeLeaves(world, x + dX, y - 1, z + dZ);
 
-                if (Math.abs(dX) + Math.abs(dZ) < limiter3)
-                    placeLeaves(world, x + dX, y - 2, z + dZ);
+                if (Math.abs(dX) + Math.abs(dZ) < limiter3) placeLeaves(world, x + dX, y - 2, z + dZ);
             }
-    }
-
-    @Override
-    protected Block getLeavesBlock() {return ModBlocks.leaves0;}
-
-    @Override
-    protected int getLeavesMetadata() {return 1;}
-
-    @Override
-    protected Block getLogBlock() {return ModBlocks.logs0;}
-
-    @Override
-    protected int getLogMetadata() {return 1 | logDirection;}
-
-    @Override
-    public String toString()
-    {
-        return Objects.toStringHelper(this).add("logDirection", logDirection).toString();
     }
 }

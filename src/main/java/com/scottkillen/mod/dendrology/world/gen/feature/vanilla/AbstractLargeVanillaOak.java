@@ -1,7 +1,7 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.vanilla;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.block.ModBlocks;
+import com.scottkillen.mod.dendrology.reference.Tree;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
@@ -16,19 +16,29 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
     private static final byte[] otherCoordPairs = { (byte) 2, (byte) 0, (byte) 0, (byte) 1, (byte) 2, (byte) 1 };
     private static final double HEIGHT_ATTENUATION = 0.618D;
     private static final double BRANCH_SLOPE = 0.381D;
-    @SuppressWarnings("UnsecureRandomNumberGeneration")
-    private final Random rng = new Random();
-    private final int[] basePos = { 0, 0, 0 };
-    private int heightLimit = 0;
     private static final double SCALE_WIDTH = 1.1D;
     private static final double LEAF_DENSITY = 1.0D;
     private static final int HEIGHT_LIMIT_LIMIT = 12;
     private static final int LEAF_DISTANCE_LIMIT = 4;
+    @SuppressWarnings("UnsecureRandomNumberGeneration")
+    private final Random rng = new Random();
+    private final int[] basePos = { 0, 0, 0 };
+    private final Tree tree;
+    private int heightLimit = 0;
     private int[][] leafNodes = null;
     private int logMetaMask = 0;
 
-    protected AbstractLargeVanillaOak()
+    protected AbstractLargeVanillaOak(Tree tree)
     {
+        super(tree);
+        this.tree = tree;
+    }
+
+    @SuppressWarnings("NestedConditionalExpression")
+    private static float leafSize(int distance)
+    {
+        return distance >= 0 && distance < LEAF_DISTANCE_LIMIT ?
+                distance != 0 && distance != LEAF_DISTANCE_LIMIT - 1 ? 3.0F : 2.0F : -1.0F;
     }
 
     @SuppressWarnings({ "MethodWithMultipleLoops", "NonBooleanMethodNameMayNotStartWithQuestion" })
@@ -107,6 +117,13 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
     }
 
     @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("rng", rng).add("basePos", basePos).add("heightLimit", heightLimit)
+                .add("leafNodes", leafNodes).add("logMetaMask", logMetaMask).add("tree", tree).toString();
+    }
+
+    @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
         rng.setSeed(rand.nextLong());
@@ -116,7 +133,7 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
 
         heightLimit = 5 + rand.nextInt(HEIGHT_LIMIT_LIMIT);
 
-        if (isPoorGrowthConditions(world, x, y, z, heightLimit, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, heightLimit, tree.getSaplingBlock())) return false;
 
         final int height = generateLeafNodeList(world);
         generateLeaves(world);
@@ -199,11 +216,8 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
                 final int zDistance = Math.abs(aint3[2] - start[2]);
                 final int distance = Math.max(xDistance, zDistance);
 
-                if (distance > 0)
-                    if (xDistance == distance)
-                        logMetaMask = 4;
-                    else if (zDistance == distance)
-                        logMetaMask = 8;
+                if (distance > 0) if (xDistance == distance) logMetaMask = 4;
+                else if (zDistance == distance) logMetaMask = 8;
 
                 placeLog(world, aint3[0], aint3[1], aint3[2]);
                 logMetaMask = 0;
@@ -256,7 +270,8 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
 
             while (var13 <= var7)
             {
-                final double var15 = StrictMath.pow(Math.abs(var12) + 0.5D, 2.0D) + StrictMath.pow(Math.abs(var13) + 0.5D, 2.0D);
+                final double var15 =
+                        StrictMath.pow(Math.abs(var12) + 0.5D, 2.0D) + StrictMath.pow(Math.abs(var13) + 0.5D, 2.0D);
 
                 if (var15 > size * size) ++var13;
                 else
@@ -274,12 +289,6 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
             }
             ++var12;
         }
-    }
-
-    @SuppressWarnings("NestedConditionalExpression")
-    private static float leafSize(int distance)
-    {
-        return distance >= 0 && distance < LEAF_DISTANCE_LIMIT ? distance != 0 && distance != LEAF_DISTANCE_LIMIT - 1 ? 3.0F : 2.0F : -1.0F;
     }
 
     @SuppressWarnings({ "MethodWithMultipleLoops", "OverlyLongMethod", "NumericCastThatLosesPrecision" })
@@ -328,7 +337,8 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
                     if (checkBlockLine(world, var17, var18) == -1)
                     {
                         final int[] var19 = { basePos[0], basePos[1], basePos[2] };
-                        final double var20 = Math.sqrt(StrictMath.pow(Math.abs(basePos[0] - var17[0]), 2.0D) + StrictMath.pow(Math.abs(basePos[2] - var17[2]), 2.0D));
+                        final double var20 = Math.sqrt(StrictMath.pow(Math.abs(basePos[0] - var17[0]), 2.0D) +
+                                StrictMath.pow(Math.abs(basePos[2] - var17[2]), 2.0D));
                         final double var22 = var20 * BRANCH_SLOPE;
 
                         var19[1] = var17[1] - var22 > trunkTopY ? trunkTopY : (int) (var17[1] - var22);
@@ -366,16 +376,10 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
         float size;
 
         if (height == 0.0F) size = maxSize;
-        else
-            size = Math.abs(height) >= maxSize ? 0.0F : (float) Math.sqrt(StrictMath.pow(Math.abs(maxSize), 2.0D) - StrictMath.pow(Math.abs(height), 2.0D));
+        else size = Math.abs(height) >= maxSize ? 0.0F :
+                (float) Math.sqrt(StrictMath.pow(Math.abs(maxSize), 2.0D) - StrictMath.pow(Math.abs(height), 2.0D));
 
         size *= 0.5F;
         return size;
-    }
-
-    @Override
-    public String toString()
-    {
-        return Objects.toStringHelper(this).add("rng", rng).add("basePos", basePos).add("heightLimit", heightLimit).add("leafNodes", leafNodes).add("logMetaMask", logMetaMask).toString();
     }
 }

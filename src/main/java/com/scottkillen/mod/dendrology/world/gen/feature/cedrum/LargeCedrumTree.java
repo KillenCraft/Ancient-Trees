@@ -1,13 +1,15 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.cedrum;
 
-import com.scottkillen.mod.dendrology.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import java.util.Random;
 
+import static com.scottkillen.mod.dendrology.reference.Tree.CEDRUM;
+
 public class LargeCedrumTree extends NormalCedrumTree
 {
 
+    @SuppressWarnings({ "MethodWithMultipleLoops", "OverlyComplexMethod" })
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
@@ -16,7 +18,7 @@ public class LargeCedrumTree extends NormalCedrumTree
 
         final int height = rng.nextInt(12) + 12;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, CEDRUM.getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -46,13 +48,13 @@ public class LargeCedrumTree extends NormalCedrumTree
                         logDirection = 0;
                     }
                     //noinspection NestedConditionalExpression
-                    final int size = level == height - 4 ? 3 : level == height - 7 ? 4 : level == height - 10 ? 5 : rng.nextInt(3) + 2;
+                    final int size = level == height - 4 ? 3 :
+                            level == height - 7 ? 4 : level == height - 10 ? 5 : rng.nextInt(3) + 2;
                     leafGen(world, size, x, y + level, z);
                 }
             }
 
-            if (level == height)
-                leafTop (world, x, y + level, z);
+            if (level == height) leafTop(world, x, y + level, z);
         }
 
         return true;

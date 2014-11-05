@@ -1,9 +1,9 @@
 package com.scottkillen.mod.dendrology.block;
 
-import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.dendrology.reference.Tree;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSapling;
@@ -29,7 +29,18 @@ public class ModSaplingBlock extends BlockSapling
     private final ImmutableList<? extends WorldGenerator> treeGens;
     private final List<IIcon> subblockIcons = Lists.newArrayList();
 
-    public ModSaplingBlock(List<String> subblockNames, List<? extends WorldGenerator> treeGens)
+    @SuppressWarnings("ReturnOfCollectionOrArrayField")
+    public ImmutableList<String> getSubblockNames()
+    {
+        return subblockNames;
+    }
+
+    public static ModSaplingBlock of(int group)
+    {
+        return new ModSaplingBlock(Tree.getSaplingNames(group), Tree.getSaplingTreeGens(group));
+    }
+
+    private ModSaplingBlock(List<String> subblockNames, List<? extends WorldGenerator> treeGens)
     {
         checkArgument(!subblockNames.isEmpty());
         checkArgument(subblockNames.size() <= CAPACITY);
@@ -78,12 +89,13 @@ public class ModSaplingBlock extends BlockSapling
         return mask(metadata);
     }
 
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
     {
         for (int i = 0; i < subblockNames.size(); i++)
-            //noinspection unchecked,ObjectAllocationInLoop
+            //noinspection ObjectAllocationInLoop
             subblocks.add(new ItemStack(item, 1, i));
     }
 
@@ -105,11 +117,5 @@ public class ModSaplingBlock extends BlockSapling
     {
         //noinspection StringConcatenationMissingWhitespace
         return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
-    }
-
-    @Override
-    public String toString()
-    {
-        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("treeGens", treeGens).add("subblockIcons", subblockIcons).toString();
     }
 }

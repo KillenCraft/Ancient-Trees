@@ -1,15 +1,17 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import java.util.Random;
+
+import static com.scottkillen.mod.dendrology.reference.Tree.LATA;
 
 public class LataTree extends AbstractTree
 {
     private int logDirection = 0;
 
+    @SuppressWarnings({ "OverlyComplexMethod", "OverlyLongMethod" })
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
@@ -18,7 +20,7 @@ public class LataTree extends AbstractTree
 
         final int height = rng.nextInt(15) + 6;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, LATA.getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -53,6 +55,7 @@ public class LataTree extends AbstractTree
         return true;
     }
 
+    @SuppressWarnings({ "OverlyComplexMethod", "OverlyLongMethod" })
     private void branch(World world, Random rand, int x, int y, int z, int treeHeight, int branchLevel, int dX, int dZ)
     {
         final int length = treeHeight - branchLevel;
@@ -123,8 +126,8 @@ public class LataTree extends AbstractTree
         for (int dX = -3; dX <= 3; dX++)
             for (int dZ = -3; dZ <= 3; dZ++)
             {
-                if ((Math.abs(dX) != 3 || Math.abs(dZ) != 3) && (Math.abs(dX) != 2 || Math.abs(dZ) != 3) && (Math.abs(dX) != 3 || Math.abs(dZ) != 2))
-                    placeLeaves(world, x + dX, y, z + dZ);
+                if ((Math.abs(dX) != 3 || Math.abs(dZ) != 3) && (Math.abs(dX) != 2 || Math.abs(dZ) != 3) &&
+                        (Math.abs(dX) != 3 || Math.abs(dZ) != 2)) placeLeaves(world, x + dX, y, z + dZ);
 
                 if (Math.abs(dX) < 3 && Math.abs(dZ) < 3 && (Math.abs(dX) != 2 || Math.abs(dZ) != 2))
                 {
@@ -141,16 +144,7 @@ public class LataTree extends AbstractTree
     }
 
     @Override
-    protected Block getLeavesBlock() {return ModBlocks.leaves0;}
-
-    @Override
-    protected int getLeavesMetadata() {return 0;}
-
-    @Override
-    protected Block getLogBlock() {return ModBlocks.logs0;}
-
-    @Override
-    protected int getLogMetadata() {return logDirection;}
+    protected int getLogMetadata() {return super.getLogMetadata() | logDirection;}
 
     @Override
     public String toString()

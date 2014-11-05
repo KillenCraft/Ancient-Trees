@@ -1,22 +1,34 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
+import com.scottkillen.mod.dendrology.reference.Tree;
 import com.scottkillen.mod.dendrology.world.gen.feature.cerasu.LargeCerasuTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.cerasu.NormalCerasuTree;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import java.util.Random;
 
-public class CerasuTree extends WorldGenAbstractTree
+public class CerasuTree extends AbstractTree
 {
-    private final WorldGenAbstractTree treeGenPink;
-    private final WorldGenAbstractTree largeTreeGenPink;
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("treeGen", treeGen).add("largeTreeGen", largeTreeGen).toString();
+    }
+
+    private final AbstractTree treeGen;
+    private final AbstractTree largeTreeGen;
 
     public CerasuTree()
     {
-        super(true);
-        treeGenPink = new NormalCerasuTree();
-        largeTreeGenPink = new LargeCerasuTree();
+        treeGen = new NormalCerasuTree();
+        largeTreeGen = new LargeCerasuTree();
+    }
+
+    @Override
+    public void setTree(Tree tree)
+    {
+        treeGen.setTree(tree);
+        largeTreeGen.setTree(tree);
     }
 
     @Override
@@ -24,16 +36,9 @@ public class CerasuTree extends WorldGenAbstractTree
     {
         if (rand.nextInt(10) < 9)
         {
-            return treeGenPink.generate(world, rand, x, y, z);
+            return treeGen.generate(world, rand, x, y, z);
         }
 
-        return largeTreeGenPink.generate(world, rand, x, y, z);
-    }
-
-    @Override
-    public String toString()
-    {
-        return Objects.toStringHelper(this).add("treeGenPink", treeGenPink).add("largeTreeGenPink", largeTreeGenPink)
-                .toString();
+        return largeTreeGen.generate(world, rand, x, y, z);
     }
 }

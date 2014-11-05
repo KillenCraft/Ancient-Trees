@@ -1,18 +1,31 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.ewcaly;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import java.util.Random;
 
+import static com.scottkillen.mod.dendrology.reference.Tree.EWCALY;
+
 public class LargeEwcalyTree extends AbstractTree
 {
     private int logDirection = 0;
 
-    @SuppressWarnings("OverlyComplexBooleanExpression")
+    public LargeEwcalyTree()
+    {
+        super(EWCALY);
+    }
+
+    @SuppressWarnings({
+            "OverlyComplexBooleanExpression",
+            "MethodWithMoreThanThreeNegations",
+            "MethodWithMultipleLoops",
+            "OverlyComplexMethod",
+            "OverlyLongMethod",
+            "OverlyNestedMethod"
+    })
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
@@ -21,7 +34,7 @@ public class LargeEwcalyTree extends AbstractTree
 
         final int height = rng.nextInt(24) + 8;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, EWCALY.getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -47,10 +60,12 @@ public class LargeEwcalyTree extends AbstractTree
                         placeLeaves(world, x + dX, y1, z + dZ);
                         if (size != Math.abs(dX) || size != Math.abs(dZ)) placeLeaves(world, x + dX, y1, z + dZ);
 
-                        if (size == 3 && (Math.abs(dX) == 3 && Math.abs(dZ) == 2 || Math.abs(dX) == 2 && Math.abs(dZ) == 3))
+                        if (size == 3 &&
+                                (Math.abs(dX) == 3 && Math.abs(dZ) == 2 || Math.abs(dX) == 2 && Math.abs(dZ) == 3))
                             setBlockAndNotifyAdequately(world, x + dX, y1, z + dZ, Blocks.air, 0);
 
-                        if (y1 == y + height && Math.abs(dX) < 3 && Math.abs(dZ) < 3 && (Math.abs(dX) != 2 || Math.abs(dZ) != 2))
+                        if (y1 == y + height && Math.abs(dX) < 3 && Math.abs(dZ) < 3 &&
+                                (Math.abs(dX) != 2 || Math.abs(dZ) != 2))
                         {
                             if (size > 1) placeLeaves(world, x + dX, y1 + 1, z + dZ);
 
@@ -125,15 +140,16 @@ public class LargeEwcalyTree extends AbstractTree
         }
     }
 
-    @SuppressWarnings("OverlyComplexBooleanExpression")
+    @SuppressWarnings(
+            { "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops" })
     void genLeaves(World world, int x, int y, int z)
     {
         for (int dX = -3; dX <= 3; dX++)
         {
             for (int dY = -3; dY <= 3; dY++)
             {
-                if ((Math.abs(dX) != 3 || Math.abs(dY) != 3) && (Math.abs(dX) != 2 || Math.abs(dY) != 3) && (Math.abs(dX) != 3 || Math.abs(dY) != 2))
-                    placeLeaves(world, x + dX, y, z + dY);
+                if ((Math.abs(dX) != 3 || Math.abs(dY) != 3) && (Math.abs(dX) != 2 || Math.abs(dY) != 3) &&
+                        (Math.abs(dX) != 3 || Math.abs(dY) != 2)) placeLeaves(world, x + dX, y, z + dY);
 
                 if (Math.abs(dX) < 3 && Math.abs(dY) < 3 && (Math.abs(dX) != 2 || Math.abs(dY) != 2))
                 {
@@ -144,7 +160,8 @@ public class LargeEwcalyTree extends AbstractTree
         }
     }
 
-    @SuppressWarnings("OverlyComplexBooleanExpression")
+    @SuppressWarnings(
+            { "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops" })
     void genLeavesS(World world, int i3, int j3, int k3)
     {
         for (int x = -2; x <= 2; x++)
@@ -163,16 +180,7 @@ public class LargeEwcalyTree extends AbstractTree
     }
 
     @Override
-    protected Block getLeavesBlock() { return ModBlocks.leaves0; }
-
-    @Override
-    protected int getLeavesMetadata() { return 3; }
-
-    @Override
-    protected Block getLogBlock() { return ModBlocks.logs1; }
-
-    @Override
-    protected int getLogMetadata() { return logDirection; }
+    protected int getLogMetadata() { return super.getLogMetadata() | logDirection; }
 
     @Override
     public String toString()

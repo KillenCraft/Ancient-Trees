@@ -1,20 +1,13 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.acemus;
 
-import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.world.gen.feature.vanilla.AbstractLargeVanillaOak;
-import net.minecraft.block.Block;
+
+import static com.scottkillen.mod.dendrology.reference.Tree.ACEMUS;
 
 public class LargeAcemusTree extends AbstractLargeVanillaOak
 {
-    @Override
-    protected Block getLeavesBlock() { return ModBlocks.leaves2; }
+    public LargeAcemusTree() { super(ACEMUS); }
 
     @Override
-    protected int getLeavesMetadata() { return 1; }
-
-    @Override
-    protected Block getLogBlock() { return ModBlocks.logs1; }
-
-    @Override
-    protected int getUnmaskedLogMeta() { return 3; }
+    protected int getUnmaskedLogMeta() { return ACEMUS.getLogMeta(); }
 }

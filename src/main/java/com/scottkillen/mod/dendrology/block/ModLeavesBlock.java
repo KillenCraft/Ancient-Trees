@@ -2,8 +2,8 @@ package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Maps;
 import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.dendrology.reference.Tree;
 import com.scottkillen.mod.dendrology.world.AcemusColorizer;
 import com.scottkillen.mod.dendrology.world.CerasuColorizer;
 import com.scottkillen.mod.dendrology.world.KulistColorizer;
@@ -22,7 +22,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import static com.google.common.base.Preconditions.*;
@@ -31,12 +30,20 @@ public class ModLeavesBlock extends BlockLeaves
 {
     private static final int CAPACITY = 4;
     private static final int METADATA_MASK = CAPACITY - 1;
-    private static final Map<Leaves, ImmutablePair<Item, Integer>> saplings = Maps.newHashMap();
+    private ImmutableList<ImmutablePair<Item, Integer>> saplings = null;
     private final ImmutableList<String> subblockNames;
     private final ImmutableList<Colorizer> subblockColorizers;
+    private final int group;
 
-    public ModLeavesBlock(List<String> subblockNames, List<Colorizer> subblockColorizers)
+    public static ModLeavesBlock of(int group)
     {
+        return new ModLeavesBlock(Tree.getLeavesNames(group), Tree.getColorizers(group), group);
+    }
+
+    private ModLeavesBlock(List<String> subblockNames, List<Colorizer> subblockColorizers,
+                           int group)
+    {
+        this.group = group;
         checkArgument(!subblockNames.isEmpty());
         checkArgument(subblockNames.size() <= CAPACITY);
         this.subblockNames = ImmutableList.copyOf(subblockNames);
@@ -68,11 +75,6 @@ public class ModLeavesBlock extends BlockLeaves
 
     private static boolean isFancyGraphics() {return Minecraft.getMinecraft().gameSettings.fancyGraphics;}
 
-    public static void addSapling(ModLeavesBlock leaves, int leavesMetadata, Block sapling, int saplingMetadata)
-    {
-        saplings.put(new Leaves(leaves, leavesMetadata), ImmutablePair.of(Item.getItemFromBlock(sapling), saplingMetadata));
-    }
-
     @SideOnly(Side.CLIENT)
     @Override
     public int getRenderColor(int metadata)
@@ -83,11 +85,11 @@ public class ModLeavesBlock extends BlockLeaves
         {
             case NONE:
                 return 0xffffff;
-            case ACEMUS:
+            case ACEMUS_COLOR:
                 return AcemusColorizer.getInventoryColor();
-            case CERASU:
+            case CERASU_COLOR:
                 return CerasuColorizer.getInventoryColor();
-            case KULIST:
+            case KULIST_COLOR:
                 return KulistColorizer.getInventoryColor();
             default:
                 return Blocks.leaves.getRenderColor(0);
@@ -105,11 +107,11 @@ public class ModLeavesBlock extends BlockLeaves
         {
             case NONE:
                 return 0xffffff;
-            case ACEMUS:
+            case ACEMUS_COLOR:
                 return AcemusColorizer.getColor(x, z);
-            case CERASU:
+            case CERASU_COLOR:
                 return CerasuColorizer.getColor(x, y, z);
-            case KULIST:
+            case KULIST_COLOR:
                 return KulistColorizer.getColor(x, y, z);
             default:
                 return Blocks.leaves.colorMultiplier(blockAccess, x, y, z);
@@ -119,13 +121,21 @@ public class ModLeavesBlock extends BlockLeaves
     @Override
     public Item getItemDropped(int metadata, Random unused, int unused2)
     {
-        return saplings.get(new Leaves(this, mask(metadata))).left;
+        initSaplings();
+        return saplings.get(mask(metadata)).left;
     }
 
     @Override
     public int damageDropped(int metadata)
     {
-        return saplings.get(new Leaves(this, mask(metadata))).right;
+        initSaplings();
+        return saplings.get(mask(metadata)).right;
+    }
+
+    private void initSaplings()
+    {
+        if (saplings == null)
+            saplings = Tree.getSaplings(group);
     }
 
     @Override
@@ -154,12 +164,13 @@ public class ModLeavesBlock extends BlockLeaves
         return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
     {
         for (int i = 0; i < subblockNames.size(); i++)
-            //noinspection unchecked,ObjectAllocationInLoop
+            //noinspection ObjectAllocationInLoop
             subblocks.add(new ItemStack(item, 1, i));
     }
 
@@ -189,52 +200,10 @@ public class ModLeavesBlock extends BlockLeaves
 
     public enum Colorizer
     {
-        ACEMUS,
-        BASIC,
-        CERASU,
-        KULIST,
+        ACEMUS_COLOR,
+        BASIC_COLOR,
+        CERASU_COLOR,
+        KULIST_COLOR,
         NONE
     }
-
-    @Override
-    public String toString()
-    {
-        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("subblockColorizers", subblockColorizers).toString();
-    }
-
-    private static final class Leaves
-    {
-        private final Block leaves;
-        private final int metadata;
-
-        private Leaves(Block leaves, int metadata)
-        {
-            this.leaves = leaves;
-            this.metadata = metadata;
-        }
-
-        @Override
-        public int hashCode()
-        {
-            return Objects.hashCode(leaves, metadata);
-        }
-
-        @Override
-        public boolean equals(Object o)
-        {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            final Leaves that = (Leaves) o;
-            return metadata == that.metadata && leaves.equals(that.leaves);
-        }
-
-        @Override
-        public String toString()
-        {
-            return Objects.toStringHelper(this).add("leaves", leaves).add("metadata", metadata).toString();
-        }
-    }
-
-
 }

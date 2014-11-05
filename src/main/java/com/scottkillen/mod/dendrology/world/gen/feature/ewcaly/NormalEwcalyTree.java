@@ -2,15 +2,23 @@ package com.scottkillen.mod.dendrology.world.gen.feature.ewcaly;
 
 import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
+import com.scottkillen.mod.dendrology.reference.Tree;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import java.util.Random;
 
+import static com.scottkillen.mod.dendrology.reference.Tree.EWCALY;
+
 public class NormalEwcalyTree extends AbstractTree
 {
     private int logDirection = 0;
+
+    public NormalEwcalyTree()
+    {
+        super(EWCALY);
+    }
 
     @SuppressWarnings("OverlyComplexBooleanExpression")
     @Override
@@ -21,7 +29,7 @@ public class NormalEwcalyTree extends AbstractTree
 
         final int height = rng.nextInt(24) + 2;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, EWCALY.getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -198,16 +206,7 @@ public class NormalEwcalyTree extends AbstractTree
     }
 
     @Override
-    protected Block getLeavesBlock() {return ModBlocks.leaves0;}
-
-    @Override
-    protected int getLeavesMetadata() {return 3;}
-
-    @Override
-    protected Block getLogBlock() {return ModBlocks.logs1;}
-
-    @Override
-    protected int getLogMetadata() {return logDirection;}
+    protected int getLogMetadata() { return super.getLogMetadata() | logDirection; }
 
     @Override
     public String toString()

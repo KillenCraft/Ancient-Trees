@@ -1,13 +1,15 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.kulist;
 
-import com.scottkillen.mod.dendrology.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import java.util.Random;
 
+import static com.scottkillen.mod.dendrology.reference.Tree.KULIST;
+
 public class LargeKulistTree extends NormalKulistTree
 {
 
+    @SuppressWarnings({ "OverlyComplexMethod", "OverlyLongMethod" })
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
@@ -16,7 +18,7 @@ public class LargeKulistTree extends NormalKulistTree
 
         final int height = rng.nextInt(9) + 9;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, KULIST.getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -25,36 +27,27 @@ public class LargeKulistTree extends NormalKulistTree
         {
             placeLog(world, x, y + level, z);
 
-            if (level == height)
-                leafGen(world, x, y + level, z);
+            if (level == height) leafGen(world, x, y + level, z);
 
             if (level > 3 && level < height)
             {
                 final int branchRarity = height / level + 1;
 
-                if (rng.nextInt(branchRarity) == 0)
-                    branch(world, rng, x, y, z, height, level, -1, 0);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, -1, 0);
 
-                if (rng.nextInt(branchRarity) == 0)
-                    branch(world, rng, x, y, z, height, level, 1, 0);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 1, 0);
 
-                if (rng.nextInt(branchRarity) == 0)
-                    branch(world, rng, x, y, z, height, level, 0, -1);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 0, -1);
 
-                if (rng.nextInt(branchRarity) == 0)
-                    branch(world, rng, x, y, z, height, level, 0, 1);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 0, 1);
 
-                if (rng.nextInt(branchRarity) == 0)
-                    branch(world, rng, x, y, z, height, level, -1, 1);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, -1, 1);
 
-                if (rng.nextInt(branchRarity) == 0)
-                    branch(world, rng, x, y, z, height, level, -1, -1);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, -1, -1);
 
-                if (rng.nextInt(branchRarity) == 0)
-                    branch(world, rng, x, y, z, height, level, 1, 1);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 1, 1);
 
-                if (rng.nextInt(branchRarity) == 0)
-                    branch(world, rng, x, y, z, height, level, 1, -1);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 1, -1);
             }
         }
         return true;

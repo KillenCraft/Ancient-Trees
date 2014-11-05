@@ -1,21 +1,17 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.cerasu;
 
-import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.world.gen.feature.vanilla.AbstractLargeVanillaOak;
-import net.minecraft.block.Block;
+
+import static com.scottkillen.mod.dendrology.reference.Tree.CERASU;
 
 public class LargeCerasuTree extends AbstractLargeVanillaOak
 {
 
-    @Override
-    protected Block getLeavesBlock() { return ModBlocks.leaves2; }
+    public LargeCerasuTree()
+    {
+        super(CERASU);
+    }
 
     @Override
-    protected int getLeavesMetadata() { return 0; }
-
-    @Override
-    protected Block getLogBlock() { return ModBlocks.logs0; }
-
-    @Override
-    protected int getUnmaskedLogMeta() { return 2; }
+    protected int getUnmaskedLogMeta() { return CERASU.getLogMeta(); }
 }

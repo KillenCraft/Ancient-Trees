@@ -1,7 +1,7 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.vanilla;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.block.ModBlocks;
+import com.scottkillen.mod.dendrology.reference.Tree;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -9,13 +9,15 @@ import java.util.Random;
 
 public abstract class AbstractVanillaOak extends AbstractTree
 {
-    private final boolean isFromSapling;
+    private final Tree tree;
 
-    protected AbstractVanillaOak()
+    protected AbstractVanillaOak(Tree tree)
     {
-        isFromSapling = true;
+        super(tree);
+        this.tree = tree;
     }
 
+    @SuppressWarnings("MethodWithMultipleLoops")
     @Override
     protected boolean hasRoomToGrow(World world, int x, int y, int z, int height)
     {
@@ -34,11 +36,17 @@ public abstract class AbstractVanillaOak extends AbstractTree
     }
 
     @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("tree", tree).toString();
+    }
+
+    @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
-        final int height = 4 + rand.nextInt(3) + (isFromSapling ? rand.nextInt(7) : 0);
+        final int height = 4 + rand.nextInt(3) + rand.nextInt(7);
 
-        if (isPoorGrowthConditions(world, x, y, z, height, ModBlocks.sapling0)) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, tree.getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -68,16 +76,10 @@ public abstract class AbstractVanillaOak extends AbstractTree
                     final int dZ = z1 - z;
 
                     //noinspection OverlyComplexBooleanExpression
-                    if (Math.abs(dX) != radius || Math.abs(dZ) != radius || rand.nextInt(2) != 0 && distanceToTopOfTrunk != 0)
-                        placeLeaves(world, x1, y1, z1);
+                    if (Math.abs(dX) != radius || Math.abs(dZ) != radius ||
+                            rand.nextInt(2) != 0 && distanceToTopOfTrunk != 0) placeLeaves(world, x1, y1, z1);
                 }
             }
         }
-    }
-
-    @Override
-    public String toString()
-    {
-        return Objects.toStringHelper(this).add("isFromSapling", isFromSapling).toString();
     }
 }
