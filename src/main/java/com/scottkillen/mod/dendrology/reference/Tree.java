@@ -17,6 +17,7 @@ import com.scottkillen.mod.dendrology.world.gen.feature.HekurTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.KiparisTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.KulistTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.LataTree;
+import com.scottkillen.mod.dendrology.world.gen.feature.NucisTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.TuopaTree;
 import net.minecraft.item.Item;
 import net.minecraft.world.gen.feature.WorldGenTaiga1;
@@ -43,14 +44,14 @@ public enum Tree
     KIPARIS(0, 3, 0, 3, NONE, 0, 3, new KiparisTree()),
     KULIST(0, 1, 0, 1, KULIST_COLOR, 0, 5, new KulistTree()),
     LATA(0, 0, 0, 0, BASIC_COLOR, 0, 0, new LataTree()),
-    NUCIS(2, 2, 2, 2, BASIC_COLOR, 1, 2, new WorldGenTaiga1()),
+    NUCIS(2, 2, 2, 2, BASIC_COLOR, 1, 2, new NucisTree()),
     PORFFOR(3, 0, 3, 0, NONE, 1, 4, new AcemusTree()),
     SALYX(2, 3, 2, 3, NONE, 1, 3, new WorldGenTaiga1()),
     TUOPA(2, 1, 2, 1, BASIC_COLOR, 1, 1, new TuopaTree());
 
     static
     {
-        for (Tree tree : Tree.values())
+        for (final Tree tree : Tree.values())
             tree.treeGen.setTree(tree);
     }
 
