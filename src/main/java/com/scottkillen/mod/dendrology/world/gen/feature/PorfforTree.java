@@ -1,6 +1,7 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
+import com.scottkillen.mod.dendrology.reference.Tree;
 import com.scottkillen.mod.dendrology.world.gen.feature.porffor.LargePorfforTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.vanilla.VanillaTree;
 import net.minecraft.world.World;
@@ -9,13 +10,20 @@ import java.util.Random;
 
 public class PorfforTree extends AbstractTree
 {
-    private final WorldGenAbstractTree treeGen;
-    private final WorldGenAbstractTree largeTreeGen;
+    private final AbstractTree treeGen;
+    private final AbstractTree largeTreeGen;
 
     public PorfforTree()
     {
         treeGen = new VanillaTree();
         largeTreeGen = new LargePorfforTree();
+    }
+
+    @Override
+    public void setTree(Tree tree)
+    {
+        treeGen.setTree(tree);
+        largeTreeGen.setTree(tree);
     }
 
     @Override
