@@ -41,7 +41,7 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         include '**/*.info'
 
-    	expand 'version': project.version, 'mcversion': project.minecraft.version
+    	expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version
     }
 
     // copy everything else, that we didn't do before
