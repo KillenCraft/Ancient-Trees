@@ -8,6 +8,8 @@ import static com.scottkillen.mod.dendrology.reference.Tree.TUOPA;
 
 public class NucisTree extends AbstractTree
 {
+    private int logDirection = 0;
+
     @SuppressWarnings("OverlyComplexMethod")
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
@@ -66,13 +68,14 @@ public class NucisTree extends AbstractTree
             if (dX == -1 && random.nextInt(3) > 0)
             {
                 x1--;
+                logDirection = 4;
 
                 if (dZ == 0 && random.nextInt(4) == 0) z1 = z1 + random.nextInt(3) - 1;
             }
-
-            if (dX == 1 && random.nextInt(3) > 0)
+            else if (dX == 1 && random.nextInt(3) > 0)
             {
                 x1++;
+                logDirection = 4;
 
                 if (dZ == 0 && random.nextInt(4) == 0) z1 = z1 + random.nextInt(3) - 1;
             }
@@ -80,11 +83,13 @@ public class NucisTree extends AbstractTree
             if (dZ == -1 && random.nextInt(3) > 0)
             {
                 z1--;
+                logDirection = 8;
 
                 if (dX == 0 && random.nextInt(4) == 0) x1 = x1 + random.nextInt(3) - 1;
             } else if (dZ == 1 && random.nextInt(3) > 0)
             {
                 z1++;
+                logDirection = 8;
 
                 if (dX == 0 && random.nextInt(4) == 0) x1 = x1 + random.nextInt(3) - 1;
             }
@@ -98,6 +103,8 @@ public class NucisTree extends AbstractTree
                 placeLog(world, x1, level1, z1);
                 leafGen(world, x1, level1, z1);
             }
+
+            logDirection = 0;
 
             index++;
         }
