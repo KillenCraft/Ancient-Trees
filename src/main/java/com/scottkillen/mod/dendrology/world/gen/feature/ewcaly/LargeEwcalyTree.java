@@ -7,16 +7,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import java.util.Random;
 
-import static com.scottkillen.mod.dendrology.reference.Tree.EWCALY;
-
 public class LargeEwcalyTree extends AbstractTree
 {
     private int logDirection = 0;
-
-    public LargeEwcalyTree()
-    {
-        super(EWCALY);
-    }
 
     @SuppressWarnings({
             "OverlyComplexBooleanExpression",
@@ -34,7 +27,7 @@ public class LargeEwcalyTree extends AbstractTree
 
         final int height = rng.nextInt(24) + 8;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, EWCALY.getSaplingBlock())) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -140,8 +133,11 @@ public class LargeEwcalyTree extends AbstractTree
         }
     }
 
-    @SuppressWarnings(
-            { "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops" })
+    @SuppressWarnings({
+            "OverlyComplexBooleanExpression",
+            "MethodWithMoreThanThreeNegations",
+            "MethodWithMultipleLoops"
+    })
     void genLeaves(World world, int x, int y, int z)
     {
         for (int dX = -3; dX <= 3; dX++)
@@ -160,8 +156,11 @@ public class LargeEwcalyTree extends AbstractTree
         }
     }
 
-    @SuppressWarnings(
-            { "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops" })
+    @SuppressWarnings({
+            "OverlyComplexBooleanExpression",
+            "MethodWithMoreThanThreeNegations",
+            "MethodWithMultipleLoops"
+    })
     void genLeavesS(World world, int i3, int j3, int k3)
     {
         for (int x = -2; x <= 2; x++)

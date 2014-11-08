@@ -1,7 +1,6 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.vanilla;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.reference.Tree;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
@@ -11,7 +10,7 @@ import java.util.Random;
 
 import static net.minecraftforge.common.util.ForgeDirection.UP;
 
-public abstract class AbstractLargeVanillaOak extends AbstractTree
+public abstract class AbstractLargeVanillaTree extends AbstractTree
 {
     private static final byte[] otherCoordPairs = { (byte) 2, (byte) 0, (byte) 0, (byte) 1, (byte) 2, (byte) 1 };
     private static final double HEIGHT_ATTENUATION = 0.618D;
@@ -23,16 +22,9 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
     @SuppressWarnings("UnsecureRandomNumberGeneration")
     private final Random rng = new Random();
     private final int[] basePos = { 0, 0, 0 };
-    private final Tree tree;
     private int heightLimit = 0;
     private int[][] leafNodes = null;
     private int logMetaMask = 0;
-
-    protected AbstractLargeVanillaOak(Tree tree)
-    {
-        super(tree);
-        this.tree = tree;
-    }
 
     @SuppressWarnings("NestedConditionalExpression")
     private static float leafSize(int distance)
@@ -120,7 +112,7 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
     public String toString()
     {
         return Objects.toStringHelper(this).add("rng", rng).add("basePos", basePos).add("heightLimit", heightLimit)
-                .add("leafNodes", leafNodes).add("logMetaMask", logMetaMask).add("tree", tree).toString();
+                .add("leafNodes", leafNodes).add("logMetaMask", logMetaMask).toString();
     }
 
     @Override
@@ -133,7 +125,7 @@ public abstract class AbstractLargeVanillaOak extends AbstractTree
 
         heightLimit = 5 + rand.nextInt(HEIGHT_LIMIT_LIMIT);
 
-        if (isPoorGrowthConditions(world, x, y, z, heightLimit, tree.getSaplingBlock())) return false;
+        if (isPoorGrowthConditions(world, x, y, z, heightLimit, getSaplingBlock())) return false;
 
         final int height = generateLeafNodeList(world);
         generateLeaves(world);

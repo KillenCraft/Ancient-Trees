@@ -4,8 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import java.util.Random;
 
-import static com.scottkillen.mod.dendrology.reference.Tree.CEDRUM;
-
 public class LargeCedrumTree extends NormalCedrumTree
 {
 
@@ -18,7 +16,7 @@ public class LargeCedrumTree extends NormalCedrumTree
 
         final int height = rng.nextInt(12) + 12;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, CEDRUM.getSaplingBlock())) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);

@@ -3,7 +3,7 @@ package com.scottkillen.mod.dendrology.world.gen.feature;
 import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.reference.Tree;
 import com.scottkillen.mod.dendrology.world.gen.feature.cerasu.LargeCerasuTree;
-import com.scottkillen.mod.dendrology.world.gen.feature.cerasu.NormalCerasuTree;
+import com.scottkillen.mod.dendrology.world.gen.feature.vanilla.VanillaTree;
 import net.minecraft.world.World;
 import java.util.Random;
 
@@ -20,7 +20,7 @@ public class CerasuTree extends AbstractTree
 
     public CerasuTree()
     {
-        treeGen = new NormalCerasuTree();
+        treeGen = new VanillaTree();
         largeTreeGen = new LargeCerasuTree();
     }
 

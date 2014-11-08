@@ -4,12 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import java.util.Random;
 
-import static com.scottkillen.mod.dendrology.reference.Tree.DELNAS;
-
 public class DelnasTree extends AbstractTree
 {
-    public DelnasTree() { super(DELNAS); }
-
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
@@ -18,7 +14,7 @@ public class DelnasTree extends AbstractTree
 
         final int height = rng.nextInt(5) + 6;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, DELNAS.getSaplingBlock())) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -50,8 +46,11 @@ public class DelnasTree extends AbstractTree
         return true;
     }
 
-    @SuppressWarnings(
-            { "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops", "OverlyComplexBooleanExpression" })
+    @SuppressWarnings({
+            "MethodWithMoreThanThreeNegations",
+            "MethodWithMultipleLoops",
+            "OverlyComplexBooleanExpression"
+    })
     private void leafGen(World world, int x, int y, int z)
     {
         for (int dX = -3; dX <= 3; dX++)

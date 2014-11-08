@@ -4,8 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import java.util.Random;
 
-import static com.scottkillen.mod.dendrology.reference.Tree.TUOPA;
-
 public class NucisTree extends AbstractTree
 {
     private int logDirection = 0;
@@ -19,7 +17,7 @@ public class NucisTree extends AbstractTree
 
         final int h = rng.nextInt(15) + 8;
 
-        if (isPoorGrowthConditions(world, x, y, z, h, TUOPA.getSaplingBlock())) return false;
+        if (isPoorGrowthConditions(world, x, y, z, h, getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);

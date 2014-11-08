@@ -14,11 +14,6 @@ public class NormalCedrumTree extends AbstractTree
     @SuppressWarnings("PackageVisibleField")
     int logDirection = 0;
 
-    public NormalCedrumTree()
-    {
-        super(CEDRUM);
-    }
-
     @Override
     protected boolean canBeReplacedByLog(World world, int x, int y, int z)
     {
@@ -46,7 +41,7 @@ public class NormalCedrumTree extends AbstractTree
     {
         final int height = rand.nextInt(10) + 9;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, CEDRUM.getSaplingBlock())) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);

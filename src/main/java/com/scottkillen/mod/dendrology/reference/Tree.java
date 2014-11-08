@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
+import com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer;
 import com.scottkillen.mod.dendrology.block.ModLogBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
@@ -18,9 +19,10 @@ import com.scottkillen.mod.dendrology.world.gen.feature.KiparisTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.KulistTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.LataTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.NucisTree;
+import com.scottkillen.mod.dendrology.world.gen.feature.PorfforTree;
+import com.scottkillen.mod.dendrology.world.gen.feature.SalyxTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.TuopaTree;
 import net.minecraft.item.Item;
-import net.minecraft.world.gen.feature.WorldGenTaiga1;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import java.util.List;
@@ -45,8 +47,8 @@ public enum Tree
     KULIST(0, 1, 0, 1, KULIST_COLOR, 0, 5, new KulistTree()),
     LATA(0, 0, 0, 0, BASIC_COLOR, 0, 0, new LataTree()),
     NUCIS(2, 2, 2, 2, BASIC_COLOR, 1, 2, new NucisTree()),
-    PORFFOR(3, 0, 3, 0, NONE, 1, 4, new AcemusTree()),
-    SALYX(2, 3, 2, 3, NONE, 1, 3, new WorldGenTaiga1()),
+    PORFFOR(3, 0, 3, 0, NONE, 1, 4, new PorfforTree()),
+    SALYX(2, 3, 2, 3, NONE, 1, 3, new SalyxTree()),
     TUOPA(2, 1, 2, 1, BASIC_COLOR, 1, 1, new TuopaTree());
 
     static
@@ -73,7 +75,7 @@ public enum Tree
     private final AbstractTree treeGen;
 
     @SuppressWarnings("ConstructorWithTooManyParameters")
-    Tree(int logBlock, int logMeta, int leavesBlock, int leavesMeta, ModLeavesBlock.Colorizer colorizer,
+    Tree(int logBlock, int logMeta, int leavesBlock, int leavesMeta, Colorizer colorizer,
          int saplingBlock, int saplingMeta, AbstractTree treeGen)
     {
         this.logBlock = logBlock;
@@ -123,11 +125,11 @@ public enum Tree
         return ImmutableList.copyOf(treeGens);
     }
 
-    public static List<ModLeavesBlock.Colorizer> getColorizers(int group)
+    public static List<Colorizer> getColorizers(int group)
     {
         checkElementIndex(group, LOGS_N_LEAVES_GROUPS.size());
 
-        final List<ModLeavesBlock.Colorizer> colorizers = Lists.newArrayList();
+        final List<Colorizer> colorizers = Lists.newArrayList();
         for (final Tree tree : LOGS_N_LEAVES_GROUPS.get(group)) colorizers.add(tree.colorizer);
 
         return ImmutableList.copyOf(colorizers);

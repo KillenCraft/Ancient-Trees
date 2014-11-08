@@ -3,7 +3,7 @@ package com.scottkillen.mod.dendrology.world.gen.feature;
 import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.reference.Tree;
 import com.scottkillen.mod.dendrology.world.gen.feature.acemus.LargeAcemusTree;
-import com.scottkillen.mod.dendrology.world.gen.feature.acemus.NormalAcemusTree;
+import com.scottkillen.mod.dendrology.world.gen.feature.vanilla.VanillaTree;
 import net.minecraft.world.World;
 import java.util.Random;
 
@@ -14,7 +14,7 @@ public class AcemusTree extends AbstractTree
 
     public AcemusTree()
     {
-        treeGen = new NormalAcemusTree();
+        treeGen = new VanillaTree();
         largeTreeGen = new LargeAcemusTree();
     }
 

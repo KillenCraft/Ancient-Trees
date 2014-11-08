@@ -5,8 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import java.util.Random;
 
-import static com.scottkillen.mod.dendrology.reference.Tree.LATA;
-
 public class LataTree extends AbstractTree
 {
     private int logDirection = 0;
@@ -20,7 +18,7 @@ public class LataTree extends AbstractTree
 
         final int height = rng.nextInt(15) + 6;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, LATA.getSaplingBlock())) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -72,8 +70,7 @@ public class LataTree extends AbstractTree
                 logDirection = 4;
 
                 if (dZ == 0 && rand.nextInt(4) == 0) z1 += rand.nextInt(3) - 1;
-            }
-            else if (dX == 1 && rand.nextInt(3) > 0)
+            } else if (dX == 1 && rand.nextInt(3) > 0)
             {
                 x1++;
                 logDirection = 4;
@@ -87,8 +84,7 @@ public class LataTree extends AbstractTree
                 logDirection = 8;
 
                 if (dX == 0 && rand.nextInt(4) == 0) x1 += rand.nextInt(3) - 1;
-            }
-            else if (dZ == 1 && rand.nextInt(3) > 0)
+            } else if (dZ == 1 && rand.nextInt(3) > 0)
             {
                 z1++;
                 logDirection = 8;
@@ -117,8 +113,11 @@ public class LataTree extends AbstractTree
         }
     }
 
-    @SuppressWarnings(
-            { "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops", "OverlyComplexBooleanExpression" })
+    @SuppressWarnings({
+            "MethodWithMoreThanThreeNegations",
+            "MethodWithMultipleLoops",
+            "OverlyComplexBooleanExpression"
+    })
     private void leafGen(World world, int x, int y, int z)
     {
         for (int dX = -3; dX <= 3; dX++)

@@ -5,12 +5,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import java.util.Random;
 
-import static com.scottkillen.mod.dendrology.reference.Tree.KIPARIS;
-
 public class KiparisTree extends AbstractTree
 {
-    public KiparisTree() { super(KIPARIS); }
-
     @Override
     protected boolean canBeReplacedByLog(World world, int x, int y, int z)
     {
@@ -34,7 +30,7 @@ public class KiparisTree extends AbstractTree
                 1 + (rng.nextInt(7) < 2 ? 1 : 0) + (rng.nextInt(7) < 2 ? 1 : 0) + (rng.nextInt(2) == 0 ? 1 : 0);
         final int height = 4 * size + 1;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, KIPARIS.getSaplingBlock())) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -94,8 +90,11 @@ public class KiparisTree extends AbstractTree
             }
     }
 
-    @SuppressWarnings(
-            { "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops" })
+    @SuppressWarnings({
+            "OverlyComplexBooleanExpression",
+            "MethodWithMoreThanThreeNegations",
+            "MethodWithMultipleLoops"
+    })
     private void genLargeLeaves(World world, int x, int y, int z, int dY)
     {
         for (int dX = -2; dX <= 2; dX++)
@@ -110,8 +109,11 @@ public class KiparisTree extends AbstractTree
             }
     }
 
-    @SuppressWarnings(
-            { "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops" })
+    @SuppressWarnings({
+            "OverlyComplexBooleanExpression",
+            "MethodWithMoreThanThreeNegations",
+            "MethodWithMultipleLoops"
+    })
     private void genMediumLeaves(World world, int x, int y, int z, int dY)
     {
         for (int dX = -2; dX <= 2; dX++)

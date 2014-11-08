@@ -1,24 +1,15 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.ewcaly;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.block.ModBlocks;
-import com.scottkillen.mod.dendrology.reference.Tree;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import java.util.Random;
 
-import static com.scottkillen.mod.dendrology.reference.Tree.EWCALY;
-
 public class NormalEwcalyTree extends AbstractTree
 {
     private int logDirection = 0;
-
-    public NormalEwcalyTree()
-    {
-        super(EWCALY);
-    }
 
     @SuppressWarnings("OverlyComplexBooleanExpression")
     @Override
@@ -29,7 +20,7 @@ public class NormalEwcalyTree extends AbstractTree
 
         final int height = rng.nextInt(24) + 2;
 
-        if (isPoorGrowthConditions(world, x, y, z, height, EWCALY.getSaplingBlock())) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
@@ -42,26 +33,25 @@ public class NormalEwcalyTree extends AbstractTree
         for (int y1 = y + height / 2; y1 <= y + height; y1++)
             if (rng.nextInt(5) > 2 || y1 == y + height)
             {
-                if (rng.nextInt(20) < 1)
-                    size = 2;
+                if (rng.nextInt(20) < 1) size = 2;
 
-                if (rng.nextInt(4) == 0 && y1 - y > 10 && y1 - y < 20)
-                    size = 2;
+                if (rng.nextInt(4) == 0 && y1 - y > 10 && y1 - y < 20) size = 2;
 
-                if (y1 - y >= 20)
-                    size = 3;
+                if (y1 - y >= 20) size = 3;
 
                 for (int dX = -size; dX <= size; dX++)
                     for (int dZ = -size; dZ <= size; dZ++)
                     {
                         placeLeaves(world, x + dX, y1, z + dZ);
 
-                        if (size == 3 && (Math.abs(dX) == 3 && Math.abs(dZ) == 2 || Math.abs(dX) == 2 && Math.abs(dZ) == 3))
+                        if (size == 3 &&
+                                (Math.abs(dX) == 3 && Math.abs(dZ) == 2 || Math.abs(dX) == 2 && Math.abs(dZ) == 3))
                         {
                             setBlockAndNotifyAdequately(world, x + dX, y1, z + dZ, Blocks.air, 0);
                         }
 
-                        if (y1 == y + height && Math.abs(dX) < 3 && Math.abs(dZ) < 3 && (Math.abs(dX) != 2 || Math.abs(dZ) != 2))
+                        if (y1 == y + height && Math.abs(dX) < 3 && Math.abs(dZ) < 3 &&
+                                (Math.abs(dX) != 2 || Math.abs(dZ) != 2))
                         {
                             if (size > 1)
                             {
@@ -177,8 +167,8 @@ public class NormalEwcalyTree extends AbstractTree
         for (int dX = -3; dX <= 3; dX++)
             for (int dZ = -3; dZ <= 3; dZ++)
             {
-                if ((Math.abs(dX) != 3 || Math.abs(dZ) != 3) && (Math.abs(dX) != 2 || Math.abs(dZ) != 3) && (Math.abs(dX) != 3 || Math.abs(dZ) != 2))
-                    placeLeaves(world, x + dX, y, z + dZ);
+                if ((Math.abs(dX) != 3 || Math.abs(dZ) != 3) && (Math.abs(dX) != 2 || Math.abs(dZ) != 3) &&
+                        (Math.abs(dX) != 3 || Math.abs(dZ) != 2)) placeLeaves(world, x + dX, y, z + dZ);
 
                 if (Math.abs(dX) < 3 && Math.abs(dZ) < 3 && (Math.abs(dX) != 2 || Math.abs(dZ) != 2))
                 {
@@ -194,8 +184,7 @@ public class NormalEwcalyTree extends AbstractTree
         for (int dX = -2; dX <= 2; dX++)
             for (int dZ = -2; dZ <= 2; dZ++)
             {
-                if (Math.abs(dX) != 2 || Math.abs(dZ) != 2)
-                    placeLeaves(world, x + dX, y, z + dZ);
+                if (Math.abs(dX) != 2 || Math.abs(dZ) != 2) placeLeaves(world, x + dX, y, z + dZ);
 
                 if (Math.abs(dX) < 2 && Math.abs(dZ) < 2 && (Math.abs(dX) != 1 || Math.abs(dZ) != 1))
                 {

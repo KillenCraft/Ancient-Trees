@@ -1,22 +1,12 @@
 package com.scottkillen.mod.dendrology.world.gen.feature.vanilla;
 
-import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.reference.Tree;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import java.util.Random;
 
-public abstract class AbstractVanillaOak extends AbstractTree
+public class VanillaTree extends AbstractTree
 {
-    private final Tree tree;
-
-    protected AbstractVanillaOak(Tree tree)
-    {
-        super(tree);
-        this.tree = tree;
-    }
-
     @SuppressWarnings("MethodWithMultipleLoops")
     @Override
     protected boolean hasRoomToGrow(World world, int x, int y, int z, int height)
@@ -36,17 +26,11 @@ public abstract class AbstractVanillaOak extends AbstractTree
     }
 
     @Override
-    public String toString()
-    {
-        return Objects.toStringHelper(this).add("tree", tree).toString();
-    }
-
-    @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
         final int height = 4 + rand.nextInt(3) + rand.nextInt(7);
 
-        if (isPoorGrowthConditions(world, x, y, z, height, tree.getSaplingBlock())) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);

@@ -19,8 +19,8 @@ tile.dendrology:log.porffor.name=Porffor Wood
 tile.dendrology:log.acemus.name=Acemus Wood
 tile.dendrology:log.delnas.name=Delnas Wood
 tile.dendrology:log.tuopa.name=Tuopa Wood
-tile.dendrology:log.walnut.name=Walnut Wood
-tile.dendrology:log.willow.name=Willow Wood
+tile.dendrology:log.nucis.name=Nucis Wood
+tile.dendrology:log.salyx.name=Salyx Wood
 
 ### Leaves
 tile.dendrology:leaves.lata.name=Lata Leaves
@@ -34,8 +34,8 @@ tile.dendrology:leaves.porffor.name=Porffor Leaves
 tile.dendrology:leaves.acemus.name=Acemus Leaves
 tile.dendrology:leaves.delnas.name=Delnas Leaves
 tile.dendrology:leaves.tuopa.name=Tuopa Leaves
-tile.dendrology:leaves.walnut.name=Walnut Leaves
-tile.dendrology:leaves.willow.name=Willow Leaves
+tile.dendrology:leaves.nucis.name=Nucis Leaves
+tile.dendrology:leaves.salyx.name=Salyx Leaves
 
 ### Saplings
 tile.dendrology:sapling.lata.name=Lata Sapling
@@ -49,8 +49,8 @@ tile.dendrology:sapling.porffor.name=Porffor Sapling
 tile.dendrology:sapling.acemus.name=Acemus Sapling
 tile.dendrology:sapling.delnas.name=Delnas Sapling
 tile.dendrology:sapling.tuopa.name=Tuopa Sapling
-tile.dendrology:sapling.walnut.name=Walnut Sapling
-tile.dendrology:sapling.willow.name=Willow Sapling
+tile.dendrology:sapling.nucis.name=Nucis Sapling
+tile.dendrology:sapling.salyx.name=Salyx Sapling
 
 #Creatibe Tabs
 itemGroup.dendrology=Dendrology

@@ -4,6 +4,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
 import com.scottkillen.mod.dendrology.block.ModLogBlock;
+import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
 import com.scottkillen.mod.dendrology.reference.Tree;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -67,6 +68,8 @@ public abstract class AbstractTree extends WorldGenAbstractTree
     protected ModLogBlock getLogBlock() { return tree.getLogBlock(); }
 
     protected int getLogMetadata() { return tree.getLogMeta(); }
+
+    protected ModSaplingBlock getSaplingBlock() { return tree.getSaplingBlock(); }
 
     protected boolean placeLeaves(World world, int x, int y, int z)
     {

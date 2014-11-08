@@ -5,7 +5,6 @@ import java.util.Random;
 
 public class LargeHekurTree extends NormalHekurTree
 {
-
     @Override
     protected void growTrunk(World world, Random random, int i1, int j1, int k1)
     {

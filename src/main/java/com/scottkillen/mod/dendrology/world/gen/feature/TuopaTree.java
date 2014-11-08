@@ -4,8 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import java.util.Random;
 
-import static com.scottkillen.mod.dendrology.reference.Tree.TUOPA;
-
 public class TuopaTree extends AbstractTree
 {
     @SuppressWarnings({
@@ -24,7 +22,7 @@ public class TuopaTree extends AbstractTree
         final int height =
                 1 + (rng.nextInt(7) < 2 ? 1 : 0) + (rng.nextInt(7) < 2 ? 1 : 0) + (rng.nextBoolean() ? 1 : 0);
 
-        if (isPoorGrowthConditions(world, x, y, z, height, TUOPA.getSaplingBlock())) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
