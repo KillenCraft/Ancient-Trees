@@ -17,6 +17,7 @@ import com.scottkillen.mod.dendrology.world.gen.feature.HekurTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.KiparisTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.KulistTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.LataTree;
+import com.scottkillen.mod.dendrology.world.gen.feature.TuopaTree;
 import net.minecraft.item.Item;
 import net.minecraft.world.gen.feature.WorldGenTaiga1;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -45,7 +46,7 @@ public enum Tree
     NUCIS(2, 2, 2, 2, BASIC_COLOR, 1, 2, new WorldGenTaiga1()),
     PORFFOR(3, 0, 3, 0, NONE, 1, 4, new AcemusTree()),
     SALYX(2, 3, 2, 3, NONE, 1, 3, new WorldGenTaiga1()),
-    TUOPA(2, 1, 2, 1, BASIC_COLOR, 1, 1, new WorldGenTaiga1());
+    TUOPA(2, 1, 2, 1, BASIC_COLOR, 1, 1, new TuopaTree());
 
     static
     {
