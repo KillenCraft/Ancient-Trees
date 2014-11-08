@@ -15,38 +15,40 @@ public class NucisTree extends AbstractTree
         final Random rng = new Random();
         rng.setSeed(rand.nextLong());
 
-        final int h = rng.nextInt(15) + 8;
+        final int height = rng.nextInt(15) + 8;
 
-        if (isPoorGrowthConditions(world, x, y, z, h, getSaplingBlock())) return false;
+        if (isPoorGrowthConditions(world, x, y, z, height, getSaplingBlock())) return false;
 
         final Block block = world.getBlock(x, y - 1, z);
         block.onPlantGrow(world, x, y - 1, z, x, y, z);
 
-        for (int level = 0; level < h; level++)
+        for (int level = 0; level < height; level++)
         {
+            placeLog(world, x, y + level, z);
+
             if (level > 3)
             {
-                final int branchRarity = h / (level - 2) + 1;
+                final int branchRarity = height / (level - 2) + 1;
 
-                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, h, level, -1, 0);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, -1, 0);
 
-                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, h, level, 1, 0);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 1, 0);
 
-                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, h, level, 0, -1);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 0, -1);
 
-                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, h, level, 0, 1);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 0, 1);
 
-                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, h, level, -1, 1);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, -1, 1);
 
-                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, h, level, -1, -1);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, -1, -1);
 
-                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, h, level, 1, 1);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 1, 1);
 
-                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, h, level, 1, -1);
+                if (rng.nextInt(branchRarity) == 0) branch(world, rng, x, y, z, height, level, 1, -1);
             }
         }
 
-        leafGen(world, x, y + h, z);
+        leafGen(world, x, y + height, z);
 
         return true;
     }
