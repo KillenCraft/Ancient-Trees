@@ -73,8 +73,7 @@ public class LataTree extends AbstractTree
 
                 if (dZ == 0 && rand.nextInt(4) == 0) z1 += rand.nextInt(3) - 1;
             }
-
-            if (dX == 1 && rand.nextInt(3) > 0)
+            else if (dX == 1 && rand.nextInt(3) > 0)
             {
                 x1++;
                 logDirection = 4;
@@ -89,8 +88,7 @@ public class LataTree extends AbstractTree
 
                 if (dX == 0 && rand.nextInt(4) == 0) x1 += rand.nextInt(3) - 1;
             }
-
-            if (dZ == 1 && rand.nextInt(3) > 0)
+            else if (dZ == 1 && rand.nextInt(3) > 0)
             {
                 z1++;
                 logDirection = 8;
