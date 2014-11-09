@@ -13,16 +13,16 @@ public enum OreDict
 
     public static void registerOres()
     {
-        for (final Block block : ModBlocks.leaves)
+        for (final Block block : ModBlocks.LEAVES_BLOCKS)
             registerWildcardOre(block, "treeLeaves");
 
-        for (final Block block : ModBlocks.logs)
+        for (final Block block : ModBlocks.LOG_BLOCKS)
             registerWildcardOre(block, "logWood");
 
-        for (final Block block : ModBlocks.planks)
+        for (final Block block : ModBlocks.PLANKS_BLOCKS)
             registerWildcardOre(block, "plankWood");
 
-        for (final Block block : ModBlocks.saplings)
+        for (final Block block : ModBlocks.SAPLING_BLOCKS)
             registerWildcardOre(block, "treeSapling");
     }
 

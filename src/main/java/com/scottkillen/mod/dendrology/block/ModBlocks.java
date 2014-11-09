@@ -10,21 +10,19 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 
-@SuppressWarnings({ "UtilityClass", "PublicField", "WeakerAccess" })
+@SuppressWarnings({ "UtilityClass", "PublicField", "WeakerAccess", "PublicStaticCollectionField" })
 public final class ModBlocks
 {
+    public static final ImmutableList<ModLogBlock> LOG_BLOCKS = Tree.getLogBlocks();
+    public static final ImmutableList<ModLeavesBlock> LEAVES_BLOCKS = Tree.getLeavesBlocks();
+    public static final ImmutableList<ModPlanksBlock> PLANKS_BLOCKS = Tree.getPlanksBlocks();
+    public static final ImmutableList<ModSaplingBlock> SAPLING_BLOCKS = Tree.getSaplingBlocks();
     private static final int DEFAULT_LEAVES_FIRE_ENCOURAGEMENT = 30;
     private static final int DEFAULT_LOG_FIRE_ENCOURAGEMENT = 5;
     private static final int DEFAULT_PLANKS_FIRE_ENCOURAGEMENT = 5;
     private static final int DEFAULT_LEAVES_FLAMMABILITY = 60;
     private static final int DEFAULT_LOG_FLAMMABILITY = 5;
     private static final int DEFAULT_PLANKS_FLAMMABILITY = 20;
-
-    public static ImmutableList<ModLogBlock> logs = Tree.getLogBlocks();
-    public static ImmutableList<ModLeavesBlock> leaves = Tree.getLeavesBlocks();
-    public static ImmutableList<ModSaplingBlock> saplings = Tree.getSaplingBlocks();
-
-    public static ImmutableList<ModPlanksBlock> planks = ImmutableList.of(ModPlanksBlock.of(0));
 
     private ModBlocks()
     {
@@ -33,32 +31,49 @@ public final class ModBlocks
 
     public static void init()
     {
-        int logCount = 0;
-        for (final ModLogBlock block : logs)
-        {
-            registerLogBlock(block, String.format("logs%d", logCount), block.getSubblockNames());
-            logCount++;
-        }
+        initLogBlocks();
+        initLeavesBlock();
+        initSaplingBlocks();
+        initPlanksBlocks();
+    }
 
-        int leavesCount = 0;
-        for (final Block block : leaves)
+    private static void initPlanksBlocks()
+    {
+        int planksCount = 0;
+        for (final ModPlanksBlock wood : PLANKS_BLOCKS)
         {
-            registerLeavesBlock(block, String.format("leaves%d", leavesCount));
-            leavesCount++;
+            registerPlanksBlock(wood, String.format("wood%d", planksCount), wood.getSubblockNames());
+            planksCount++;
         }
+    }
 
+    private static void initSaplingBlocks()
+    {
         int saplingCount = 0;
-        for (final ModSaplingBlock sapling : saplings)
+        for (final ModSaplingBlock sapling : SAPLING_BLOCKS)
         {
             registerSaplingBlock(sapling, String.format("sapling%d", saplingCount), sapling.getSubblockNames());
             saplingCount++;
         }
+    }
 
-        int planksCount = 0;
-        for (final ModPlanksBlock wood : planks)
+    private static void initLeavesBlock()
+    {
+        int leavesCount = 0;
+        for (final Block block : LEAVES_BLOCKS)
         {
-            registerPlanksBlock(wood, String.format("wood%d", planksCount), wood.getSubblockNames());
-            planksCount++;
+            registerLeavesBlock(block, String.format("leaves%d", leavesCount));
+            leavesCount++;
+        }
+    }
+
+    private static void initLogBlocks()
+    {
+        int logCount = 0;
+        for (final ModLogBlock block : LOG_BLOCKS)
+        {
+            registerLogBlock(block, String.format("logs%d", logCount), block.getSubblockNames());
+            logCount++;
         }
     }
 

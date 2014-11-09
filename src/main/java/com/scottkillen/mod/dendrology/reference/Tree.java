@@ -23,11 +23,8 @@ import com.scottkillen.mod.dendrology.world.gen.feature.NucisTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.PorfforTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.SalyxTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.TuopaTree;
-import net.minecraft.item.Item;
-import org.apache.commons.lang3.tuple.ImmutablePair;
 import java.util.List;
 
-import static com.google.common.base.Preconditions.*;
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.ACEMUS_COLOR;
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.BASIC_COLOR;
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.CERASU_COLOR;
@@ -37,33 +34,29 @@ import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NO_C
 @SuppressWarnings("NonSerializableFieldInSerializableClass")
 public enum Tree
 {
-    ACEMUS(ACEMUS_COLOR, 0, 7, new AcemusTree()),
-    CEDRUM(NO_COLOR, 0, 1, new CedrumTree()),
-    CERASU(CERASU_COLOR, 0, 2, new CerasuTree()),
-    DELNAS(NO_COLOR, 0, 8, new DelnasTree()),
-    EWCALY(NO_COLOR, 0, 4, new EwcalyTree()),
-    HEKUR(BASIC_COLOR, 0, 6, new HekurTree()),
-    KIPARIS(NO_COLOR, 0, 3, new KiparisTree()),
-    KULIST(KULIST_COLOR, 0, 5, new KulistTree()),
-    LATA(BASIC_COLOR, 0, 0, new LataTree()),
-    NUCIS(BASIC_COLOR, 0, 10, new NucisTree()),
-    PORFFOR(NO_COLOR, 0, 12, new PorfforTree()),
-    SALYX(NO_COLOR, 0, 11, new SalyxTree()),
-    TUOPA(BASIC_COLOR, 0, 9, new TuopaTree());
+    // REORDERING WILL CAUSE DAMAGE TO SAVES
+    ACEMUS(ACEMUS_COLOR, new AcemusTree()),
+    CEDRUM(NO_COLOR, new CedrumTree()),
+    CERASU(CERASU_COLOR, new CerasuTree()),
+    DELNAS(NO_COLOR, new DelnasTree()),
+    EWCALY(NO_COLOR, new EwcalyTree()),
+    HEKUR(BASIC_COLOR, new HekurTree()),
+    KIPARIS(NO_COLOR, new KiparisTree()),
+    KULIST(KULIST_COLOR, new KulistTree()),
+    LATA(BASIC_COLOR, new LataTree()),
+    NUCIS(BASIC_COLOR, new NucisTree()),
+    PORFFOR(NO_COLOR, new PorfforTree()),
+    SALYX(NO_COLOR, new SalyxTree()),
+    TUOPA(BASIC_COLOR, new TuopaTree());
 
-    private static final ImmutableList<ImmutableList<Tree>> LOGS_N_LEAVES_GROUPS = ImmutableList
-            .of(ImmutableList.of(LATA, CEDRUM, CERASU, KIPARIS), ImmutableList.of(EWCALY, KULIST, HEKUR, ACEMUS),
-                    ImmutableList.of(DELNAS, TUOPA, NUCIS, SALYX), ImmutableList.of(PORFFOR));
-    private static final ImmutableList<ImmutableList<Tree>> PLANKS_GROUPS = ImmutableList.of(ImmutableList
-            .of(LATA, CEDRUM, CERASU, KIPARIS, EWCALY, KULIST, HEKUR, ACEMUS, DELNAS, TUOPA, NUCIS, SALYX, PORFFOR));
-    private final int planksBlock;
-    private final int planksMeta;
-    private final Colorizer colorizer;
     private final AbstractTree treeGen;
-    private int logBlock;
-    private int logMeta;
+    private final Colorizer colorizer;
     private int leavesBlock;
     private int leavesMeta;
+    private int logBlock;
+    private int logMeta;
+    private int planksBlock;
+    private int planksMeta;
     private int saplingBlock;
     private int saplingMeta;
 
@@ -74,27 +67,10 @@ public enum Tree
     }
 
     @SuppressWarnings("ConstructorWithTooManyParameters")
-    Tree(Colorizer colorizer, int planksBlock, int planksMeta, AbstractTree treeGen)
+    Tree(Colorizer colorizer, AbstractTree treeGen)
     {
         this.colorizer = colorizer;
-        this.planksBlock = planksBlock;
-        this.planksMeta = planksMeta;
         this.treeGen = treeGen;
-    }
-
-    public static List<String> getPlankNames(int group)
-    {
-        checkElementIndex(group, PLANKS_GROUPS.size());
-
-        return buildNamesList(PLANKS_GROUPS.get(group));
-    }
-
-    private static ImmutableList<String> buildNamesList(ImmutableList<Tree> trees)
-    {
-        final List<String> names = Lists.newArrayList();
-        for (final Tree tree : trees) names.add(tree.toString());
-
-        return ImmutableList.copyOf(names);
     }
 
     public static ImmutableList<ModLogBlock> getLogBlocks()
@@ -171,30 +147,52 @@ public enum Tree
         return ImmutableList.copyOf(blocks);
     }
 
+    public static ImmutableList<ModPlanksBlock> getPlanksBlocks()
+    {
+        final List<ModPlanksBlock> blocks = Lists.newArrayList();
+        final List<String> names = Lists.newArrayList();
+        for (final Tree tree : values())
+        {
+            tree.planksBlock = blocks.size();
+            tree.planksMeta = names.size();
+
+            names.add(tree.toString());
+            if (names.size() == ModPlanksBlock.CAPACITY)
+            {
+                //noinspection ObjectAllocationInLoop
+                blocks.add(new ModPlanksBlock(names));
+                names.clear();
+            }
+        }
+        if (!names.isEmpty()) blocks.add(new ModPlanksBlock(names));
+
+        return ImmutableList.copyOf(blocks);
+    }
+
     public ModLogBlock getLogBlock()
     {
-        return ModBlocks.logs.get(logBlock);
+        return ModBlocks.LOG_BLOCKS.get(logBlock);
     }
 
     public int getLogMeta() { return logMeta; }
 
     public ModLeavesBlock getLeavesBlock()
     {
-        return ModBlocks.leaves.get(leavesBlock);
+        return ModBlocks.LEAVES_BLOCKS.get(leavesBlock);
     }
 
     public int getLeavesMeta() { return leavesMeta; }
 
     public ModPlanksBlock getPlanksBlock()
     {
-        return ModBlocks.planks.get(planksBlock);
+        return ModBlocks.PLANKS_BLOCKS.get(planksBlock);
     }
 
     public int getPlanksMeta() { return planksMeta; }
 
     public ModSaplingBlock getSaplingBlock()
     {
-        return ModBlocks.saplings.get(saplingBlock);
+        return ModBlocks.SAPLING_BLOCKS.get(saplingBlock);
     }
 
     @Override

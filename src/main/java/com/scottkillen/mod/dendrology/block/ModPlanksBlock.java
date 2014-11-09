@@ -1,10 +1,10 @@
 package com.scottkillen.mod.dendrology.block;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.dendrology.reference.Tree;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockWood;
@@ -17,17 +17,11 @@ import java.util.List;
 
 public class ModPlanksBlock extends BlockWood
 {
-    private static final int CAPACITY = 16;
+    public static final int CAPACITY = 16;
     private final ImmutableList<String> subblockNames;
     private final List<IIcon> icons = Lists.newArrayList();
 
-    @SuppressWarnings("ReturnOfCollectionOrArrayField")
-    public ImmutableList<String> getSubblockNames()
-    {
-        return subblockNames;
-    }
-
-    private ModPlanksBlock(List<String> subblockNames)
+    public ModPlanksBlock(List<String> subblockNames)
     {
         Preconditions.checkArgument(!subblockNames.isEmpty());
         Preconditions.checkArgument(subblockNames.size() <= CAPACITY);
@@ -36,15 +30,16 @@ public class ModPlanksBlock extends BlockWood
         setBlockName("wood");
     }
 
-    public static ModPlanksBlock of(int group)
-    {
-        return new ModPlanksBlock(Tree.getPlankNames(group));
-    }
-
     @SuppressWarnings("WeakerAccess")
     protected static String getUnwrappedUnlocalizedName(String unlocalizedName)
     {
         return unlocalizedName.substring(unlocalizedName.indexOf('.') + 1);
+    }
+
+    @SuppressWarnings("ReturnOfCollectionOrArrayField")
+    public ImmutableList<String> getSubblockNames()
+    {
+        return subblockNames;
     }
 
     @Override
@@ -58,7 +53,7 @@ public class ModPlanksBlock extends BlockWood
     @Override
     public IIcon getIcon(int unused, int meta)
     {
-        final int meta1 = (meta < 0 || meta >= icons.size()) ? 0 : meta;
+        final int meta1 = meta < 0 || meta >= icons.size() ? 0 : meta;
         return icons.get(meta1);
     }
 
@@ -83,5 +78,11 @@ public class ModPlanksBlock extends BlockWood
             final String iconName = TheMod.RESOURCE_PREFIX + "planks_" + subblockNames.get(i);
             icons.add(i, iconRegister.registerIcon(iconName));
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("icons", icons).toString();
     }
 }
