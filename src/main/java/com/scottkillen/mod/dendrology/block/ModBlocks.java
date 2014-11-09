@@ -26,12 +26,7 @@ public final class ModBlocks
     private static final int DEFAULT_LOG_FLAMMABILITY = 5;
     private static final int DEFAULT_PLANKS_FLAMMABILITY = 20;
 
-    public static ImmutableList<ModLogBlock> logs = ImmutableList.of(
-            ModLogBlock.of(0),
-            ModLogBlock.of(1),
-            ModLogBlock.of(2),
-            ModLogBlock.of(3)
-    );
+    public static ImmutableList<ModLogBlock> logs = Tree.getLogBlocks();
 
     public static ImmutableList<ModLeavesBlock> leaves = ImmutableList.of(
             ModLeavesBlock.of(0),

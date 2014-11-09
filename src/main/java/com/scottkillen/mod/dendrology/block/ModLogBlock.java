@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ModLogBlock extends BlockLog
 {
-    private static final int CAPACITY = 4;
+    public static final int CAPACITY = 4;
     private final ImmutableList<String> subblockNames;
 
     @SuppressWarnings("ReturnOfCollectionOrArrayField")
@@ -25,18 +25,13 @@ public class ModLogBlock extends BlockLog
         return subblockNames;
     }
 
-    private ModLogBlock(List<String> subblockNames)
+    public ModLogBlock(List<String> subblockNames)
     {
         Preconditions.checkArgument(!subblockNames.isEmpty());
         Preconditions.checkArgument(subblockNames.size() <= CAPACITY);
         this.subblockNames = ImmutableList.copyOf(subblockNames);
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("log");
-    }
-
-    public static ModLogBlock of(int group)
-    {
-        return new ModLogBlock(Tree.getLogNames(group));
     }
 
     @SuppressWarnings("WeakerAccess")
