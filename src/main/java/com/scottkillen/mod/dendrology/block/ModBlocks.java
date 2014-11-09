@@ -28,12 +28,7 @@ public final class ModBlocks
 
     public static ImmutableList<ModLogBlock> logs = Tree.getLogBlocks();
 
-    public static ImmutableList<ModLeavesBlock> leaves = ImmutableList.of(
-            ModLeavesBlock.of(0),
-            ModLeavesBlock.of(1),
-            ModLeavesBlock.of(2),
-            ModLeavesBlock.of(3)
-    );
+    public static ImmutableList<ModLeavesBlock> leaves = Tree.getLeavesBlocks();
 
     public static ImmutableList<ModSaplingBlock> saplings = ImmutableList.of(
             ModSaplingBlock.of(0),

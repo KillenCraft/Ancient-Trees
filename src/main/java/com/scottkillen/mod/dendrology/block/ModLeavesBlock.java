@@ -1,6 +1,5 @@
 package com.scottkillen.mod.dendrology.block;
 
-import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.reference.Tree;
@@ -20,7 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.tuple.ImmutablePair;
 import java.util.List;
 import java.util.Random;
 
@@ -28,31 +26,22 @@ import static com.google.common.base.Preconditions.*;
 
 public class ModLeavesBlock extends BlockLeaves
 {
-    private static final int CAPACITY = 4;
+    public static final int CAPACITY = 4;
     private static final int METADATA_MASK = CAPACITY - 1;
-    private ImmutableList<ImmutablePair<Item, Integer>> saplings = null;
     private final ImmutableList<String> subblockNames;
-    private final ImmutableList<Colorizer> subblockColorizers;
-    private final int group;
+    private final ImmutableList<Tree> trees;
 
-    public static ModLeavesBlock of(int group)
+    public ModLeavesBlock(List<String> subblockNames, List<Tree> trees)
     {
-        return new ModLeavesBlock(Tree.getLeavesNames(group), Tree.getColorizers(group), group);
-    }
-
-    private ModLeavesBlock(List<String> subblockNames, List<Colorizer> subblockColorizers,
-                           int group)
-    {
-        this.group = group;
         checkArgument(!subblockNames.isEmpty());
         checkArgument(subblockNames.size() <= CAPACITY);
         this.subblockNames = ImmutableList.copyOf(subblockNames);
 
-        checkArgument(!subblockColorizers.isEmpty());
-        checkArgument(subblockColorizers.size() <= CAPACITY);
-        this.subblockColorizers = ImmutableList.copyOf(subblockColorizers);
+        checkArgument(!trees.isEmpty());
+        checkArgument(trees.size() <= CAPACITY);
+        this.trees = ImmutableList.copyOf(trees);
 
-        checkArgument(subblockNames.size() == subblockColorizers.size());
+        checkArgument(subblockNames.size() == trees.size());
 
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("leaves");
@@ -79,7 +68,7 @@ public class ModLeavesBlock extends BlockLeaves
     @Override
     public int getRenderColor(int metadata)
     {
-        final Colorizer colorizer = subblockColorizers.get(mask(metadata));
+        final Colorizer colorizer = trees.get(mask(metadata)).getColorizer();
 
         switch (colorizer)
         {
@@ -101,7 +90,7 @@ public class ModLeavesBlock extends BlockLeaves
     public int colorMultiplier(IBlockAccess blockAccess, int x, int y, int z)
     {
         final int metadata = mask(blockAccess.getBlockMetadata(x, y, z));
-        final Colorizer colorizer = subblockColorizers.get(mask(metadata));
+        final Colorizer colorizer = trees.get(mask(metadata)).getColorizer();
 
         switch (colorizer)
         {
@@ -121,21 +110,13 @@ public class ModLeavesBlock extends BlockLeaves
     @Override
     public Item getItemDropped(int metadata, Random unused, int unused2)
     {
-        initSaplings();
-        return saplings.get(mask(metadata)).left;
+        return Item.getItemFromBlock(trees.get(mask(metadata)).getSaplingBlock());
     }
 
     @Override
     public int damageDropped(int metadata)
     {
-        initSaplings();
-        return saplings.get(mask(metadata)).right;
-    }
-
-    private void initSaplings()
-    {
-        if (saplings == null)
-            saplings = Tree.getSaplings(group);
+        return trees.get(mask(metadata)).getSaplingMeta();
     }
 
     @Override
@@ -154,7 +135,7 @@ public class ModLeavesBlock extends BlockLeaves
     @Override
     public String[] func_150125_e()
     {
-        return subblockNames.toArray(new String[0]);
+        return subblockNames.toArray(new String[subblockNames.size()]);
     }
 
     @Override
@@ -195,7 +176,10 @@ public class ModLeavesBlock extends BlockLeaves
     public boolean shouldSideBeRendered(IBlockAccess blockAccess, int x, int y, int z, int side)
     {
         final Block block = blockAccess.getBlock(x, y, z);
-        return !(!isFancyGraphics() && block.equals(this)) && (side == 0 && minY > 0.0D || side == 1 && maxY < 1.0D || side == 2 && minZ > 0.0D || side == 3 && maxZ < 1.0D || side == 4 && minX > 0.0D || side == 5 && maxX < 1.0D || !blockAccess.getBlock(x, y, z).isOpaqueCube());
+        return !(!isFancyGraphics() && block.equals(this)) &&
+                (side == 0 && minY > 0.0D || side == 1 && maxY < 1.0D || side == 2 && minZ > 0.0D ||
+                        side == 3 && maxZ < 1.0D || side == 4 && minX > 0.0D || side == 5 && maxX < 1.0D ||
+                        !blockAccess.getBlock(x, y, z).isOpaqueCube());
     }
 
     public enum Colorizer
