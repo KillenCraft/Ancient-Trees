@@ -2,6 +2,7 @@ package com.scottkillen.mod.dendrology;
 
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.config.ConfigHandler;
+import com.scottkillen.mod.dendrology.crafting.OreDict;
 import com.scottkillen.mod.dendrology.item.ModItems;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -49,6 +50,7 @@ public class TheMod
     {
         FMLCommonHandler.instance().bus().register(ConfigHandler.INSTANCE);
 
+        OreDict.registerOres();
         // Recipes.init();
     }
 
