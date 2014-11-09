@@ -2,7 +2,7 @@ package com.scottkillen.mod.dendrology.world.gen.feature.porffor;
 
 import com.scottkillen.mod.dendrology.world.gen.feature.vanilla.AbstractLargeVanillaTree;
 
-import static com.scottkillen.mod.dendrology.reference.Tree.PORFFOR;
+import static com.scottkillen.mod.dendrology.content.TreeContent.PORFFOR;
 
 public class LargePorfforTree extends AbstractLargeVanillaTree
 {

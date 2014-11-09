@@ -1,7 +1,7 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.reference.Tree;
+import com.scottkillen.mod.dendrology.content.TreeContent;
 import com.scottkillen.mod.dendrology.world.gen.feature.kulist.LargeKulistTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.kulist.NormalKulistTree;
 import net.minecraft.world.World;
@@ -19,7 +19,7 @@ public class KulistTree extends AbstractTree
     }
 
     @Override
-    public void setTree(Tree tree)
+    public void setTree(TreeContent tree)
     {
         treeGen.setTree(tree);
         largeTreeGen.setTree(tree);

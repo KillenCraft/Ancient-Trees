@@ -3,7 +3,6 @@ package com.scottkillen.mod.dendrology.block;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.dendrology.reference.Tree;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockLog;
@@ -16,7 +15,7 @@ import java.util.List;
 
 public class ModLogBlock extends BlockLog
 {
-    private static final int CAPACITY = 4;
+    public static final int CAPACITY = 4;
     private final ImmutableList<String> subblockNames;
 
     @SuppressWarnings("ReturnOfCollectionOrArrayField")
@@ -25,18 +24,13 @@ public class ModLogBlock extends BlockLog
         return subblockNames;
     }
 
-    private ModLogBlock(List<String> subblockNames)
+    public ModLogBlock(List<String> subblockNames)
     {
         Preconditions.checkArgument(!subblockNames.isEmpty());
         Preconditions.checkArgument(subblockNames.size() <= CAPACITY);
         this.subblockNames = ImmutableList.copyOf(subblockNames);
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("log");
-    }
-
-    public static ModLogBlock of(int group)
-    {
-        return new ModLogBlock(Tree.getLogNames(group));
     }
 
     @SuppressWarnings("WeakerAccess")

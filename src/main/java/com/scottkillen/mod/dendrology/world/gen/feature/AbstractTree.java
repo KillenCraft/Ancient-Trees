@@ -5,7 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
 import com.scottkillen.mod.dendrology.block.ModLogBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
-import com.scottkillen.mod.dendrology.reference.Tree;
+import com.scottkillen.mod.dendrology.content.TreeContent;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -20,7 +20,7 @@ public abstract class AbstractTree extends WorldGenAbstractTree
     protected static final ImmutableList<ImmutablePair<Integer, Integer>> BRANCH_DIRECTIONS = ImmutableList
             .of(ImmutablePair.of(-1, 0), ImmutablePair.of(1, 0), ImmutablePair.of(0, -1), ImmutablePair.of(0, 1),
                     ImmutablePair.of(-1, 1), ImmutablePair.of(-1, -1), ImmutablePair.of(1, 1), ImmutablePair.of(1, -1));
-    private Tree tree = null;
+    private TreeContent tree = null;
 
     protected AbstractTree() { super(true); }
 
@@ -32,7 +32,7 @@ public abstract class AbstractTree extends WorldGenAbstractTree
         return block.isAir(world, x, y, z) || block.isLeaves(world, x, y, z);
     }
 
-    public void setTree(Tree tree)
+    public void setTree(TreeContent tree)
     {
         this.tree = tree;
     }
