@@ -13,13 +13,21 @@ public enum OreDict
 
     public static void registerOres()
     {
+        for (final Block block : ModBlocks.leaves)
+            registerWildcardOre(block, "treeLeaves");
+
         for (final Block block : ModBlocks.logs)
-            OreDictionary.registerOre("logWood", new ItemStack(block, 1, WILDCARD_VALUE));
+            registerWildcardOre(block, "logWood");
+
+        for (final Block block : ModBlocks.planks)
+            registerWildcardOre(block, "plankWood");
 
         for (final Block block : ModBlocks.saplings)
-            OreDictionary.registerOre("treeSapling", new ItemStack(block, 1, WILDCARD_VALUE));
+            registerWildcardOre(block, "treeSapling");
+    }
 
-        for (final Block block : ModBlocks.leaves)
-            OreDictionary.registerOre("treeLeaves", new ItemStack(block, 1, WILDCARD_VALUE));
+    private static void registerWildcardOre(Block block, String name)
+    {
+        OreDictionary.registerOre(name, new ItemStack(block, 1, WILDCARD_VALUE));
     }
 }
