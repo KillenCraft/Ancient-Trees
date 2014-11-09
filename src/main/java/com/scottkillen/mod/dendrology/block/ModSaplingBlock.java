@@ -23,10 +23,10 @@ import static com.google.common.base.Preconditions.*;
 
 public class ModSaplingBlock extends BlockSapling
 {
-    private static final int CAPACITY = 8;
+    public static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<String> subblockNames;
-    private final ImmutableList<? extends WorldGenerator> treeGens;
+    private final ImmutableList<Tree> trees;
     private final List<IIcon> subblockIcons = Lists.newArrayList();
 
     @SuppressWarnings("ReturnOfCollectionOrArrayField")
@@ -35,22 +35,17 @@ public class ModSaplingBlock extends BlockSapling
         return subblockNames;
     }
 
-    public static ModSaplingBlock of(int group)
-    {
-        return new ModSaplingBlock(Tree.getSaplingNames(group), Tree.getSaplingTreeGens(group));
-    }
-
-    private ModSaplingBlock(List<String> subblockNames, List<? extends WorldGenerator> treeGens)
+    public ModSaplingBlock(List<String> subblockNames, List<Tree> trees)
     {
         checkArgument(!subblockNames.isEmpty());
         checkArgument(subblockNames.size() <= CAPACITY);
         this.subblockNames = ImmutableList.copyOf(subblockNames);
 
-        checkArgument(!treeGens.isEmpty());
-        checkArgument(treeGens.size() <= CAPACITY);
-        this.treeGens = ImmutableList.copyOf(treeGens);
+        checkArgument(!trees.isEmpty());
+        checkArgument(trees.size() <= CAPACITY);
+        this.trees = ImmutableList.copyOf(trees);
 
-        checkArgument(subblockNames.size() == treeGens.size());
+        checkArgument(subblockNames.size() == trees.size());
 
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("sapling");
@@ -77,10 +72,9 @@ public class ModSaplingBlock extends BlockSapling
         if (!TerrainGen.saplingGrowTree(world, rand, x, y, z)) return;
 
         final int metadata = mask(world.getBlockMetadata(x, y, z));
-        final WorldGenerator treeGen = treeGens.get(metadata);
+        final WorldGenerator treeGen = trees.get(metadata).getTreeGen();
         world.setBlock(x, y, z, Blocks.air, 0, 4);
-        if (!treeGen.generate(world, rand, x, y, z))
-            world.setBlock(x, y, z, this, metadata, 4);
+        if (!treeGen.generate(world, rand, x, y, z)) world.setBlock(x, y, z, this, metadata, 4);
     }
 
     @Override

@@ -10,12 +10,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.ACEMUS_COLOR;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.BASIC_COLOR;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.CERASU_COLOR;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.KULIST_COLOR;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NONE;
-
 @SuppressWarnings({ "UtilityClass", "PublicField", "WeakerAccess" })
 public final class ModBlocks
 {
@@ -27,13 +21,8 @@ public final class ModBlocks
     private static final int DEFAULT_PLANKS_FLAMMABILITY = 20;
 
     public static ImmutableList<ModLogBlock> logs = Tree.getLogBlocks();
-
     public static ImmutableList<ModLeavesBlock> leaves = Tree.getLeavesBlocks();
-
-    public static ImmutableList<ModSaplingBlock> saplings = ImmutableList.of(
-            ModSaplingBlock.of(0),
-            ModSaplingBlock.of(1)
-    );
+    public static ImmutableList<ModSaplingBlock> saplings = Tree.getSaplingBlocks();
 
     public static ImmutableList<ModPlanksBlock> planks = ImmutableList.of(ModPlanksBlock.of(0));
 

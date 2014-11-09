@@ -72,7 +72,7 @@ public class ModLeavesBlock extends BlockLeaves
 
         switch (colorizer)
         {
-            case NONE:
+            case NO_COLOR:
                 return 0xffffff;
             case ACEMUS_COLOR:
                 return AcemusColorizer.getInventoryColor();
@@ -94,7 +94,7 @@ public class ModLeavesBlock extends BlockLeaves
 
         switch (colorizer)
         {
-            case NONE:
+            case NO_COLOR:
                 return 0xffffff;
             case ACEMUS_COLOR:
                 return AcemusColorizer.getColor(x, z);
@@ -188,6 +188,6 @@ public class ModLeavesBlock extends BlockLeaves
         BASIC_COLOR,
         CERASU_COLOR,
         KULIST_COLOR,
-        NONE
+        NO_COLOR
     }
 }
