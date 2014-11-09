@@ -7,8 +7,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import java.util.Random;
 
-import static com.scottkillen.mod.dendrology.reference.Tree.CEDRUM;
-
 public class NormalCedrumTree extends AbstractTree
 {
     @SuppressWarnings("PackageVisibleField")

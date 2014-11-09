@@ -2,7 +2,7 @@ package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.dendrology.reference.Tree;
+import com.scottkillen.mod.dendrology.content.TreeContent;
 import com.scottkillen.mod.dendrology.world.AcemusColorizer;
 import com.scottkillen.mod.dendrology.world.CerasuColorizer;
 import com.scottkillen.mod.dendrology.world.KulistColorizer;
@@ -29,9 +29,9 @@ public class ModLeavesBlock extends BlockLeaves
     public static final int CAPACITY = 4;
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<String> subblockNames;
-    private final ImmutableList<Tree> trees;
+    private final ImmutableList<TreeContent> trees;
 
-    public ModLeavesBlock(List<String> subblockNames, List<Tree> trees)
+    public ModLeavesBlock(List<String> subblockNames, List<TreeContent> trees)
     {
         checkArgument(!subblockNames.isEmpty());
         checkArgument(subblockNames.size() <= CAPACITY);

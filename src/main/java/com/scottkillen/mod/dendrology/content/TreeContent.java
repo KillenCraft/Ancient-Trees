@@ -1,4 +1,4 @@
-package com.scottkillen.mod.dendrology.reference;
+package com.scottkillen.mod.dendrology.content;
 
 
 import com.google.common.collect.ImmutableList;
@@ -32,7 +32,7 @@ import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.KULI
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NO_COLOR;
 
 @SuppressWarnings("NonSerializableFieldInSerializableClass")
-public enum Tree
+public enum TreeContent
 {
     // REORDERING WILL CAUSE DAMAGE TO SAVES
     ACEMUS(ACEMUS_COLOR, new AcemusTree()),
@@ -62,12 +62,12 @@ public enum Tree
 
     static
     {
-        for (final Tree tree : Tree.values())
+        for (final TreeContent tree : TreeContent.values())
             tree.treeGen.setTree(tree);
     }
 
     @SuppressWarnings("ConstructorWithTooManyParameters")
-    Tree(Colorizer colorizer, AbstractTree treeGen)
+    TreeContent(Colorizer colorizer, AbstractTree treeGen)
     {
         this.colorizer = colorizer;
         this.treeGen = treeGen;
@@ -77,7 +77,7 @@ public enum Tree
     {
         final List<ModLogBlock> blocks = Lists.newArrayList();
         final List<String> names = Lists.newArrayList();
-        for (final Tree tree : values())
+        for (final TreeContent tree : values())
         {
             tree.logBlock = blocks.size();
             tree.logMeta = names.size();
@@ -99,8 +99,8 @@ public enum Tree
     {
         final List<ModLeavesBlock> blocks = Lists.newArrayList();
         final List<String> names = Lists.newArrayList();
-        final List<Tree> trees = Lists.newArrayList();
-        for (final Tree tree : values())
+        final List<TreeContent> trees = Lists.newArrayList();
+        for (final TreeContent tree : values())
         {
             tree.leavesBlock = blocks.size();
             tree.leavesMeta = names.size();
@@ -125,8 +125,8 @@ public enum Tree
     {
         final List<ModSaplingBlock> blocks = Lists.newArrayList();
         final List<String> names = Lists.newArrayList();
-        final List<Tree> trees = Lists.newArrayList();
-        for (final Tree tree : values())
+        final List<TreeContent> trees = Lists.newArrayList();
+        for (final TreeContent tree : values())
         {
             tree.saplingBlock = blocks.size();
             tree.saplingMeta = names.size();
@@ -151,7 +151,7 @@ public enum Tree
     {
         final List<ModPlanksBlock> blocks = Lists.newArrayList();
         final List<String> names = Lists.newArrayList();
-        for (final Tree tree : values())
+        for (final TreeContent tree : values())
         {
             tree.planksBlock = blocks.size();
             tree.planksMeta = names.size();

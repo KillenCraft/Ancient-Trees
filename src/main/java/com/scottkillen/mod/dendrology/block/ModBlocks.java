@@ -5,7 +5,7 @@ import com.scottkillen.mod.dendrology.item.LeavesItem;
 import com.scottkillen.mod.dendrology.item.LogItem;
 import com.scottkillen.mod.dendrology.item.PlanksItem;
 import com.scottkillen.mod.dendrology.item.SaplingItem;
-import com.scottkillen.mod.dendrology.reference.Tree;
+import com.scottkillen.mod.dendrology.content.TreeContent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -13,10 +13,10 @@ import net.minecraft.init.Blocks;
 @SuppressWarnings({ "UtilityClass", "PublicField", "WeakerAccess", "PublicStaticCollectionField" })
 public final class ModBlocks
 {
-    public static final ImmutableList<ModLogBlock> LOG_BLOCKS = Tree.getLogBlocks();
-    public static final ImmutableList<ModLeavesBlock> LEAVES_BLOCKS = Tree.getLeavesBlocks();
-    public static final ImmutableList<ModPlanksBlock> PLANKS_BLOCKS = Tree.getPlanksBlocks();
-    public static final ImmutableList<ModSaplingBlock> SAPLING_BLOCKS = Tree.getSaplingBlocks();
+    public static final ImmutableList<ModLogBlock> LOG_BLOCKS = TreeContent.getLogBlocks();
+    public static final ImmutableList<ModLeavesBlock> LEAVES_BLOCKS = TreeContent.getLeavesBlocks();
+    public static final ImmutableList<ModPlanksBlock> PLANKS_BLOCKS = TreeContent.getPlanksBlocks();
+    public static final ImmutableList<ModSaplingBlock> SAPLING_BLOCKS = TreeContent.getSaplingBlocks();
     private static final int DEFAULT_LEAVES_FIRE_ENCOURAGEMENT = 30;
     private static final int DEFAULT_LOG_FIRE_ENCOURAGEMENT = 5;
     private static final int DEFAULT_PLANKS_FIRE_ENCOURAGEMENT = 5;
