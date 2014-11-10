@@ -10,6 +10,7 @@ import com.scottkillen.mod.dendrology.block.ModLogBlock;
 import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
 import com.scottkillen.mod.dendrology.block.ModStairsBlock;
+import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.AcemusTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.CedrumTree;
@@ -60,6 +61,8 @@ public enum TreeContent
     private int planksMeta;
     private int saplingBlock;
     private int saplingMeta;
+    private int slabBlock;
+    private int slabMetadata;
     private int stairsBlock;
 
     static
@@ -68,7 +71,6 @@ public enum TreeContent
             tree.treeGen.setTree(tree);
     }
 
-    @SuppressWarnings("ConstructorWithTooManyParameters")
     TreeContent(Colorizer colorizer, AbstractTree treeGen)
     {
         this.colorizer = colorizer;
@@ -171,6 +173,42 @@ public enum TreeContent
         return ImmutableList.copyOf(blocks);
     }
 
+    public static ImmutableList<ModWoodSlabBlock> getSingleSlabBlocks()
+    {
+        return getSlabBlocks(false);
+    }
+
+    public static ImmutableList<ModWoodSlabBlock> getDoubleSlabBlocks()
+    {
+        return getSlabBlocks(true);
+    }
+
+    private static ImmutableList<ModWoodSlabBlock> getSlabBlocks(boolean isDouble)
+    {
+        final List<ModWoodSlabBlock> blocks = Lists.newArrayList();
+        final List<String> names = Lists.newArrayList();
+        final List<TreeContent> trees = Lists.newArrayList();
+        for (final TreeContent tree : values())
+        {
+            tree.slabBlock = blocks.size();
+            tree.slabMetadata = names.size();
+
+            names.add(tree.toString());
+            trees.add(tree);
+            if (names.size() == ModWoodSlabBlock.CAPACITY)
+            {
+                //noinspection ObjectAllocationInLoop
+                blocks.add(new ModWoodSlabBlock(isDouble, names, trees));
+
+                names.clear();
+                trees.clear();
+            }
+        }
+        if (!names.isEmpty()) blocks.add(new ModWoodSlabBlock(isDouble, names, trees));
+
+        return ImmutableList.copyOf(blocks);
+    }
+
     public static ImmutableList<ModStairsBlock> getStairsBlocks()
     {
         final List<ModStairsBlock> blocks = Lists.newArrayList();
@@ -236,5 +274,15 @@ public enum TreeContent
     public AbstractTree getTreeGen()
     {
         return treeGen;
+    }
+
+    public ModWoodSlabBlock getSingleSlabBlock()
+    {
+        return ModBlocks.SINGLE_SLAB_BLOCKS.get(slabBlock);
+    }
+
+    public int getSlabMetadata()
+    {
+        return slabMetadata;
     }
 }
