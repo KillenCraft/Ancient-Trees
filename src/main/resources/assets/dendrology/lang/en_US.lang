@@ -67,5 +67,20 @@ tile.dendrology:sapling.porffor.name=Porffor Sapling
 tile.dendrology:sapling.salyx.name=Salyx Sapling
 tile.dendrology:sapling.tuopa.name=Tuopa Sapling
 
+### Stairs
+tile.dendrology:stairs.acemus.name=Acemus Wood Stairs
+tile.dendrology:stairs.cedrum.name=Cedrum Wood Stairs
+tile.dendrology:stairs.cerasu.name=Cerasu Wood Stairs
+tile.dendrology:stairs.delnas.name=Delnas Wood Stairs
+tile.dendrology:stairs.ewcaly.name=Ewcaly Wood Stairs
+tile.dendrology:stairs.hekur.name=Hekur Wood Stairs
+tile.dendrology:stairs.kiparis.name=Kiparis Wood Stairs
+tile.dendrology:stairs.kulist.name=Kulist Wood Stairs
+tile.dendrology:stairs.lata.name=Lata Wood Stairs
+tile.dendrology:stairs.nucis.name=Nucis Wood Stairs
+tile.dendrology:stairs.porffor.name=Porffor Wood Stairs
+tile.dendrology:stairs.salyx.name=Salyx Wood Stairs
+tile.dendrology:stairs.tuopa.name=Tuopa Wood Stairs
+
 #Creatibe Tabs
 itemGroup.dendrology=Dendrology

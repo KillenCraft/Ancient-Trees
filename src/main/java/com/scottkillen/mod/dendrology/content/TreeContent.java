@@ -9,6 +9,7 @@ import com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer;
 import com.scottkillen.mod.dendrology.block.ModLogBlock;
 import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
+import com.scottkillen.mod.dendrology.block.ModStairsBlock;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.AcemusTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.CedrumTree;
@@ -59,6 +60,7 @@ public enum TreeContent
     private int planksMeta;
     private int saplingBlock;
     private int saplingMeta;
+    private int stairsBlock;
 
     static
     {
@@ -169,6 +171,21 @@ public enum TreeContent
         return ImmutableList.copyOf(blocks);
     }
 
+    public static ImmutableList<ModStairsBlock> getStairsBlocks()
+    {
+        final List<ModStairsBlock> blocks = Lists.newArrayList();
+        for (final TreeContent tree : values())
+        {
+            tree.stairsBlock = blocks.size();
+            //noinspection ObjectAllocationInLoop
+            final ModStairsBlock block = new ModStairsBlock(tree.getPlanksBlock(), tree.planksMeta);
+            block.setBlockName(String.format("stairs.%s", tree));
+            blocks.add(block);
+        }
+
+        return ImmutableList.copyOf(blocks);
+    }
+
     public ModLogBlock getLogBlock()
     {
         return ModBlocks.LOG_BLOCKS.get(logBlock);
@@ -195,6 +212,16 @@ public enum TreeContent
         return ModBlocks.SAPLING_BLOCKS.get(saplingBlock);
     }
 
+    public int getSaplingMeta()
+    {
+        return saplingMeta;
+    }
+
+    public ModStairsBlock getStairsBlock()
+    {
+        return ModBlocks.STAIRS_BLOCKS.get(stairsBlock);
+    }
+
     @Override
     public String toString()
     {
@@ -204,11 +231,6 @@ public enum TreeContent
     public Colorizer getColorizer()
     {
         return colorizer;
-    }
-
-    public int getSaplingMeta()
-    {
-        return saplingMeta;
     }
 
     public AbstractTree getTreeGen()

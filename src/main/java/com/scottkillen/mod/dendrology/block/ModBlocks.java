@@ -17,12 +17,15 @@ public final class ModBlocks
     public static final ImmutableList<ModLeavesBlock> LEAVES_BLOCKS = TreeContent.getLeavesBlocks();
     public static final ImmutableList<ModPlanksBlock> PLANKS_BLOCKS = TreeContent.getPlanksBlocks();
     public static final ImmutableList<ModSaplingBlock> SAPLING_BLOCKS = TreeContent.getSaplingBlocks();
+    public static final ImmutableList<ModStairsBlock> STAIRS_BLOCKS = TreeContent.getStairsBlocks();
     private static final int DEFAULT_LEAVES_FIRE_ENCOURAGEMENT = 30;
     private static final int DEFAULT_LOG_FIRE_ENCOURAGEMENT = 5;
     private static final int DEFAULT_PLANKS_FIRE_ENCOURAGEMENT = 5;
+    private static final int DEFAULT_STAIRS_FIRE_ENCOURAGEMENT = DEFAULT_PLANKS_FIRE_ENCOURAGEMENT;
     private static final int DEFAULT_LEAVES_FLAMMABILITY = 60;
     private static final int DEFAULT_LOG_FLAMMABILITY = 5;
     private static final int DEFAULT_PLANKS_FLAMMABILITY = 20;
+    private static final int DEFAULT_STAIRS_FLAMMABILITY = DEFAULT_PLANKS_FLAMMABILITY;
 
     private ModBlocks()
     {
@@ -35,6 +38,17 @@ public final class ModBlocks
         initLeavesBlock();
         initSaplingBlocks();
         initPlanksBlocks();
+        initStairsBlocks();
+    }
+
+    private static void initStairsBlocks()
+    {
+        int stairsCount = 0;
+        for (final ModStairsBlock stairs : STAIRS_BLOCKS)
+        {
+            registerStairsBlock(stairs, String.format("stairs%d", stairsCount));
+            stairsCount++;
+        }
     }
 
     private static void initPlanksBlocks()
@@ -101,5 +115,11 @@ public final class ModBlocks
         GameRegistry.registerBlock(block, PlanksItem.class, name, block,
                 subblockNames.toArray(new String[subblockNames.size()]));
         Blocks.fire.setFireInfo(block, DEFAULT_PLANKS_FIRE_ENCOURAGEMENT, DEFAULT_PLANKS_FLAMMABILITY);
+    }
+
+    private static void registerStairsBlock(Block block, String name)
+    {
+        GameRegistry.registerBlock(block, name);
+        Blocks.fire.setFireInfo(block, DEFAULT_STAIRS_FIRE_ENCOURAGEMENT, DEFAULT_STAIRS_FLAMMABILITY);
     }
 }
