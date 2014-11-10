@@ -212,6 +212,16 @@ public enum TreeContent
         return ModBlocks.SAPLING_BLOCKS.get(saplingBlock);
     }
 
+    public int getSaplingMeta()
+    {
+        return saplingMeta;
+    }
+
+    public ModStairsBlock getStairsBlock()
+    {
+        return ModBlocks.STAIRS_BLOCKS.get(stairsBlock);
+    }
+
     @Override
     public String toString()
     {
@@ -221,11 +231,6 @@ public enum TreeContent
     public Colorizer getColorizer()
     {
         return colorizer;
-    }
-
-    public int getSaplingMeta()
-    {
-        return saplingMeta;
     }
 
     public AbstractTree getTreeGen()

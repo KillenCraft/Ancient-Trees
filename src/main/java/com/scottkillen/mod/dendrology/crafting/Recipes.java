@@ -11,13 +11,28 @@ public enum Recipes
     public static void init()
     {
         initLogRecipes();
+        initPlankRecipes();
     }
 
+    @SuppressWarnings("ObjectAllocationInLoop")
     private static void initLogRecipes()
     {
-        for (TreeContent tree : TreeContent.values())
+        for (final TreeContent tree : TreeContent.values())
             CraftingManager.getInstance()
                     .addRecipe(new ItemStack(tree.getPlanksBlock(), 4, tree.getPlanksMeta()), "#", '#',
                             new ItemStack(tree.getLogBlock(), 1, tree.getLogMeta()));
+    }
+
+    private static void initPlankRecipes()
+    {
+        initPlankStairsRecipes();
+    }
+
+    @SuppressWarnings("ObjectAllocationInLoop")
+    private static void initPlankStairsRecipes()
+    {
+        for (final TreeContent tree : TreeContent.values())
+            CraftingManager.getInstance().addRecipe(new ItemStack(tree.getStairsBlock(), 4), "#  ", "## ", "###", '#',
+                    new ItemStack(tree.getPlanksBlock(), 1, tree.getPlanksMeta()));
     }
 }
