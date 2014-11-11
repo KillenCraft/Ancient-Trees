@@ -1,0 +1,132 @@
+evaluationDependsOn(':version')
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'forge'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+group = "com.scottkillen.mod"
+archivesBaseName = "dendrology_"+ project.mcversion
+
+minecraft {
+    version = project.mcversion + "-" + project.forgeversion
+    runDir = "run"
+    
+    replace '@VERSION@', project.version
+}
+
+processResources
+{
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in the files we want.
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.info'
+
+    	expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version
+    }
+
+    // copy everything else, that we didn't do before
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*.info'
+    }
+}
+
+jar {
+	includeEmptyDirs = false
+}
+
+// add a source jar
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource 
+    appendix = 'deobf'
+    classifier = 'src'
+}
+
+// create a deobfuscated jar for developers
+task devJar(type: Jar) {
+	from(sourceSets.main.output) {
+		include '**'
+	}
+
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+	classifier = 'dev'
+}
+
+// create a source jar
+task srcJar(type: Jar) {
+	from(sourceSets.main.allSource) {
+		include '**'
+	}
+
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+	classifier = 'src'
+}
+
+artifacts {
+    archives srcJar
+    archives devJar
+}
+
+signing {
+    required { gradle.taskGraph.hasTask(":uploadArchives") }
+    sign configurations.archives
+}
+
+//noinspection GroovyMissingReturnStatement
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'Dendrology'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'The Dendrology mod for Minecraft.'
+                url 'https://github.com/MinecraftModArchive/Dendrology'
+
+                scm {
+                    connection 'scm:git@github.com:MinecraftModArchive/Dendrology.git'
+                    developerConnection 'scm:git@github.com:MinecraftModArchive/Dendrology.git'
+                    url 'https://github.com/MinecraftModArchive/Dendrology'
+                }
+
+                licenses {
+                    license {
+                        name 'Unlicense'
+                        url 'http://unlicense.org/'
+                    }
+                }
+            }
+        }
+    }
+}
