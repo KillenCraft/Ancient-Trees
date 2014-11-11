@@ -18,8 +18,6 @@ buildscript {
 }
 
 apply plugin: 'forge'
-apply plugin: 'maven'
-apply plugin: 'signing'
 
 group = "com.scottkillen.mod"
 archivesBaseName = "dendrology_"+ project.mcversion
@@ -36,17 +34,21 @@ processResources
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
+    inputs.property "forgeversion", project.ext.forgeversion
 
     // replace stuff in the files we want.
     from(sourceSets.main.resources.srcDirs) {
         include '**/*.info'
+        include '**/version.properties'
 
-    	expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version
+    	expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
+                .ext.forgeversion
     }
 
     // copy everything else, that we didn't do before
     from(sourceSets.main.resources.srcDirs) {
         exclude '**/*.info'
+        exclude '**/version.properties'
     }
 }
 
@@ -63,9 +65,18 @@ task sourceJar(type: Jar) {
 
 // create a deobfuscated jar for developers
 task devJar(type: Jar) {
-	from(sourceSets.main.output) {
-		include '**'
-	}
+    from(sourceSets.main.output) {
+        include '**/*.info'
+        include '**/version.properties'
+
+        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
+                .ext.forgeversion
+    }
+
+    from(sourceSets.main.output) {
+        exclude '**/*.info'
+        exclude '**/version.properties'
+    }
 
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
@@ -74,9 +85,18 @@ task devJar(type: Jar) {
 
 // create a source jar
 task srcJar(type: Jar) {
-	from(sourceSets.main.allSource) {
-		include '**'
-	}
+    from(sourceSets.main.allSource) {
+        include '**/*.info'
+        include '**/version.properties'
+
+        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
+                .ext.forgeversion
+    }
+
+    from(sourceSets.main.allSource) {
+        exclude '**/*.info'
+        exclude '**/version.properties'
+    }
 
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
@@ -86,47 +106,4 @@ task srcJar(type: Jar) {
 artifacts {
     archives srcJar
     archives devJar
-}
-
-signing {
-    required { gradle.taskGraph.hasTask(":uploadArchives") }
-    sign configurations.archives
-}
-
-//noinspection GroovyMissingReturnStatement
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            pom.project {
-                name 'Dendrology'
-                packaging 'jar'
-                // optionally artifactId can be defined here
-                description 'The Dendrology mod for Minecraft.'
-                url 'https://github.com/MinecraftModArchive/Dendrology'
-
-                scm {
-                    connection 'scm:git@github.com:MinecraftModArchive/Dendrology.git'
-                    developerConnection 'scm:git@github.com:MinecraftModArchive/Dendrology.git'
-                    url 'https://github.com/MinecraftModArchive/Dendrology'
-                }
-
-                licenses {
-                    license {
-                        name 'Unlicense'
-                        url 'http://unlicense.org/'
-                    }
-                }
-            }
-        }
-    }
 }
