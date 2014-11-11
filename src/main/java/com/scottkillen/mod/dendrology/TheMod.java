@@ -4,10 +4,12 @@ import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.config.ConfigHandler;
 import com.scottkillen.mod.dendrology.content.crafting.OreDict;
 import com.scottkillen.mod.dendrology.content.crafting.Recipes;
+import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
 import com.scottkillen.mod.dendrology.item.ModItems;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -36,7 +38,7 @@ public class TheMod
     static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
 
     @SuppressWarnings("MethodMayBeStatic")
-    @Mod.EventHandler
+    @EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
         ConfigHandler.init(event.getSuggestedConfigurationFile());
@@ -46,7 +48,7 @@ public class TheMod
     }
 
     @SuppressWarnings({ "UnusedParameters", "MethodMayBeStatic" })
-    @Mod.EventHandler
+    @EventHandler
     public void onFMLInitialization(FMLInitializationEvent unused)
     {
         FMLCommonHandler.instance().bus().register(ConfigHandler.INSTANCE);
@@ -56,9 +58,10 @@ public class TheMod
     }
 
     @SuppressWarnings({ "UnusedParameters", "MethodMayBeStatic" })
-    @Mod.EventHandler
+    @EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
         Proxy.render.init();
+        FuelHandler.register();
     }
 }
