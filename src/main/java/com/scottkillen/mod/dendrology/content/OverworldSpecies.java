@@ -10,6 +10,7 @@ import com.scottkillen.mod.dendrology.block.ModLogBlock;
 import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
 import com.scottkillen.mod.dendrology.block.ModStairsBlock;
+import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.AcemusTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.CedrumTree;
@@ -33,7 +34,7 @@ import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.KULI
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NO_COLOR;
 
 @SuppressWarnings("NonSerializableFieldInSerializableClass")
-public enum TreeContent
+public enum OverworldSpecies
 {
     // REORDERING WILL CAUSE DAMAGE TO SAVES
     ACEMUS(ACEMUS_COLOR, new AcemusTree()),
@@ -60,16 +61,17 @@ public enum TreeContent
     private int planksMeta;
     private int saplingBlock;
     private int saplingMeta;
+    private int slabBlock;
+    private int slabMetadata;
     private int stairsBlock;
 
     static
     {
-        for (final TreeContent tree : TreeContent.values())
+        for (final OverworldSpecies tree : OverworldSpecies.values())
             tree.treeGen.setTree(tree);
     }
 
-    @SuppressWarnings("ConstructorWithTooManyParameters")
-    TreeContent(Colorizer colorizer, AbstractTree treeGen)
+    OverworldSpecies(Colorizer colorizer, AbstractTree treeGen)
     {
         this.colorizer = colorizer;
         this.treeGen = treeGen;
@@ -79,7 +81,7 @@ public enum TreeContent
     {
         final List<ModLogBlock> blocks = Lists.newArrayList();
         final List<String> names = Lists.newArrayList();
-        for (final TreeContent tree : values())
+        for (final OverworldSpecies tree : values())
         {
             tree.logBlock = blocks.size();
             tree.logMeta = names.size();
@@ -101,8 +103,8 @@ public enum TreeContent
     {
         final List<ModLeavesBlock> blocks = Lists.newArrayList();
         final List<String> names = Lists.newArrayList();
-        final List<TreeContent> trees = Lists.newArrayList();
-        for (final TreeContent tree : values())
+        final List<OverworldSpecies> trees = Lists.newArrayList();
+        for (final OverworldSpecies tree : values())
         {
             tree.leavesBlock = blocks.size();
             tree.leavesMeta = names.size();
@@ -127,8 +129,8 @@ public enum TreeContent
     {
         final List<ModSaplingBlock> blocks = Lists.newArrayList();
         final List<String> names = Lists.newArrayList();
-        final List<TreeContent> trees = Lists.newArrayList();
-        for (final TreeContent tree : values())
+        final List<OverworldSpecies> trees = Lists.newArrayList();
+        for (final OverworldSpecies tree : values())
         {
             tree.saplingBlock = blocks.size();
             tree.saplingMeta = names.size();
@@ -153,7 +155,7 @@ public enum TreeContent
     {
         final List<ModPlanksBlock> blocks = Lists.newArrayList();
         final List<String> names = Lists.newArrayList();
-        for (final TreeContent tree : values())
+        for (final OverworldSpecies tree : values())
         {
             tree.planksBlock = blocks.size();
             tree.planksMeta = names.size();
@@ -171,10 +173,46 @@ public enum TreeContent
         return ImmutableList.copyOf(blocks);
     }
 
+    public static ImmutableList<ModWoodSlabBlock> getSingleSlabBlocks()
+    {
+        return getSlabBlocks(false);
+    }
+
+    public static ImmutableList<ModWoodSlabBlock> getDoubleSlabBlocks()
+    {
+        return getSlabBlocks(true);
+    }
+
+    private static ImmutableList<ModWoodSlabBlock> getSlabBlocks(boolean isDouble)
+    {
+        final List<ModWoodSlabBlock> blocks = Lists.newArrayList();
+        final List<String> names = Lists.newArrayList();
+        final List<OverworldSpecies> trees = Lists.newArrayList();
+        for (final OverworldSpecies tree : values())
+        {
+            tree.slabBlock = blocks.size();
+            tree.slabMetadata = names.size();
+
+            names.add(tree.toString());
+            trees.add(tree);
+            if (names.size() == ModWoodSlabBlock.CAPACITY)
+            {
+                //noinspection ObjectAllocationInLoop
+                blocks.add(new ModWoodSlabBlock(isDouble, names, trees));
+
+                names.clear();
+                trees.clear();
+            }
+        }
+        if (!names.isEmpty()) blocks.add(new ModWoodSlabBlock(isDouble, names, trees));
+
+        return ImmutableList.copyOf(blocks);
+    }
+
     public static ImmutableList<ModStairsBlock> getStairsBlocks()
     {
         final List<ModStairsBlock> blocks = Lists.newArrayList();
-        for (final TreeContent tree : values())
+        for (final OverworldSpecies tree : values())
         {
             tree.stairsBlock = blocks.size();
             //noinspection ObjectAllocationInLoop
@@ -236,5 +274,15 @@ public enum TreeContent
     public AbstractTree getTreeGen()
     {
         return treeGen;
+    }
+
+    public ModWoodSlabBlock getSingleSlabBlock()
+    {
+        return ModBlocks.SINGLE_SLAB_BLOCKS.get(slabBlock);
+    }
+
+    public int getSlabMeta()
+    {
+        return slabMetadata;
     }
 }

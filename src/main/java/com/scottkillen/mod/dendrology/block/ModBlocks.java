@@ -1,23 +1,26 @@
 package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.collect.ImmutableList;
+import com.scottkillen.mod.dendrology.content.OverworldSpecies;
 import com.scottkillen.mod.dendrology.item.LeavesItem;
 import com.scottkillen.mod.dendrology.item.LogItem;
 import com.scottkillen.mod.dendrology.item.PlanksItem;
 import com.scottkillen.mod.dendrology.item.SaplingItem;
-import com.scottkillen.mod.dendrology.content.TreeContent;
+import com.scottkillen.mod.dendrology.item.SlabItem;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 
-@SuppressWarnings({ "UtilityClass", "PublicField", "WeakerAccess", "PublicStaticCollectionField" })
+@SuppressWarnings({ "UtilityClass", "WeakerAccess", "PublicStaticCollectionField" })
 public final class ModBlocks
 {
-    public static final ImmutableList<ModLogBlock> LOG_BLOCKS = TreeContent.getLogBlocks();
-    public static final ImmutableList<ModLeavesBlock> LEAVES_BLOCKS = TreeContent.getLeavesBlocks();
-    public static final ImmutableList<ModPlanksBlock> PLANKS_BLOCKS = TreeContent.getPlanksBlocks();
-    public static final ImmutableList<ModSaplingBlock> SAPLING_BLOCKS = TreeContent.getSaplingBlocks();
-    public static final ImmutableList<ModStairsBlock> STAIRS_BLOCKS = TreeContent.getStairsBlocks();
+    public static final ImmutableList<ModLogBlock> LOG_BLOCKS = OverworldSpecies.getLogBlocks();
+    public static final ImmutableList<ModLeavesBlock> LEAVES_BLOCKS = OverworldSpecies.getLeavesBlocks();
+    public static final ImmutableList<ModPlanksBlock> PLANKS_BLOCKS = OverworldSpecies.getPlanksBlocks();
+    public static final ImmutableList<ModSaplingBlock> SAPLING_BLOCKS = OverworldSpecies.getSaplingBlocks();
+    public static final ImmutableList<ModWoodSlabBlock> SINGLE_SLAB_BLOCKS = OverworldSpecies.getSingleSlabBlocks();
+    public static final ImmutableList<ModWoodSlabBlock> DOUBLE_SLAB_BLOCKS = OverworldSpecies.getDoubleSlabBlocks();
+    public static final ImmutableList<ModStairsBlock> STAIRS_BLOCKS = OverworldSpecies.getStairsBlocks();
     private static final int DEFAULT_LEAVES_FIRE_ENCOURAGEMENT = 30;
     private static final int DEFAULT_LOG_FIRE_ENCOURAGEMENT = 5;
     private static final int DEFAULT_PLANKS_FIRE_ENCOURAGEMENT = 5;
@@ -39,6 +42,8 @@ public final class ModBlocks
         initSaplingBlocks();
         initPlanksBlocks();
         initStairsBlocks();
+        initSingleSlabBlocks();
+        initDoubleSlabBlocks();
     }
 
     private static void initStairsBlocks()
@@ -68,6 +73,27 @@ public final class ModBlocks
         {
             registerSaplingBlock(sapling, String.format("sapling%d", saplingCount), sapling.getSubblockNames());
             saplingCount++;
+        }
+    }
+
+    private static void initSingleSlabBlocks()
+    {
+        int slabCount = 0;
+        for (final ModWoodSlabBlock slab : SINGLE_SLAB_BLOCKS)
+        {
+            registerSlabBlock(slab, String.format("sslab%d", slabCount), slab, DOUBLE_SLAB_BLOCKS.get(slabCount),
+                    false);
+            slabCount++;
+        }
+    }
+
+    private static void initDoubleSlabBlocks()
+    {
+        int slabCount = 0;
+        for (final ModWoodSlabBlock slab : DOUBLE_SLAB_BLOCKS)
+        {
+            registerSlabBlock(slab, String.format("dslab%d", slabCount), SINGLE_SLAB_BLOCKS.get(slabCount), slab, true);
+            slabCount++;
         }
     }
 
@@ -108,6 +134,12 @@ public final class ModBlocks
     {
         GameRegistry.registerBlock(block, SaplingItem.class, name, block,
                 subblockNames.toArray(new String[subblockNames.size()]));
+    }
+
+    private static void registerSlabBlock(Block block, String name, ModWoodSlabBlock singleSlab,
+                                          ModWoodSlabBlock doubleSlab, boolean isDouble)
+    {
+        GameRegistry.registerBlock(block, SlabItem.class, name, singleSlab, doubleSlab, isDouble);
     }
 
     private static void registerPlanksBlock(Block block, String name, ImmutableList<String> subblockNames)
