@@ -42,6 +42,9 @@ public class ModWoodSlabBlock extends BlockSlab
 
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("slab");
+        setHardness(2.0F);
+        setResistance(5.0F);
+        setStepSound(soundTypeWood);
     }
 
     private static int mask(int metadata) {return metadata & METADATA_MASK;}

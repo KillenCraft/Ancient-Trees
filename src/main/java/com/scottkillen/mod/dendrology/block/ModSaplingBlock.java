@@ -49,6 +49,8 @@ public class ModSaplingBlock extends BlockSapling
 
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("sapling");
+        setHardness(0.0F);
+        setStepSound(soundTypeGrass);
     }
 
     @SuppressWarnings("WeakerAccess")
