@@ -281,7 +281,7 @@ public enum TreeContent
         return ModBlocks.SINGLE_SLAB_BLOCKS.get(slabBlock);
     }
 
-    public int getSlabMetadata()
+    public int getSlabMeta()
     {
         return slabMetadata;
     }

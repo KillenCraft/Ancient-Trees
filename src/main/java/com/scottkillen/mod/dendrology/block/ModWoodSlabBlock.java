@@ -77,7 +77,7 @@ public class ModWoodSlabBlock extends BlockSlab
     protected ItemStack createStackedBlock(int metadata)
     {
         final TreeContent tree = trees.get(mask(metadata));
-        return new ItemStack(Item.getItemFromBlock(tree.getSingleSlabBlock()), 2, tree.getSlabMetadata());
+        return new ItemStack(Item.getItemFromBlock(tree.getSingleSlabBlock()), 2, tree.getSlabMeta());
     }
 
     @Override

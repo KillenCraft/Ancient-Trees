@@ -26,6 +26,7 @@ public enum Recipes
     private static void initPlankRecipes()
     {
         initPlankStairsRecipes();
+        initPlankSlabRecipes();
     }
 
     @SuppressWarnings("ObjectAllocationInLoop")
@@ -34,5 +35,14 @@ public enum Recipes
         for (final TreeContent tree : TreeContent.values())
             CraftingManager.getInstance().addRecipe(new ItemStack(tree.getStairsBlock(), 4), "#  ", "## ", "###", '#',
                     new ItemStack(tree.getPlanksBlock(), 1, tree.getPlanksMeta()));
+    }
+
+    @SuppressWarnings("ObjectAllocationInLoop")
+    private static void initPlankSlabRecipes()
+    {
+        for (final TreeContent tree : TreeContent.values())
+            CraftingManager.getInstance()
+                    .addRecipe(new ItemStack(tree.getSingleSlabBlock(), 6, tree.getSlabMeta()), "###", '#',
+                            new ItemStack(tree.getPlanksBlock(), 1, tree.getPlanksMeta()));
     }
 }
