@@ -3,7 +3,7 @@ package com.scottkillen.mod.dendrology.block;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.dendrology.content.TreeContent;
+import com.scottkillen.mod.dendrology.content.OverworldSpecies;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSapling;
@@ -26,7 +26,7 @@ public class ModSaplingBlock extends BlockSapling
     public static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<String> subblockNames;
-    private final ImmutableList<TreeContent> trees;
+    private final ImmutableList<OverworldSpecies> trees;
     private final List<IIcon> subblockIcons = Lists.newArrayList();
 
     @SuppressWarnings("ReturnOfCollectionOrArrayField")
@@ -35,7 +35,7 @@ public class ModSaplingBlock extends BlockSapling
         return subblockNames;
     }
 
-    public ModSaplingBlock(List<String> subblockNames, List<TreeContent> trees)
+    public ModSaplingBlock(List<String> subblockNames, List<OverworldSpecies> trees)
     {
         checkArgument(!subblockNames.isEmpty());
         checkArgument(subblockNames.size() <= CAPACITY);

@@ -34,7 +34,7 @@ import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.KULI
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NO_COLOR;
 
 @SuppressWarnings("NonSerializableFieldInSerializableClass")
-public enum TreeContent
+public enum OverworldSpecies
 {
     // REORDERING WILL CAUSE DAMAGE TO SAVES
     ACEMUS(ACEMUS_COLOR, new AcemusTree()),
@@ -67,11 +67,11 @@ public enum TreeContent
 
     static
     {
-        for (final TreeContent tree : TreeContent.values())
+        for (final OverworldSpecies tree : OverworldSpecies.values())
             tree.treeGen.setTree(tree);
     }
 
-    TreeContent(Colorizer colorizer, AbstractTree treeGen)
+    OverworldSpecies(Colorizer colorizer, AbstractTree treeGen)
     {
         this.colorizer = colorizer;
         this.treeGen = treeGen;
@@ -81,7 +81,7 @@ public enum TreeContent
     {
         final List<ModLogBlock> blocks = Lists.newArrayList();
         final List<String> names = Lists.newArrayList();
-        for (final TreeContent tree : values())
+        for (final OverworldSpecies tree : values())
         {
             tree.logBlock = blocks.size();
             tree.logMeta = names.size();
@@ -103,8 +103,8 @@ public enum TreeContent
     {
         final List<ModLeavesBlock> blocks = Lists.newArrayList();
         final List<String> names = Lists.newArrayList();
-        final List<TreeContent> trees = Lists.newArrayList();
-        for (final TreeContent tree : values())
+        final List<OverworldSpecies> trees = Lists.newArrayList();
+        for (final OverworldSpecies tree : values())
         {
             tree.leavesBlock = blocks.size();
             tree.leavesMeta = names.size();
@@ -129,8 +129,8 @@ public enum TreeContent
     {
         final List<ModSaplingBlock> blocks = Lists.newArrayList();
         final List<String> names = Lists.newArrayList();
-        final List<TreeContent> trees = Lists.newArrayList();
-        for (final TreeContent tree : values())
+        final List<OverworldSpecies> trees = Lists.newArrayList();
+        for (final OverworldSpecies tree : values())
         {
             tree.saplingBlock = blocks.size();
             tree.saplingMeta = names.size();
@@ -155,7 +155,7 @@ public enum TreeContent
     {
         final List<ModPlanksBlock> blocks = Lists.newArrayList();
         final List<String> names = Lists.newArrayList();
-        for (final TreeContent tree : values())
+        for (final OverworldSpecies tree : values())
         {
             tree.planksBlock = blocks.size();
             tree.planksMeta = names.size();
@@ -187,8 +187,8 @@ public enum TreeContent
     {
         final List<ModWoodSlabBlock> blocks = Lists.newArrayList();
         final List<String> names = Lists.newArrayList();
-        final List<TreeContent> trees = Lists.newArrayList();
-        for (final TreeContent tree : values())
+        final List<OverworldSpecies> trees = Lists.newArrayList();
+        for (final OverworldSpecies tree : values())
         {
             tree.slabBlock = blocks.size();
             tree.slabMetadata = names.size();
@@ -212,7 +212,7 @@ public enum TreeContent
     public static ImmutableList<ModStairsBlock> getStairsBlocks()
     {
         final List<ModStairsBlock> blocks = Lists.newArrayList();
-        for (final TreeContent tree : values())
+        for (final OverworldSpecies tree : values())
         {
             tree.stairsBlock = blocks.size();
             //noinspection ObjectAllocationInLoop

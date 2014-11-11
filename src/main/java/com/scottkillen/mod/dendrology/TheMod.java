@@ -2,8 +2,8 @@ package com.scottkillen.mod.dendrology;
 
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.config.ConfigHandler;
-import com.scottkillen.mod.dendrology.crafting.OreDict;
-import com.scottkillen.mod.dendrology.crafting.Recipes;
+import com.scottkillen.mod.dendrology.content.crafting.OreDict;
+import com.scottkillen.mod.dendrology.content.crafting.Recipes;
 import com.scottkillen.mod.dendrology.item.ModItems;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
 import cpw.mods.fml.common.FMLCommonHandler;

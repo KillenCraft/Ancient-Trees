@@ -1,4 +1,4 @@
-package com.scottkillen.mod.dendrology.crafting;
+package com.scottkillen.mod.dendrology.content.crafting;
 
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import net.minecraft.block.Block;
