@@ -56,13 +56,6 @@ jar {
 	includeEmptyDirs = false
 }
 
-// add a source jar
-task sourceJar(type: Jar) {
-    from sourceSets.main.allSource 
-    appendix = 'deobf'
-    classifier = 'src'
-}
-
 // create a deobfuscated jar for developers
 task devJar(type: Jar) {
     from(sourceSets.main.output) {
@@ -78,21 +71,6 @@ task devJar(type: Jar) {
         exclude '**/version.properties'
     }
 
-	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-	classifier = 'dev'
-}
-
-// create a source jar
-task srcJar(type: Jar) {
-    from(sourceSets.main.allSource) {
-        include '**/*.info'
-        include '**/version.properties'
-
-        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.forgeversion
-    }
-
     from(sourceSets.main.allSource) {
         exclude '**/*.info'
         exclude '**/version.properties'
@@ -100,10 +78,9 @@ task srcJar(type: Jar) {
 
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
-	classifier = 'src'
+	classifier = 'dev'
 }
 
 artifacts {
-    archives srcJar
     archives devJar
 }
