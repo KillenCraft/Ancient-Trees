@@ -20,7 +20,7 @@ buildscript {
 apply plugin: 'forge'
 
 group = "com.scottkillen.mod"
-archivesBaseName = "dendrology_"+ project.mcversion
+archivesBaseName = "ancienttrees_"+ project.mcversion
 
 minecraft {
     version = project.mcversion + "-" + project.forgeversion

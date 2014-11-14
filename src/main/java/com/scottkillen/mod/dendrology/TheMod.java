@@ -21,7 +21,7 @@ import net.minecraft.item.Item;
 public class TheMod
 {
     public static final String MOD_ID = "dendrology";
-    public static final String MOD_NAME = "Dendrology";
+    public static final String MOD_NAME = "Ancient Trees";
     public static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
     @SuppressWarnings("AnonymousInnerClass")
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())

@@ -1,5 +1,6 @@
-# Dendrology
-**CURRENTLY IN DEVELOPMENT**
+## Ancient Trees
+**LATEST OFFICIAL VERSION**: [Ancient Trees 0.1.0 for MC 1.7.10][release]
+[release]: /MinecraftModArchive/Dendrology/releases/download/v0.1.0/dendrology_1.7.10-0.1.0.jar
 
 [Contributing](#contributing)
 
@@ -7,11 +8,11 @@
 
 [Licensing](#licensing)
 
-## Contributing
+### Contributing
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Support
+### Support
 Something not quite right?  Have a suggestion?  Found a bug?  Create an issue now!
 
 1. Make sure your issue hasn't already been answered or fixed.  Also think about whether your issue is a valid one before submitting it.
@@ -25,7 +26,7 @@ Something not quite right?  Have a suggestion?  Found a bug?  Create an issue no
 
 * * *
 
-### Licensing
+#### Licensing
 
 This is free and unencumbered software released into the public domain.
 
