@@ -139,4 +139,9 @@ public class NucisTree extends AbstractTree
         }
     }
 
+    @Override
+    protected int getLogMetadata()
+    {
+        return super.getLogMetadata() | logDirection;
+    }
 }
