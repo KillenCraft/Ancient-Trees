@@ -40,7 +40,7 @@ public interface IContent
 
     void setPlanksMeta(int meta);
 
-    Block getSaplingBlock();
+    ModSaplingBlock getSaplingBlock();
 
     void setSaplingBlock(ModSaplingBlock block);
 
