@@ -1,6 +1,7 @@
 package com.scottkillen.mod.dendrology.content.crafting;
 
-import com.scottkillen.mod.dendrology.content.OverworldSpecies;
+import com.scottkillen.mod.dendrology.block.ModBlocks;
+import com.scottkillen.mod.dendrology.content.IContent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 
@@ -17,7 +18,7 @@ public enum Recipes
     @SuppressWarnings("ObjectAllocationInLoop")
     private static void initLogRecipes()
     {
-        for (final OverworldSpecies tree : OverworldSpecies.values())
+        for (final IContent tree : ModBlocks.getContent())
             CraftingManager.getInstance()
                     .addRecipe(new ItemStack(tree.getPlanksBlock(), 4, tree.getPlanksMeta()), "#", '#',
                             new ItemStack(tree.getLogBlock(), 1, tree.getLogMeta()));
@@ -32,7 +33,7 @@ public enum Recipes
     @SuppressWarnings("ObjectAllocationInLoop")
     private static void initPlankStairsRecipes()
     {
-        for (final OverworldSpecies tree : OverworldSpecies.values())
+        for (final IContent tree : ModBlocks.getContent())
             CraftingManager.getInstance().addRecipe(new ItemStack(tree.getStairsBlock(), 4), "#  ", "## ", "###", '#',
                     new ItemStack(tree.getPlanksBlock(), 1, tree.getPlanksMeta()));
     }
@@ -40,7 +41,7 @@ public enum Recipes
     @SuppressWarnings("ObjectAllocationInLoop")
     private static void initPlankSlabRecipes()
     {
-        for (final OverworldSpecies tree : OverworldSpecies.values())
+        for (final IContent tree : ModBlocks.getContent())
             CraftingManager.getInstance()
                     .addRecipe(new ItemStack(tree.getSingleSlabBlock(), 6, tree.getSlabMeta()), "###", '#',
                             new ItemStack(tree.getPlanksBlock(), 1, tree.getPlanksMeta()));

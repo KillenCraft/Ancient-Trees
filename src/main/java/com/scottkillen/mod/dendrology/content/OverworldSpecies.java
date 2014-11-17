@@ -1,9 +1,7 @@
 package com.scottkillen.mod.dendrology.content;
 
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
-import com.scottkillen.mod.dendrology.block.ModBlocks;
+import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
 import com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer;
 import com.scottkillen.mod.dendrology.block.ModLogBlock;
@@ -25,8 +23,8 @@ import com.scottkillen.mod.dendrology.world.gen.feature.NucisTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.PorfforTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.SalyxTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.TuopaTree;
-import java.util.List;
 
+import static com.google.common.base.Preconditions.*;
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.ACEMUS_COLOR;
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.BASIC_COLOR;
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.CERASU_COLOR;
@@ -34,7 +32,7 @@ import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.KULI
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NO_COLOR;
 
 @SuppressWarnings("NonSerializableFieldInSerializableClass")
-public enum OverworldSpecies
+public enum OverworldSpecies implements IContent
 {
     // REORDERING WILL CAUSE DAMAGE TO SAVES
     ACEMUS(ACEMUS_COLOR, new AcemusTree()),
@@ -53,17 +51,20 @@ public enum OverworldSpecies
 
     private final AbstractTree treeGen;
     private final Colorizer colorizer;
-    private int leavesBlock;
+
     private int leavesMeta;
-    private int logBlock;
     private int logMeta;
-    private int planksBlock;
     private int planksMeta;
-    private int saplingBlock;
     private int saplingMeta;
-    private int slabBlock;
     private int slabMetadata;
-    private int stairsBlock;
+
+    private ModWoodSlabBlock doubleSlabBlock = null;
+    private ModLeavesBlock leavesBlock = null;
+    private ModLogBlock logBlock = null;
+    private ModPlanksBlock planksBlock = null;
+    private ModSaplingBlock saplingBlock = null;
+    private ModWoodSlabBlock singleSlabBlock = null;
+    private ModStairsBlock stairsBlock = null;
 
     static
     {
@@ -77,212 +78,127 @@ public enum OverworldSpecies
         this.treeGen = treeGen;
     }
 
-    public static ImmutableList<ModLogBlock> getLogBlocks()
-    {
-        final List<ModLogBlock> blocks = Lists.newArrayList();
-        final List<String> names = Lists.newArrayList();
-        for (final OverworldSpecies tree : values())
-        {
-            tree.logBlock = blocks.size();
-            tree.logMeta = names.size();
+    @Override
+    public Colorizer getColorizer() { return colorizer; }
 
-            names.add(tree.toString());
-            if (names.size() == ModLogBlock.CAPACITY)
-            {
-                //noinspection ObjectAllocationInLoop
-                blocks.add(new ModLogBlock(names));
-                names.clear();
-            }
-        }
-        if (!names.isEmpty()) blocks.add(new ModLogBlock(names));
-
-        return ImmutableList.copyOf(blocks);
-    }
-
-    public static ImmutableList<ModLeavesBlock> getLeavesBlocks()
-    {
-        final List<ModLeavesBlock> blocks = Lists.newArrayList();
-        final List<String> names = Lists.newArrayList();
-        final List<OverworldSpecies> trees = Lists.newArrayList();
-        for (final OverworldSpecies tree : values())
-        {
-            tree.leavesBlock = blocks.size();
-            tree.leavesMeta = names.size();
-
-            names.add(tree.toString());
-            trees.add(tree);
-            if (names.size() == ModLeavesBlock.CAPACITY)
-            {
-                //noinspection ObjectAllocationInLoop
-                blocks.add(new ModLeavesBlock(names, trees));
-
-                names.clear();
-                trees.clear();
-            }
-        }
-        if (!names.isEmpty()) blocks.add(new ModLeavesBlock(names, trees));
-
-        return ImmutableList.copyOf(blocks);
-    }
-
-    public static ImmutableList<ModSaplingBlock> getSaplingBlocks()
-    {
-        final List<ModSaplingBlock> blocks = Lists.newArrayList();
-        final List<String> names = Lists.newArrayList();
-        final List<OverworldSpecies> trees = Lists.newArrayList();
-        for (final OverworldSpecies tree : values())
-        {
-            tree.saplingBlock = blocks.size();
-            tree.saplingMeta = names.size();
-
-            names.add(tree.toString());
-            trees.add(tree);
-            if (names.size() == ModSaplingBlock.CAPACITY)
-            {
-                //noinspection ObjectAllocationInLoop
-                blocks.add(new ModSaplingBlock(names, trees));
-
-                names.clear();
-                trees.clear();
-            }
-        }
-        if (!names.isEmpty()) blocks.add(new ModSaplingBlock(names, trees));
-
-        return ImmutableList.copyOf(blocks);
-    }
-
-    public static ImmutableList<ModPlanksBlock> getPlanksBlocks()
-    {
-        final List<ModPlanksBlock> blocks = Lists.newArrayList();
-        final List<String> names = Lists.newArrayList();
-        for (final OverworldSpecies tree : values())
-        {
-            tree.planksBlock = blocks.size();
-            tree.planksMeta = names.size();
-
-            names.add(tree.toString());
-            if (names.size() == ModPlanksBlock.CAPACITY)
-            {
-                //noinspection ObjectAllocationInLoop
-                blocks.add(new ModPlanksBlock(names));
-                names.clear();
-            }
-        }
-        if (!names.isEmpty()) blocks.add(new ModPlanksBlock(names));
-
-        return ImmutableList.copyOf(blocks);
-    }
-
-    public static ImmutableList<ModWoodSlabBlock> getSingleSlabBlocks()
-    {
-        return getSlabBlocks(false);
-    }
-
-    public static ImmutableList<ModWoodSlabBlock> getDoubleSlabBlocks()
-    {
-        return getSlabBlocks(true);
-    }
-
-    private static ImmutableList<ModWoodSlabBlock> getSlabBlocks(boolean isDouble)
-    {
-        final List<ModWoodSlabBlock> blocks = Lists.newArrayList();
-        final List<String> names = Lists.newArrayList();
-        final List<OverworldSpecies> trees = Lists.newArrayList();
-        for (final OverworldSpecies tree : values())
-        {
-            tree.slabBlock = blocks.size();
-            tree.slabMetadata = names.size();
-
-            names.add(tree.toString());
-            trees.add(tree);
-            if (names.size() == ModWoodSlabBlock.CAPACITY)
-            {
-                //noinspection ObjectAllocationInLoop
-                blocks.add(new ModWoodSlabBlock(isDouble, names, trees));
-
-                names.clear();
-                trees.clear();
-            }
-        }
-        if (!names.isEmpty()) blocks.add(new ModWoodSlabBlock(isDouble, names, trees));
-
-        return ImmutableList.copyOf(blocks);
-    }
-
-    public static ImmutableList<ModStairsBlock> getStairsBlocks()
-    {
-        final List<ModStairsBlock> blocks = Lists.newArrayList();
-        for (final OverworldSpecies tree : values())
-        {
-            tree.stairsBlock = blocks.size();
-            //noinspection ObjectAllocationInLoop
-            final ModStairsBlock block = new ModStairsBlock(tree.getPlanksBlock(), tree.planksMeta);
-            block.setBlockName(String.format("stairs.%s", tree));
-            blocks.add(block);
-        }
-
-        return ImmutableList.copyOf(blocks);
-    }
-
-    public ModLogBlock getLogBlock()
-    {
-        return ModBlocks.LOG_BLOCKS.get(logBlock);
-    }
-
-    public int getLogMeta() { return logMeta; }
-
+    @Override
     public ModLeavesBlock getLeavesBlock()
     {
-        return ModBlocks.LEAVES_BLOCKS.get(leavesBlock);
-    }
-
-    public int getLeavesMeta() { return leavesMeta; }
-
-    public ModPlanksBlock getPlanksBlock()
-    {
-        return ModBlocks.PLANKS_BLOCKS.get(planksBlock);
-    }
-
-    public int getPlanksMeta() { return planksMeta; }
-
-    public ModSaplingBlock getSaplingBlock()
-    {
-        return ModBlocks.SAPLING_BLOCKS.get(saplingBlock);
-    }
-
-    public int getSaplingMeta()
-    {
-        return saplingMeta;
-    }
-
-    public ModStairsBlock getStairsBlock()
-    {
-        return ModBlocks.STAIRS_BLOCKS.get(stairsBlock);
+        checkState(leavesBlock != null);
+        return leavesBlock;
     }
 
     @Override
-    public String toString()
+    public void setLeavesBlock(ModLeavesBlock leavesBlock)
     {
-        return name().toLowerCase();
+        checkState(this.leavesBlock == null);
+        this.leavesBlock = leavesBlock;
     }
 
-    public Colorizer getColorizer()
+    @Override
+    public int getLeavesMeta() { return leavesMeta; }
+
+    @Override
+    public void setLeavesMeta(int leavesMeta) { this.leavesMeta = leavesMeta; }
+
+    @Override
+    public ModLogBlock getLogBlock()
     {
-        return colorizer;
+        checkState(logBlock != null);
+        return logBlock;
     }
 
-    public AbstractTree getTreeGen()
+    @Override
+    public void setLogBlock(ModLogBlock logBlock)
     {
-        return treeGen;
+        checkState(this.logBlock == null);
+        this.logBlock = logBlock;
     }
 
+    @Override
+    public int getLogMeta() { return logMeta; }
+
+    @Override
+    public void setLogMeta(int logMeta) { this.logMeta = logMeta; }
+
+    @Override
+    public String getName() { return name().toLowerCase(); }
+
+    @Override
+    public ModPlanksBlock getPlanksBlock()
+    {
+        checkState(planksBlock != null);
+        return planksBlock;
+    }
+
+    @Override
+    public void setPlanksBlock(ModPlanksBlock planksBlock)
+    {
+        checkState(this.planksBlock == null);
+        this.planksBlock = planksBlock;
+    }
+
+    @Override
+    public int getPlanksMeta() { return planksMeta; }
+
+    @Override
+    public void setPlanksMeta(int planksMeta) { this.planksMeta = planksMeta; }
+
+    @Override
+    public ModSaplingBlock getSaplingBlock()
+    {
+        checkState(saplingBlock != null);
+        return saplingBlock;
+    }
+
+    @Override
+    public void setSaplingBlock(ModSaplingBlock saplingBlock)
+    {
+        checkState(this.saplingBlock == null);
+        this.saplingBlock = saplingBlock;
+    }
+
+    @Override
+    public int getSaplingMeta() { return saplingMeta; }
+
+    @Override
+    public void setSaplingMeta(int saplingMeta) { this.saplingMeta = saplingMeta; }
+
+    @Override
     public ModWoodSlabBlock getSingleSlabBlock()
     {
-        return ModBlocks.SINGLE_SLAB_BLOCKS.get(slabBlock);
+        checkState(singleSlabBlock != null);
+        return singleSlabBlock;
     }
 
-    public int getSlabMeta()
+    @Override
+    public void setSlabBlock(ModWoodSlabBlock block, boolean isDouble)
     {
-        return slabMetadata;
+        checkState(isDouble ? doubleSlabBlock == null : singleSlabBlock == null);
+        if (isDouble) doubleSlabBlock = block;
+        else singleSlabBlock = block;
     }
+
+    @Override
+    public int getSlabMeta() { return slabMetadata; }
+
+    @Override
+    public void setSlabMeta(int slabMetadata) { this.slabMetadata = slabMetadata; }
+
+    @Override
+    public ModStairsBlock getStairsBlock()
+    {
+        checkState(stairsBlock != null);
+        return stairsBlock;
+    }
+
+    @Override
+    public void setStairsBlock(ModStairsBlock stairsBlock)
+    {
+        checkState(this.stairsBlock == null);
+        this.stairsBlock = stairsBlock;
+    }
+
+    @Override
+    public AbstractTree getTreeGen() { return treeGen; }
 }

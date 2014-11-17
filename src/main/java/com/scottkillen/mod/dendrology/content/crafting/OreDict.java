@@ -14,22 +14,22 @@ public enum OreDict
     @SuppressWarnings("MethodWithMultipleLoops")
     public static void registerOres()
     {
-        for (final Block block : ModBlocks.LOG_BLOCKS)
+        for (final Block block : ModBlocks.getLogBlocks())
             registerWildcardOre(block, "logWood");
 
-        for (final Block block : ModBlocks.PLANKS_BLOCKS)
+        for (final Block block : ModBlocks.getPlanksBlocks())
             registerWildcardOre(block, "plankWood");
 
-        for (final Block block : ModBlocks.SINGLE_SLAB_BLOCKS)
+        for (final Block block : ModBlocks.getSingleSlabBlocks())
             registerWildcardOre(block, "slabWood");
 
-        for (final Block block : ModBlocks.STAIRS_BLOCKS)
+        for (final Block block : ModBlocks.getStairsBlocks())
             OreDictionary.registerOre("stairWood", block);
 
-        for (final Block block : ModBlocks.SAPLING_BLOCKS)
+        for (final Block block : ModBlocks.getSaplingBlocks())
             registerWildcardOre(block, "treeSapling");
 
-        for (final Block block : ModBlocks.LEAVES_BLOCKS)
+        for (final Block block : ModBlocks.getLeavesBlocks())
             registerWildcardOre(block, "treeLeaves");
     }
 

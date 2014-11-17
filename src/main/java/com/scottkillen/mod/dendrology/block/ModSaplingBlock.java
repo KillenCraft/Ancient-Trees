@@ -1,9 +1,10 @@
 package com.scottkillen.mod.dendrology.block;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.dendrology.content.OverworldSpecies;
+import com.scottkillen.mod.dendrology.content.IContent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSapling;
@@ -26,16 +27,10 @@ public class ModSaplingBlock extends BlockSapling
     public static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<String> subblockNames;
-    private final ImmutableList<OverworldSpecies> trees;
+    private final ImmutableList<IContent> trees;
     private final List<IIcon> subblockIcons = Lists.newArrayList();
 
-    @SuppressWarnings("ReturnOfCollectionOrArrayField")
-    public ImmutableList<String> getSubblockNames()
-    {
-        return subblockNames;
-    }
-
-    public ModSaplingBlock(List<String> subblockNames, List<OverworldSpecies> trees)
+    public ModSaplingBlock(List<String> subblockNames, List<IContent> trees)
     {
         checkArgument(!subblockNames.isEmpty());
         checkArgument(subblockNames.size() <= CAPACITY);
@@ -60,6 +55,12 @@ public class ModSaplingBlock extends BlockSapling
     }
 
     private static int mask(int metadata) {return metadata & METADATA_MASK;}
+
+    @SuppressWarnings("ReturnOfCollectionOrArrayField")
+    public ImmutableList<String> getSubblockNames()
+    {
+        return subblockNames;
+    }
 
     @SideOnly(Side.CLIENT)
     @Override
@@ -113,5 +114,12 @@ public class ModSaplingBlock extends BlockSapling
     {
         //noinspection StringConcatenationMissingWhitespace
         return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+    }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("trees", trees)
+                .add("subblockIcons", subblockIcons).toString();
     }
 }
