@@ -62,9 +62,9 @@ public abstract class AbstractTree extends WorldGenAbstractTree
         return true;
     }
 
-    protected ModLeavesBlock getLeavesBlock() { return tree.getLeavesBlock(); }
+    ModLeavesBlock getLeavesBlock() { return tree.getLeavesBlock(); }
 
-    protected int getLeavesMetadata() { return tree.getLeavesMeta(); }
+    int getLeavesMetadata() { return tree.getLeavesMeta(); }
 
     protected ModLogBlock getLogBlock() { return tree.getLogBlock(); }
 
@@ -72,6 +72,7 @@ public abstract class AbstractTree extends WorldGenAbstractTree
 
     protected ModSaplingBlock getSaplingBlock() { return tree.getSaplingBlock(); }
 
+    @SuppressWarnings("UnusedReturnValue")
     protected boolean placeLeaves(World world, int x, int y, int z)
     {
         if (world.getBlock(x, y, z).canBeReplacedByLeaves(world, x, y, z))
@@ -82,6 +83,7 @@ public abstract class AbstractTree extends WorldGenAbstractTree
         return false;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     protected boolean placeLog(World world, int x, int y, int z)
     {
         if (canBeReplacedByLog(world, x, y, z))

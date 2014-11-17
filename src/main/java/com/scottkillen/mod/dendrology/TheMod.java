@@ -47,7 +47,7 @@ public class TheMod
         ModBlocks.init();
     }
 
-    @SuppressWarnings({ "UnusedParameters", "MethodMayBeStatic" })
+    @SuppressWarnings("MethodMayBeStatic")
     @EventHandler
     public void onFMLInitialization(FMLInitializationEvent unused)
     {
@@ -57,7 +57,7 @@ public class TheMod
         Recipes.init();
     }
 
-    @SuppressWarnings({ "UnusedParameters", "MethodMayBeStatic" })
+    @SuppressWarnings("MethodMayBeStatic")
     @EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {

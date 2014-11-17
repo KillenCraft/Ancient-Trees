@@ -1,5 +1,6 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
+import com.google.common.base.Objects;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import java.util.Random;
@@ -8,7 +9,7 @@ public class NucisTree extends AbstractTree
 {
     private int logDirection = 0;
 
-    @SuppressWarnings("OverlyComplexMethod")
+    @SuppressWarnings({ "OverlyComplexMethod", "OverlyLongMethod" })
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
@@ -53,7 +54,7 @@ public class NucisTree extends AbstractTree
         return true;
     }
 
-    @SuppressWarnings("OverlyComplexMethod")
+    @SuppressWarnings({ "OverlyComplexMethod", "OverlyLongMethod" })
     private void branch(World world, Random random, int x, int y, int z, int height, int level, int dX, int dZ)
     {
         int level1 = level + y;
@@ -143,5 +144,11 @@ public class NucisTree extends AbstractTree
     protected int getLogMetadata()
     {
         return super.getLogMetadata() | logDirection;
+    }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("logDirection", logDirection).toString();
     }
 }

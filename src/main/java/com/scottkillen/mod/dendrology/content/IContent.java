@@ -8,7 +8,6 @@ import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
 import com.scottkillen.mod.dendrology.block.ModStairsBlock;
 import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
-import net.minecraft.block.Block;
 
 public interface IContent
 {

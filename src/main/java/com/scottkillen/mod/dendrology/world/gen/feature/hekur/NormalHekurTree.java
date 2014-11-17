@@ -105,6 +105,7 @@ public class NormalHekurTree extends AbstractTree
         return canBeReplacedByLog(world, x, y, z) || material.equals(Material.sand) || material.equals(Material.ground);
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     boolean placeRoot(World world, int x, int y, int z)
     {
         if (canBeReplacedByRoot(world, x, y, z))
@@ -149,7 +150,7 @@ public class NormalHekurTree extends AbstractTree
         }
     }
 
-    @SuppressWarnings({ "MethodWithMultipleLoops", "OverlyComplexMethod", "OverlyLongMethod" })
+    @SuppressWarnings({ "OverlyComplexMethod", "OverlyLongMethod" })
     void largeDirect(World world, Random rand, int dX, int dZ, int x, int y, int z, int size, int splitCount,
                      int splitCount1, int splitCount2)
     {

@@ -1,5 +1,6 @@
 package com.scottkillen.mod.dendrology.block;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
@@ -70,5 +71,11 @@ public class ModLogBlock extends BlockLog
             field_150167_a[i] = iconRegister.registerIcon(iconName);
             field_150166_b[i] = iconRegister.registerIcon(iconName + "_top");
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("subblockNames", subblockNames).toString();
     }
 }

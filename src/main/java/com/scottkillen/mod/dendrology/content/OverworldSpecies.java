@@ -1,7 +1,6 @@
 package com.scottkillen.mod.dendrology.content;
 
 
-import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
 import com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer;
 import com.scottkillen.mod.dendrology.block.ModLogBlock;
@@ -31,7 +30,7 @@ import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.CERA
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.KULIST_COLOR;
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NO_COLOR;
 
-@SuppressWarnings("NonSerializableFieldInSerializableClass")
+@SuppressWarnings({ "NonSerializableFieldInSerializableClass", "ClassHasNoToStringMethod" })
 public enum OverworldSpecies implements IContent
 {
     // REORDERING WILL CAUSE DAMAGE TO SAVES
