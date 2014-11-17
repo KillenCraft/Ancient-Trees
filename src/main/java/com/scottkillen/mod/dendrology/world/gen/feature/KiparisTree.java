@@ -65,7 +65,6 @@ public class KiparisTree extends AbstractTree
     }
 
     @SuppressWarnings({
-            "ConstantConditions",
             "OverlyComplexBooleanExpression",
             "MethodWithMoreThanThreeNegations",
             "MethodWithMultipleLoops"

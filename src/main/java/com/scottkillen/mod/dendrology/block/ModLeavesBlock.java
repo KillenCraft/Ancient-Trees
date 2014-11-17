@@ -1,8 +1,9 @@
 package com.scottkillen.mod.dendrology.block;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.dendrology.content.OverworldSpecies;
+import com.scottkillen.mod.dendrology.content.IContent;
 import com.scottkillen.mod.dendrology.world.AcemusColorizer;
 import com.scottkillen.mod.dendrology.world.CerasuColorizer;
 import com.scottkillen.mod.dendrology.world.KulistColorizer;
@@ -29,9 +30,9 @@ public class ModLeavesBlock extends BlockLeaves
     public static final int CAPACITY = 4;
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<String> subblockNames;
-    private final ImmutableList<OverworldSpecies> trees;
+    private final ImmutableList<IContent> trees;
 
-    public ModLeavesBlock(List<String> subblockNames, List<OverworldSpecies> trees)
+    public ModLeavesBlock(List<String> subblockNames, List<IContent> trees)
     {
         checkArgument(!subblockNames.isEmpty());
         checkArgument(subblockNames.size() <= CAPACITY);
@@ -45,13 +46,6 @@ public class ModLeavesBlock extends BlockLeaves
 
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("leaves");
-    }
-
-    @Override
-    public int getDamageValue(World world, int x, int y, int z)
-    {
-        return world.getBlockMetadata(x, y, z) & 3;
-
     }
 
     private static int mask(int metadata) {return metadata & METADATA_MASK;}
@@ -145,6 +139,13 @@ public class ModLeavesBlock extends BlockLeaves
         return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
+    @Override
+    public int getDamageValue(World world, int x, int y, int z)
+    {
+        return world.getBlockMetadata(x, y, z) & 3;
+
+    }
+
     @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     @Override
@@ -180,6 +181,12 @@ public class ModLeavesBlock extends BlockLeaves
                 (side == 0 && minY > 0.0D || side == 1 && maxY < 1.0D || side == 2 && minZ > 0.0D ||
                         side == 3 && maxZ < 1.0D || side == 4 && minX > 0.0D || side == 5 && maxX < 1.0D ||
                         !blockAccess.getBlock(x, y, z).isOpaqueCube());
+    }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("trees", trees).toString();
     }
 
     public enum Colorizer

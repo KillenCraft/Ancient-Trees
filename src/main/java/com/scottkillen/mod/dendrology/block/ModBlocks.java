@@ -1,7 +1,9 @@
 package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.collect.ImmutableList;
+import com.scottkillen.mod.dendrology.content.IContent;
 import com.scottkillen.mod.dendrology.content.OverworldSpecies;
+import com.scottkillen.mod.dendrology.content.loader.ContentLoader;
 import com.scottkillen.mod.dendrology.item.LeavesItem;
 import com.scottkillen.mod.dendrology.item.LogItem;
 import com.scottkillen.mod.dendrology.item.PlanksItem;
@@ -10,17 +12,11 @@ import com.scottkillen.mod.dendrology.item.SlabItem;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import java.util.Arrays;
 
-@SuppressWarnings({ "UtilityClass", "WeakerAccess", "PublicStaticCollectionField" })
+@SuppressWarnings({ "UtilityClass", "WeakerAccess" })
 public final class ModBlocks
 {
-    public static final ImmutableList<ModLogBlock> LOG_BLOCKS = OverworldSpecies.getLogBlocks();
-    public static final ImmutableList<ModLeavesBlock> LEAVES_BLOCKS = OverworldSpecies.getLeavesBlocks();
-    public static final ImmutableList<ModPlanksBlock> PLANKS_BLOCKS = OverworldSpecies.getPlanksBlocks();
-    public static final ImmutableList<ModSaplingBlock> SAPLING_BLOCKS = OverworldSpecies.getSaplingBlocks();
-    public static final ImmutableList<ModWoodSlabBlock> SINGLE_SLAB_BLOCKS = OverworldSpecies.getSingleSlabBlocks();
-    public static final ImmutableList<ModWoodSlabBlock> DOUBLE_SLAB_BLOCKS = OverworldSpecies.getDoubleSlabBlocks();
-    public static final ImmutableList<ModStairsBlock> STAIRS_BLOCKS = OverworldSpecies.getStairsBlocks();
     private static final int DEFAULT_LEAVES_FIRE_ENCOURAGEMENT = 30;
     private static final int DEFAULT_LOG_FIRE_ENCOURAGEMENT = 5;
     private static final int DEFAULT_PLANKS_FIRE_ENCOURAGEMENT = 5;
@@ -30,6 +26,8 @@ public final class ModBlocks
     private static final int DEFAULT_PLANKS_FLAMMABILITY = 20;
     private static final int DEFAULT_STAIRS_FLAMMABILITY = DEFAULT_PLANKS_FLAMMABILITY;
 
+    private static final ContentLoader overworldContent = new ContentLoader(Arrays.asList(OverworldSpecies.values()));
+
     private ModBlocks()
     {
         throw new AssertionError();
@@ -37,6 +35,7 @@ public final class ModBlocks
 
     public static void init()
     {
+        overworldContent.load();
         initLogBlocks();
         initLeavesBlock();
         initSaplingBlocks();
@@ -48,8 +47,10 @@ public final class ModBlocks
 
     private static void initStairsBlocks()
     {
+        final ImmutableList<ModStairsBlock> stairsBlocks = overworldContent.getStairsBlocks();
+
         int stairsCount = 0;
-        for (final ModStairsBlock stairs : STAIRS_BLOCKS)
+        for (final ModStairsBlock stairs : stairsBlocks)
         {
             registerStairsBlock(stairs, String.format("stairs%d", stairsCount));
             stairsCount++;
@@ -58,8 +59,10 @@ public final class ModBlocks
 
     private static void initPlanksBlocks()
     {
+        final ImmutableList<ModPlanksBlock> planksBlocks = overworldContent.getPlanksBlocks();
+
         int planksCount = 0;
-        for (final ModPlanksBlock wood : PLANKS_BLOCKS)
+        for (final ModPlanksBlock wood : planksBlocks)
         {
             registerPlanksBlock(wood, String.format("wood%d", planksCount), wood.getSubblockNames());
             planksCount++;
@@ -68,8 +71,10 @@ public final class ModBlocks
 
     private static void initSaplingBlocks()
     {
+        final ImmutableList<ModSaplingBlock> saplingBlocks = overworldContent.getSaplingBlocks();
+
         int saplingCount = 0;
-        for (final ModSaplingBlock sapling : SAPLING_BLOCKS)
+        for (final ModSaplingBlock sapling : saplingBlocks)
         {
             registerSaplingBlock(sapling, String.format("sapling%d", saplingCount), sapling.getSubblockNames());
             saplingCount++;
@@ -79,10 +84,11 @@ public final class ModBlocks
     private static void initSingleSlabBlocks()
     {
         int slabCount = 0;
-        for (final ModWoodSlabBlock slab : SINGLE_SLAB_BLOCKS)
+        final ImmutableList<ModWoodSlabBlock> singleSlabBlocks = overworldContent.getSingleSlabBlocks();
+        final ImmutableList<ModWoodSlabBlock> doubleSlabBlocks = overworldContent.getDoubleSlabBlocks();
+        for (final ModWoodSlabBlock slab : singleSlabBlocks)
         {
-            registerSlabBlock(slab, String.format("sslab%d", slabCount), slab, DOUBLE_SLAB_BLOCKS.get(slabCount),
-                    false);
+            registerSlabBlock(slab, String.format("sslab%d", slabCount), slab, doubleSlabBlocks.get(slabCount), false);
             slabCount++;
         }
     }
@@ -90,17 +96,21 @@ public final class ModBlocks
     private static void initDoubleSlabBlocks()
     {
         int slabCount = 0;
-        for (final ModWoodSlabBlock slab : DOUBLE_SLAB_BLOCKS)
+        final ImmutableList<ModWoodSlabBlock> doubleSlabBlocks = overworldContent.getDoubleSlabBlocks();
+        final ImmutableList<ModWoodSlabBlock> singleSlabBlocks = overworldContent.getSingleSlabBlocks();
+        for (final ModWoodSlabBlock slab : doubleSlabBlocks)
         {
-            registerSlabBlock(slab, String.format("dslab%d", slabCount), SINGLE_SLAB_BLOCKS.get(slabCount), slab, true);
+            registerSlabBlock(slab, String.format("dslab%d", slabCount), singleSlabBlocks.get(slabCount), slab, true);
             slabCount++;
         }
     }
 
     private static void initLeavesBlock()
     {
+        final ImmutableList<ModLeavesBlock> leavesBlocks = overworldContent.getLeavesBlocks();
+
         int leavesCount = 0;
-        for (final Block block : LEAVES_BLOCKS)
+        for (final Block block : leavesBlocks)
         {
             registerLeavesBlock(block, String.format("leaves%d", leavesCount));
             leavesCount++;
@@ -109,8 +119,10 @@ public final class ModBlocks
 
     private static void initLogBlocks()
     {
+        final ImmutableList<ModLogBlock> logBlocks = overworldContent.getLogBlocks();
+
         int logCount = 0;
-        for (final ModLogBlock block : LOG_BLOCKS)
+        for (final ModLogBlock block : logBlocks)
         {
             registerLogBlock(block, String.format("logs%d", logCount), block.getSubblockNames());
             logCount++;
@@ -153,5 +165,45 @@ public final class ModBlocks
     {
         GameRegistry.registerBlock(block, name);
         Blocks.fire.setFireInfo(block, DEFAULT_STAIRS_FIRE_ENCOURAGEMENT, DEFAULT_STAIRS_FLAMMABILITY);
+    }
+
+    public static boolean isSingleSlabBlock(Block block)
+    {
+        return overworldContent.isSingleSlabBlock(block);
+    }
+
+    public static Iterable<? extends Block> getLeavesBlocks()
+    {
+        return overworldContent.getLeavesBlocks();
+    }
+
+    public static Iterable<? extends Block> getLogBlocks()
+    {
+        return overworldContent.getLogBlocks();
+    }
+
+    public static Iterable<? extends Block> getPlanksBlocks()
+    {
+        return overworldContent.getPlanksBlocks();
+    }
+
+    public static Iterable<? extends Block> getSaplingBlocks()
+    {
+        return overworldContent.getSaplingBlocks();
+    }
+
+    public static Iterable<? extends Block> getSingleSlabBlocks()
+    {
+        return overworldContent.getSingleSlabBlocks();
+    }
+
+    public static Iterable<? extends Block> getStairsBlocks()
+    {
+        return overworldContent.getStairsBlocks();
+    }
+
+    public static Iterable<? extends IContent> getContent()
+    {
+        return overworldContent.getContent();
     }
 }

@@ -15,13 +15,12 @@ public enum FuelHandler implements IFuelHandler
         GameRegistry.registerFuelHandler(INSTANCE);
     }
 
-    @SuppressWarnings("SuspiciousMethodCalls")
     @Override
     public int getBurnTime(ItemStack fuel)
     {
         final Block block = Block.getBlockFromItem(fuel.getItem());
 
-        if (ModBlocks.SINGLE_SLAB_BLOCKS.contains(block)) return 150;
+        if (ModBlocks.isSingleSlabBlock(block)) return 150;
 
         return 0;
     }

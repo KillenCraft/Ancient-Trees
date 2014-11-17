@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
 import com.scottkillen.mod.dendrology.block.ModLogBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
+import com.scottkillen.mod.dendrology.content.IContent;
 import com.scottkillen.mod.dendrology.content.OverworldSpecies;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -20,7 +21,7 @@ public abstract class AbstractTree extends WorldGenAbstractTree
     protected static final ImmutableList<ImmutablePair<Integer, Integer>> BRANCH_DIRECTIONS = ImmutableList
             .of(ImmutablePair.of(-1, 0), ImmutablePair.of(1, 0), ImmutablePair.of(0, -1), ImmutablePair.of(0, 1),
                     ImmutablePair.of(-1, 1), ImmutablePair.of(-1, -1), ImmutablePair.of(1, 1), ImmutablePair.of(1, -1));
-    private OverworldSpecies tree = null;
+    private IContent tree = null;
 
     protected AbstractTree() { super(true); }
 
@@ -61,9 +62,9 @@ public abstract class AbstractTree extends WorldGenAbstractTree
         return true;
     }
 
-    protected ModLeavesBlock getLeavesBlock() { return tree.getLeavesBlock(); }
+    ModLeavesBlock getLeavesBlock() { return tree.getLeavesBlock(); }
 
-    protected int getLeavesMetadata() { return tree.getLeavesMeta(); }
+    int getLeavesMetadata() { return tree.getLeavesMeta(); }
 
     protected ModLogBlock getLogBlock() { return tree.getLogBlock(); }
 
@@ -71,6 +72,7 @@ public abstract class AbstractTree extends WorldGenAbstractTree
 
     protected ModSaplingBlock getSaplingBlock() { return tree.getSaplingBlock(); }
 
+    @SuppressWarnings("UnusedReturnValue")
     protected boolean placeLeaves(World world, int x, int y, int z)
     {
         if (world.getBlock(x, y, z).canBeReplacedByLeaves(world, x, y, z))
@@ -81,6 +83,7 @@ public abstract class AbstractTree extends WorldGenAbstractTree
         return false;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     protected boolean placeLog(World world, int x, int y, int z)
     {
         if (canBeReplacedByLog(world, x, y, z))

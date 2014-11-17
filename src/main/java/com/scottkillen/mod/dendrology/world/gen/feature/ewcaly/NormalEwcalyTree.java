@@ -11,7 +11,14 @@ public class NormalEwcalyTree extends AbstractTree
 {
     private int logDirection = 0;
 
-    @SuppressWarnings("OverlyComplexBooleanExpression")
+    @SuppressWarnings({
+            "OverlyComplexBooleanExpression",
+            "MethodWithMoreThanThreeNegations",
+            "MethodWithMultipleLoops",
+            "OverlyComplexMethod",
+            "OverlyLongMethod",
+            "OverlyNestedMethod"
+    })
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
@@ -161,7 +168,11 @@ public class NormalEwcalyTree extends AbstractTree
         }
     }
 
-    @SuppressWarnings({ "MethodWithMultipleLoops", "OverlyComplexBooleanExpression" })
+    @SuppressWarnings({
+            "MethodWithMultipleLoops",
+            "OverlyComplexBooleanExpression",
+            "MethodWithMoreThanThreeNegations"
+    })
     private void genLeaves(World world, int x, int y, int z)
     {
         for (int dX = -3; dX <= 3; dX++)
@@ -178,7 +189,11 @@ public class NormalEwcalyTree extends AbstractTree
             }
     }
 
-    @SuppressWarnings({ "MethodWithMultipleLoops", "OverlyComplexBooleanExpression" })
+    @SuppressWarnings({
+            "MethodWithMultipleLoops",
+            "OverlyComplexBooleanExpression",
+            "MethodWithMoreThanThreeNegations"
+    })
     private void genLeavesS(World world, int x, int y, int z)
     {
         for (int dX = -2; dX <= 2; dX++)

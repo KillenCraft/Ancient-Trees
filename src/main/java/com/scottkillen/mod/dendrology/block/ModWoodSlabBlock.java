@@ -3,7 +3,7 @@ package com.scottkillen.mod.dendrology.block;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.dendrology.content.OverworldSpecies;
+import com.scottkillen.mod.dendrology.content.IContent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -23,10 +23,10 @@ public class ModWoodSlabBlock extends BlockSlab
 {
     public static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
-    private final ImmutableList<OverworldSpecies> trees;
+    private final ImmutableList<IContent> trees;
     private final ImmutableList<String> subblockNames;
 
-    public ModWoodSlabBlock(boolean isDouble, List<String> subblockNames, List<OverworldSpecies> trees)
+    public ModWoodSlabBlock(boolean isDouble, List<String> subblockNames, List<IContent> trees)
     {
         super(isDouble, Material.wood);
 
@@ -49,10 +49,9 @@ public class ModWoodSlabBlock extends BlockSlab
 
     private static int mask(int metadata) {return metadata & METADATA_MASK;}
 
-    @SuppressWarnings("SuspiciousMethodCalls")
     private static boolean isSingleSlab(Item item)
     {
-        return ModBlocks.SINGLE_SLAB_BLOCKS.contains(Block.getBlockFromItem(item));
+        return ModBlocks.isSingleSlabBlock(Block.getBlockFromItem(item));
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -65,21 +64,21 @@ public class ModWoodSlabBlock extends BlockSlab
     @Override
     public IIcon getIcon(int side, int metadata)
     {
-        final OverworldSpecies tree = trees.get(mask(metadata));
+        final IContent tree = trees.get(mask(metadata));
         return tree.getPlanksBlock().getIcon(side, mask(metadata));
     }
 
     @Override
     public Item getItemDropped(int metadata, Random unused, int unused2)
     {
-        final OverworldSpecies tree = trees.get(mask(metadata));
+        final IContent tree = trees.get(mask(metadata));
         return Item.getItemFromBlock(tree.getSingleSlabBlock());
     }
 
     @Override
     protected ItemStack createStackedBlock(int metadata)
     {
-        final OverworldSpecies tree = trees.get(mask(metadata));
+        final IContent tree = trees.get(mask(metadata));
         return new ItemStack(Item.getItemFromBlock(tree.getSingleSlabBlock()), 2, tree.getSlabMeta());
     }
 
