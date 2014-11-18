@@ -27,6 +27,8 @@ Something not quite right?  Have a suggestion?  Found a bug?  Create an issue no
 * * *
 
 #### Licensing
+<img src="https://cdn.rawgit.com/MinecraftModArchive/assets/master/PD-icon.svg" alt="Public domain"
+style="width:64px;height:64px; float:right">
 
 This is free and unencumbered software released into the public domain.
 
