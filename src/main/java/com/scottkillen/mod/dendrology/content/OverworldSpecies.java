@@ -31,7 +31,7 @@ import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.KULI
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NO_COLOR;
 
 @SuppressWarnings({ "NonSerializableFieldInSerializableClass", "ClassHasNoToStringMethod" })
-public enum OverworldSpecies implements IContent
+public enum OverworldSpecies implements ISpecies
 {
     // REORDERING WILL CAUSE DAMAGE TO SAVES
     ACEMUS(ACEMUS_COLOR, new AcemusTree()),

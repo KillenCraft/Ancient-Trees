@@ -9,13 +9,13 @@ import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
 import com.scottkillen.mod.dendrology.block.ModStairsBlock;
 import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
-import com.scottkillen.mod.dendrology.content.IContent;
+import com.scottkillen.mod.dendrology.content.ISpecies;
 import net.minecraft.block.Block;
 import java.util.List;
 
-public class ContentLoader
+public class SpeciesLoader
 {
-    private final ImmutableList<IContent> content;
+    private final ImmutableList<ISpecies> species;
 
     private List<ModLogBlock> logBlocks;
     private List<ModLeavesBlock> leavesBlocks;
@@ -25,16 +25,16 @@ public class ContentLoader
     private List<ModWoodSlabBlock> doubleSlabBlocks;
     private List<ModStairsBlock> stairsBlocks;
 
-    public ContentLoader(List<? extends IContent> content)
+    public SpeciesLoader(List<? extends ISpecies> species)
     {
-        this.content = ImmutableList.copyOf(content);
-        logBlocks = Lists.newArrayListWithCapacity(content.size() / ModLogBlock.CAPACITY + 1);
-        leavesBlocks = Lists.newArrayListWithCapacity(content.size() / ModLeavesBlock.CAPACITY + 1);
-        planksBlocks = Lists.newArrayListWithCapacity(content.size() / ModPlanksBlock.CAPACITY + 1);
-        saplingBlocks = Lists.newArrayListWithCapacity(content.size() / ModSaplingBlock.CAPACITY + 1);
-        singleSlabBlocks = Lists.newArrayListWithCapacity(content.size() / ModWoodSlabBlock.CAPACITY + 1);
-        doubleSlabBlocks = Lists.newArrayListWithCapacity(content.size() / ModWoodSlabBlock.CAPACITY + 1);
-        stairsBlocks = Lists.newArrayListWithCapacity(content.size());
+        this.species = ImmutableList.copyOf(species);
+        logBlocks = Lists.newArrayListWithCapacity(species.size() / ModLogBlock.CAPACITY + 1);
+        leavesBlocks = Lists.newArrayListWithCapacity(species.size() / ModLeavesBlock.CAPACITY + 1);
+        planksBlocks = Lists.newArrayListWithCapacity(species.size() / ModPlanksBlock.CAPACITY + 1);
+        saplingBlocks = Lists.newArrayListWithCapacity(species.size() / ModSaplingBlock.CAPACITY + 1);
+        singleSlabBlocks = Lists.newArrayListWithCapacity(species.size() / ModWoodSlabBlock.CAPACITY + 1);
+        doubleSlabBlocks = Lists.newArrayListWithCapacity(species.size() / ModWoodSlabBlock.CAPACITY + 1);
+        stairsBlocks = Lists.newArrayListWithCapacity(species.size());
     }
 
     public void load()
@@ -62,13 +62,13 @@ public class ContentLoader
     private void loadLeavesBlocks()
     {
         final List<String> names = Lists.newArrayListWithCapacity(ModLeavesBlock.CAPACITY);
-        final List<IContent> trees = Lists.newArrayListWithCapacity(ModLeavesBlock.CAPACITY);
-        for (final IContent species : content)
+        final List<ISpecies> trees = Lists.newArrayListWithCapacity(ModLeavesBlock.CAPACITY);
+        for (final ISpecies aSpecies : species)
         {
-            species.setLeavesMeta(names.size());
+            aSpecies.setLeavesMeta(names.size());
 
-            names.add(species.getName());
-            trees.add(species);
+            names.add(aSpecies.getName());
+            trees.add(aSpecies);
             if (names.size() == ModLeavesBlock.CAPACITY)
             {
                 createLeavesBlock(names, trees);
@@ -86,13 +86,13 @@ public class ContentLoader
     private void loadLogBlocks()
     {
         final List<String> names = Lists.newArrayListWithCapacity(ModLogBlock.CAPACITY);
-        final List<IContent> pendingUpdates = Lists.newArrayListWithCapacity(ModLogBlock.CAPACITY);
-        for (final IContent species : content)
+        final List<ISpecies> pendingUpdates = Lists.newArrayListWithCapacity(ModLogBlock.CAPACITY);
+        for (final ISpecies aSpecies : species)
         {
-            species.setLogMeta(names.size());
+            aSpecies.setLogMeta(names.size());
 
-            names.add(species.getName());
-            pendingUpdates.add(species);
+            names.add(aSpecies.getName());
+            pendingUpdates.add(aSpecies);
             if (names.size() == ModLogBlock.CAPACITY)
             {
                 createLogBlock(names, pendingUpdates);
@@ -110,13 +110,13 @@ public class ContentLoader
     private void loadPlanksBlocks()
     {
         final List<String> names = Lists.newArrayList();
-        final List<IContent> pendingUpdates = Lists.newArrayListWithCapacity(ModPlanksBlock.CAPACITY);
-        for (final IContent species : content)
+        final List<ISpecies> pendingUpdates = Lists.newArrayListWithCapacity(ModPlanksBlock.CAPACITY);
+        for (final ISpecies aSpecies : species)
         {
-            species.setPlanksMeta(names.size());
+            aSpecies.setPlanksMeta(names.size());
 
-            names.add(species.getName());
-            pendingUpdates.add(species);
+            names.add(aSpecies.getName());
+            pendingUpdates.add(aSpecies);
             if (names.size() == ModPlanksBlock.CAPACITY)
             {
                 createPlanksBlock(names, pendingUpdates);
@@ -134,13 +134,13 @@ public class ContentLoader
     private void loadSaplingBlocks()
     {
         final List<String> names = Lists.newArrayList();
-        final List<IContent> trees = Lists.newArrayList();
-        for (final IContent species : content)
+        final List<ISpecies> trees = Lists.newArrayList();
+        for (final ISpecies aSpecies : species)
         {
-            species.setSaplingMeta(names.size());
+            aSpecies.setSaplingMeta(names.size());
 
-            names.add(species.getName());
-            trees.add(species);
+            names.add(aSpecies.getName());
+            trees.add(aSpecies);
             if (names.size() == ModSaplingBlock.CAPACITY)
             {
                 createSaplingBlock(names, trees);
@@ -158,13 +158,13 @@ public class ContentLoader
     private void loadSlabBlocks()
     {
         final List<String> names = Lists.newArrayList();
-        final List<IContent> trees = Lists.newArrayList();
-        for (final IContent species : content)
+        final List<ISpecies> trees = Lists.newArrayList();
+        for (final ISpecies aSpecies : species)
         {
-            species.setSlabMeta(names.size());
+            aSpecies.setSlabMeta(names.size());
 
-            names.add(species.toString());
-            trees.add(species);
+            names.add(aSpecies.toString());
+            trees.add(aSpecies);
             if (names.size() == ModWoodSlabBlock.CAPACITY)
             {
                 createSlabBlocks(names, trees);
@@ -181,7 +181,7 @@ public class ContentLoader
 
     private void loadStairsBlocks()
     {
-        for (final IContent species : content)
+        for (final ISpecies species : this.species)
         {
             //noinspection ObjectAllocationInLoop
             final ModStairsBlock block = new ModStairsBlock(species.getPlanksBlock(), species.getPlanksMeta());
@@ -191,43 +191,43 @@ public class ContentLoader
         }
     }
 
-    private void createLeavesBlock(List<String> names, List<IContent> pendingUpdates)
+    private void createLeavesBlock(List<String> names, List<ISpecies> pendingUpdates)
     {
         final ModLeavesBlock block = new ModLeavesBlock(names, pendingUpdates);
         leavesBlocks.add(block);
 
-        for (final IContent update : pendingUpdates)
+        for (final ISpecies update : pendingUpdates)
             update.setLeavesBlock(block);
     }
 
-    private void createLogBlock(List<String> names, List<IContent> pendingUpdates)
+    private void createLogBlock(List<String> names, List<ISpecies> pendingUpdates)
     {
         final ModLogBlock block = new ModLogBlock(names);
         logBlocks.add(block);
 
-        for (final IContent update : pendingUpdates)
+        for (final ISpecies update : pendingUpdates)
             update.setLogBlock(block);
     }
 
-    private void createPlanksBlock(List<String> names, List<IContent> pendingUpdates)
+    private void createPlanksBlock(List<String> names, List<ISpecies> pendingUpdates)
     {
         final ModPlanksBlock block = new ModPlanksBlock(names);
         planksBlocks.add(block);
 
-        for (final IContent update : pendingUpdates)
+        for (final ISpecies update : pendingUpdates)
             update.setPlanksBlock(block);
     }
 
-    private void createSaplingBlock(List<String> names, List<IContent> pendingUpdates)
+    private void createSaplingBlock(List<String> names, List<ISpecies> pendingUpdates)
     {
         final ModSaplingBlock block = new ModSaplingBlock(names, pendingUpdates);
         saplingBlocks.add(block);
 
-        for (final IContent update : pendingUpdates)
+        for (final ISpecies update : pendingUpdates)
             update.setSaplingBlock(block);
     }
 
-    private void createSlabBlocks(List<String> names, List<IContent> pendingUpdates)
+    private void createSlabBlocks(List<String> names, List<ISpecies> pendingUpdates)
     {
         final ModWoodSlabBlock singleSlabBlock = new ModWoodSlabBlock(false, names, pendingUpdates);
         final ModWoodSlabBlock doubleSlabBlock = new ModWoodSlabBlock(true, names, pendingUpdates);
@@ -235,7 +235,7 @@ public class ContentLoader
         singleSlabBlocks.add(singleSlabBlock);
         doubleSlabBlocks.add(doubleSlabBlock);
 
-        for (final IContent update : pendingUpdates)
+        for (final ISpecies update : pendingUpdates)
         {
             update.setSlabBlock(singleSlabBlock, false);
             update.setSlabBlock(doubleSlabBlock, true);
@@ -283,15 +283,15 @@ public class ContentLoader
         return singleSlabBlocks.contains(block);
     }
 
-    public ImmutableList<IContent> getContent()
+    public ImmutableList<ISpecies> getSpecies()
     {
-        return ImmutableList.copyOf(content);
+        return ImmutableList.copyOf(species);
     }
 
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("content", content).add("logBlocks", logBlocks)
+        return Objects.toStringHelper(this).add("species", species).add("logBlocks", logBlocks)
                 .add("leavesBlocks", leavesBlocks).add("planksBlocks", planksBlocks).add("saplingBlocks", saplingBlocks)
                 .add("singleSlabBlocks", singleSlabBlocks).add("doubleSlabBlocks", doubleSlabBlocks)
                 .add("stairsBlocks", stairsBlocks).toString();

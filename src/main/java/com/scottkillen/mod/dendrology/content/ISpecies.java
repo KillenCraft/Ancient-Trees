@@ -9,7 +9,7 @@ import com.scottkillen.mod.dendrology.block.ModStairsBlock;
 import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 
-public interface IContent
+public interface ISpecies
 {
     Colorizer getColorizer();
 

@@ -1,9 +1,9 @@
 package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.collect.ImmutableList;
-import com.scottkillen.mod.dendrology.content.IContent;
+import com.scottkillen.mod.dendrology.content.ISpecies;
 import com.scottkillen.mod.dendrology.content.OverworldSpecies;
-import com.scottkillen.mod.dendrology.content.loader.ContentLoader;
+import com.scottkillen.mod.dendrology.content.loader.SpeciesLoader;
 import com.scottkillen.mod.dendrology.item.LeavesItem;
 import com.scottkillen.mod.dendrology.item.LogItem;
 import com.scottkillen.mod.dendrology.item.PlanksItem;
@@ -26,7 +26,7 @@ public final class ModBlocks
     private static final int DEFAULT_PLANKS_FLAMMABILITY = 20;
     private static final int DEFAULT_STAIRS_FLAMMABILITY = DEFAULT_PLANKS_FLAMMABILITY;
 
-    private static final ContentLoader overworldContent = new ContentLoader(Arrays.asList(OverworldSpecies.values()));
+    private static final SpeciesLoader overworldContent = new SpeciesLoader(Arrays.asList(OverworldSpecies.values()));
 
     private ModBlocks()
     {
@@ -202,8 +202,8 @@ public final class ModBlocks
         return overworldContent.getStairsBlocks();
     }
 
-    public static Iterable<? extends IContent> getContent()
+    public static Iterable<? extends ISpecies> getContent()
     {
-        return overworldContent.getContent();
+        return overworldContent.getSpecies();
     }
 }
