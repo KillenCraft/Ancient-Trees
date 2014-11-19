@@ -37,7 +37,7 @@ If you are developing a mod that has a compile dependency to this mod, add the f
         compile 'com.scottkillen.mod:ancienttrees_1.7.10-VERSION-dev:VERSION'
     }
 
-repplacing `VERSION` with the release you wish to use, eg. `ancienttrees_1.7.10-0.1.0-dev:0.1.0`
+replacing `VERSION` with the release you wish to use, eg. `ancienttrees_1.7.10-0.1.0-dev:0.1.0`
 
 * * *
 
