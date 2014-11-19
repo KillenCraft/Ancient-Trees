@@ -18,9 +18,10 @@ buildscript {
 }
 
 apply plugin: 'forge'
+apply plugin: 'maven'
 
 group = "com.scottkillen.mod"
-archivesBaseName = "ancienttrees_"+ project.mcversion
+archivesBaseName = "ancienttrees_" + project.mcversion
 
 minecraft {
     version = project.mcversion + "-" + project.forgeversion
@@ -83,4 +84,10 @@ task devJar(type: Jar) {
 
 artifacts {
     archives devJar
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository (url:"file://" + projectDir + "/build/maven")
+    }
 }

@@ -6,6 +6,8 @@
 
 [Support](#support)
 
+[Maven](#maven)
+
 [Licensing](#licensing)
 
 ### Contributing
@@ -23,6 +25,19 @@ Something not quite right?  Have a suggestion?  Found a bug?  Create an issue no
 
 [issues]: /MinecraftModArchive/Dendrology/issues
 [new]: /MinecraftModArchive/Dendrology/issues/new
+
+### Maven
+If you are developing a mod that has a compile dependency to this mod, add the following to your `build.gradle` file:
+
+    repositories {
+        mavenRepo urls: 'https://raw.githubusercontent.com/MinecraftModArchive/Dendrology/maven/'
+    }
+
+    dependencies {
+        compile 'com.scottkillen.mod:ancienttrees_1.7.10-VERSION-dev:VERSION'
+    }
+
+repplacing `VERSION` with the release you wish to use, eg. `ancienttrees_1.7.10-0.1.0-dev:0.1.0`
 
 * * *
 
