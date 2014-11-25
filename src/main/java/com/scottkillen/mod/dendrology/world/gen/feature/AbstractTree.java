@@ -6,7 +6,6 @@ import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
 import com.scottkillen.mod.dendrology.block.ModLogBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
 import com.scottkillen.mod.dendrology.content.ISpecies;
-import com.scottkillen.mod.dendrology.content.OverworldSpecies;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -33,7 +32,7 @@ public abstract class AbstractTree extends WorldGenAbstractTree
         return block.isAir(world, x, y, z) || block.isLeaves(world, x, y, z);
     }
 
-    public void setTree(OverworldSpecies tree)
+    public void setTree(ISpecies tree)
     {
         this.tree = tree;
     }
@@ -46,19 +45,14 @@ public abstract class AbstractTree extends WorldGenAbstractTree
 
         final Block block = world.getBlock(x, y - 1, z);
         return !block.canSustainPlant(world, x, y - 1, z, UP, plantable);
-
     }
 
     @SuppressWarnings("WeakerAccess")
     protected boolean hasRoomToGrow(World world, int x, int y, int z, int height)
     {
         for (int y1 = y; y1 <= y + 1 + height; ++y1)
-        {
-            if (!isReplaceable(world, x, y1, z))
-            {
-                return false;
-            }
-        }
+            if (!isReplaceable(world, x, y1, z)) return false;
+
         return true;
     }
 
