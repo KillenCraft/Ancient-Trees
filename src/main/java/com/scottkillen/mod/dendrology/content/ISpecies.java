@@ -1,18 +1,16 @@
 package com.scottkillen.mod.dendrology.content;
 
 import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
-import com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer;
 import com.scottkillen.mod.dendrology.block.ModLogBlock;
 import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
 import com.scottkillen.mod.dendrology.block.ModStairsBlock;
 import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
+import com.scottkillen.mod.kore.trees.DescribesLeaves;
 import com.scottkillen.mod.kore.trees.ProvidesAbstractTree;
 
-public interface ISpecies extends ProvidesAbstractTree
+public interface ISpecies extends ProvidesAbstractTree, DescribesLeaves
 {
-    Colorizer getColorizer();
-
     ModLeavesBlock getLeavesBlock();
 
     void setLeavesBlock(ModLeavesBlock block);
@@ -39,11 +37,7 @@ public interface ISpecies extends ProvidesAbstractTree
 
     void setPlanksMeta(int meta);
 
-    ModSaplingBlock getSaplingBlock();
-
     void setSaplingBlock(ModSaplingBlock block);
-
-    int getSaplingMeta();
 
     void setSaplingMeta(int meta);
 

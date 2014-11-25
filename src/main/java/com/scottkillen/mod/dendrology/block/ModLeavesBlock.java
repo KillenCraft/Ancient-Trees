@@ -3,10 +3,10 @@ package com.scottkillen.mod.dendrology.block;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.dendrology.content.ISpecies;
 import com.scottkillen.mod.dendrology.world.AcemusColorizer;
 import com.scottkillen.mod.dendrology.world.CerasuColorizer;
 import com.scottkillen.mod.dendrology.world.KulistColorizer;
+import com.scottkillen.mod.kore.trees.DescribesLeaves;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -30,19 +30,19 @@ public class ModLeavesBlock extends BlockLeaves
     public static final int CAPACITY = 4;
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<String> subblockNames;
-    private final ImmutableList<ISpecies> trees;
+    private final ImmutableList<DescribesLeaves> descriptors;
 
-    public ModLeavesBlock(List<String> subblockNames, List<ISpecies> trees)
+    public ModLeavesBlock(List<String> subblockNames, List<? extends DescribesLeaves> descriptors)
     {
         checkArgument(!subblockNames.isEmpty());
         checkArgument(subblockNames.size() <= CAPACITY);
         this.subblockNames = ImmutableList.copyOf(subblockNames);
 
-        checkArgument(!trees.isEmpty());
-        checkArgument(trees.size() <= CAPACITY);
-        this.trees = ImmutableList.copyOf(trees);
+        checkArgument(!descriptors.isEmpty());
+        checkArgument(descriptors.size() <= CAPACITY);
+        this.descriptors = ImmutableList.copyOf(descriptors);
 
-        checkArgument(subblockNames.size() == trees.size());
+        checkArgument(subblockNames.size() == descriptors.size());
 
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("leaves");
@@ -62,7 +62,7 @@ public class ModLeavesBlock extends BlockLeaves
     @Override
     public int getRenderColor(int metadata)
     {
-        final Colorizer colorizer = trees.get(mask(metadata)).getColorizer();
+        final Colorizer colorizer = descriptors.get(mask(metadata)).getColorizer();
 
         switch (colorizer)
         {
@@ -84,7 +84,7 @@ public class ModLeavesBlock extends BlockLeaves
     public int colorMultiplier(IBlockAccess blockAccess, int x, int y, int z)
     {
         final int metadata = mask(blockAccess.getBlockMetadata(x, y, z));
-        final Colorizer colorizer = trees.get(mask(metadata)).getColorizer();
+        final Colorizer colorizer = descriptors.get(mask(metadata)).getColorizer();
 
         switch (colorizer)
         {
@@ -104,13 +104,13 @@ public class ModLeavesBlock extends BlockLeaves
     @Override
     public Item getItemDropped(int metadata, Random unused, int unused2)
     {
-        return Item.getItemFromBlock(trees.get(mask(metadata)).getSaplingBlock());
+        return Item.getItemFromBlock(descriptors.get(mask(metadata)).getSaplingBlock());
     }
 
     @Override
     public int damageDropped(int metadata)
     {
-        return trees.get(mask(metadata)).getSaplingMeta();
+        return descriptors.get(mask(metadata)).getSaplingMeta();
     }
 
     @Override
@@ -149,11 +149,11 @@ public class ModLeavesBlock extends BlockLeaves
     @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
+    public void getSubBlocks(Item item, CreativeTabs unused, List subBlocks)
     {
         for (int i = 0; i < subblockNames.size(); i++)
             //noinspection ObjectAllocationInLoop
-            subblocks.add(new ItemStack(item, 1, i));
+            subBlocks.add(new ItemStack(item, 1, i));
     }
 
     @SideOnly(Side.CLIENT)
@@ -186,7 +186,8 @@ public class ModLeavesBlock extends BlockLeaves
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("trees", trees).toString();
+        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("descriptors", descriptors)
+                .toString();
     }
 
     public enum Colorizer
