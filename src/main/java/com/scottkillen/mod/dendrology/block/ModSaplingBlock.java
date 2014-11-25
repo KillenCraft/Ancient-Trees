@@ -4,7 +4,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.kore.trees.IGrowsTree;
+import com.scottkillen.mod.kore.trees.ProvidesAbstractTree;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSapling;
@@ -27,10 +27,10 @@ public class ModSaplingBlock extends BlockSapling
     public static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<String> subblockNames;
-    private final ImmutableList<IGrowsTree> trees;
+    private final ImmutableList<ProvidesAbstractTree> trees;
     private final List<IIcon> subblockIcons = Lists.newArrayList();
 
-    public ModSaplingBlock(List<String> subblockNames, List<IGrowsTree> trees)
+    public ModSaplingBlock(List<String> subblockNames, List<ProvidesAbstractTree> trees)
     {
         checkArgument(!subblockNames.isEmpty());
         checkArgument(subblockNames.size() <= CAPACITY);

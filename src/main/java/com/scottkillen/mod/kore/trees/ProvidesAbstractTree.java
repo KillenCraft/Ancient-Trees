@@ -2,7 +2,7 @@ package com.scottkillen.mod.kore.trees;
 
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 
-public interface IGrowsTree
+public interface ProvidesAbstractTree
 {
     AbstractTree getTreeGen();
 }
