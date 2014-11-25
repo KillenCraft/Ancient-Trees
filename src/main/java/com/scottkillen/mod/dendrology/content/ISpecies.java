@@ -6,10 +6,11 @@ import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
 import com.scottkillen.mod.dendrology.block.ModStairsBlock;
 import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
+import com.scottkillen.mod.kore.common.Named;
 import com.scottkillen.mod.kore.trees.DescribesLeaves;
 import com.scottkillen.mod.kore.trees.ProvidesAbstractTree;
 
-public interface ISpecies extends ProvidesAbstractTree, DescribesLeaves
+public interface ISpecies extends DescribesLeaves, ProvidesAbstractTree, Named
 {
     ModLeavesBlock getLeavesBlock();
 
@@ -26,8 +27,6 @@ public interface ISpecies extends ProvidesAbstractTree, DescribesLeaves
     int getLogMeta();
 
     void setLogMeta(int meta);
-
-    String getName();
 
     ModPlanksBlock getPlanksBlock();
 

@@ -61,25 +61,22 @@ public class SpeciesLoader
 
     private void loadLeavesBlocks()
     {
-        final List<String> names = Lists.newArrayListWithCapacity(ModLeavesBlock.CAPACITY);
         final List<ISpecies> trees = Lists.newArrayListWithCapacity(ModLeavesBlock.CAPACITY);
         for (final ISpecies aSpecies : species)
         {
-            aSpecies.setLeavesMeta(names.size());
+            aSpecies.setLeavesMeta(trees.size());
 
-            names.add(aSpecies.getName());
             trees.add(aSpecies);
-            if (names.size() == ModLeavesBlock.CAPACITY)
+            if (trees.size() == ModLeavesBlock.CAPACITY)
             {
-                createLeavesBlock(names, trees);
+                createLeavesBlock(trees);
 
-                names.clear();
                 trees.clear();
             }
         }
-        if (!names.isEmpty())
+        if (!trees.isEmpty())
         {
-            createLeavesBlock(names, trees);
+            createLeavesBlock(trees);
         }
     }
 
@@ -181,19 +178,19 @@ public class SpeciesLoader
 
     private void loadStairsBlocks()
     {
-        for (final ISpecies species : this.species)
+        for (final ISpecies aSpecies : species)
         {
             //noinspection ObjectAllocationInLoop
-            final ModStairsBlock block = new ModStairsBlock(species.getPlanksBlock(), species.getPlanksMeta());
-            block.setBlockName(String.format("stairs.%s", species.getName()));
+            final ModStairsBlock block = new ModStairsBlock(aSpecies.getPlanksBlock(), aSpecies.getPlanksMeta());
+            block.setBlockName(String.format("stairs.%s", aSpecies.getName()));
             stairsBlocks.add(block);
-            species.setStairsBlock(block);
+            aSpecies.setStairsBlock(block);
         }
     }
 
-    private void createLeavesBlock(List<String> names, List<ISpecies> pendingUpdates)
+    private void createLeavesBlock(List<ISpecies> pendingUpdates)
     {
-        final ModLeavesBlock block = new ModLeavesBlock(names, pendingUpdates);
+        final ModLeavesBlock block = new ModLeavesBlock(pendingUpdates);
         leavesBlocks.add(block);
 
         for (final ISpecies update : pendingUpdates)

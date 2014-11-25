@@ -30,7 +30,7 @@ public class ModSaplingBlock extends BlockSapling
     private final ImmutableList<ProvidesAbstractTree> trees;
     private final List<IIcon> subblockIcons = Lists.newArrayList();
 
-    public ModSaplingBlock(List<String> subblockNames, List<ProvidesAbstractTree> trees)
+    public ModSaplingBlock(List<String> subblockNames, List<? extends ProvidesAbstractTree> trees)
     {
         checkArgument(!subblockNames.isEmpty());
         checkArgument(subblockNames.size() <= CAPACITY);

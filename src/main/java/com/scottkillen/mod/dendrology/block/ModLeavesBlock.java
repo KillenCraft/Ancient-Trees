@@ -2,6 +2,7 @@ package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.world.AcemusColorizer;
 import com.scottkillen.mod.dendrology.world.CerasuColorizer;
@@ -29,20 +30,13 @@ public class ModLeavesBlock extends BlockLeaves
 {
     public static final int CAPACITY = 4;
     private static final int METADATA_MASK = CAPACITY - 1;
-    private final ImmutableList<String> subblockNames;
     private final ImmutableList<DescribesLeaves> descriptors;
 
-    public ModLeavesBlock(List<String> subblockNames, List<? extends DescribesLeaves> descriptors)
+    public ModLeavesBlock(List<? extends DescribesLeaves> descriptors)
     {
-        checkArgument(!subblockNames.isEmpty());
-        checkArgument(subblockNames.size() <= CAPACITY);
-        this.subblockNames = ImmutableList.copyOf(subblockNames);
-
         checkArgument(!descriptors.isEmpty());
         checkArgument(descriptors.size() <= CAPACITY);
         this.descriptors = ImmutableList.copyOf(descriptors);
-
-        checkArgument(subblockNames.size() == descriptors.size());
 
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("leaves");
@@ -129,7 +123,10 @@ public class ModLeavesBlock extends BlockLeaves
     @Override
     public String[] func_150125_e()
     {
-        return subblockNames.toArray(new String[subblockNames.size()]);
+        final List<String> names = Lists.newArrayList();
+        for (final DescribesLeaves descriptor : descriptors)
+            names.add(descriptor.getName());
+        return names.toArray(new String[names.size()]);
     }
 
     @Override
@@ -151,7 +148,7 @@ public class ModLeavesBlock extends BlockLeaves
     @Override
     public void getSubBlocks(Item item, CreativeTabs unused, List subBlocks)
     {
-        for (int i = 0; i < subblockNames.size(); i++)
+        for (int i = 0; i < descriptors.size(); i++)
             //noinspection ObjectAllocationInLoop
             subBlocks.add(new ItemStack(item, 1, i));
     }
@@ -160,13 +157,15 @@ public class ModLeavesBlock extends BlockLeaves
     @Override
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        field_150129_M[0] = new IIcon[subblockNames.size()];
-        field_150129_M[1] = new IIcon[subblockNames.size()];
+        field_150129_M[0] = new IIcon[descriptors.size()];
+        field_150129_M[1] = new IIcon[descriptors.size()];
 
-        for (int i = 0; i < subblockNames.size(); i++)
+        for (int i = 0; i < descriptors.size(); i++)
         {
+            final DescribesLeaves descriptor = descriptors.get(i);
+            final String name = descriptor.getName();
             //noinspection StringConcatenationMissingWhitespace
-            final String iconName = TheMod.RESOURCE_PREFIX + "leaves_" + subblockNames.get(i).replace('.', '_');
+            final String iconName = TheMod.RESOURCE_PREFIX + "leaves_" + name.replace('.', '_');
             field_150129_M[0][i] = iconRegister.registerIcon(iconName);
             field_150129_M[1][i] = iconRegister.registerIcon(iconName + "_opaque");
         }
@@ -186,8 +185,7 @@ public class ModLeavesBlock extends BlockLeaves
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("descriptors", descriptors)
-                .toString();
+        return Objects.toStringHelper(this).add("descriptors", descriptors).toString();
     }
 
     public enum Colorizer
