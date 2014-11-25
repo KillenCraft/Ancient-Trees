@@ -7,9 +7,9 @@ import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
 import com.scottkillen.mod.dendrology.block.ModStairsBlock;
 import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
-import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
+import com.scottkillen.mod.kore.trees.IGrowsTree;
 
-public interface ISpecies
+public interface ISpecies extends IGrowsTree
 {
     Colorizer getColorizer();
 
@@ -58,6 +58,4 @@ public interface ISpecies
     ModStairsBlock getStairsBlock();
 
     void setStairsBlock(ModStairsBlock block);
-
-    AbstractTree getTreeGen();
 }

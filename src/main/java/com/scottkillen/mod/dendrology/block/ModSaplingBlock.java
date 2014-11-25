@@ -4,7 +4,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.dendrology.content.ISpecies;
+import com.scottkillen.mod.kore.trees.IGrowsTree;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSapling;
@@ -27,10 +27,10 @@ public class ModSaplingBlock extends BlockSapling
     public static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<String> subblockNames;
-    private final ImmutableList<ISpecies> trees;
+    private final ImmutableList<IGrowsTree> trees;
     private final List<IIcon> subblockIcons = Lists.newArrayList();
 
-    public ModSaplingBlock(List<String> subblockNames, List<ISpecies> trees)
+    public ModSaplingBlock(List<String> subblockNames, List<IGrowsTree> trees)
     {
         checkArgument(!subblockNames.isEmpty());
         checkArgument(subblockNames.size() <= CAPACITY);
@@ -89,11 +89,11 @@ public class ModSaplingBlock extends BlockSapling
     @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
+    public void getSubBlocks(Item item, CreativeTabs unused, List subBlocks)
     {
         for (int i = 0; i < subblockNames.size(); i++)
             //noinspection ObjectAllocationInLoop
-            subblocks.add(new ItemStack(item, 1, i));
+            subBlocks.add(new ItemStack(item, 1, i));
     }
 
     @Override
