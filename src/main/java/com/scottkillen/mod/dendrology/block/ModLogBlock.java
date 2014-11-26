@@ -22,7 +22,7 @@ public class ModLogBlock extends BlockLog
     private final ImmutableList<Named> names;
 
     @SuppressWarnings("LocalVariableHidesMemberVariable")
-    public ImmutableList<String> getSubblockNames()
+    public ImmutableList<String> getSubBlockNames()
     {
         final List<String> names = Lists.newArrayList();
         for (final Named named : this.names)

@@ -124,7 +124,7 @@ public final class ModBlocks
         int logCount = 0;
         for (final ModLogBlock block : logBlocks)
         {
-            registerLogBlock(block, String.format("logs%d", logCount), block.getSubblockNames());
+            registerLogBlock(block, String.format("logs%d", logCount), block.getSubBlockNames());
             logCount++;
         }
     }
