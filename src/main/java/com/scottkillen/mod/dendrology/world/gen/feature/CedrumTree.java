@@ -1,7 +1,7 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.content.OverworldSpecies;
+import com.scottkillen.mod.dendrology.content.ISpecies;
 import com.scottkillen.mod.dendrology.world.gen.feature.cedrum.LargeCedrumTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.cedrum.NormalCedrumTree;
 import net.minecraft.block.material.Material;
@@ -20,7 +20,7 @@ public class CedrumTree extends AbstractTree
     }
 
     @Override
-    public void setTree(OverworldSpecies tree)
+    public void setTree(ISpecies tree)
     {
         treeGen.setTree(tree);
         largeTreeGen.setTree(tree);
