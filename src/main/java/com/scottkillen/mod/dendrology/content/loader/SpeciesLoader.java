@@ -82,25 +82,22 @@ public class SpeciesLoader
 
     private void loadLogBlocks()
     {
-        final List<String> names = Lists.newArrayListWithCapacity(ModLogBlock.CAPACITY);
         final List<ISpecies> pendingUpdates = Lists.newArrayListWithCapacity(ModLogBlock.CAPACITY);
         for (final ISpecies aSpecies : species)
         {
-            aSpecies.setLogMeta(names.size());
+            aSpecies.setLogMeta(pendingUpdates.size());
 
-            names.add(aSpecies.getName());
             pendingUpdates.add(aSpecies);
-            if (names.size() == ModLogBlock.CAPACITY)
+            if (pendingUpdates.size() == ModLogBlock.CAPACITY)
             {
-                createLogBlock(names, pendingUpdates);
+                createLogBlock(pendingUpdates);
 
-                names.clear();
                 pendingUpdates.clear();
             }
         }
-        if (!names.isEmpty())
+        if (!pendingUpdates.isEmpty())
         {
-            createLogBlock(names, pendingUpdates);
+            createLogBlock(pendingUpdates);
         }
     }
 
@@ -197,9 +194,9 @@ public class SpeciesLoader
             update.setLeavesBlock(block);
     }
 
-    private void createLogBlock(List<String> names, List<ISpecies> pendingUpdates)
+    private void createLogBlock(List<ISpecies> pendingUpdates)
     {
-        final ModLogBlock block = new ModLogBlock(names);
+        final ModLogBlock block = new ModLogBlock(pendingUpdates);
         logBlocks.add(block);
 
         for (final ISpecies update : pendingUpdates)

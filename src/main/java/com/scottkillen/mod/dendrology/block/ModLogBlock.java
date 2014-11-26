@@ -3,7 +3,9 @@ package com.scottkillen.mod.dendrology.block;
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.kore.common.Named;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockLog;
@@ -17,19 +19,22 @@ import java.util.List;
 public class ModLogBlock extends BlockLog
 {
     public static final int CAPACITY = 4;
-    private final ImmutableList<String> subblockNames;
+    private final ImmutableList<Named> names;
 
-    @SuppressWarnings("ReturnOfCollectionOrArrayField")
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
     public ImmutableList<String> getSubblockNames()
     {
-        return subblockNames;
+        final List<String> names = Lists.newArrayList();
+        for (final Named named : this.names)
+            names.add(named.getName());
+        return ImmutableList.copyOf(names);
     }
 
-    public ModLogBlock(List<String> subblockNames)
+    public ModLogBlock(List<? extends Named> names)
     {
-        Preconditions.checkArgument(!subblockNames.isEmpty());
-        Preconditions.checkArgument(subblockNames.size() <= CAPACITY);
-        this.subblockNames = ImmutableList.copyOf(subblockNames);
+        Preconditions.checkArgument(!names.isEmpty());
+        Preconditions.checkArgument(names.size() <= CAPACITY);
+        this.names = ImmutableList.copyOf(names);
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("log");
     }
@@ -52,7 +57,7 @@ public class ModLogBlock extends BlockLog
     @Override
     public void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
     {
-        for (int i = 0; i < subblockNames.size(); i++)
+        for (int i = 0; i < names.size(); i++)
             //noinspection ObjectAllocationInLoop
             subblocks.add(new ItemStack(item, 1, i));
     }
@@ -61,13 +66,13 @@ public class ModLogBlock extends BlockLog
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        field_150167_a = new IIcon[subblockNames.size()];
-        field_150166_b = new IIcon[subblockNames.size()];
+        field_150167_a = new IIcon[names.size()];
+        field_150166_b = new IIcon[names.size()];
 
-        for (int i = 0; i < subblockNames.size(); i++)
+        for (int i = 0; i < names.size(); i++)
         {
             //noinspection StringConcatenationMissingWhitespace
-            final String iconName = TheMod.RESOURCE_PREFIX + "log_" + subblockNames.get(i);
+            final String iconName = TheMod.RESOURCE_PREFIX + "log_" + names.get(i).getName();
             field_150167_a[i] = iconRegister.registerIcon(iconName);
             field_150166_b[i] = iconRegister.registerIcon(iconName + "_top");
         }
@@ -76,6 +81,6 @@ public class ModLogBlock extends BlockLog
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("subblockNames", subblockNames).toString();
+        return Objects.toStringHelper(this).add("names", names).toString();
     }
 }
