@@ -103,25 +103,22 @@ public class SpeciesLoader
 
     private void loadPlanksBlocks()
     {
-        final List<String> names = Lists.newArrayList();
         final List<ISpecies> pendingUpdates = Lists.newArrayListWithCapacity(ModPlanksBlock.CAPACITY);
         for (final ISpecies aSpecies : species)
         {
-            aSpecies.setPlanksMeta(names.size());
+            aSpecies.setPlanksMeta(pendingUpdates.size());
 
-            names.add(aSpecies.getName());
             pendingUpdates.add(aSpecies);
-            if (names.size() == ModPlanksBlock.CAPACITY)
+            if (pendingUpdates.size() == ModPlanksBlock.CAPACITY)
             {
-                createPlanksBlock(names, pendingUpdates);
+                createPlanksBlock(pendingUpdates);
 
-                names.clear();
                 pendingUpdates.clear();
             }
         }
-        if (!names.isEmpty())
+        if (!pendingUpdates.isEmpty())
         {
-            createPlanksBlock(names, pendingUpdates);
+            createPlanksBlock(pendingUpdates);
         }
     }
 
@@ -203,9 +200,9 @@ public class SpeciesLoader
             update.setLogBlock(block);
     }
 
-    private void createPlanksBlock(List<String> names, List<ISpecies> pendingUpdates)
+    private void createPlanksBlock(List<ISpecies> pendingUpdates)
     {
-        final ModPlanksBlock block = new ModPlanksBlock(names);
+        final ModPlanksBlock block = new ModPlanksBlock(pendingUpdates);
         planksBlocks.add(block);
 
         for (final ISpecies update : pendingUpdates)

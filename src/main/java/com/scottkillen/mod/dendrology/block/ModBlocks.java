@@ -64,7 +64,7 @@ public final class ModBlocks
         int planksCount = 0;
         for (final ModPlanksBlock wood : planksBlocks)
         {
-            registerPlanksBlock(wood, String.format("wood%d", planksCount), wood.getSubblockNames());
+            registerPlanksBlock(wood, String.format("wood%d", planksCount), wood.getSubBlockNames());
             planksCount++;
         }
     }

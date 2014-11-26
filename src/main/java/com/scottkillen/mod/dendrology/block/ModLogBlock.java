@@ -21,15 +21,6 @@ public class ModLogBlock extends BlockLog
     public static final int CAPACITY = 4;
     private final ImmutableList<Named> names;
 
-    @SuppressWarnings("LocalVariableHidesMemberVariable")
-    public ImmutableList<String> getSubBlockNames()
-    {
-        final List<String> names = Lists.newArrayList();
-        for (final Named named : this.names)
-            names.add(named.getName());
-        return ImmutableList.copyOf(names);
-    }
-
     public ModLogBlock(List<? extends Named> names)
     {
         Preconditions.checkArgument(!names.isEmpty());
@@ -43,6 +34,15 @@ public class ModLogBlock extends BlockLog
     protected static String getUnwrappedUnlocalizedName(String unlocalizedName)
     {
         return unlocalizedName.substring(unlocalizedName.indexOf('.') + 1);
+    }
+
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
+    public ImmutableList<String> getSubBlockNames()
+    {
+        final List<String> names = Lists.newArrayList();
+        for (final Named named : this.names)
+            names.add(named.getName());
+        return ImmutableList.copyOf(names);
     }
 
     @Override
