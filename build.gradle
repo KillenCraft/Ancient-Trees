@@ -57,33 +57,19 @@ jar {
 	includeEmptyDirs = false
 }
 
-// create a deobfuscated jar for developers
-task devJar(type: Jar) {
-    from(sourceSets.main.output) {
-        include '**/*.info'
-        include '**/version.properties'
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
 
-        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.forgeversion
-    }
-
-    from(sourceSets.main.output) {
-        exclude '**/*.info'
-        exclude '**/version.properties'
-    }
-
-    from(sourceSets.main.allSource) {
-        exclude '**/*.info'
-        exclude '**/version.properties'
-    }
-
-	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-	classifier = 'dev'
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
 }
 
 artifacts {
-    archives devJar
+    archives sourcesJar
+    archives deobfJar
 }
 
 uploadArchives {
