@@ -9,7 +9,7 @@ import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
 import com.scottkillen.mod.dendrology.block.ModStairsBlock;
 import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
-import com.scottkillen.mod.kore.trees.DefinesTree;
+import com.scottkillen.mod.kore.tree.DefinesTree;
 import net.minecraft.block.Block;
 import java.util.List;
 

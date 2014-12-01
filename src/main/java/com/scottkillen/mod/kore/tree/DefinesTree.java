@@ -1,4 +1,4 @@
-package com.scottkillen.mod.kore.trees;
+package com.scottkillen.mod.kore.tree;
 
 import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
 import com.scottkillen.mod.dendrology.block.ModLogBlock;

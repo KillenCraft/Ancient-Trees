@@ -7,7 +7,7 @@ import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.world.AcemusColorizer;
 import com.scottkillen.mod.dendrology.world.CerasuColorizer;
 import com.scottkillen.mod.dendrology.world.KulistColorizer;
-import com.scottkillen.mod.kore.trees.DescribesLeaves;
+import com.scottkillen.mod.kore.tree.DescribesLeaves;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;

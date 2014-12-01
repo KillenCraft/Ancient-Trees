@@ -1,7 +1,7 @@
 package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.collect.ImmutableList;
-import com.scottkillen.mod.kore.trees.DefinesTree;
+import com.scottkillen.mod.kore.tree.DefinesTree;
 import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
 import com.scottkillen.mod.dendrology.content.loader.SpeciesLoader;
 import com.scottkillen.mod.dendrology.item.LeavesItem;

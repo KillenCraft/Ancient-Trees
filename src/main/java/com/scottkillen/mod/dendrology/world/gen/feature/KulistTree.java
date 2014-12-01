@@ -1,7 +1,7 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.kore.trees.DefinesTree;
+import com.scottkillen.mod.kore.tree.DefinesTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.kulist.LargeKulistTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.kulist.NormalKulistTree;
 import net.minecraft.world.World;

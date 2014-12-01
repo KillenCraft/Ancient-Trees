@@ -22,7 +22,7 @@ import com.scottkillen.mod.dendrology.world.gen.feature.NucisTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.PorfforTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.SalyxTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.TuopaTree;
-import com.scottkillen.mod.kore.trees.DefinesTree;
+import com.scottkillen.mod.kore.tree.DefinesTree;
 
 import static com.google.common.base.Preconditions.*;
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.ACEMUS_COLOR;

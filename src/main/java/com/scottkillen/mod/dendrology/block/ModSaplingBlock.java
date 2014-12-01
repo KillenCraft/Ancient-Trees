@@ -5,7 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.kore.common.Named;
-import com.scottkillen.mod.kore.trees.ProvidesAbstractTree;
+import com.scottkillen.mod.kore.tree.ProvidesAbstractTree;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSapling;

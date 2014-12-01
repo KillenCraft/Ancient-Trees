@@ -5,7 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
 import com.scottkillen.mod.dendrology.block.ModLogBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
-import com.scottkillen.mod.kore.trees.DefinesTree;
+import com.scottkillen.mod.kore.tree.DefinesTree;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;

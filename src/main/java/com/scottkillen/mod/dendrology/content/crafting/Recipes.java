@@ -1,7 +1,7 @@
 package com.scottkillen.mod.dendrology.content.crafting;
 
 import com.scottkillen.mod.dendrology.block.ModBlocks;
-import com.scottkillen.mod.kore.trees.DefinesTree;
+import com.scottkillen.mod.kore.tree.DefinesTree;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 
