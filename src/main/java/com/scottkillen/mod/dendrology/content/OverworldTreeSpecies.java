@@ -31,7 +31,7 @@ import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.KULI
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NO_COLOR;
 
 @SuppressWarnings({ "NonSerializableFieldInSerializableClass", "ClassHasNoToStringMethod" })
-public enum OverworldSpecies implements ISpecies
+public enum OverworldTreeSpecies implements ITreeSpecies
 {
     // REORDERING WILL CAUSE DAMAGE TO SAVES
     ACEMUS(ACEMUS_COLOR, new AcemusTree()),
@@ -67,11 +67,11 @@ public enum OverworldSpecies implements ISpecies
 
     static
     {
-        for (final OverworldSpecies tree : OverworldSpecies.values())
+        for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
             tree.treeGen.setTree(tree);
     }
 
-    OverworldSpecies(Colorizer colorizer, AbstractTree treeGen)
+    OverworldTreeSpecies(Colorizer colorizer, AbstractTree treeGen)
     {
         this.colorizer = colorizer;
         this.treeGen = treeGen;

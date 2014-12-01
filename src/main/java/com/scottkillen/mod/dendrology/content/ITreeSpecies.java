@@ -10,7 +10,7 @@ import com.scottkillen.mod.kore.trees.DescribesLeaves;
 import com.scottkillen.mod.kore.trees.DescribesSlabs;
 import com.scottkillen.mod.kore.trees.ProvidesAbstractTree;
 
-public interface ISpecies extends DescribesLeaves, DescribesSlabs, ProvidesAbstractTree
+public interface ITreeSpecies extends DescribesLeaves, DescribesSlabs, ProvidesAbstractTree
 {
     ModLeavesBlock getLeavesBlock();
 
