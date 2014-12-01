@@ -3,7 +3,7 @@ package com.scottkillen.mod.dendrology.block;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.dendrology.content.ISpecies;
+import com.scottkillen.mod.kore.trees.DescribesSlabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -23,22 +23,15 @@ public class ModWoodSlabBlock extends BlockSlab
 {
     public static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
-    private final ImmutableList<ISpecies> trees;
-    private final ImmutableList<String> subblockNames;
+    private final ImmutableList<DescribesSlabs> descriptors;
 
-    public ModWoodSlabBlock(boolean isDouble, List<String> subblockNames, List<ISpecies> trees)
+    public ModWoodSlabBlock(boolean isDouble, List<? extends DescribesSlabs> descriptors)
     {
         super(isDouble, Material.wood);
 
-        checkArgument(!subblockNames.isEmpty());
-        checkArgument(subblockNames.size() <= CAPACITY);
-        this.subblockNames = ImmutableList.copyOf(subblockNames);
-
-        checkArgument(!trees.isEmpty());
-        checkArgument(trees.size() <= CAPACITY);
-        this.trees = ImmutableList.copyOf(trees);
-
-        checkArgument(subblockNames.size() == trees.size());
+        checkArgument(!descriptors.isEmpty());
+        checkArgument(descriptors.size() <= CAPACITY);
+        this.descriptors = ImmutableList.copyOf(descriptors);
 
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("slab");
@@ -64,22 +57,22 @@ public class ModWoodSlabBlock extends BlockSlab
     @Override
     public IIcon getIcon(int side, int metadata)
     {
-        final ISpecies tree = trees.get(mask(metadata));
-        return tree.getPlanksBlock().getIcon(side, mask(metadata));
+        final DescribesSlabs descriptor = descriptors.get(mask(metadata));
+        return descriptor.getPlanksBlock().getIcon(side, mask(metadata));
     }
 
     @Override
     public Item getItemDropped(int metadata, Random unused, int unused2)
     {
-        final ISpecies tree = trees.get(mask(metadata));
-        return Item.getItemFromBlock(tree.getSingleSlabBlock());
+        final DescribesSlabs descriptor = descriptors.get(mask(metadata));
+        return Item.getItemFromBlock(descriptor.getSingleSlabBlock());
     }
 
     @Override
     protected ItemStack createStackedBlock(int metadata)
     {
-        final ISpecies tree = trees.get(mask(metadata));
-        return new ItemStack(Item.getItemFromBlock(tree.getSingleSlabBlock()), 2, tree.getSlabMeta());
+        final DescribesSlabs descriptor = descriptors.get(mask(metadata));
+        return new ItemStack(Item.getItemFromBlock(descriptor.getSingleSlabBlock()), 2, descriptor.getSlabMeta());
     }
 
     @Override
@@ -96,7 +89,7 @@ public class ModWoodSlabBlock extends BlockSlab
     {
         if (isSingleSlab(item))
         {
-            for (int i = 0; i < subblockNames.size(); ++i)
+            for (int i = 0; i < descriptors.size(); ++i)
             {
                 //noinspection ObjectAllocationInLoop
                 subblocks.add(new ItemStack(item, 1, i));
@@ -112,17 +105,17 @@ public class ModWoodSlabBlock extends BlockSlab
     public String func_150002_b(int metadata)
     {
         int metadata1 = metadata;
-        if (metadata1 < 0 || metadata1 >= subblockNames.size())
+        if (metadata1 < 0 || metadata1 >= descriptors.size())
         {
             metadata1 = 0;
         }
 
-        return getUnlocalizedName() + '.' + subblockNames.get(metadata1);
+        return getUnlocalizedName() + '.' + descriptors.get(metadata1).getName();
     }
 
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("trees", trees).add("subblockNames", subblockNames).toString();
+        return Objects.toStringHelper(this).add("descriptors", descriptors).toString();
     }
 }

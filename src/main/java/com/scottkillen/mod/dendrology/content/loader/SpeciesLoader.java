@@ -145,25 +145,22 @@ public class SpeciesLoader
 
     private void loadSlabBlocks()
     {
-        final List<String> names = Lists.newArrayList();
         final List<ISpecies> trees = Lists.newArrayList();
         for (final ISpecies aSpecies : species)
         {
-            aSpecies.setSlabMeta(names.size());
+            aSpecies.setSlabMeta(trees.size());
 
-            names.add(aSpecies.toString());
             trees.add(aSpecies);
-            if (names.size() == ModWoodSlabBlock.CAPACITY)
+            if (trees.size() == ModWoodSlabBlock.CAPACITY)
             {
-                createSlabBlocks(names, trees);
+                createSlabBlocks(trees);
 
-                names.clear();
                 trees.clear();
             }
         }
-        if (!names.isEmpty())
+        if (!trees.isEmpty())
         {
-            createSlabBlocks(names, trees);
+            createSlabBlocks(trees);
         }
     }
 
@@ -215,10 +212,10 @@ public class SpeciesLoader
             update.setSaplingBlock(block);
     }
 
-    private void createSlabBlocks(List<String> names, List<ISpecies> pendingUpdates)
+    private void createSlabBlocks(List<ISpecies> pendingUpdates)
     {
-        final ModWoodSlabBlock singleSlabBlock = new ModWoodSlabBlock(false, names, pendingUpdates);
-        final ModWoodSlabBlock doubleSlabBlock = new ModWoodSlabBlock(true, names, pendingUpdates);
+        final ModWoodSlabBlock singleSlabBlock = new ModWoodSlabBlock(false, pendingUpdates);
+        final ModWoodSlabBlock doubleSlabBlock = new ModWoodSlabBlock(true, pendingUpdates);
 
         singleSlabBlocks.add(singleSlabBlock);
         doubleSlabBlocks.add(doubleSlabBlock);
