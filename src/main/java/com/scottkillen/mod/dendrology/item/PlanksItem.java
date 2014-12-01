@@ -1,6 +1,6 @@
 package com.scottkillen.mod.dendrology.item;
 
-import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
+import com.scottkillen.mod.kore.tree.block.ModPlanksBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemMultiTexture;
 

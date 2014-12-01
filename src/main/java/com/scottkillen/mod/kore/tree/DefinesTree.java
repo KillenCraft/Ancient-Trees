@@ -1,11 +1,11 @@
 package com.scottkillen.mod.kore.tree;
 
-import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
-import com.scottkillen.mod.dendrology.block.ModLogBlock;
-import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
-import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
-import com.scottkillen.mod.dendrology.block.ModStairsBlock;
-import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
+import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
+import com.scottkillen.mod.kore.tree.block.ModLogBlock;
+import com.scottkillen.mod.kore.tree.block.ModPlanksBlock;
+import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
+import com.scottkillen.mod.kore.tree.block.ModStairsBlock;
+import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
 
 public interface DefinesTree extends DescribesLeaves, DescribesSlabs, ProvidesAbstractTree
 {

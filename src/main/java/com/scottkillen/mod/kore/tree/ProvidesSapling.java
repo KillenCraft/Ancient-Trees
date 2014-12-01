@@ -1,6 +1,6 @@
 package com.scottkillen.mod.kore.tree;
 
-import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
+import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
 
 public interface ProvidesSapling
 {

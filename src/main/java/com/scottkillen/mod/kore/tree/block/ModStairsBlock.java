@@ -1,4 +1,4 @@
-package com.scottkillen.mod.dendrology.block;
+package com.scottkillen.mod.kore.tree.block;
 
 import com.scottkillen.mod.dendrology.TheMod;
 import net.minecraft.block.Block;

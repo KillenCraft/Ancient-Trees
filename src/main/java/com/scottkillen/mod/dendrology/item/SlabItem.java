@@ -1,6 +1,6 @@
 package com.scottkillen.mod.dendrology.item;
 
-import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
+import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemSlab;
 

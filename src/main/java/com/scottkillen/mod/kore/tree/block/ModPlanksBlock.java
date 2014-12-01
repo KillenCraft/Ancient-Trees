@@ -1,4 +1,4 @@
-package com.scottkillen.mod.dendrology.block;
+package com.scottkillen.mod.kore.tree.block;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
@@ -8,7 +8,7 @@ import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.kore.common.Named;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockWood;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -16,18 +16,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import java.util.List;
 
-public class ModLogBlock extends BlockLog
+public class ModPlanksBlock extends BlockWood
 {
-    public static final int CAPACITY = 4;
+    public static final int CAPACITY = 16;
     private final ImmutableList<Named> names;
+    private final List<IIcon> icons = Lists.newArrayList();
 
-    public ModLogBlock(List<? extends Named> names)
+    public ModPlanksBlock(List<? extends Named> names)
     {
         Preconditions.checkArgument(!names.isEmpty());
         Preconditions.checkArgument(names.size() <= CAPACITY);
         this.names = ImmutableList.copyOf(names);
         setCreativeTab(TheMod.CREATIVE_TAB);
-        setBlockName("log");
+        setBlockName("wood");
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -35,6 +36,7 @@ public class ModLogBlock extends BlockLog
     {
         return unlocalizedName.substring(unlocalizedName.indexOf('.') + 1);
     }
+
 
     @SuppressWarnings("LocalVariableHidesMemberVariable")
     public ImmutableList<String> getSubBlockNames()
@@ -52,6 +54,14 @@ public class ModLogBlock extends BlockLog
         return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
+    @SideOnly(Side.CLIENT)
+    @Override
+    public IIcon getIcon(int unused, int meta)
+    {
+        final int meta1 = meta < 0 || meta >= icons.size() ? 0 : meta;
+        return icons.get(meta1);
+    }
+
     @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     @Override
@@ -63,24 +73,21 @@ public class ModLogBlock extends BlockLog
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        field_150167_a = new IIcon[names.size()];
-        field_150166_b = new IIcon[names.size()];
+        icons.clear();
 
         for (int i = 0; i < names.size(); i++)
         {
             //noinspection StringConcatenationMissingWhitespace
-            final String iconName = TheMod.RESOURCE_PREFIX + "log_" + names.get(i).getName();
-            field_150167_a[i] = iconRegister.registerIcon(iconName);
-            field_150166_b[i] = iconRegister.registerIcon(iconName + "_top");
+            final String iconName = TheMod.RESOURCE_PREFIX + "planks_" + names.get(i).getName();
+            icons.add(i, iconRegister.registerIcon(iconName));
         }
     }
 
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("names", names).toString();
+        return Objects.toStringHelper(this).add("names", names).add("icons", icons).toString();
     }
 }

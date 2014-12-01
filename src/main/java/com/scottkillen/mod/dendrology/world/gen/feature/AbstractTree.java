@@ -2,9 +2,9 @@ package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
-import com.scottkillen.mod.dendrology.block.ModLogBlock;
-import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
+import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
+import com.scottkillen.mod.kore.tree.block.ModLogBlock;
+import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
 import com.scottkillen.mod.kore.tree.DefinesTree;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;

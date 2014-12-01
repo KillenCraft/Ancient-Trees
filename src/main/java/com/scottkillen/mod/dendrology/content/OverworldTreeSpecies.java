@@ -1,13 +1,13 @@
 package com.scottkillen.mod.dendrology.content;
 
 
-import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
-import com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer;
-import com.scottkillen.mod.dendrology.block.ModLogBlock;
-import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
-import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
-import com.scottkillen.mod.dendrology.block.ModStairsBlock;
-import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
+import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
+import com.scottkillen.mod.kore.tree.block.ModLeavesBlock.Colorizer;
+import com.scottkillen.mod.kore.tree.block.ModLogBlock;
+import com.scottkillen.mod.kore.tree.block.ModPlanksBlock;
+import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
+import com.scottkillen.mod.kore.tree.block.ModStairsBlock;
+import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.AcemusTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.CedrumTree;
@@ -25,11 +25,11 @@ import com.scottkillen.mod.dendrology.world.gen.feature.TuopaTree;
 import com.scottkillen.mod.kore.tree.DefinesTree;
 
 import static com.google.common.base.Preconditions.*;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.ACEMUS_COLOR;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.BASIC_COLOR;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.CERASU_COLOR;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.KULIST_COLOR;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NO_COLOR;
+import static com.scottkillen.mod.kore.tree.block.ModLeavesBlock.Colorizer.ACEMUS_COLOR;
+import static com.scottkillen.mod.kore.tree.block.ModLeavesBlock.Colorizer.BASIC_COLOR;
+import static com.scottkillen.mod.kore.tree.block.ModLeavesBlock.Colorizer.CERASU_COLOR;
+import static com.scottkillen.mod.kore.tree.block.ModLeavesBlock.Colorizer.KULIST_COLOR;
+import static com.scottkillen.mod.kore.tree.block.ModLeavesBlock.Colorizer.NO_COLOR;
 
 @SuppressWarnings({ "NonSerializableFieldInSerializableClass", "ClassHasNoToStringMethod" })
 public enum OverworldTreeSpecies implements DefinesTree
