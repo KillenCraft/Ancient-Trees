@@ -22,6 +22,7 @@ import com.scottkillen.mod.dendrology.world.gen.feature.NucisTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.PorfforTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.SalyxTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.TuopaTree;
+import com.scottkillen.mod.kore.trees.DefinesTree;
 
 import static com.google.common.base.Preconditions.*;
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.ACEMUS_COLOR;
@@ -31,7 +32,7 @@ import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.KULI
 import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NO_COLOR;
 
 @SuppressWarnings({ "NonSerializableFieldInSerializableClass", "ClassHasNoToStringMethod" })
-public enum OverworldTreeSpecies implements ITreeSpecies
+public enum OverworldTreeSpecies implements DefinesTree
 {
     // REORDERING WILL CAUSE DAMAGE TO SAVES
     ACEMUS(ACEMUS_COLOR, new AcemusTree()),
@@ -144,38 +145,10 @@ public enum OverworldTreeSpecies implements ITreeSpecies
     public void setPlanksMeta(int planksMeta) { this.planksMeta = planksMeta; }
 
     @Override
-    public ModSaplingBlock getSaplingBlock()
-    {
-        checkState(saplingBlock != null);
-        return saplingBlock;
-    }
-
-    @Override
-    public void setSaplingBlock(ModSaplingBlock saplingBlock)
-    {
-        checkState(this.saplingBlock == null);
-        this.saplingBlock = saplingBlock;
-    }
-
-    @Override
-    public int getSaplingMeta() { return saplingMeta; }
-
-    @Override
-    public void setSaplingMeta(int saplingMeta) { this.saplingMeta = saplingMeta; }
-
-    @Override
     public ModWoodSlabBlock getSingleSlabBlock()
     {
         checkState(singleSlabBlock != null);
         return singleSlabBlock;
-    }
-
-    @Override
-    public void setSlabBlock(ModWoodSlabBlock block, boolean isDouble)
-    {
-        checkState(isDouble ? doubleSlabBlock == null : singleSlabBlock == null);
-        if (isDouble) doubleSlabBlock = block;
-        else singleSlabBlock = block;
     }
 
     @Override
@@ -196,6 +169,34 @@ public enum OverworldTreeSpecies implements ITreeSpecies
     {
         checkState(this.stairsBlock == null);
         this.stairsBlock = stairsBlock;
+    }
+
+    @Override
+    public ModSaplingBlock getSaplingBlock()
+    {
+        checkState(saplingBlock != null);
+        return saplingBlock;
+    }
+
+    @Override
+    public void setSaplingBlock(ModSaplingBlock saplingBlock)
+    {
+        checkState(this.saplingBlock == null);
+        this.saplingBlock = saplingBlock;
+    }
+
+    @Override
+    public int getSaplingMeta() { return saplingMeta; }
+
+    @Override
+    public void setSaplingMeta(int saplingMeta) { this.saplingMeta = saplingMeta; }
+
+    @Override
+    public void setSlabBlock(ModWoodSlabBlock block, boolean isDouble)
+    {
+        checkState(isDouble ? doubleSlabBlock == null : singleSlabBlock == null);
+        if (isDouble) doubleSlabBlock = block;
+        else singleSlabBlock = block;
     }
 
     @Override

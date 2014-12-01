@@ -9,13 +9,13 @@ import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
 import com.scottkillen.mod.dendrology.block.ModStairsBlock;
 import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
-import com.scottkillen.mod.dendrology.content.ITreeSpecies;
+import com.scottkillen.mod.kore.trees.DefinesTree;
 import net.minecraft.block.Block;
 import java.util.List;
 
 public class SpeciesLoader
 {
-    private final ImmutableList<ITreeSpecies> species;
+    private final ImmutableList<DefinesTree> species;
 
     private List<ModLogBlock> logBlocks;
     private List<ModLeavesBlock> leavesBlocks;
@@ -25,7 +25,7 @@ public class SpeciesLoader
     private List<ModWoodSlabBlock> doubleSlabBlocks;
     private List<ModStairsBlock> stairsBlocks;
 
-    public SpeciesLoader(List<? extends ITreeSpecies> species)
+    public SpeciesLoader(List<? extends DefinesTree> species)
     {
         this.species = ImmutableList.copyOf(species);
         logBlocks = Lists.newArrayListWithCapacity(species.size() / ModLogBlock.CAPACITY + 1);
@@ -61,8 +61,8 @@ public class SpeciesLoader
 
     private void loadLeavesBlocks()
     {
-        final List<ITreeSpecies> trees = Lists.newArrayListWithCapacity(ModLeavesBlock.CAPACITY);
-        for (final ITreeSpecies aSpecies : species)
+        final List<DefinesTree> trees = Lists.newArrayListWithCapacity(ModLeavesBlock.CAPACITY);
+        for (final DefinesTree aSpecies : species)
         {
             aSpecies.setLeavesMeta(trees.size());
 
@@ -82,8 +82,8 @@ public class SpeciesLoader
 
     private void loadLogBlocks()
     {
-        final List<ITreeSpecies> pendingUpdates = Lists.newArrayListWithCapacity(ModLogBlock.CAPACITY);
-        for (final ITreeSpecies aSpecies : species)
+        final List<DefinesTree> pendingUpdates = Lists.newArrayListWithCapacity(ModLogBlock.CAPACITY);
+        for (final DefinesTree aSpecies : species)
         {
             aSpecies.setLogMeta(pendingUpdates.size());
 
@@ -103,8 +103,8 @@ public class SpeciesLoader
 
     private void loadPlanksBlocks()
     {
-        final List<ITreeSpecies> pendingUpdates = Lists.newArrayListWithCapacity(ModPlanksBlock.CAPACITY);
-        for (final ITreeSpecies aSpecies : species)
+        final List<DefinesTree> pendingUpdates = Lists.newArrayListWithCapacity(ModPlanksBlock.CAPACITY);
+        for (final DefinesTree aSpecies : species)
         {
             aSpecies.setPlanksMeta(pendingUpdates.size());
 
@@ -124,8 +124,8 @@ public class SpeciesLoader
 
     private void loadSaplingBlocks()
     {
-        final List<ITreeSpecies> trees = Lists.newArrayList();
-        for (final ITreeSpecies aSpecies : species)
+        final List<DefinesTree> trees = Lists.newArrayList();
+        for (final DefinesTree aSpecies : species)
         {
             aSpecies.setSaplingMeta(trees.size());
 
@@ -145,8 +145,8 @@ public class SpeciesLoader
 
     private void loadSlabBlocks()
     {
-        final List<ITreeSpecies> trees = Lists.newArrayList();
-        for (final ITreeSpecies aSpecies : species)
+        final List<DefinesTree> trees = Lists.newArrayList();
+        for (final DefinesTree aSpecies : species)
         {
             aSpecies.setSlabMeta(trees.size());
 
@@ -166,7 +166,7 @@ public class SpeciesLoader
 
     private void loadStairsBlocks()
     {
-        for (final ITreeSpecies aSpecies : species)
+        for (final DefinesTree aSpecies : species)
         {
             //noinspection ObjectAllocationInLoop
             final ModStairsBlock block = new ModStairsBlock(aSpecies.getPlanksBlock(), aSpecies.getPlanksMeta());
@@ -176,43 +176,43 @@ public class SpeciesLoader
         }
     }
 
-    private void createLeavesBlock(List<ITreeSpecies> pendingUpdates)
+    private void createLeavesBlock(List<DefinesTree> pendingUpdates)
     {
         final ModLeavesBlock block = new ModLeavesBlock(pendingUpdates);
         leavesBlocks.add(block);
 
-        for (final ITreeSpecies update : pendingUpdates)
+        for (final DefinesTree update : pendingUpdates)
             update.setLeavesBlock(block);
     }
 
-    private void createLogBlock(List<ITreeSpecies> pendingUpdates)
+    private void createLogBlock(List<DefinesTree> pendingUpdates)
     {
         final ModLogBlock block = new ModLogBlock(pendingUpdates);
         logBlocks.add(block);
 
-        for (final ITreeSpecies update : pendingUpdates)
+        for (final DefinesTree update : pendingUpdates)
             update.setLogBlock(block);
     }
 
-    private void createPlanksBlock(List<ITreeSpecies> pendingUpdates)
+    private void createPlanksBlock(List<DefinesTree> pendingUpdates)
     {
         final ModPlanksBlock block = new ModPlanksBlock(pendingUpdates);
         planksBlocks.add(block);
 
-        for (final ITreeSpecies update : pendingUpdates)
+        for (final DefinesTree update : pendingUpdates)
             update.setPlanksBlock(block);
     }
 
-    private void createSaplingBlock(List<ITreeSpecies> pendingUpdates)
+    private void createSaplingBlock(List<DefinesTree> pendingUpdates)
     {
         final ModSaplingBlock block = new ModSaplingBlock(pendingUpdates);
         saplingBlocks.add(block);
 
-        for (final ITreeSpecies update : pendingUpdates)
+        for (final DefinesTree update : pendingUpdates)
             update.setSaplingBlock(block);
     }
 
-    private void createSlabBlocks(List<ITreeSpecies> pendingUpdates)
+    private void createSlabBlocks(List<DefinesTree> pendingUpdates)
     {
         final ModWoodSlabBlock singleSlabBlock = new ModWoodSlabBlock(false, pendingUpdates);
         final ModWoodSlabBlock doubleSlabBlock = new ModWoodSlabBlock(true, pendingUpdates);
@@ -220,7 +220,7 @@ public class SpeciesLoader
         singleSlabBlocks.add(singleSlabBlock);
         doubleSlabBlocks.add(doubleSlabBlock);
 
-        for (final ITreeSpecies update : pendingUpdates)
+        for (final DefinesTree update : pendingUpdates)
         {
             update.setSlabBlock(singleSlabBlock, false);
             update.setSlabBlock(doubleSlabBlock, true);
@@ -268,7 +268,7 @@ public class SpeciesLoader
         return singleSlabBlocks.contains(block);
     }
 
-    public ImmutableList<ITreeSpecies> getSpecies()
+    public ImmutableList<DefinesTree> getSpecies()
     {
         return ImmutableList.copyOf(species);
     }

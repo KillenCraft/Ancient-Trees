@@ -1,7 +1,7 @@
 package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.collect.ImmutableList;
-import com.scottkillen.mod.dendrology.content.ITreeSpecies;
+import com.scottkillen.mod.kore.trees.DefinesTree;
 import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
 import com.scottkillen.mod.dendrology.content.loader.SpeciesLoader;
 import com.scottkillen.mod.dendrology.item.LeavesItem;
@@ -202,7 +202,7 @@ public final class ModBlocks
         return overworldContent.getStairsBlocks();
     }
 
-    public static Iterable<? extends ITreeSpecies> getContent()
+    public static Iterable<? extends DefinesTree> getContent()
     {
         return overworldContent.getSpecies();
     }

@@ -1,7 +1,7 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.content.ITreeSpecies;
+import com.scottkillen.mod.kore.trees.DefinesTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.acemus.LargeAcemusTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.vanilla.VanillaTree;
 import net.minecraft.world.World;
@@ -19,7 +19,7 @@ public class AcemusTree extends AbstractTree
     }
 
     @Override
-    public void setTree(ITreeSpecies tree)
+    public void setTree(DefinesTree tree)
     {
         treeGen.setTree(tree);
         largeTreeGen.setTree(tree);

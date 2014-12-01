@@ -5,7 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
 import com.scottkillen.mod.dendrology.block.ModLogBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
-import com.scottkillen.mod.dendrology.content.ITreeSpecies;
+import com.scottkillen.mod.kore.trees.DefinesTree;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -20,7 +20,7 @@ public abstract class AbstractTree extends WorldGenAbstractTree
     protected static final ImmutableList<ImmutablePair<Integer, Integer>> BRANCH_DIRECTIONS = ImmutableList
             .of(ImmutablePair.of(-1, 0), ImmutablePair.of(1, 0), ImmutablePair.of(0, -1), ImmutablePair.of(0, 1),
                     ImmutablePair.of(-1, 1), ImmutablePair.of(-1, -1), ImmutablePair.of(1, 1), ImmutablePair.of(1, -1));
-    private ITreeSpecies tree = null;
+    private DefinesTree tree = null;
 
     protected AbstractTree() { super(true); }
 
@@ -32,7 +32,7 @@ public abstract class AbstractTree extends WorldGenAbstractTree
         return block.isAir(world, x, y, z) || block.isLeaves(world, x, y, z);
     }
 
-    public void setTree(ITreeSpecies tree)
+    public void setTree(DefinesTree tree)
     {
         this.tree = tree;
     }
@@ -66,7 +66,6 @@ public abstract class AbstractTree extends WorldGenAbstractTree
 
     protected ModSaplingBlock getSaplingBlock() { return tree.getSaplingBlock(); }
 
-    @SuppressWarnings("UnusedReturnValue")
     protected boolean placeLeaves(World world, int x, int y, int z)
     {
         if (world.getBlock(x, y, z).canBeReplacedByLeaves(world, x, y, z))
@@ -77,7 +76,6 @@ public abstract class AbstractTree extends WorldGenAbstractTree
         return false;
     }
 
-    @SuppressWarnings("UnusedReturnValue")
     protected boolean placeLog(World world, int x, int y, int z)
     {
         if (canBeReplacedByLog(world, x, y, z))

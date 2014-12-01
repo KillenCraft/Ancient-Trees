@@ -1,4 +1,4 @@
-package com.scottkillen.mod.dendrology.content;
+package com.scottkillen.mod.kore.trees;
 
 import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
 import com.scottkillen.mod.dendrology.block.ModLogBlock;
@@ -6,11 +6,8 @@ import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
 import com.scottkillen.mod.dendrology.block.ModStairsBlock;
 import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
-import com.scottkillen.mod.kore.trees.DescribesLeaves;
-import com.scottkillen.mod.kore.trees.DescribesSlabs;
-import com.scottkillen.mod.kore.trees.ProvidesAbstractTree;
 
-public interface ITreeSpecies extends DescribesLeaves, DescribesSlabs, ProvidesAbstractTree
+public interface DefinesTree extends DescribesLeaves, DescribesSlabs, ProvidesAbstractTree
 {
     ModLeavesBlock getLeavesBlock();
 
