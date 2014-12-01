@@ -3,10 +3,10 @@ package com.scottkillen.mod.kore.tree.block;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.world.AcemusColorizer;
 import com.scottkillen.mod.dendrology.world.CerasuColorizer;
 import com.scottkillen.mod.dendrology.world.KulistColorizer;
+import com.scottkillen.mod.kore.common.OrganizesResources;
 import com.scottkillen.mod.kore.tree.DescribesLeaves;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -31,15 +31,18 @@ public class ModLeavesBlock extends BlockLeaves
     public static final int CAPACITY = 4;
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<DescribesLeaves> descriptors;
+    private final String resourcePrefix;
 
-    public ModLeavesBlock(List<? extends DescribesLeaves> descriptors)
+    public ModLeavesBlock(List<? extends DescribesLeaves> descriptors, OrganizesResources resourceOrganizer)
     {
         checkArgument(!descriptors.isEmpty());
         checkArgument(descriptors.size() <= CAPACITY);
         this.descriptors = ImmutableList.copyOf(descriptors);
 
-        setCreativeTab(TheMod.CREATIVE_TAB);
+        setCreativeTab(resourceOrganizer.getCreativeTab());
         setBlockName("leaves");
+
+        resourcePrefix = resourceOrganizer.getResourcePrefix();
     }
 
     private static int mask(int metadata) {return metadata & METADATA_MASK;}
@@ -133,7 +136,7 @@ public class ModLeavesBlock extends BlockLeaves
     public String getUnlocalizedName()
     {
         //noinspection StringConcatenationMissingWhitespace
-        return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+        return "tile." + resourcePrefix + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
     @Override
@@ -165,7 +168,7 @@ public class ModLeavesBlock extends BlockLeaves
             final DescribesLeaves descriptor = descriptors.get(i);
             final String name = descriptor.getName();
             //noinspection StringConcatenationMissingWhitespace
-            final String iconName = TheMod.RESOURCE_PREFIX + "leaves_" + name.replace('.', '_');
+            final String iconName = resourcePrefix + "leaves_" + name.replace('.', '_');
             field_150129_M[0][i] = iconRegister.registerIcon(iconName);
             field_150129_M[1][i] = iconRegister.registerIcon(iconName + "_opaque");
         }
@@ -185,7 +188,8 @@ public class ModLeavesBlock extends BlockLeaves
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("descriptors", descriptors).toString();
+        return Objects.toStringHelper(this).add("descriptors", descriptors).add("resourcePrefix", resourcePrefix)
+                .toString();
     }
 
     public enum Colorizer

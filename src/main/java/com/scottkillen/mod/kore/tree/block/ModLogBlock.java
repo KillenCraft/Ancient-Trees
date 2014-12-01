@@ -4,8 +4,8 @@ import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.kore.common.Named;
+import com.scottkillen.mod.kore.common.OrganizesResources;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockLog;
@@ -20,14 +20,17 @@ public class ModLogBlock extends BlockLog
 {
     public static final int CAPACITY = 4;
     private final ImmutableList<Named> names;
+    private final String resourcePrefix;
 
-    public ModLogBlock(List<? extends Named> names)
+    public ModLogBlock(List<? extends Named> names, OrganizesResources resourceOrganizer)
     {
         Preconditions.checkArgument(!names.isEmpty());
         Preconditions.checkArgument(names.size() <= CAPACITY);
         this.names = ImmutableList.copyOf(names);
-        setCreativeTab(TheMod.CREATIVE_TAB);
+        setCreativeTab(resourceOrganizer.getCreativeTab());
         setBlockName("log");
+
+        resourcePrefix = resourceOrganizer.getResourcePrefix();
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -49,7 +52,7 @@ public class ModLogBlock extends BlockLog
     public String getUnlocalizedName()
     {
         //noinspection StringConcatenationMissingWhitespace
-        return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+        return "tile." + resourcePrefix + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
     @SuppressWarnings("unchecked")
@@ -72,7 +75,7 @@ public class ModLogBlock extends BlockLog
         for (int i = 0; i < names.size(); i++)
         {
             //noinspection StringConcatenationMissingWhitespace
-            final String iconName = TheMod.RESOURCE_PREFIX + "log_" + names.get(i).getName();
+            final String iconName = resourcePrefix + "log_" + names.get(i).getName();
             field_150167_a[i] = iconRegister.registerIcon(iconName);
             field_150166_b[i] = iconRegister.registerIcon(iconName + "_top");
         }
@@ -81,6 +84,6 @@ public class ModLogBlock extends BlockLog
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("names", names).toString();
+        return Objects.toStringHelper(this).add("names", names).add("resourcePrefix", resourcePrefix).toString();
     }
 }

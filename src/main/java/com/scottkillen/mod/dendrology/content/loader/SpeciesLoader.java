@@ -3,13 +3,14 @@ package com.scottkillen.mod.dendrology.content.loader;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.kore.tree.DefinesTree;
 import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
 import com.scottkillen.mod.kore.tree.block.ModLogBlock;
 import com.scottkillen.mod.kore.tree.block.ModPlanksBlock;
 import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
 import com.scottkillen.mod.kore.tree.block.ModStairsBlock;
 import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
-import com.scottkillen.mod.kore.tree.DefinesTree;
 import net.minecraft.block.Block;
 import java.util.List;
 
@@ -169,7 +170,8 @@ public class SpeciesLoader
         for (final DefinesTree aSpecies : species)
         {
             //noinspection ObjectAllocationInLoop
-            final ModStairsBlock block = new ModStairsBlock(aSpecies.getPlanksBlock(), aSpecies.getPlanksMeta());
+            final ModStairsBlock block =
+                    new ModStairsBlock(aSpecies.getPlanksBlock(), aSpecies.getPlanksMeta(), TheMod.INSTANCE);
             block.setBlockName(String.format("stairs.%s", aSpecies.getName()));
             stairsBlocks.add(block);
             aSpecies.setStairsBlock(block);
@@ -178,7 +180,7 @@ public class SpeciesLoader
 
     private void createLeavesBlock(List<DefinesTree> pendingUpdates)
     {
-        final ModLeavesBlock block = new ModLeavesBlock(pendingUpdates);
+        final ModLeavesBlock block = new ModLeavesBlock(pendingUpdates, TheMod.INSTANCE);
         leavesBlocks.add(block);
 
         for (final DefinesTree update : pendingUpdates)
@@ -187,7 +189,7 @@ public class SpeciesLoader
 
     private void createLogBlock(List<DefinesTree> pendingUpdates)
     {
-        final ModLogBlock block = new ModLogBlock(pendingUpdates);
+        final ModLogBlock block = new ModLogBlock(pendingUpdates, TheMod.INSTANCE);
         logBlocks.add(block);
 
         for (final DefinesTree update : pendingUpdates)
@@ -196,7 +198,7 @@ public class SpeciesLoader
 
     private void createPlanksBlock(List<DefinesTree> pendingUpdates)
     {
-        final ModPlanksBlock block = new ModPlanksBlock(pendingUpdates);
+        final ModPlanksBlock block = new ModPlanksBlock(pendingUpdates, TheMod.INSTANCE);
         planksBlocks.add(block);
 
         for (final DefinesTree update : pendingUpdates)
@@ -205,7 +207,7 @@ public class SpeciesLoader
 
     private void createSaplingBlock(List<DefinesTree> pendingUpdates)
     {
-        final ModSaplingBlock block = new ModSaplingBlock(pendingUpdates);
+        final ModSaplingBlock block = new ModSaplingBlock(pendingUpdates, TheMod.INSTANCE);
         saplingBlocks.add(block);
 
         for (final DefinesTree update : pendingUpdates)
@@ -214,8 +216,8 @@ public class SpeciesLoader
 
     private void createSlabBlocks(List<DefinesTree> pendingUpdates)
     {
-        final ModWoodSlabBlock singleSlabBlock = new ModWoodSlabBlock(false, pendingUpdates);
-        final ModWoodSlabBlock doubleSlabBlock = new ModWoodSlabBlock(true, pendingUpdates);
+        final ModWoodSlabBlock singleSlabBlock = new ModWoodSlabBlock(false, pendingUpdates, TheMod.INSTANCE);
+        final ModWoodSlabBlock doubleSlabBlock = new ModWoodSlabBlock(true, pendingUpdates, TheMod.INSTANCE);
 
         singleSlabBlocks.add(singleSlabBlock);
         doubleSlabBlocks.add(doubleSlabBlock);

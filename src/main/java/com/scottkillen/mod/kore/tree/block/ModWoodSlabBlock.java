@@ -2,8 +2,8 @@ package com.scottkillen.mod.kore.tree.block;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
+import com.scottkillen.mod.kore.common.OrganizesResources;
 import com.scottkillen.mod.kore.tree.DescribesSlabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -25,8 +25,10 @@ public class ModWoodSlabBlock extends BlockSlab
     public static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<DescribesSlabs> descriptors;
+    private final String resourcePrefix;
 
-    public ModWoodSlabBlock(boolean isDouble, List<? extends DescribesSlabs> descriptors)
+    public ModWoodSlabBlock(boolean isDouble, List<? extends DescribesSlabs> descriptors,
+                            OrganizesResources resourceOrganizer)
     {
         super(isDouble, Material.wood);
 
@@ -34,11 +36,13 @@ public class ModWoodSlabBlock extends BlockSlab
         checkArgument(descriptors.size() <= CAPACITY);
         this.descriptors = ImmutableList.copyOf(descriptors);
 
-        setCreativeTab(TheMod.CREATIVE_TAB);
+        setCreativeTab(resourceOrganizer.getCreativeTab());
         setBlockName("slab");
         setHardness(2.0F);
         setResistance(5.0F);
         setStepSound(soundTypeWood);
+
+        resourcePrefix = resourceOrganizer.getResourcePrefix();
     }
 
     private static int mask(int metadata) {return metadata & METADATA_MASK;}
@@ -80,7 +84,7 @@ public class ModWoodSlabBlock extends BlockSlab
     public String getUnlocalizedName()
     {
         //noinspection StringConcatenationMissingWhitespace
-        return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+        return "tile." + resourcePrefix + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
     @SuppressWarnings("unchecked")
@@ -117,6 +121,7 @@ public class ModWoodSlabBlock extends BlockSlab
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("descriptors", descriptors).toString();
+        return Objects.toStringHelper(this).add("descriptors", descriptors).add("resourcePrefix", resourcePrefix)
+                .toString();
     }
 }

@@ -3,8 +3,8 @@ package com.scottkillen.mod.kore.tree.block;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.kore.common.Named;
+import com.scottkillen.mod.kore.common.OrganizesResources;
 import com.scottkillen.mod.kore.tree.ProvidesAbstractTree;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -29,17 +29,20 @@ public class ModSaplingBlock extends BlockSapling
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<ProvidesAbstractTree> trees;
     private final List<IIcon> subblockIcons = Lists.newArrayList();
+    private final String resourcePrefix;
 
-    public ModSaplingBlock(List<? extends ProvidesAbstractTree> trees)
+    public ModSaplingBlock(List<? extends ProvidesAbstractTree> trees, OrganizesResources resourceOrganizer)
     {
         checkArgument(!trees.isEmpty());
         checkArgument(trees.size() <= CAPACITY);
         this.trees = ImmutableList.copyOf(trees);
 
-        setCreativeTab(TheMod.CREATIVE_TAB);
+        setCreativeTab(resourceOrganizer.getCreativeTab());
         setBlockName("sapling");
         setHardness(0.0F);
         setStepSound(soundTypeGrass);
+
+        resourcePrefix = resourceOrganizer.getResourcePrefix();
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -100,7 +103,7 @@ public class ModSaplingBlock extends BlockSapling
         for (int i = 0; i < trees.size(); i++)
         {
             //noinspection StringConcatenationMissingWhitespace
-            final String iconName = TheMod.RESOURCE_PREFIX + "sapling_" + trees.get(i);
+            final String iconName = resourcePrefix + "sapling_" + trees.get(i);
             subblockIcons.add(i, iconRegister.registerIcon(iconName));
         }
     }
@@ -109,12 +112,13 @@ public class ModSaplingBlock extends BlockSapling
     public String getUnlocalizedName()
     {
         //noinspection StringConcatenationMissingWhitespace
-        return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+        return "tile." + resourcePrefix + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("trees", trees).add("subblockIcons", subblockIcons).toString();
+        return Objects.toStringHelper(this).add("trees", trees).add("subblockIcons", subblockIcons)
+                .add("resourcePrefix", resourcePrefix).toString();
     }
 }

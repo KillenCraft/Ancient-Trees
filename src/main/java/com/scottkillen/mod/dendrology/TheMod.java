@@ -7,9 +7,11 @@ import com.scottkillen.mod.dendrology.content.crafting.Recipes;
 import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
 import com.scottkillen.mod.dendrology.item.ModItems;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
+import com.scottkillen.mod.kore.common.OrganizesResources;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -18,13 +20,22 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 
 @Mod(modid = TheMod.MOD_ID, name = TheMod.MOD_NAME, version = TheMod.MOD_VERSION, useMetadata = true, guiFactory = TheMod.MOD_GUI_FACTORY)
-public class TheMod
+public class TheMod implements OrganizesResources
 {
     public static final String MOD_ID = "dendrology";
     public static final String MOD_NAME = "Ancient Trees";
-    public static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
+    private static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
+
+    @SuppressWarnings({
+            "StaticNonFinalField",
+            "StaticVariableMayNotBeInitialized",
+            "NonConstantFieldWithUpperCaseName"
+    })
+    @Instance(MOD_ID)
+    public static TheMod INSTANCE;
+
     @SuppressWarnings("AnonymousInnerClass")
-    public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
+    private static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
     {
         @Override
         public Item getTabIconItem()
@@ -47,7 +58,7 @@ public class TheMod
         ModBlocks.init();
     }
 
-    @SuppressWarnings("MethodMayBeStatic")
+    @SuppressWarnings({ "MethodMayBeStatic", "UnusedParameters" })
     @EventHandler
     public void onFMLInitialization(FMLInitializationEvent unused)
     {
@@ -57,11 +68,23 @@ public class TheMod
         Recipes.init();
     }
 
-    @SuppressWarnings("MethodMayBeStatic")
+    @SuppressWarnings({ "MethodMayBeStatic", "UnusedParameters" })
     @EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
         Proxy.render.init();
         FuelHandler.register();
+    }
+
+    @Override
+    public CreativeTabs getCreativeTab()
+    {
+        return CREATIVE_TAB;
+    }
+
+    @Override
+    public String getResourcePrefix()
+    {
+        return RESOURCE_PREFIX;
     }
 }

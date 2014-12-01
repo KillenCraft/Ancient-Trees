@@ -4,8 +4,8 @@ import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.kore.common.Named;
+import com.scottkillen.mod.kore.common.OrganizesResources;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockWood;
@@ -21,14 +21,17 @@ public class ModPlanksBlock extends BlockWood
     public static final int CAPACITY = 16;
     private final ImmutableList<Named> names;
     private final List<IIcon> icons = Lists.newArrayList();
+    private final String resourcePrefix;
 
-    public ModPlanksBlock(List<? extends Named> names)
+    public ModPlanksBlock(List<? extends Named> names, OrganizesResources resourceOrganizer)
     {
         Preconditions.checkArgument(!names.isEmpty());
         Preconditions.checkArgument(names.size() <= CAPACITY);
         this.names = ImmutableList.copyOf(names);
-        setCreativeTab(TheMod.CREATIVE_TAB);
+        setCreativeTab(resourceOrganizer.getCreativeTab());
         setBlockName("wood");
+
+        resourcePrefix = resourceOrganizer.getResourcePrefix();
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -51,7 +54,7 @@ public class ModPlanksBlock extends BlockWood
     public String getUnlocalizedName()
     {
         //noinspection StringConcatenationMissingWhitespace
-        return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+        return "tile." + resourcePrefix + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
     @SideOnly(Side.CLIENT)
@@ -80,7 +83,7 @@ public class ModPlanksBlock extends BlockWood
         for (int i = 0; i < names.size(); i++)
         {
             //noinspection StringConcatenationMissingWhitespace
-            final String iconName = TheMod.RESOURCE_PREFIX + "planks_" + names.get(i).getName();
+            final String iconName = resourcePrefix + "planks_" + names.get(i).getName();
             icons.add(i, iconRegister.registerIcon(iconName));
         }
     }
@@ -88,6 +91,7 @@ public class ModPlanksBlock extends BlockWood
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("names", names).add("icons", icons).toString();
+        return Objects.toStringHelper(this).add("names", names).add("icons", icons)
+                .add("resourcePrefix", resourcePrefix).toString();
     }
 }

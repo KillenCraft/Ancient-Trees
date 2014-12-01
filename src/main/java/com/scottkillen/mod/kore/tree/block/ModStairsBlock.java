@@ -1,15 +1,20 @@
 package com.scottkillen.mod.kore.tree.block;
 
-import com.scottkillen.mod.dendrology.TheMod;
+import com.google.common.base.Objects;
+import com.scottkillen.mod.kore.common.OrganizesResources;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 
 public class ModStairsBlock extends BlockStairs
 {
-    public ModStairsBlock(Block modelBlock, int modelMeta)
+    private final String resourcePrefix;
+
+    public ModStairsBlock(Block modelBlock, int modelMeta, OrganizesResources resourceOrganizer)
     {
         super(modelBlock, modelMeta);
-        setCreativeTab(TheMod.CREATIVE_TAB);
+        setCreativeTab(resourceOrganizer.getCreativeTab());
+
+        resourcePrefix = resourceOrganizer.getResourcePrefix();
     }
 
 
@@ -23,6 +28,12 @@ public class ModStairsBlock extends BlockStairs
     public String getUnlocalizedName()
     {
         //noinspection StringConcatenationMissingWhitespace
-        return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+        return "tile." + resourcePrefix + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+    }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("resourcePrefix", resourcePrefix).toString();
     }
 }
