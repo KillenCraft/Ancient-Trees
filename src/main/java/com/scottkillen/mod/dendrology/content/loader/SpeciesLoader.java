@@ -124,25 +124,22 @@ public class SpeciesLoader
 
     private void loadSaplingBlocks()
     {
-        final List<String> names = Lists.newArrayList();
         final List<ISpecies> trees = Lists.newArrayList();
         for (final ISpecies aSpecies : species)
         {
-            aSpecies.setSaplingMeta(names.size());
+            aSpecies.setSaplingMeta(trees.size());
 
-            names.add(aSpecies.getName());
             trees.add(aSpecies);
-            if (names.size() == ModSaplingBlock.CAPACITY)
+            if (trees.size() == ModSaplingBlock.CAPACITY)
             {
-                createSaplingBlock(names, trees);
+                createSaplingBlock(trees);
 
-                names.clear();
                 trees.clear();
             }
         }
-        if (!names.isEmpty())
+        if (!trees.isEmpty())
         {
-            createSaplingBlock(names, trees);
+            createSaplingBlock(trees);
         }
     }
 
@@ -209,9 +206,9 @@ public class SpeciesLoader
             update.setPlanksBlock(block);
     }
 
-    private void createSaplingBlock(List<String> names, List<ISpecies> pendingUpdates)
+    private void createSaplingBlock(List<ISpecies> pendingUpdates)
     {
-        final ModSaplingBlock block = new ModSaplingBlock(names, pendingUpdates);
+        final ModSaplingBlock block = new ModSaplingBlock(pendingUpdates);
         saplingBlocks.add(block);
 
         for (final ISpecies update : pendingUpdates)

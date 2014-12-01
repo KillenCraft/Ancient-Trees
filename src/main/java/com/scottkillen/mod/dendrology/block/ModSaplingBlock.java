@@ -4,6 +4,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.kore.common.Named;
 import com.scottkillen.mod.kore.trees.ProvidesAbstractTree;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,21 +27,14 @@ public class ModSaplingBlock extends BlockSapling
 {
     public static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
-    private final ImmutableList<String> subblockNames;
     private final ImmutableList<ProvidesAbstractTree> trees;
     private final List<IIcon> subblockIcons = Lists.newArrayList();
 
-    public ModSaplingBlock(List<String> subblockNames, List<? extends ProvidesAbstractTree> trees)
+    public ModSaplingBlock(List<? extends ProvidesAbstractTree> trees)
     {
-        checkArgument(!subblockNames.isEmpty());
-        checkArgument(subblockNames.size() <= CAPACITY);
-        this.subblockNames = ImmutableList.copyOf(subblockNames);
-
         checkArgument(!trees.isEmpty());
         checkArgument(trees.size() <= CAPACITY);
         this.trees = ImmutableList.copyOf(trees);
-
-        checkArgument(subblockNames.size() == trees.size());
 
         setCreativeTab(TheMod.CREATIVE_TAB);
         setBlockName("sapling");
@@ -56,10 +50,12 @@ public class ModSaplingBlock extends BlockSapling
 
     private static int mask(int metadata) {return metadata & METADATA_MASK;}
 
-    @SuppressWarnings("ReturnOfCollectionOrArrayField")
-    public ImmutableList<String> getSubblockNames()
+    public ImmutableList<String> getSubBlockNames()
     {
-        return subblockNames;
+        final List<String> names = Lists.newArrayList();
+        for (final Named named : trees)
+            names.add(named.getName());
+        return ImmutableList.copyOf(names);
     }
 
     @SideOnly(Side.CLIENT)
@@ -91,7 +87,7 @@ public class ModSaplingBlock extends BlockSapling
     @Override
     public void getSubBlocks(Item item, CreativeTabs unused, List subBlocks)
     {
-        for (int i = 0; i < subblockNames.size(); i++)
+        for (int i = 0; i < trees.size(); i++)
             //noinspection ObjectAllocationInLoop
             subBlocks.add(new ItemStack(item, 1, i));
     }
@@ -101,10 +97,10 @@ public class ModSaplingBlock extends BlockSapling
     {
         subblockIcons.clear();
 
-        for (int i = 0; i < subblockNames.size(); i++)
+        for (int i = 0; i < trees.size(); i++)
         {
             //noinspection StringConcatenationMissingWhitespace
-            final String iconName = TheMod.RESOURCE_PREFIX + "sapling_" + subblockNames.get(i);
+            final String iconName = TheMod.RESOURCE_PREFIX + "sapling_" + trees.get(i);
             subblockIcons.add(i, iconRegister.registerIcon(iconName));
         }
     }
@@ -119,7 +115,6 @@ public class ModSaplingBlock extends BlockSapling
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("trees", trees)
-                .add("subblockIcons", subblockIcons).toString();
+        return Objects.toStringHelper(this).add("trees", trees).add("subblockIcons", subblockIcons).toString();
     }
 }

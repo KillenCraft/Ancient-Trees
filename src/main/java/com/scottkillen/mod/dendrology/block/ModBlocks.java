@@ -76,7 +76,7 @@ public final class ModBlocks
         int saplingCount = 0;
         for (final ModSaplingBlock sapling : saplingBlocks)
         {
-            registerSaplingBlock(sapling, String.format("sapling%d", saplingCount), sapling.getSubblockNames());
+            registerSaplingBlock(sapling, String.format("sapling%d", saplingCount), sapling.getSubBlockNames());
             saplingCount++;
         }
     }
