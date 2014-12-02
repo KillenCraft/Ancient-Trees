@@ -1,8 +1,8 @@
 [
 {
   "modid": "dendrology",
-  "name": "Dendrology",
-  "description": "A Minecraft mod that adds ancient trees to the world.",
+  "name": "Ancient Trees",
+  "description": "A Minecraft mod that many extinct tree species to the world.",
   "version": "${mod_version}",
   "mcversion": "${minecraft_version}",
   "url": "",

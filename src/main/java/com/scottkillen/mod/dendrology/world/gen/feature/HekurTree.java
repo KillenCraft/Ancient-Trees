@@ -1,7 +1,7 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.content.OverworldSpecies;
+import com.scottkillen.mod.kore.tree.DefinesTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.hekur.LargeHekurTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.hekur.NormalHekurTree;
 import net.minecraft.block.material.Material;
@@ -20,7 +20,7 @@ public class HekurTree extends AbstractTree
     }
 
     @Override
-    public void setTree(OverworldSpecies tree)
+    public void setTree(DefinesTree tree)
     {
         treeGen.setTree(tree);
         largeTreeGen.setTree(tree);

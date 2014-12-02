@@ -1,6 +1,6 @@
-package com.scottkillen.mod.dendrology.item;
+package com.scottkillen.mod.kore.tree.item;
 
-import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
+import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemMultiTexture;
 

@@ -1,4 +1,4 @@
-rootProject.version = version_major + '.' + version_series + '.' + version_revision
+rootProject.version = "$mcversion-$version_major.$version_series.$version_revision"
 rootProject.ext.mcversion = mcversion
 rootProject.ext.forgeversion = forgeversion
 
@@ -13,7 +13,7 @@ def saveVersion() {
 		entry( key:"version_series", type:"int", value: version_series)
 		entry( key:"version_revision", type:"int", value: version_revision)
 	}
-	rootProject.version = version_major + '.' + version_series + '.' + version_revision
+	rootProject.version = "$mcversion-$version_major.$version_series.$version_revision"
 	printNextVersion()
 }
 

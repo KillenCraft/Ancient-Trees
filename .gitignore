@@ -126,3 +126,10 @@ com_crashlytics_export_strings.xml
 .classpath
 .project
 run/
+
+### Gradle ###
+.gradle
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
