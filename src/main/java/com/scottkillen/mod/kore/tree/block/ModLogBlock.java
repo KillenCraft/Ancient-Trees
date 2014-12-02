@@ -1,9 +1,11 @@
-package com.scottkillen.mod.dendrology.block;
+package com.scottkillen.mod.kore.tree.block;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
-import com.scottkillen.mod.dendrology.TheMod;
+import com.google.common.collect.Lists;
+import com.scottkillen.mod.kore.common.Named;
+import com.scottkillen.mod.kore.common.OrganizesResources;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockLog;
@@ -17,21 +19,18 @@ import java.util.List;
 public class ModLogBlock extends BlockLog
 {
     public static final int CAPACITY = 4;
-    private final ImmutableList<String> subblockNames;
+    private final ImmutableList<Named> names;
+    private final String resourcePrefix;
 
-    @SuppressWarnings("ReturnOfCollectionOrArrayField")
-    public ImmutableList<String> getSubblockNames()
+    public ModLogBlock(List<? extends Named> names, OrganizesResources resourceOrganizer)
     {
-        return subblockNames;
-    }
-
-    public ModLogBlock(List<String> subblockNames)
-    {
-        Preconditions.checkArgument(!subblockNames.isEmpty());
-        Preconditions.checkArgument(subblockNames.size() <= CAPACITY);
-        this.subblockNames = ImmutableList.copyOf(subblockNames);
-        setCreativeTab(TheMod.CREATIVE_TAB);
+        Preconditions.checkArgument(!names.isEmpty());
+        Preconditions.checkArgument(names.size() <= CAPACITY);
+        this.names = ImmutableList.copyOf(names);
+        setCreativeTab(resourceOrganizer.getCreativeTab());
         setBlockName("log");
+
+        resourcePrefix = resourceOrganizer.getResourcePrefix();
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -40,11 +39,20 @@ public class ModLogBlock extends BlockLog
         return unlocalizedName.substring(unlocalizedName.indexOf('.') + 1);
     }
 
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
+    public ImmutableList<String> getSubBlockNames()
+    {
+        final List<String> names = Lists.newArrayList();
+        for (final Named named : this.names)
+            names.add(named.getName());
+        return ImmutableList.copyOf(names);
+    }
+
     @Override
     public String getUnlocalizedName()
     {
         //noinspection StringConcatenationMissingWhitespace
-        return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+        return "tile." + resourcePrefix + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
     @SuppressWarnings("unchecked")
@@ -52,7 +60,7 @@ public class ModLogBlock extends BlockLog
     @Override
     public void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
     {
-        for (int i = 0; i < subblockNames.size(); i++)
+        for (int i = 0; i < names.size(); i++)
             //noinspection ObjectAllocationInLoop
             subblocks.add(new ItemStack(item, 1, i));
     }
@@ -61,13 +69,13 @@ public class ModLogBlock extends BlockLog
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        field_150167_a = new IIcon[subblockNames.size()];
-        field_150166_b = new IIcon[subblockNames.size()];
+        field_150167_a = new IIcon[names.size()];
+        field_150166_b = new IIcon[names.size()];
 
-        for (int i = 0; i < subblockNames.size(); i++)
+        for (int i = 0; i < names.size(); i++)
         {
             //noinspection StringConcatenationMissingWhitespace
-            final String iconName = TheMod.RESOURCE_PREFIX + "log_" + subblockNames.get(i);
+            final String iconName = resourcePrefix + "log_" + names.get(i).getName();
             field_150167_a[i] = iconRegister.registerIcon(iconName);
             field_150166_b[i] = iconRegister.registerIcon(iconName + "_top");
         }
@@ -76,6 +84,6 @@ public class ModLogBlock extends BlockLog
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("subblockNames", subblockNames).toString();
+        return Objects.toStringHelper(this).add("names", names).add("resourcePrefix", resourcePrefix).toString();
     }
 }

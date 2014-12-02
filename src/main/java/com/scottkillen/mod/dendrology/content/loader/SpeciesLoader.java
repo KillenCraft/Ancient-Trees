@@ -3,19 +3,20 @@ package com.scottkillen.mod.dendrology.content.loader;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
-import com.scottkillen.mod.dendrology.block.ModLogBlock;
-import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
-import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
-import com.scottkillen.mod.dendrology.block.ModStairsBlock;
-import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
-import com.scottkillen.mod.dendrology.content.ISpecies;
-import net.minecraft.block.Block;
+import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.kore.tree.DefinesTree;
+import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
+import com.scottkillen.mod.kore.tree.block.ModLogBlock;
+import com.scottkillen.mod.kore.tree.block.ModPlanksBlock;
+import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
+import com.scottkillen.mod.kore.tree.block.ModStairsBlock;
+import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
+import com.scottkillen.mod.kore.tree.util.SingleSlabRegistry;
 import java.util.List;
 
 public class SpeciesLoader
 {
-    private final ImmutableList<ISpecies> species;
+    private final ImmutableList<DefinesTree> species;
 
     private List<ModLogBlock> logBlocks;
     private List<ModLeavesBlock> leavesBlocks;
@@ -25,7 +26,7 @@ public class SpeciesLoader
     private List<ModWoodSlabBlock> doubleSlabBlocks;
     private List<ModStairsBlock> stairsBlocks;
 
-    public SpeciesLoader(List<? extends ISpecies> species)
+    public SpeciesLoader(List<? extends DefinesTree> species)
     {
         this.species = ImmutableList.copyOf(species);
         logBlocks = Lists.newArrayListWithCapacity(species.size() / ModLogBlock.CAPACITY + 1);
@@ -61,181 +62,169 @@ public class SpeciesLoader
 
     private void loadLeavesBlocks()
     {
-        final List<String> names = Lists.newArrayListWithCapacity(ModLeavesBlock.CAPACITY);
-        final List<ISpecies> trees = Lists.newArrayListWithCapacity(ModLeavesBlock.CAPACITY);
-        for (final ISpecies aSpecies : species)
+        final List<DefinesTree> trees = Lists.newArrayListWithCapacity(ModLeavesBlock.CAPACITY);
+        for (final DefinesTree aSpecies : species)
         {
-            aSpecies.setLeavesMeta(names.size());
+            aSpecies.setLeavesMeta(trees.size());
 
-            names.add(aSpecies.getName());
             trees.add(aSpecies);
-            if (names.size() == ModLeavesBlock.CAPACITY)
+            if (trees.size() == ModLeavesBlock.CAPACITY)
             {
-                createLeavesBlock(names, trees);
+                createLeavesBlock(trees);
 
-                names.clear();
                 trees.clear();
             }
         }
-        if (!names.isEmpty())
+        if (!trees.isEmpty())
         {
-            createLeavesBlock(names, trees);
+            createLeavesBlock(trees);
         }
     }
 
     private void loadLogBlocks()
     {
-        final List<String> names = Lists.newArrayListWithCapacity(ModLogBlock.CAPACITY);
-        final List<ISpecies> pendingUpdates = Lists.newArrayListWithCapacity(ModLogBlock.CAPACITY);
-        for (final ISpecies aSpecies : species)
+        final List<DefinesTree> pendingUpdates = Lists.newArrayListWithCapacity(ModLogBlock.CAPACITY);
+        for (final DefinesTree aSpecies : species)
         {
-            aSpecies.setLogMeta(names.size());
+            aSpecies.setLogMeta(pendingUpdates.size());
 
-            names.add(aSpecies.getName());
             pendingUpdates.add(aSpecies);
-            if (names.size() == ModLogBlock.CAPACITY)
+            if (pendingUpdates.size() == ModLogBlock.CAPACITY)
             {
-                createLogBlock(names, pendingUpdates);
+                createLogBlock(pendingUpdates);
 
-                names.clear();
                 pendingUpdates.clear();
             }
         }
-        if (!names.isEmpty())
+        if (!pendingUpdates.isEmpty())
         {
-            createLogBlock(names, pendingUpdates);
+            createLogBlock(pendingUpdates);
         }
     }
 
     private void loadPlanksBlocks()
     {
-        final List<String> names = Lists.newArrayList();
-        final List<ISpecies> pendingUpdates = Lists.newArrayListWithCapacity(ModPlanksBlock.CAPACITY);
-        for (final ISpecies aSpecies : species)
+        final List<DefinesTree> pendingUpdates = Lists.newArrayListWithCapacity(ModPlanksBlock.CAPACITY);
+        for (final DefinesTree aSpecies : species)
         {
-            aSpecies.setPlanksMeta(names.size());
+            aSpecies.setPlanksMeta(pendingUpdates.size());
 
-            names.add(aSpecies.getName());
             pendingUpdates.add(aSpecies);
-            if (names.size() == ModPlanksBlock.CAPACITY)
+            if (pendingUpdates.size() == ModPlanksBlock.CAPACITY)
             {
-                createPlanksBlock(names, pendingUpdates);
+                createPlanksBlock(pendingUpdates);
 
-                names.clear();
                 pendingUpdates.clear();
             }
         }
-        if (!names.isEmpty())
+        if (!pendingUpdates.isEmpty())
         {
-            createPlanksBlock(names, pendingUpdates);
+            createPlanksBlock(pendingUpdates);
         }
     }
 
     private void loadSaplingBlocks()
     {
-        final List<String> names = Lists.newArrayList();
-        final List<ISpecies> trees = Lists.newArrayList();
-        for (final ISpecies aSpecies : species)
+        final List<DefinesTree> trees = Lists.newArrayList();
+        for (final DefinesTree aSpecies : species)
         {
-            aSpecies.setSaplingMeta(names.size());
+            aSpecies.setSaplingMeta(trees.size());
 
-            names.add(aSpecies.getName());
             trees.add(aSpecies);
-            if (names.size() == ModSaplingBlock.CAPACITY)
+            if (trees.size() == ModSaplingBlock.CAPACITY)
             {
-                createSaplingBlock(names, trees);
+                createSaplingBlock(trees);
 
-                names.clear();
                 trees.clear();
             }
         }
-        if (!names.isEmpty())
+        if (!trees.isEmpty())
         {
-            createSaplingBlock(names, trees);
+            createSaplingBlock(trees);
         }
     }
 
     private void loadSlabBlocks()
     {
-        final List<String> names = Lists.newArrayList();
-        final List<ISpecies> trees = Lists.newArrayList();
-        for (final ISpecies aSpecies : species)
+        final List<DefinesTree> trees = Lists.newArrayList();
+        for (final DefinesTree aSpecies : species)
         {
-            aSpecies.setSlabMeta(names.size());
+            aSpecies.setSlabMeta(trees.size());
 
-            names.add(aSpecies.toString());
             trees.add(aSpecies);
-            if (names.size() == ModWoodSlabBlock.CAPACITY)
+            if (trees.size() == ModWoodSlabBlock.CAPACITY)
             {
-                createSlabBlocks(names, trees);
+                createSlabBlocks(trees);
 
-                names.clear();
                 trees.clear();
             }
         }
-        if (!names.isEmpty())
+        if (!trees.isEmpty())
         {
-            createSlabBlocks(names, trees);
+            createSlabBlocks(trees);
         }
     }
 
     private void loadStairsBlocks()
     {
-        for (final ISpecies species : this.species)
+        for (final DefinesTree aSpecies : species)
         {
             //noinspection ObjectAllocationInLoop
-            final ModStairsBlock block = new ModStairsBlock(species.getPlanksBlock(), species.getPlanksMeta());
-            block.setBlockName(String.format("stairs.%s", species.getName()));
+            final ModStairsBlock block =
+                    new ModStairsBlock(aSpecies.getPlanksBlock(), aSpecies.getPlanksMeta(), TheMod.INSTANCE);
+            block.setBlockName(String.format("stairs.%s", aSpecies.getName()));
             stairsBlocks.add(block);
-            species.setStairsBlock(block);
+            aSpecies.setStairsBlock(block);
         }
     }
 
-    private void createLeavesBlock(List<String> names, List<ISpecies> pendingUpdates)
+    private void createLeavesBlock(List<DefinesTree> pendingUpdates)
     {
-        final ModLeavesBlock block = new ModLeavesBlock(names, pendingUpdates);
+        final ModLeavesBlock block = new ModLeavesBlock(pendingUpdates, TheMod.INSTANCE);
         leavesBlocks.add(block);
 
-        for (final ISpecies update : pendingUpdates)
+        for (final DefinesTree update : pendingUpdates)
             update.setLeavesBlock(block);
     }
 
-    private void createLogBlock(List<String> names, List<ISpecies> pendingUpdates)
+    private void createLogBlock(List<DefinesTree> pendingUpdates)
     {
-        final ModLogBlock block = new ModLogBlock(names);
+        final ModLogBlock block = new ModLogBlock(pendingUpdates, TheMod.INSTANCE);
         logBlocks.add(block);
 
-        for (final ISpecies update : pendingUpdates)
+        for (final DefinesTree update : pendingUpdates)
             update.setLogBlock(block);
     }
 
-    private void createPlanksBlock(List<String> names, List<ISpecies> pendingUpdates)
+    private void createPlanksBlock(List<DefinesTree> pendingUpdates)
     {
-        final ModPlanksBlock block = new ModPlanksBlock(names);
+        final ModPlanksBlock block = new ModPlanksBlock(pendingUpdates, TheMod.INSTANCE);
         planksBlocks.add(block);
 
-        for (final ISpecies update : pendingUpdates)
+        for (final DefinesTree update : pendingUpdates)
             update.setPlanksBlock(block);
     }
 
-    private void createSaplingBlock(List<String> names, List<ISpecies> pendingUpdates)
+    private void createSaplingBlock(List<DefinesTree> pendingUpdates)
     {
-        final ModSaplingBlock block = new ModSaplingBlock(names, pendingUpdates);
+        final ModSaplingBlock block = new ModSaplingBlock(pendingUpdates, TheMod.INSTANCE);
         saplingBlocks.add(block);
 
-        for (final ISpecies update : pendingUpdates)
+        for (final DefinesTree update : pendingUpdates)
             update.setSaplingBlock(block);
     }
 
-    private void createSlabBlocks(List<String> names, List<ISpecies> pendingUpdates)
+    private void createSlabBlocks(List<DefinesTree> pendingUpdates)
     {
-        final ModWoodSlabBlock singleSlabBlock = new ModWoodSlabBlock(false, names, pendingUpdates);
-        final ModWoodSlabBlock doubleSlabBlock = new ModWoodSlabBlock(true, names, pendingUpdates);
+        final ModWoodSlabBlock singleSlabBlock = new ModWoodSlabBlock(false, pendingUpdates, TheMod.INSTANCE);
+        final ModWoodSlabBlock doubleSlabBlock = new ModWoodSlabBlock(true, pendingUpdates, TheMod.INSTANCE);
+
+        SingleSlabRegistry.add(singleSlabBlock);
 
         singleSlabBlocks.add(singleSlabBlock);
         doubleSlabBlocks.add(doubleSlabBlock);
 
-        for (final ISpecies update : pendingUpdates)
+        for (final DefinesTree update : pendingUpdates)
         {
             update.setSlabBlock(singleSlabBlock, false);
             update.setSlabBlock(doubleSlabBlock, true);
@@ -277,13 +266,7 @@ public class SpeciesLoader
         return ImmutableList.copyOf(stairsBlocks);
     }
 
-    @SuppressWarnings("SuspiciousMethodCalls")
-    public boolean isSingleSlabBlock(Block block)
-    {
-        return singleSlabBlocks.contains(block);
-    }
-
-    public ImmutableList<ISpecies> getSpecies()
+    public ImmutableList<DefinesTree> getSpecies()
     {
         return ImmutableList.copyOf(species);
     }

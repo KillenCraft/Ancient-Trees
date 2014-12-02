@@ -1,10 +1,11 @@
-package com.scottkillen.mod.dendrology.block;
+package com.scottkillen.mod.kore.tree.block;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.kore.common.Named;
+import com.scottkillen.mod.kore.common.OrganizesResources;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockWood;
@@ -18,16 +19,19 @@ import java.util.List;
 public class ModPlanksBlock extends BlockWood
 {
     public static final int CAPACITY = 16;
-    private final ImmutableList<String> subblockNames;
+    private final ImmutableList<Named> names;
     private final List<IIcon> icons = Lists.newArrayList();
+    private final String resourcePrefix;
 
-    public ModPlanksBlock(List<String> subblockNames)
+    public ModPlanksBlock(List<? extends Named> names, OrganizesResources resourceOrganizer)
     {
-        Preconditions.checkArgument(!subblockNames.isEmpty());
-        Preconditions.checkArgument(subblockNames.size() <= CAPACITY);
-        this.subblockNames = ImmutableList.copyOf(subblockNames);
-        setCreativeTab(TheMod.CREATIVE_TAB);
+        Preconditions.checkArgument(!names.isEmpty());
+        Preconditions.checkArgument(names.size() <= CAPACITY);
+        this.names = ImmutableList.copyOf(names);
+        setCreativeTab(resourceOrganizer.getCreativeTab());
         setBlockName("wood");
+
+        resourcePrefix = resourceOrganizer.getResourcePrefix();
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -36,17 +40,21 @@ public class ModPlanksBlock extends BlockWood
         return unlocalizedName.substring(unlocalizedName.indexOf('.') + 1);
     }
 
-    @SuppressWarnings("ReturnOfCollectionOrArrayField")
-    public ImmutableList<String> getSubblockNames()
+
+    @SuppressWarnings("LocalVariableHidesMemberVariable")
+    public ImmutableList<String> getSubBlockNames()
     {
-        return subblockNames;
+        final List<String> names = Lists.newArrayList();
+        for (final Named named : this.names)
+            names.add(named.getName());
+        return ImmutableList.copyOf(names);
     }
 
     @Override
     public String getUnlocalizedName()
     {
         //noinspection StringConcatenationMissingWhitespace
-        return "tile." + TheMod.RESOURCE_PREFIX + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+        return "tile." + resourcePrefix + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
     }
 
     @SideOnly(Side.CLIENT)
@@ -62,7 +70,7 @@ public class ModPlanksBlock extends BlockWood
     @Override
     public void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
     {
-        for (int i = 0; i < subblockNames.size(); i++)
+        for (int i = 0; i < names.size(); i++)
             //noinspection ObjectAllocationInLoop
             subblocks.add(new ItemStack(item, 1, i));
     }
@@ -72,10 +80,10 @@ public class ModPlanksBlock extends BlockWood
     {
         icons.clear();
 
-        for (int i = 0; i < subblockNames.size(); i++)
+        for (int i = 0; i < names.size(); i++)
         {
             //noinspection StringConcatenationMissingWhitespace
-            final String iconName = TheMod.RESOURCE_PREFIX + "planks_" + subblockNames.get(i);
+            final String iconName = resourcePrefix + "planks_" + names.get(i).getName();
             icons.add(i, iconRegister.registerIcon(iconName));
         }
     }
@@ -83,6 +91,7 @@ public class ModPlanksBlock extends BlockWood
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("subblockNames", subblockNames).add("icons", icons).toString();
+        return Objects.toStringHelper(this).add("names", names).add("icons", icons)
+                .add("resourcePrefix", resourcePrefix).toString();
     }
 }

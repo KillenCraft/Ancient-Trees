@@ -1,13 +1,9 @@
 package com.scottkillen.mod.dendrology.content;
 
 
-import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
-import com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer;
-import com.scottkillen.mod.dendrology.block.ModLogBlock;
-import com.scottkillen.mod.dendrology.block.ModPlanksBlock;
-import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
-import com.scottkillen.mod.dendrology.block.ModStairsBlock;
-import com.scottkillen.mod.dendrology.block.ModWoodSlabBlock;
+import com.scottkillen.mod.dendrology.world.AcemusColorizer;
+import com.scottkillen.mod.dendrology.world.CerasuColorizer;
+import com.scottkillen.mod.dendrology.world.KulistColorizer;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.AcemusTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.CedrumTree;
@@ -22,16 +18,27 @@ import com.scottkillen.mod.dendrology.world.gen.feature.NucisTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.PorfforTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.SalyxTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.TuopaTree;
+import com.scottkillen.mod.kore.tree.DefinesTree;
+import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
+import com.scottkillen.mod.kore.tree.block.ModLogBlock;
+import com.scottkillen.mod.kore.tree.block.ModPlanksBlock;
+import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
+import com.scottkillen.mod.kore.tree.block.ModStairsBlock;
+import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.IBlockAccess;
 
 import static com.google.common.base.Preconditions.*;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.ACEMUS_COLOR;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.BASIC_COLOR;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.CERASU_COLOR;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.KULIST_COLOR;
-import static com.scottkillen.mod.dendrology.block.ModLeavesBlock.Colorizer.NO_COLOR;
+import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.ACEMUS_COLOR;
+import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.BASIC_COLOR;
+import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.CERASU_COLOR;
+import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.KULIST_COLOR;
+import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.NO_COLOR;
 
 @SuppressWarnings({ "NonSerializableFieldInSerializableClass", "ClassHasNoToStringMethod" })
-public enum OverworldSpecies implements ISpecies
+public enum OverworldTreeSpecies implements DefinesTree
 {
     // REORDERING WILL CAUSE DAMAGE TO SAVES
     ACEMUS(ACEMUS_COLOR, new AcemusTree()),
@@ -67,18 +74,53 @@ public enum OverworldSpecies implements ISpecies
 
     static
     {
-        for (final OverworldSpecies tree : OverworldSpecies.values())
+        for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
             tree.treeGen.setTree(tree);
     }
 
-    OverworldSpecies(Colorizer colorizer, AbstractTree treeGen)
+    OverworldTreeSpecies(Colorizer colorizer, AbstractTree treeGen)
     {
         this.colorizer = colorizer;
         this.treeGen = treeGen;
     }
 
     @Override
-    public Colorizer getColorizer() { return colorizer; }
+    @SideOnly(Side.CLIENT)
+    public int getLeavesInventoryColor()
+    {
+        switch (colorizer)
+        {
+            case NO_COLOR:
+                return 0xffffff;
+            case ACEMUS_COLOR:
+                return AcemusColorizer.getInventoryColor();
+            case CERASU_COLOR:
+                return CerasuColorizer.getInventoryColor();
+            case KULIST_COLOR:
+                return KulistColorizer.getInventoryColor();
+            default:
+                return Blocks.leaves.getRenderColor(0);
+        }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getLeavesColor(IBlockAccess blockAccess, int x, int y, int z)
+    {
+        switch (colorizer)
+        {
+            case NO_COLOR:
+                return 0xffffff;
+            case ACEMUS_COLOR:
+                return AcemusColorizer.getColor(x, z);
+            case CERASU_COLOR:
+                return CerasuColorizer.getColor(x, y, z);
+            case KULIST_COLOR:
+                return KulistColorizer.getColor(x, y, z);
+            default:
+                return Blocks.leaves.colorMultiplier(blockAccess, x, y, z);
+        }
+    }
 
     @Override
     public ModLeavesBlock getLeavesBlock()
@@ -144,38 +186,10 @@ public enum OverworldSpecies implements ISpecies
     public void setPlanksMeta(int planksMeta) { this.planksMeta = planksMeta; }
 
     @Override
-    public ModSaplingBlock getSaplingBlock()
-    {
-        checkState(saplingBlock != null);
-        return saplingBlock;
-    }
-
-    @Override
-    public void setSaplingBlock(ModSaplingBlock saplingBlock)
-    {
-        checkState(this.saplingBlock == null);
-        this.saplingBlock = saplingBlock;
-    }
-
-    @Override
-    public int getSaplingMeta() { return saplingMeta; }
-
-    @Override
-    public void setSaplingMeta(int saplingMeta) { this.saplingMeta = saplingMeta; }
-
-    @Override
     public ModWoodSlabBlock getSingleSlabBlock()
     {
         checkState(singleSlabBlock != null);
         return singleSlabBlock;
-    }
-
-    @Override
-    public void setSlabBlock(ModWoodSlabBlock block, boolean isDouble)
-    {
-        checkState(isDouble ? doubleSlabBlock == null : singleSlabBlock == null);
-        if (isDouble) doubleSlabBlock = block;
-        else singleSlabBlock = block;
     }
 
     @Override
@@ -199,5 +213,42 @@ public enum OverworldSpecies implements ISpecies
     }
 
     @Override
+    public ModSaplingBlock getSaplingBlock()
+    {
+        checkState(saplingBlock != null);
+        return saplingBlock;
+    }
+
+    @Override
+    public void setSaplingBlock(ModSaplingBlock saplingBlock)
+    {
+        checkState(this.saplingBlock == null);
+        this.saplingBlock = saplingBlock;
+    }
+
+    @Override
+    public int getSaplingMeta() { return saplingMeta; }
+
+    @Override
+    public void setSaplingMeta(int saplingMeta) { this.saplingMeta = saplingMeta; }
+
+    @Override
+    public void setSlabBlock(ModWoodSlabBlock block, boolean isDouble)
+    {
+        checkState(isDouble ? doubleSlabBlock == null : singleSlabBlock == null);
+        if (isDouble) doubleSlabBlock = block;
+        else singleSlabBlock = block;
+    }
+
+    @Override
     public AbstractTree getTreeGen() { return treeGen; }
+
+    public enum Colorizer
+    {
+        ACEMUS_COLOR,
+        BASIC_COLOR,
+        CERASU_COLOR,
+        KULIST_COLOR,
+        NO_COLOR
+    }
 }

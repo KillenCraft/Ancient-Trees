@@ -2,11 +2,10 @@ package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import com.scottkillen.mod.dendrology.block.ModLeavesBlock;
-import com.scottkillen.mod.dendrology.block.ModLogBlock;
-import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
-import com.scottkillen.mod.dendrology.content.ISpecies;
-import com.scottkillen.mod.dendrology.content.OverworldSpecies;
+import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
+import com.scottkillen.mod.kore.tree.block.ModLogBlock;
+import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
+import com.scottkillen.mod.kore.tree.DefinesTree;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -21,7 +20,7 @@ public abstract class AbstractTree extends WorldGenAbstractTree
     protected static final ImmutableList<ImmutablePair<Integer, Integer>> BRANCH_DIRECTIONS = ImmutableList
             .of(ImmutablePair.of(-1, 0), ImmutablePair.of(1, 0), ImmutablePair.of(0, -1), ImmutablePair.of(0, 1),
                     ImmutablePair.of(-1, 1), ImmutablePair.of(-1, -1), ImmutablePair.of(1, 1), ImmutablePair.of(1, -1));
-    private ISpecies tree = null;
+    private DefinesTree tree = null;
 
     protected AbstractTree() { super(true); }
 
@@ -33,7 +32,7 @@ public abstract class AbstractTree extends WorldGenAbstractTree
         return block.isAir(world, x, y, z) || block.isLeaves(world, x, y, z);
     }
 
-    public void setTree(OverworldSpecies tree)
+    public void setTree(DefinesTree tree)
     {
         this.tree = tree;
     }
@@ -46,19 +45,14 @@ public abstract class AbstractTree extends WorldGenAbstractTree
 
         final Block block = world.getBlock(x, y - 1, z);
         return !block.canSustainPlant(world, x, y - 1, z, UP, plantable);
-
     }
 
     @SuppressWarnings("WeakerAccess")
     protected boolean hasRoomToGrow(World world, int x, int y, int z, int height)
     {
         for (int y1 = y; y1 <= y + 1 + height; ++y1)
-        {
-            if (!isReplaceable(world, x, y1, z))
-            {
-                return false;
-            }
-        }
+            if (!isReplaceable(world, x, y1, z)) return false;
+
         return true;
     }
 
@@ -72,7 +66,6 @@ public abstract class AbstractTree extends WorldGenAbstractTree
 
     protected ModSaplingBlock getSaplingBlock() { return tree.getSaplingBlock(); }
 
-    @SuppressWarnings("UnusedReturnValue")
     protected boolean placeLeaves(World world, int x, int y, int z)
     {
         if (world.getBlock(x, y, z).canBeReplacedByLeaves(world, x, y, z))
@@ -83,7 +76,6 @@ public abstract class AbstractTree extends WorldGenAbstractTree
         return false;
     }
 
-    @SuppressWarnings("UnusedReturnValue")
     protected boolean placeLog(World world, int x, int y, int z)
     {
         if (canBeReplacedByLog(world, x, y, z))
