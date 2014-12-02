@@ -54,17 +54,14 @@ public class ModLeavesBlock extends BlockLeaves
 
     @SideOnly(Side.CLIENT)
     @Override
-    public int getRenderColor(int metadata)
-    {
-        return descriptors.get(mask(metadata)).getLeavesInventoryColor();
-    }
+    public int getRenderColor(int metadata) { return descriptors.get(mask(metadata)).getLeavesInventoryColor(); }
 
     @SideOnly(Side.CLIENT)
     @Override
     public int colorMultiplier(IBlockAccess blockAccess, int x, int y, int z)
     {
         final int metadata = mask(blockAccess.getBlockMetadata(x, y, z));
-        return descriptors.get(mask(metadata)).getLeavesColor(blockAccess, x, y, z);
+        return descriptors.get(metadata).getLeavesColor(blockAccess, x, y, z);
     }
 
     @Override
@@ -74,24 +71,15 @@ public class ModLeavesBlock extends BlockLeaves
     }
 
     @Override
-    public int damageDropped(int metadata)
-    {
-        return descriptors.get(mask(metadata)).getSaplingMeta();
-    }
+    public int damageDropped(int metadata) { return descriptors.get(mask(metadata)).getSaplingMeta(); }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public boolean isOpaqueCube()
-    {
-        return !isFancyGraphics();
-    }
+    public boolean isOpaqueCube() { return !isFancyGraphics(); }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public IIcon getIcon(int unused, int metadata)
-    {
-        return field_150129_M[isFancyGraphics() ? 0 : 1][mask(metadata)];
-    }
+    public IIcon getIcon(int unused, int metadata) { return field_150129_M[isFancyGraphics() ? 0 : 1][mask(metadata)]; }
 
     @Override
     public String[] func_150125_e()
