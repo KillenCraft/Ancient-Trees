@@ -46,7 +46,7 @@ public class ModWoodSlabBlock extends BlockSlab
 
     private static int mask(int metadata) {return metadata & METADATA_MASK;}
 
-    private static boolean isSingleSlab(Item item)
+    public static boolean isSingleSlab(Item item)
     {
         return SingleSlabRegistry.isSingleSlab(item);
     }

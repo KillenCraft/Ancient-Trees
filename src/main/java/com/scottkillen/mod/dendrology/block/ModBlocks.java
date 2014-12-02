@@ -1,7 +1,6 @@
 package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.collect.ImmutableList;
-import com.scottkillen.mod.kore.tree.DefinesTree;
 import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
 import com.scottkillen.mod.dendrology.content.loader.SpeciesLoader;
 import com.scottkillen.mod.dendrology.item.LeavesItem;
@@ -9,13 +8,13 @@ import com.scottkillen.mod.dendrology.item.LogItem;
 import com.scottkillen.mod.dendrology.item.PlanksItem;
 import com.scottkillen.mod.dendrology.item.SaplingItem;
 import com.scottkillen.mod.dendrology.item.SlabItem;
+import com.scottkillen.mod.kore.tree.DefinesTree;
 import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
 import com.scottkillen.mod.kore.tree.block.ModLogBlock;
 import com.scottkillen.mod.kore.tree.block.ModPlanksBlock;
 import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
 import com.scottkillen.mod.kore.tree.block.ModStairsBlock;
 import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
-import com.scottkillen.mod.kore.tree.util.SingleSlabRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -33,7 +32,8 @@ public final class ModBlocks
     private static final int DEFAULT_PLANKS_FLAMMABILITY = 20;
     private static final int DEFAULT_STAIRS_FLAMMABILITY = DEFAULT_PLANKS_FLAMMABILITY;
 
-    private static final SpeciesLoader overworldContent = new SpeciesLoader(Arrays.asList(OverworldTreeSpecies.values()));
+    private static final SpeciesLoader overworldContent =
+            new SpeciesLoader(Arrays.asList(OverworldTreeSpecies.values()));
 
     private ModBlocks()
     {
@@ -172,11 +172,6 @@ public final class ModBlocks
     {
         GameRegistry.registerBlock(block, name);
         Blocks.fire.setFireInfo(block, DEFAULT_STAIRS_FIRE_ENCOURAGEMENT, DEFAULT_STAIRS_FLAMMABILITY);
-    }
-
-    public static boolean isSingleSlabBlock(Block block)
-    {
-        return SingleSlabRegistry.isSingleSlab(block);
     }
 
     public static Iterable<? extends Block> getLeavesBlocks()
