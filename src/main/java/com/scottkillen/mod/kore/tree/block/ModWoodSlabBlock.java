@@ -2,12 +2,11 @@ package com.scottkillen.mod.kore.tree.block;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.kore.common.OrganizesResources;
 import com.scottkillen.mod.kore.tree.DescribesSlabs;
+import com.scottkillen.mod.kore.tree.util.SingleSlabRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -49,7 +48,7 @@ public class ModWoodSlabBlock extends BlockSlab
 
     private static boolean isSingleSlab(Item item)
     {
-        return ModBlocks.isSingleSlabBlock(Block.getBlockFromItem(item));
+        return SingleSlabRegistry.isSingleSlab(item);
     }
 
     @SuppressWarnings("WeakerAccess")

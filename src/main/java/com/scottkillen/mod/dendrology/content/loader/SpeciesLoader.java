@@ -11,7 +11,7 @@ import com.scottkillen.mod.kore.tree.block.ModPlanksBlock;
 import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
 import com.scottkillen.mod.kore.tree.block.ModStairsBlock;
 import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
-import net.minecraft.block.Block;
+import com.scottkillen.mod.kore.tree.util.SingleSlabRegistry;
 import java.util.List;
 
 public class SpeciesLoader
@@ -219,6 +219,8 @@ public class SpeciesLoader
         final ModWoodSlabBlock singleSlabBlock = new ModWoodSlabBlock(false, pendingUpdates, TheMod.INSTANCE);
         final ModWoodSlabBlock doubleSlabBlock = new ModWoodSlabBlock(true, pendingUpdates, TheMod.INSTANCE);
 
+        SingleSlabRegistry.add(singleSlabBlock);
+
         singleSlabBlocks.add(singleSlabBlock);
         doubleSlabBlocks.add(doubleSlabBlock);
 
@@ -262,12 +264,6 @@ public class SpeciesLoader
     public ImmutableList<ModStairsBlock> getStairsBlocks()
     {
         return ImmutableList.copyOf(stairsBlocks);
-    }
-
-    @SuppressWarnings("SuspiciousMethodCalls")
-    public boolean isSingleSlabBlock(Block block)
-    {
-        return singleSlabBlocks.contains(block);
     }
 
     public ImmutableList<DefinesTree> getSpecies()

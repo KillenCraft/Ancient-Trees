@@ -15,6 +15,7 @@ import com.scottkillen.mod.kore.tree.block.ModPlanksBlock;
 import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
 import com.scottkillen.mod.kore.tree.block.ModStairsBlock;
 import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
+import com.scottkillen.mod.kore.tree.util.SingleSlabRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -175,7 +176,7 @@ public final class ModBlocks
 
     public static boolean isSingleSlabBlock(Block block)
     {
-        return overworldContent.isSingleSlabBlock(block);
+        return SingleSlabRegistry.isSingleSlab(block);
     }
 
     public static Iterable<? extends Block> getLeavesBlocks()
