@@ -1,13 +1,9 @@
 package com.scottkillen.mod.dendrology.content;
 
 
-import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
-import com.scottkillen.mod.kore.tree.block.ModLeavesBlock.Colorizer;
-import com.scottkillen.mod.kore.tree.block.ModLogBlock;
-import com.scottkillen.mod.kore.tree.block.ModPlanksBlock;
-import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
-import com.scottkillen.mod.kore.tree.block.ModStairsBlock;
-import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
+import com.scottkillen.mod.dendrology.world.AcemusColorizer;
+import com.scottkillen.mod.dendrology.world.CerasuColorizer;
+import com.scottkillen.mod.dendrology.world.KulistColorizer;
 import com.scottkillen.mod.dendrology.world.gen.feature.AbstractTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.AcemusTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.CedrumTree;
@@ -23,13 +19,23 @@ import com.scottkillen.mod.dendrology.world.gen.feature.PorfforTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.SalyxTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.TuopaTree;
 import com.scottkillen.mod.kore.tree.DefinesTree;
+import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
+import com.scottkillen.mod.kore.tree.block.ModLogBlock;
+import com.scottkillen.mod.kore.tree.block.ModPlanksBlock;
+import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
+import com.scottkillen.mod.kore.tree.block.ModStairsBlock;
+import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.IBlockAccess;
 
 import static com.google.common.base.Preconditions.*;
-import static com.scottkillen.mod.kore.tree.block.ModLeavesBlock.Colorizer.ACEMUS_COLOR;
-import static com.scottkillen.mod.kore.tree.block.ModLeavesBlock.Colorizer.BASIC_COLOR;
-import static com.scottkillen.mod.kore.tree.block.ModLeavesBlock.Colorizer.CERASU_COLOR;
-import static com.scottkillen.mod.kore.tree.block.ModLeavesBlock.Colorizer.KULIST_COLOR;
-import static com.scottkillen.mod.kore.tree.block.ModLeavesBlock.Colorizer.NO_COLOR;
+import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.ACEMUS_COLOR;
+import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.BASIC_COLOR;
+import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.CERASU_COLOR;
+import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.KULIST_COLOR;
+import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.NO_COLOR;
 
 @SuppressWarnings({ "NonSerializableFieldInSerializableClass", "ClassHasNoToStringMethod" })
 public enum OverworldTreeSpecies implements DefinesTree
@@ -79,7 +85,42 @@ public enum OverworldTreeSpecies implements DefinesTree
     }
 
     @Override
-    public Colorizer getColorizer() { return colorizer; }
+    @SideOnly(Side.CLIENT)
+    public int getLeavesInventoryColor()
+    {
+        switch (colorizer)
+        {
+            case NO_COLOR:
+                return 0xffffff;
+            case ACEMUS_COLOR:
+                return AcemusColorizer.getInventoryColor();
+            case CERASU_COLOR:
+                return CerasuColorizer.getInventoryColor();
+            case KULIST_COLOR:
+                return KulistColorizer.getInventoryColor();
+            default:
+                return Blocks.leaves.getRenderColor(0);
+        }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getLeavesColor(IBlockAccess blockAccess, int x, int y, int z)
+    {
+        switch (colorizer)
+        {
+            case NO_COLOR:
+                return 0xffffff;
+            case ACEMUS_COLOR:
+                return AcemusColorizer.getColor(x, z);
+            case CERASU_COLOR:
+                return CerasuColorizer.getColor(x, y, z);
+            case KULIST_COLOR:
+                return KulistColorizer.getColor(x, y, z);
+            default:
+                return Blocks.leaves.colorMultiplier(blockAccess, x, y, z);
+        }
+    }
 
     @Override
     public ModLeavesBlock getLeavesBlock()
@@ -201,4 +242,13 @@ public enum OverworldTreeSpecies implements DefinesTree
 
     @Override
     public AbstractTree getTreeGen() { return treeGen; }
+
+    public enum Colorizer
+    {
+        ACEMUS_COLOR,
+        BASIC_COLOR,
+        CERASU_COLOR,
+        KULIST_COLOR,
+        NO_COLOR
+    }
 }

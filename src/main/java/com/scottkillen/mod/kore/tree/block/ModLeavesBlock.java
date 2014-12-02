@@ -3,9 +3,6 @@ package com.scottkillen.mod.kore.tree.block;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.scottkillen.mod.dendrology.world.AcemusColorizer;
-import com.scottkillen.mod.dendrology.world.CerasuColorizer;
-import com.scottkillen.mod.dendrology.world.KulistColorizer;
 import com.scottkillen.mod.kore.common.OrganizesResources;
 import com.scottkillen.mod.kore.tree.DescribesLeaves;
 import cpw.mods.fml.relauncher.Side;
@@ -15,7 +12,6 @@ import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -53,27 +49,14 @@ public class ModLeavesBlock extends BlockLeaves
         return unlocalizedName.substring(unlocalizedName.indexOf('.') + 1);
     }
 
+    @SideOnly(Side.CLIENT)
     private static boolean isFancyGraphics() {return Minecraft.getMinecraft().gameSettings.fancyGraphics;}
 
     @SideOnly(Side.CLIENT)
     @Override
     public int getRenderColor(int metadata)
     {
-        final Colorizer colorizer = descriptors.get(mask(metadata)).getColorizer();
-
-        switch (colorizer)
-        {
-            case NO_COLOR:
-                return 0xffffff;
-            case ACEMUS_COLOR:
-                return AcemusColorizer.getInventoryColor();
-            case CERASU_COLOR:
-                return CerasuColorizer.getInventoryColor();
-            case KULIST_COLOR:
-                return KulistColorizer.getInventoryColor();
-            default:
-                return Blocks.leaves.getRenderColor(0);
-        }
+        return descriptors.get(mask(metadata)).getLeavesInventoryColor();
     }
 
     @SideOnly(Side.CLIENT)
@@ -81,21 +64,7 @@ public class ModLeavesBlock extends BlockLeaves
     public int colorMultiplier(IBlockAccess blockAccess, int x, int y, int z)
     {
         final int metadata = mask(blockAccess.getBlockMetadata(x, y, z));
-        final Colorizer colorizer = descriptors.get(mask(metadata)).getColorizer();
-
-        switch (colorizer)
-        {
-            case NO_COLOR:
-                return 0xffffff;
-            case ACEMUS_COLOR:
-                return AcemusColorizer.getColor(x, z);
-            case CERASU_COLOR:
-                return CerasuColorizer.getColor(x, y, z);
-            case KULIST_COLOR:
-                return KulistColorizer.getColor(x, y, z);
-            default:
-                return Blocks.leaves.colorMultiplier(blockAccess, x, y, z);
-        }
+        return descriptors.get(mask(metadata)).getLeavesColor(blockAccess, x, y, z);
     }
 
     @Override
@@ -110,6 +79,7 @@ public class ModLeavesBlock extends BlockLeaves
         return descriptors.get(mask(metadata)).getSaplingMeta();
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public boolean isOpaqueCube()
     {
@@ -175,6 +145,7 @@ public class ModLeavesBlock extends BlockLeaves
     }
 
     @SuppressWarnings("OverlyComplexBooleanExpression")
+    @SideOnly(Side.CLIENT)
     @Override
     public boolean shouldSideBeRendered(IBlockAccess blockAccess, int x, int y, int z, int side)
     {
@@ -190,14 +161,5 @@ public class ModLeavesBlock extends BlockLeaves
     {
         return Objects.toStringHelper(this).add("descriptors", descriptors).add("resourcePrefix", resourcePrefix)
                 .toString();
-    }
-
-    public enum Colorizer
-    {
-        ACEMUS_COLOR,
-        BASIC_COLOR,
-        CERASU_COLOR,
-        KULIST_COLOR,
-        NO_COLOR
     }
 }
