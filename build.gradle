@@ -27,7 +27,7 @@ minecraft {
     version = project.mcversion + "-" + project.forgeversion
     runDir = "run"
 
-    replace '@VERSION@', project.version
+    replace '${mod_version}', project.version
 }
 
 processResources
@@ -58,12 +58,43 @@ jar {
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
-    from sourceSets.main.allSource
+    from(sourceSets.main.output) {
+        include '**/*.info'
+        include '**/version.properties'
+
+        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
+                .ext.forgeversion
+    }
+
+    from(sourceSets.main.allSource) {
+        include '**/TheMod.java'
+
+        expand 'mod_version': project.version
+    }
+
+    from(sourceSets.main.allSource) {
+        exclude '**/*.info'
+        exclude '**/version.properties'
+        exclude '**/TheMod.java'
+    }
+
     classifier = 'sources'
 }
 
 task deobfJar(type: Jar) {
-    from sourceSets.main.output
+    from(sourceSets.main.output) {
+        include '**/*.info'
+        include '**/version.properties'
+
+        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
+                .ext.forgeversion
+    }
+
+    from(sourceSets.main.output) {
+        exclude '**/*.info'
+        exclude '**/version.properties'
+    }
+
     classifier = 'deobf'
 }
 
