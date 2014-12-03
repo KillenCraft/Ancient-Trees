@@ -44,7 +44,7 @@ public class TheMod implements OrganizesResources
         }
     };
     @SuppressWarnings("WeakerAccess")
-    static final String MOD_VERSION = "@MOD_VERSION@";
+    static final String MOD_VERSION = "${mod_version}";
     @SuppressWarnings("WeakerAccess")
     static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
 

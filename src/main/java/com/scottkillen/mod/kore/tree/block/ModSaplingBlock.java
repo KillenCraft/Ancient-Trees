@@ -103,7 +103,7 @@ public class ModSaplingBlock extends BlockSapling
         for (int i = 0; i < trees.size(); i++)
         {
             //noinspection StringConcatenationMissingWhitespace
-            final String iconName = resourcePrefix + "sapling_" + trees.get(i);
+            final String iconName = resourcePrefix + "sapling_" + trees.get(i).getName();
             subblockIcons.add(i, iconRegister.registerIcon(iconName));
         }
     }
