@@ -3,7 +3,7 @@ package com.scottkillen.mod.kore.tree.loader;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.kore.common.OrganizesResources;
 import com.scottkillen.mod.kore.tree.DefinesTree;
 import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
 import com.scottkillen.mod.kore.tree.block.ModLogBlock;
@@ -26,9 +26,13 @@ public class TreeSpeciesLoader
     private List<ModWoodSlabBlock> doubleSlabBlocks;
     private List<ModStairsBlock> stairsBlocks;
 
-    public TreeSpeciesLoader(List<? extends DefinesTree> species)
+    private final OrganizesResources resourceOrganizer;
+
+    public TreeSpeciesLoader(List<? extends DefinesTree> species, OrganizesResources resourceOrganizer)
     {
         this.species = ImmutableList.copyOf(species);
+        this.resourceOrganizer = resourceOrganizer;
+
         logBlocks = Lists.newArrayListWithCapacity(species.size() / ModLogBlock.CAPACITY + 1);
         leavesBlocks = Lists.newArrayListWithCapacity(species.size() / ModLeavesBlock.CAPACITY + 1);
         planksBlocks = Lists.newArrayListWithCapacity(species.size() / ModPlanksBlock.CAPACITY + 1);
@@ -171,7 +175,7 @@ public class TreeSpeciesLoader
         {
             //noinspection ObjectAllocationInLoop
             final ModStairsBlock block =
-                    new ModStairsBlock(aSpecies.getPlanksBlock(), aSpecies.getPlanksMeta(), TheMod.INSTANCE);
+                    new ModStairsBlock(aSpecies.getPlanksBlock(), aSpecies.getPlanksMeta(), resourceOrganizer);
             block.setBlockName(String.format("stairs.%s", aSpecies.getName()));
             stairsBlocks.add(block);
             aSpecies.setStairsBlock(block);
@@ -180,7 +184,7 @@ public class TreeSpeciesLoader
 
     private void createLeavesBlock(List<DefinesTree> pendingUpdates)
     {
-        final ModLeavesBlock block = new ModLeavesBlock(pendingUpdates, TheMod.INSTANCE);
+        final ModLeavesBlock block = new ModLeavesBlock(pendingUpdates, resourceOrganizer);
         leavesBlocks.add(block);
 
         for (final DefinesTree update : pendingUpdates)
@@ -189,7 +193,7 @@ public class TreeSpeciesLoader
 
     private void createLogBlock(List<DefinesTree> pendingUpdates)
     {
-        final ModLogBlock block = new ModLogBlock(pendingUpdates, TheMod.INSTANCE);
+        final ModLogBlock block = new ModLogBlock(pendingUpdates, resourceOrganizer);
         logBlocks.add(block);
 
         for (final DefinesTree update : pendingUpdates)
@@ -198,7 +202,7 @@ public class TreeSpeciesLoader
 
     private void createPlanksBlock(List<DefinesTree> pendingUpdates)
     {
-        final ModPlanksBlock block = new ModPlanksBlock(pendingUpdates, TheMod.INSTANCE);
+        final ModPlanksBlock block = new ModPlanksBlock(pendingUpdates, resourceOrganizer);
         planksBlocks.add(block);
 
         for (final DefinesTree update : pendingUpdates)
@@ -207,7 +211,7 @@ public class TreeSpeciesLoader
 
     private void createSaplingBlock(List<DefinesTree> pendingUpdates)
     {
-        final ModSaplingBlock block = new ModSaplingBlock(pendingUpdates, TheMod.INSTANCE);
+        final ModSaplingBlock block = new ModSaplingBlock(pendingUpdates, resourceOrganizer);
         saplingBlocks.add(block);
 
         for (final DefinesTree update : pendingUpdates)
@@ -216,8 +220,8 @@ public class TreeSpeciesLoader
 
     private void createSlabBlocks(List<DefinesTree> pendingUpdates)
     {
-        final ModWoodSlabBlock singleSlabBlock = new ModWoodSlabBlock(false, pendingUpdates, TheMod.INSTANCE);
-        final ModWoodSlabBlock doubleSlabBlock = new ModWoodSlabBlock(true, pendingUpdates, TheMod.INSTANCE);
+        final ModWoodSlabBlock singleSlabBlock = new ModWoodSlabBlock(false, pendingUpdates, resourceOrganizer);
+        final ModWoodSlabBlock doubleSlabBlock = new ModWoodSlabBlock(true, pendingUpdates, resourceOrganizer);
 
         SingleSlabRegistry.add(singleSlabBlock);
 
@@ -277,6 +281,6 @@ public class TreeSpeciesLoader
         return Objects.toStringHelper(this).add("species", species).add("logBlocks", logBlocks)
                 .add("leavesBlocks", leavesBlocks).add("planksBlocks", planksBlocks).add("saplingBlocks", saplingBlocks)
                 .add("singleSlabBlocks", singleSlabBlocks).add("doubleSlabBlocks", doubleSlabBlocks)
-                .add("stairsBlocks", stairsBlocks).toString();
+                .add("stairsBlocks", stairsBlocks).add("resourceOrganizer", resourceOrganizer).toString();
     }
 }
