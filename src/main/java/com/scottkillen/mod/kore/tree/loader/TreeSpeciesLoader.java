@@ -1,4 +1,4 @@
-package com.scottkillen.mod.dendrology.content.loader;
+package com.scottkillen.mod.kore.tree.loader;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
@@ -14,7 +14,7 @@ import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
 import com.scottkillen.mod.kore.tree.util.SingleSlabRegistry;
 import java.util.List;
 
-public class SpeciesLoader
+public class TreeSpeciesLoader
 {
     private final ImmutableList<DefinesTree> species;
 
@@ -26,7 +26,7 @@ public class SpeciesLoader
     private List<ModWoodSlabBlock> doubleSlabBlocks;
     private List<ModStairsBlock> stairsBlocks;
 
-    public SpeciesLoader(List<? extends DefinesTree> species)
+    public TreeSpeciesLoader(List<? extends DefinesTree> species)
     {
         this.species = ImmutableList.copyOf(species);
         logBlocks = Lists.newArrayListWithCapacity(species.size() / ModLogBlock.CAPACITY + 1);

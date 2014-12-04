@@ -2,7 +2,7 @@ package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
-import com.scottkillen.mod.dendrology.content.loader.SpeciesLoader;
+import com.scottkillen.mod.kore.tree.loader.TreeSpeciesLoader;
 import com.scottkillen.mod.kore.tree.item.LeavesItem;
 import com.scottkillen.mod.kore.tree.item.LogItem;
 import com.scottkillen.mod.kore.tree.item.PlanksItem;
@@ -32,8 +32,8 @@ public final class ModBlocks
     private static final int DEFAULT_PLANKS_FLAMMABILITY = 20;
     private static final int DEFAULT_STAIRS_FLAMMABILITY = DEFAULT_PLANKS_FLAMMABILITY;
 
-    private static final SpeciesLoader overworldContent =
-            new SpeciesLoader(Arrays.asList(OverworldTreeSpecies.values()));
+    private static final TreeSpeciesLoader overworldContent =
+            new TreeSpeciesLoader(Arrays.asList(OverworldTreeSpecies.values()));
 
     private ModBlocks()
     {
