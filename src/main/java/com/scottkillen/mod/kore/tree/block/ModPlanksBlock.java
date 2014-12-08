@@ -30,6 +30,8 @@ public class ModPlanksBlock extends BlockWood
         this.names = ImmutableList.copyOf(names);
         setCreativeTab(resourceOrganizer.getCreativeTab());
         setBlockName("wood");
+        setHardness(2.0f);
+        setResistance(5.0f);
 
         resourcePrefix = resourceOrganizer.getResourcePrefix();
     }
