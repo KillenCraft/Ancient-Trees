@@ -28,6 +28,15 @@ Something not quite right?  Have a suggestion?  Found a bug?  Create an issue no
 
 #### Licensing
 
+##### Textures
+
+Some textures from [The Painterly Pack][pack] by [Rhodox][rhodox_tweet] and friends. Used by permission.
+
+[pack]: http://painterlypack.net/
+[rhodox_tweet]: https://twitter.com/PainterlyPack
+
+##### Software
+
 This is free and unencumbered software released into the public domain.
 
 Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.
