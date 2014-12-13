@@ -1,7 +1,9 @@
 package com.scottkillen.mod.dendrology.content.crafting;
 
 import com.scottkillen.mod.dendrology.block.ModBlocks;
+import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
 import com.scottkillen.mod.kore.tree.DefinesTree;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 
@@ -13,6 +15,26 @@ public enum Recipes
     {
         initLogRecipes();
         initPlankRecipes();
+        initSaplingRecipes();
+    }
+
+    private static void initSaplingRecipes()
+    {
+        CraftingManager.getInstance().addShapelessRecipe(new ItemStack(Items.dye, 1, 9),
+                new ItemStack(OverworldTreeSpecies.CERASU.getSaplingBlock(), 1,
+                        OverworldTreeSpecies.CERASU.getSaplingMeta()));
+
+        CraftingManager.getInstance().addShapelessRecipe(new ItemStack(Items.dye, 1, 10),
+                new ItemStack(OverworldTreeSpecies.EWCALY.getSaplingBlock(), 1,
+                        OverworldTreeSpecies.EWCALY.getSaplingMeta()));
+
+        CraftingManager.getInstance().addShapelessRecipe(new ItemStack(Items.dye, 1, 5),
+                new ItemStack(OverworldTreeSpecies.PORFFOR.getSaplingBlock(), 1,
+                        OverworldTreeSpecies.PORFFOR.getSaplingMeta()));
+
+        CraftingManager.getInstance().addShapelessRecipe(new ItemStack(Items.dye, 1, 14),
+                new ItemStack(OverworldTreeSpecies.ACEMUS.getSaplingBlock(), 1,
+                        OverworldTreeSpecies.ACEMUS.getSaplingMeta()));
     }
 
     @SuppressWarnings("ObjectAllocationInLoop")
