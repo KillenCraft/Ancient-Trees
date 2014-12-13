@@ -23,7 +23,7 @@ public enum ConfigHandler
     private Configuration config = null;
     private Optional<Configuration> configOld = Optional.absent();
 
-    public static void init(File configFile)
+    public static void preInit(File configFile)
     {
         INSTANCE.setConfig(configFile);
         FMLCommonHandler.instance().bus().register(INSTANCE);

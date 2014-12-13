@@ -5,7 +5,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.kore.common.Named;
 import com.scottkillen.mod.kore.common.OrganizesResources;
-import com.scottkillen.mod.kore.tree.ProvidesAbstractTree;
+import com.scottkillen.mod.kore.common.ProvidesPotionEffect;
+import com.scottkillen.mod.kore.tree.ProvidesSapling;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSapling;
@@ -27,15 +28,17 @@ public class ModSaplingBlock extends BlockSapling
 {
     public static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
-    private final ImmutableList<ProvidesAbstractTree> trees;
-    private final List<IIcon> subblockIcons = Lists.newArrayList();
+    private final ImmutableList<ProvidesSapling> trees;
+    private final List<IIcon> subblockIcons;
     private final String resourcePrefix;
 
-    public ModSaplingBlock(List<? extends ProvidesAbstractTree> trees, OrganizesResources resourceOrganizer)
+    public ModSaplingBlock(List<? extends ProvidesSapling> trees, OrganizesResources resourceOrganizer)
     {
         checkArgument(!trees.isEmpty());
         checkArgument(trees.size() <= CAPACITY);
         this.trees = ImmutableList.copyOf(trees);
+
+        subblockIcons = Lists.newArrayListWithCapacity(trees.size());
 
         setCreativeTab(resourceOrganizer.getCreativeTab());
         setBlockName("sapling");
@@ -51,11 +54,11 @@ public class ModSaplingBlock extends BlockSapling
         return unlocalizedName.substring(unlocalizedName.indexOf('.') + 1);
     }
 
-    private static int mask(int metadata) {return metadata & METADATA_MASK;}
+    private static int mask(int metadata) { return metadata & METADATA_MASK; }
 
     public ImmutableList<String> getSubBlockNames()
     {
-        final List<String> names = Lists.newArrayList();
+        final List<String> names = Lists.newArrayListWithCapacity(trees.size());
         for (final Named named : trees)
             names.add(named.getName());
         return ImmutableList.copyOf(names);
@@ -63,10 +66,7 @@ public class ModSaplingBlock extends BlockSapling
 
     @SideOnly(Side.CLIENT)
     @Override
-    public IIcon getIcon(int unused, int metadata)
-    {
-        return subblockIcons.get(mask(metadata));
-    }
+    public IIcon getIcon(int unused, int metadata) { return subblockIcons.get(mask(metadata)); }
 
     @Override
     public void func_149878_d(World world, int x, int y, int z, Random rand)
@@ -113,6 +113,13 @@ public class ModSaplingBlock extends BlockSapling
     {
         //noinspection StringConcatenationMissingWhitespace
         return "tile." + resourcePrefix + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+    }
+
+    @SuppressWarnings("ReturnOfNull")
+    public String getPotionEffect(ItemStack itemStack)
+    {
+        final ProvidesSapling sapling = trees.get(itemStack.getItemDamage());
+        return sapling instanceof ProvidesPotionEffect ? ((ProvidesPotionEffect) sapling).getPotionEffect() : null;
     }
 
     @Override

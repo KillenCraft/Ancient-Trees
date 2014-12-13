@@ -17,7 +17,7 @@ public final class ModItems
         throw new AssertionError();
     }
 
-    public static void init()
+    public static void preInit()
     {
     }
 }

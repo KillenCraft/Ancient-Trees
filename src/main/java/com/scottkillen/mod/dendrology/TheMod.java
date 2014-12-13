@@ -2,7 +2,7 @@ package com.scottkillen.mod.dendrology;
 
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.config.ConfigHandler;
-import com.scottkillen.mod.dendrology.content.crafting.OreDict;
+import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
 import com.scottkillen.mod.dendrology.content.crafting.Recipes;
 import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
 import com.scottkillen.mod.dendrology.item.ModItems;
@@ -38,10 +38,7 @@ public class TheMod implements OrganizesResources
     private static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
     {
         @Override
-        public Item getTabIconItem()
-        {
-            return Item.getItemFromBlock(Blocks.sapling);
-        }
+        public Item getTabIconItem() { return Item.getItemFromBlock(Blocks.sapling); }
     };
     @SuppressWarnings("WeakerAccess")
     static final String MOD_VERSION = "${mod_version}";
@@ -52,10 +49,10 @@ public class TheMod implements OrganizesResources
     @EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
-        ConfigHandler.init(event.getSuggestedConfigurationFile());
+        ConfigHandler.preInit(event.getSuggestedConfigurationFile());
 
-        ModItems.init();
-        ModBlocks.init();
+        ModItems.preInit();
+        ModBlocks.preInit();
     }
 
     @SuppressWarnings({ "MethodMayBeStatic", "UnusedParameters" })
@@ -64,7 +61,7 @@ public class TheMod implements OrganizesResources
     {
         FMLCommonHandler.instance().bus().register(ConfigHandler.INSTANCE);
 
-        OreDict.registerOres();
+        OreDictHandler.init();
         Recipes.init();
     }
 
@@ -72,19 +69,13 @@ public class TheMod implements OrganizesResources
     @EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
-        Proxy.render.init();
-        FuelHandler.register();
+        Proxy.render.postInit();
+        FuelHandler.postInit();
     }
 
     @Override
-    public CreativeTabs getCreativeTab()
-    {
-        return CREATIVE_TAB;
-    }
+    public CreativeTabs getCreativeTab() { return CREATIVE_TAB; }
 
     @Override
-    public String getResourcePrefix()
-    {
-        return RESOURCE_PREFIX;
-    }
+    public String getResourcePrefix() { return RESOURCE_PREFIX; }
 }

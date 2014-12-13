@@ -1,6 +1,6 @@
 ## Ancient Trees
-**LATEST OFFICIAL VERSION**: [Ancient Trees 0.2.2 for MC 1.7.10][release]
-[release]: https://github.com/MinecraftModArchive/Dendrology/releases/download/v0.2.2/AncientTrees-1.7.10-0.2.2.jar
+**LATEST OFFICIAL VERSION**: [Ancient Trees 0.3.0 for MC 1.7.10][release]
+[release]: https://github.com/MinecraftModArchive/Dendrology/releases/download/v0.3.0/AncientTrees-1.7.10-0.3.0.jar
 
 [Contributing](#contributing)
 
@@ -27,6 +27,15 @@ Something not quite right?  Have a suggestion?  Found a bug?  Create an issue no
 * * *
 
 #### Licensing
+
+##### Textures
+
+Some textures from [The Painterly Pack][pack] by [Rhodox][rhodox_tweet] and friends. Used by permission.
+
+[pack]: http://painterlypack.net/
+[rhodox_tweet]: https://twitter.com/PainterlyPack
+
+##### Software
 
 This is free and unencumbered software released into the public domain.
 
