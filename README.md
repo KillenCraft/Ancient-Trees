@@ -30,7 +30,7 @@ Something not quite right?  Have a suggestion?  Found a bug?  Create an issue no
 
 ##### Textures
 
-Some textures from [The Painterly Pack][pack] by [Rhodox][rhodox_tweet] and friends. Used by permission.
+Some textures are from [The Painterly Pack][pack] by [Rhodox][rhodox_tweet] and friends. Used by permission.
 
 [pack]: http://painterlypack.net/
 [rhodox_tweet]: https://twitter.com/PainterlyPack
