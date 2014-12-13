@@ -7,7 +7,7 @@ import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
 import com.scottkillen.mod.kore.tree.block.ModStairsBlock;
 import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
 
-public interface DefinesTree extends DescribesLeaves, DescribesSlabs, ProvidesAbstractTree
+public interface DefinesTree extends DescribesLeaves, DescribesSlabs
 {
     ModLeavesBlock getLeavesBlock();
 

@@ -18,6 +18,7 @@ import com.scottkillen.mod.dendrology.world.gen.feature.NucisTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.PorfforTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.SalyxTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.TuopaTree;
+import com.scottkillen.mod.kore.common.ProvidesPotionEffect;
 import com.scottkillen.mod.kore.tree.DefinesTree;
 import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
 import com.scottkillen.mod.kore.tree.block.ModLogBlock;
@@ -28,6 +29,7 @@ import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.init.Blocks;
+import net.minecraft.potion.PotionHelper;
 import net.minecraft.world.IBlockAccess;
 
 import static com.google.common.base.Preconditions.*;
@@ -38,16 +40,16 @@ import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colori
 import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.NO_COLOR;
 
 @SuppressWarnings({ "NonSerializableFieldInSerializableClass", "ClassHasNoToStringMethod" })
-public enum OverworldTreeSpecies implements DefinesTree
+public enum OverworldTreeSpecies implements DefinesTree, ProvidesPotionEffect
 {
     // REORDERING WILL CAUSE DAMAGE TO SAVES
     ACEMUS(ACEMUS_COLOR, new AcemusTree()),
     CEDRUM(NO_COLOR, new CedrumTree()),
     CERASU(CERASU_COLOR, new CerasuTree()),
     DELNAS(NO_COLOR, new DelnasTree()),
-    EWCALY(NO_COLOR, new EwcalyTree()),
+    EWCALY(NO_COLOR, new EwcalyTree(), PotionHelper.sugarEffect),
     HEKUR(BASIC_COLOR, new HekurTree()),
-    KIPARIS(NO_COLOR, new KiparisTree()),
+    KIPARIS(NO_COLOR, new KiparisTree(), PotionHelper.spiderEyeEffect),
     KULIST(KULIST_COLOR, new KulistTree()),
     LATA(BASIC_COLOR, new LataTree()),
     NUCIS(BASIC_COLOR, new NucisTree()),
@@ -57,6 +59,7 @@ public enum OverworldTreeSpecies implements DefinesTree
 
     private final AbstractTree treeGen;
     private final Colorizer colorizer;
+    private final String potionEffect;
 
     private int leavesMeta;
     private int logMeta;
@@ -78,11 +81,20 @@ public enum OverworldTreeSpecies implements DefinesTree
             tree.treeGen.setTree(tree);
     }
 
-    OverworldTreeSpecies(Colorizer colorizer, AbstractTree treeGen)
+    OverworldTreeSpecies(Colorizer colorizer, AbstractTree treeGen, String potionEffect)
     {
         this.colorizer = colorizer;
         this.treeGen = treeGen;
+        this.potionEffect = potionEffect;
     }
+
+    OverworldTreeSpecies(Colorizer colorizer, AbstractTree treeGen)
+    {
+        this(colorizer, treeGen, null);
+    }
+
+    @Override
+    public String getPotionEffect() { return potionEffect; }
 
     @Override
     @SideOnly(Side.CLIENT)
