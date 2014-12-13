@@ -7,12 +7,12 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
-public enum OreDict
+public enum OreDictHandler
 {
     ;
 
     @SuppressWarnings("MethodWithMultipleLoops")
-    public static void registerOres()
+    public static void init()
     {
         for (final Block block : ModBlocks.getLogBlocks())
             registerWildcardOre(block, "logWood");

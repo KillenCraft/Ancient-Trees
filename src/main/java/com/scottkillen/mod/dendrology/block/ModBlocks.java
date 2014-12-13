@@ -41,7 +41,7 @@ public final class ModBlocks
         throw new AssertionError();
     }
 
-    public static void init()
+    public static void preInit()
     {
         overworldContent = new TreeSpeciesLoader(Arrays.asList(OverworldTreeSpecies.values()), TheMod.INSTANCE);
         overworldContent.load();

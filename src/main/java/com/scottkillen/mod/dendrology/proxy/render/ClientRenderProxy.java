@@ -10,7 +10,7 @@ import net.minecraft.client.resources.IResourceManager;
 public class ClientRenderProxy extends RenderProxy
 {
     @Override
-    public void init()
+    public void postInit()
     {
         final IResourceManager resourceManager = Minecraft.getMinecraft().getResourceManager();
         if (resourceManager instanceof IReloadableResourceManager)

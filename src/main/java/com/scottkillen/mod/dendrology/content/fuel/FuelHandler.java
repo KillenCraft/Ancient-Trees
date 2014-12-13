@@ -9,7 +9,7 @@ public enum FuelHandler implements IFuelHandler
 {
     INSTANCE;
 
-    public static void register()
+    public static void postInit()
     {
         GameRegistry.registerFuelHandler(INSTANCE);
     }
