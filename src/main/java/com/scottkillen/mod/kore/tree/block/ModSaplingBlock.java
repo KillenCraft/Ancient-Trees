@@ -118,7 +118,10 @@ public class ModSaplingBlock extends BlockSapling
     @SuppressWarnings("ReturnOfNull")
     public String getPotionEffect(ItemStack itemStack)
     {
-        final ProvidesSapling sapling = trees.get(itemStack.getItemDamage());
+        final int itemDamage = itemStack.getItemDamage();
+        if (itemDamage > trees.size()) return null;
+
+        final ProvidesSapling sapling = trees.get(itemDamage);
         return sapling instanceof ProvidesPotionEffect ? ((ProvidesPotionEffect) sapling).getPotionEffect() : null;
     }
 
