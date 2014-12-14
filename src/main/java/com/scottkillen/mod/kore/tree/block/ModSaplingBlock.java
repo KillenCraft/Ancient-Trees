@@ -119,7 +119,7 @@ public class ModSaplingBlock extends BlockSapling
     public String getPotionEffect(ItemStack itemStack)
     {
         final int itemDamage = itemStack.getItemDamage();
-        if (itemDamage > trees.size()) return null;
+        if (itemDamage < 0 || itemDamage >= trees.size()) return null;
 
         final ProvidesSapling sapling = trees.get(itemDamage);
         return sapling instanceof ProvidesPotionEffect ? ((ProvidesPotionEffect) sapling).getPotionEffect() : null;
