@@ -1,0 +1,113 @@
+##############################
+# Dendrology
+#
+# Pirate Speak - NONE (PT) (en_PT) localization
+# Author: Scott Killen
+#
+
+#Blocks
+
+### Logs
+tile.dendrology:log.acemus.name=Acemus Wood
+tile.dendrology:log.cedrum.name=Cedrum Wood
+tile.dendrology:log.cerasu.name=Cerasu Wood
+tile.dendrology:log.delnas.name=Delnas Wood
+tile.dendrology:log.ewcaly.name=Ewcaly Wood
+tile.dendrology:log.hekur.name=Hekur Wood
+tile.dendrology:log.kiparis.name=Kiparis Wood
+tile.dendrology:log.kulist.name=Kulist Wood
+tile.dendrology:log.lata.name=Lata Wood
+tile.dendrology:log.nucis.name=Nucis Wood
+tile.dendrology:log.porffor.name=Porffor Wood
+tile.dendrology:log.salyx.name=Salyx Wood
+tile.dendrology:log.tuopa.name=Tuopa Wood
+
+### Leaves
+tile.dendrology:leaves.acemus.name=Acemus Leaves
+tile.dendrology:leaves.cedrum.name=Cedrum Leaves
+tile.dendrology:leaves.cerasu.name=Cerasu Leaves
+tile.dendrology:leaves.delnas.name=Delnas Leaves
+tile.dendrology:leaves.ewcaly.name=Ewcaly Leaves
+tile.dendrology:leaves.hekur.name=Hekur Leaves
+tile.dendrology:leaves.kiparis.name=Kiparis Leaves
+tile.dendrology:leaves.kulist.name=Kulist Leaves
+tile.dendrology:leaves.lata.name=Lata Leaves
+tile.dendrology:leaves.nucis.name=Nucis Leaves
+tile.dendrology:leaves.porffor.name=Porffor Leaves
+tile.dendrology:leaves.salyx.name=Salyx Leaves
+tile.dendrology:leaves.tuopa.name=Tuopa Leaves
+
+### Planks
+tile.dendrology:wood.acemus.name=Acemus Wood Planks
+tile.dendrology:wood.cedrum.name=Cedrum Wood Planks
+tile.dendrology:wood.cerasu.name=Cerasu Wood Planks
+tile.dendrology:wood.delnas.name=Delnas Wood Planks
+tile.dendrology:wood.ewcaly.name=Ewcaly Wood Planks
+tile.dendrology:wood.hekur.name=Hekur Wood Planks
+tile.dendrology:wood.kiparis.name=Kiparis Wood Planks
+tile.dendrology:wood.kulist.name=Kulist Wood Planks
+tile.dendrology:wood.lata.name=Lata Wood Planks
+tile.dendrology:wood.nucis.name=Nucis Wood Planks
+tile.dendrology:wood.porffor.name=Porffor Wood Planks
+tile.dendrology:wood.salyx.name=Salyx Wood Planks
+tile.dendrology:wood.tuopa.name=Tuopa Wood Planks
+
+### Saplings
+tile.dendrology:sapling.acemus.name=Acemus Saplin'
+tile.dendrology:sapling.cedrum.name=Cedrum Saplin'
+tile.dendrology:sapling.cerasu.name=Cerasu Saplin'
+tile.dendrology:sapling.delnas.name=Delnas Saplin'
+tile.dendrology:sapling.ewcaly.name=Ewcaly Saplin'
+tile.dendrology:sapling.hekur.name=Hekur Saplin'
+tile.dendrology:sapling.kiparis.name=Kiparis Saplin'
+tile.dendrology:sapling.kulist.name=Kulist Saplin'
+tile.dendrology:sapling.lata.name=Lata Saplin'
+tile.dendrology:sapling.nucis.name=Nucis Saplin'
+tile.dendrology:sapling.porffor.name=Porffor Saplin'
+tile.dendrology:sapling.salyx.name=Salyx Saplin'
+tile.dendrology:sapling.tuopa.name=Tuopa Saplin'
+
+### Slabs
+tile.dendrology:slab.acemus.name=Acemus Wood Slab
+tile.dendrology:slab.cedrum.name=Cedrum Wood Slab
+tile.dendrology:slab.cerasu.name=Cerasu Wood Slab
+tile.dendrology:slab.delnas.name=Delnas Wood Slab
+tile.dendrology:slab.ewcaly.name=Ewcaly Wood Slab
+tile.dendrology:slab.hekur.name=Hekur Wood Slab
+tile.dendrology:slab.kiparis.name=Kiparis Wood Slab
+tile.dendrology:slab.kulist.name=Kulist Wood Slab
+tile.dendrology:slab.lata.name=Lata Wood Slab
+tile.dendrology:slab.nucis.name=Nucis Wood Slab
+tile.dendrology:slab.porffor.name=Porffor Wood Slab
+tile.dendrology:slab.salyx.name=Salyx Wood Slab
+tile.dendrology:slab.tuopa.name=Tuopa Wood Slab
+
+### Stairs
+tile.dendrology:stairs.acemus.name=Acemus Wood Stairs
+tile.dendrology:stairs.cedrum.name=Cedrum Wood Stairs
+tile.dendrology:stairs.cerasu.name=Cerasu Wood Stairs
+tile.dendrology:stairs.delnas.name=Delnas Wood Stairs
+tile.dendrology:stairs.ewcaly.name=Ewcaly Wood Stairs
+tile.dendrology:stairs.hekur.name=Hekur Wood Stairs
+tile.dendrology:stairs.kiparis.name=Kiparis Wood Stairs
+tile.dendrology:stairs.kulist.name=Kulist Wood Stairs
+tile.dendrology:stairs.lata.name=Lata Wood Stairs
+tile.dendrology:stairs.nucis.name=Nucis Wood Stairs
+tile.dendrology:stairs.porffor.name=Porffor Wood Stairs
+tile.dendrology:stairs.salyx.name=Salyx Wood Stairs
+tile.dendrology:stairs.tuopa.name=Tuopa Wood Stairs
+
+# Creatibe Tabs
+itemGroup.dendrology=Ancient Trees
+
+# Config file comments
+config.dendrology:blacksmithRarity=How often ancient saplin's be found in blacksmith's chests. 0 disables. Higher values be less rare.
+config.dendrology:bonusChestRarity=How often ancient saplin's be found in bonus chests. 0 disables. Higher values be less rare.
+config.dendrology:desertTempleRarity=How often ancient saplin's be found in desert temple chests. 0 disables. Higher values be less rare.
+config.dendrology:dungeonRarity=How often ancient saplin's be found in dungeon chests. 0 disables. Higher values be less rare.
+config.dendrology:jungleTempleRarity=How often ancient saplin's be found in jungle temple chests. 0 disables. Higher values be less rare.
+config.dendrology:jungleTempleDispenserRarity=How often ancient saplin's be found in jungle temple dispensers. 0 disables. Higher values be less rare.
+config.dendrology:mineshaftCorridorRarity=How often ancient saplin's be found in mineshaft corridor chests. 0 disables. Higher values be less rare.
+config.dendrology:strongholdCorridorRarity=How often ancient saplin's be found in stronghold corridor chests. 0 disables. Higher values be less rare.
+config.dendrology:strongholdCrossingRarity=How often ancient saplin's be found in stronghold crossing chests. 0 disables. Higher values be less rare.
+config.dendrology:strongholdLibraryRarity=How often ancient saplin's be found in stronghold library chests. 0 disables. Higher values be less rare.
