@@ -2,11 +2,11 @@
 **LATEST OFFICIAL VERSION**: [Ancient Trees 0.3.2 for MC 1.7.10][release]
 [release]: https://github.com/MinecraftModArchive/Dendrology/releases/download/v0.3.0/AncientTrees-1.7.10-0.3.2.jar
 
-In the time before The Fall, the world was vibrant, teeming with life. The Fall changed world and only a
+In the time before The Fall, the world was vibrant, teeming with life. The Fall changed the world and only a
 portion of what was has survived.
 
 In their wisdom, the Ancient Ones foresaw the Extinction and took steps to preserve trees within chests hidden in the
-world. It is unfortunate that the Ancient Ones could not save themselves.
+world. It is tragic that, for all the good they did, the Ancient Ones could not save themselves.
 
 [Contributing](#contributing)
 
