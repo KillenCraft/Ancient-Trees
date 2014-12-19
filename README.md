@@ -45,6 +45,10 @@ Some textures are from [The Painterly Pack][pack] by [Rhodox][rhodox_tweet] and 
 [pack]: http://painterlypack.net/
 [rhodox_tweet]: https://twitter.com/PainterlyPack
 
+##### APIs
+
+Included APIs are governed by the licenses under which they where released.
+
 ##### Software
 
 This is free and unencumbered software released into the public domain.
