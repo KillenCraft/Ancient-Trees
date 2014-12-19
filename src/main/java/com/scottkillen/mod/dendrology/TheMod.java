@@ -24,26 +24,22 @@ public class TheMod implements OrganizesResources
 {
     public static final String MOD_ID = "dendrology";
     public static final String MOD_NAME = "Ancient Trees";
+    @SuppressWarnings("WeakerAccess")
+    static final String MOD_VERSION = "${mod_version}";
+    @SuppressWarnings("WeakerAccess")
+    static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
     private static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
-
-    @SuppressWarnings({
-            "StaticNonFinalField",
-            "StaticVariableMayNotBeInitialized",
-            "NonConstantFieldWithUpperCaseName"
-    })
-    @Instance(MOD_ID)
-    public static TheMod INSTANCE;
-
     @SuppressWarnings("AnonymousInnerClass")
     private static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
     {
         @Override
         public Item getTabIconItem() { return Item.getItemFromBlock(Blocks.sapling); }
     };
-    @SuppressWarnings("WeakerAccess")
-    static final String MOD_VERSION = "${mod_version}";
-    @SuppressWarnings("WeakerAccess")
-    static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
+    @SuppressWarnings({
+            "StaticNonFinalField", "StaticVariableMayNotBeInitialized", "NonConstantFieldWithUpperCaseName"
+    })
+    @Instance(MOD_ID)
+    public static TheMod INSTANCE;
 
     @SuppressWarnings("MethodMayBeStatic")
     @EventHandler
@@ -71,6 +67,7 @@ public class TheMod implements OrganizesResources
     {
         Proxy.render.postInit();
         FuelHandler.postInit();
+        ModBlocks.postInit();
     }
 
     @Override
