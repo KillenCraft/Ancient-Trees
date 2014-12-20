@@ -1,0 +1,113 @@
+##############################
+# Dendrology
+#
+# German - GERMANY (DE) (de_DE) localization
+# Author: MCManuelLP
+#
+
+#Blocks
+
+### Logs
+tile.dendrology:log.acemus.name=Acemusholz
+tile.dendrology:log.cedrum.name=Cedrumholz
+tile.dendrology:log.cerasu.name=Cerasuholz
+tile.dendrology:log.delnas.name=Delnasholz
+tile.dendrology:log.ewcaly.name=Ewcalyholz
+tile.dendrology:log.hekur.name=Hekurholz
+tile.dendrology:log.kiparis.name=Kiparis Holz
+tile.dendrology:log.kulist.name=Kulistholz
+tile.dendrology:log.lata.name=Lataholz
+tile.dendrology:log.nucis.name=Nucisholz
+tile.dendrology:log.porffor.name=Porfforholz
+tile.dendrology:log.salyx.name=Salyxholz
+tile.dendrology:log.tuopa.name=Tuopaholz
+
+### Leaves
+tile.dendrology:leaves.acemus.name=Acemuslaub
+tile.dendrology:leaves.cedrum.name=Cedrumlaub
+tile.dendrology:leaves.cerasu.name=Cerasulaub
+tile.dendrology:leaves.delnas.name=Delnaslaub
+tile.dendrology:leaves.ewcaly.name=Ewcalylaub
+tile.dendrology:leaves.hekur.name=Hekurlaub
+tile.dendrology:leaves.kiparis.name=Kiparislaub
+tile.dendrology:leaves.kulist.name=Kulistlaub
+tile.dendrology:leaves.lata.name=Latalaub
+tile.dendrology:leaves.nucis.name=Nucislaub
+tile.dendrology:leaves.porffor.name=Porfforlaub
+tile.dendrology:leaves.salyx.name=Salyxlaub
+tile.dendrology:leaves.tuopa.name=Tuopalaub
+
+### Planks
+tile.dendrology:wood.acemus.name=Acemusholzbretter
+tile.dendrology:wood.cedrum.name=Cedrumholzbretter
+tile.dendrology:wood.cerasu.name=Cerasuholzbretter
+tile.dendrology:wood.delnas.name=Delnasholzbretter
+tile.dendrology:wood.ewcaly.name=Ewcalyholzbretter
+tile.dendrology:wood.hekur.name=Hekurholzbretter
+tile.dendrology:wood.kiparis.name=Kiparisholzbretter
+tile.dendrology:wood.kulist.name=Kulistholzbretter
+tile.dendrology:wood.lata.name=Lataholzbretter
+tile.dendrology:wood.nucis.name=Nucisholzbretter
+tile.dendrology:wood.porffor.name=Porfforholzbretter
+tile.dendrology:wood.salyx.name=Salyxholzbretter
+tile.dendrology:wood.tuopa.name=Tuopaholzbretter
+
+### Saplings
+tile.dendrology:sapling.acemus.name=Acemussetzling
+tile.dendrology:sapling.cedrum.name=Cedrumsetzling
+tile.dendrology:sapling.cerasu.name=Cerasusetzling
+tile.dendrology:sapling.delnas.name=Delnassetzling
+tile.dendrology:sapling.ewcaly.name=Ewcalysetzling
+tile.dendrology:sapling.hekur.name=Hekursetzling
+tile.dendrology:sapling.kiparis.name=Kiparissetzling
+tile.dendrology:sapling.kulist.name=Kulistsetzling
+tile.dendrology:sapling.lata.name=Latasetzling
+tile.dendrology:sapling.nucis.name=Nucissetzling
+tile.dendrology:sapling.porffor.name=Porfforsetzling
+tile.dendrology:sapling.salyx.name=Salyxsetzling
+tile.dendrology:sapling.tuopa.name=Tuopasetzling
+
+### Slabs
+tile.dendrology:slab.acemus.name=Acemusholzstufe
+tile.dendrology:slab.cedrum.name=Cedrumholzstufe
+tile.dendrology:slab.cerasu.name=Cerasuholzstufe
+tile.dendrology:slab.delnas.name=Delnasholzstufe
+tile.dendrology:slab.ewcaly.name=Ewcalyholzstufe
+tile.dendrology:slab.hekur.name=Hekurholzstufe
+tile.dendrology:slab.kiparis.name=Kiparisholzstufe
+tile.dendrology:slab.kulist.name=Kulistholzstufe
+tile.dendrology:slab.lata.name=Lataholzstufe
+tile.dendrology:slab.nucis.name=Nucisholzstufe
+tile.dendrology:slab.porffor.name=Porfforholzstufe
+tile.dendrology:slab.salyx.name=Salyxholzstufe
+tile.dendrology:slab.tuopa.name=Tuopaholzstufe
+
+### Stairs
+tile.dendrology:stairs.acemus.name=Acemusholztreppe
+tile.dendrology:stairs.cedrum.name=Cedrumholztreppe
+tile.dendrology:stairs.cerasu.name=Cerasuholztreppe
+tile.dendrology:stairs.delnas.name=Delnasholztreppe
+tile.dendrology:stairs.ewcaly.name=Ewcalyholztreppe
+tile.dendrology:stairs.hekur.name=Hekurholztreppe
+tile.dendrology:stairs.kiparis.name=Kiparisholztreppe
+tile.dendrology:stairs.kulist.name=Kulistholztreppe
+tile.dendrology:stairs.lata.name=Lataholztreppe
+tile.dendrology:stairs.nucis.name=Nucisholztreppe
+tile.dendrology:stairs.porffor.name=Porfforholztreppe
+tile.dendrology:stairs.salyx.name=Salyxholztreppe
+tile.dendrology:stairs.tuopa.name=Tuopaholztreppe
+
+# Creatibe Tabs
+itemGroup.dendrology=Vergessene BÃ¤ume
+
+# Config file comments
+config.dendrology:blacksmithRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in Schmiedekisten. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
+config.dendrology:bonusChestRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in Bonuskisten. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
+config.dendrology:desertTempleRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in WÃ¼stentempeln. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
+config.dendrology:dungeonRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in VerlieÃŸkisten. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
+config.dendrology:jungleTempleRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in Dschungeltempeltruhen. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
+config.dendrology:jungleTempleDispenserRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in Dschungeltempel Werfern. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
+config.dendrology:mineshaftCorridorRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in Minenschacht GÃ¼terloren. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
+config.dendrology:strongholdCorridorRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in FestungsgÃ¤ngen. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
+config.dendrology:strongholdCrossingRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in FestungsrÃ¤umen. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
+config.dendrology:strongholdLibraryRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in Festungsbibliothekstruhen. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
