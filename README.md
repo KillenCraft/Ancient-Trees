@@ -1,6 +1,6 @@
 ## Ancient Trees
-**LATEST OFFICIAL VERSION**: [Ancient Trees 0.3.2 for MC 1.7.10][release]
-[release]: https://github.com/MinecraftModArchive/Dendrology/releases/download/v0.3.0/AncientTrees-1.7.10-0.3.2.jar
+**LATEST OFFICIAL VERSION**: [Ancient Trees 1.0.0 for MC 1.7.10][release]
+[release]: https://github.com/MinecraftModArchive/Dendrology/releases/download/v1.0.0/AncientTrees-1.7.10-1.0.0.jar
 
 "In the time before The Fall, the world was vibrant, teeming with life. The Fall changed the world and only a
 portion of what was has survived.
