@@ -3,21 +3,24 @@ package com.scottkillen.mod.dendrology.compat.minechem;
 import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
 import com.scottkillen.mod.dendrology.util.log.Logger;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Optional.Method;
 import minechem.api.RecipeAPI;
 import net.minecraft.item.ItemStack;
 
 public enum MinechemMod
 {
     ;
+    private static final String MINECHEM = "minechem";
 
     public static void integrate()
     {
-        if (Loader.isModLoaded("minechem"))
+        if (Loader.isModLoaded(MINECHEM))
         {
             addDecomposerRecipes();
         } else Logger.info("Minechem mod not present. Integration skipped.");
     }
 
+    @Method(modid = MINECHEM)
     private static void addDecomposerRecipes()
     {
         Logger.info("Adding Minechem decomposer recipes.");
