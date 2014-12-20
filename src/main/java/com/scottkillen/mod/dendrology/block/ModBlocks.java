@@ -2,7 +2,6 @@ package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.dendrology.compat.minechem.MinechemMod;
 import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
 import com.scottkillen.mod.kore.tree.DefinesTree;
@@ -242,10 +241,5 @@ public final class ModBlocks
     public static Iterable<? extends DefinesTree> getContent()
     {
         return overworldContent.getSpecies();
-    }
-
-    public static void postInit()
-    {
-        MinechemMod.integrate();
     }
 }
