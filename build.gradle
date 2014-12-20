@@ -23,11 +23,21 @@ apply plugin: 'maven'
 group = "com.scottkillen.mod"
 archivesBaseName = "AncientTrees"
 
+ext.apiForestry = "./api/ForestryAPI"
+
 minecraft {
     version = project.mcversion + "-" + project.forgeversion
     runDir = "run"
 
     replace '${mod_version}', project.version
+}
+
+sourceSets {
+    api {
+        java {
+            srcDir project.apiForestry
+        }
+    }
 }
 
 processResources
