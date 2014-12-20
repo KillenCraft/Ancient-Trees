@@ -1,0 +1,113 @@
+##############################
+# Dendrology
+#
+# Esperanto - Constructed language (International) (en_UY) localization
+# Author: Scott Killen
+#
+
+#Blocks
+
+### Logs
+tile.dendrology:log.acemus.name=Acemus Ligno
+tile.dendrology:log.cedrum.name=Cedrum Ligno
+tile.dendrology:log.cerasu.name=Cerasu Ligno
+tile.dendrology:log.delnas.name=Delnas Ligno
+tile.dendrology:log.ewcaly.name=Ewcaly Ligno
+tile.dendrology:log.hekur.name=Hekur Ligno
+tile.dendrology:log.kiparis.name=Kiparis Ligno
+tile.dendrology:log.kulist.name=Kulist Ligno
+tile.dendrology:log.lata.name=Lata Ligno
+tile.dendrology:log.nucis.name=Nucis Ligno
+tile.dendrology:log.porffor.name=Porffor Ligno
+tile.dendrology:log.salyx.name=Salyx Ligno
+tile.dendrology:log.tuopa.name=Tuopa Ligno
+
+### Leaves
+tile.dendrology:leaves.acemus.name=Acemus Folioj
+tile.dendrology:leaves.cedrum.name=Cedrum Folioj
+tile.dendrology:leaves.cerasu.name=Cerasu Folioj
+tile.dendrology:leaves.delnas.name=Delnas Folioj
+tile.dendrology:leaves.ewcaly.name=Ewcaly Folioj
+tile.dendrology:leaves.hekur.name=Hekur Folioj
+tile.dendrology:leaves.kiparis.name=Kiparis Folioj
+tile.dendrology:leaves.kulist.name=Kulist Folioj
+tile.dendrology:leaves.lata.name=Lata Folioj
+tile.dendrology:leaves.nucis.name=Nucis Folioj
+tile.dendrology:leaves.porffor.name=Porffor Folioj
+tile.dendrology:leaves.salyx.name=Salyx Folioj
+tile.dendrology:leaves.tuopa.name=Tuopa Folioj
+
+### Planks
+tile.dendrology:wood.acemus.name=Acemus Ligno Tabuloj
+tile.dendrology:wood.cedrum.name=Cedrum Ligno Tabuloj
+tile.dendrology:wood.cerasu.name=Cerasu Ligno Tabuloj
+tile.dendrology:wood.delnas.name=Delnas Ligno Tabuloj
+tile.dendrology:wood.ewcaly.name=Ewcaly Ligno Tabuloj
+tile.dendrology:wood.hekur.name=Hekur Ligno Tabuloj
+tile.dendrology:wood.kiparis.name=Kiparis Ligno Tabuloj
+tile.dendrology:wood.kulist.name=Kulist Ligno Tabuloj
+tile.dendrology:wood.lata.name=Lata Ligno Tabuloj
+tile.dendrology:wood.nucis.name=Nucis Ligno Tabuloj
+tile.dendrology:wood.porffor.name=Porffor Ligno Tabuloj
+tile.dendrology:wood.salyx.name=Salyx Ligno Tabuloj
+tile.dendrology:wood.tuopa.name=Tuopa Ligno Tabuloj
+
+### Saplings
+tile.dendrology:sapling.acemus.name=Acemus Arbidon
+tile.dendrology:sapling.cedrum.name=Cedrum Arbidon
+tile.dendrology:sapling.cerasu.name=Cerasu Arbidon
+tile.dendrology:sapling.delnas.name=Delnas Arbidon
+tile.dendrology:sapling.ewcaly.name=Ewcaly Arbidon
+tile.dendrology:sapling.hekur.name=Hekur Arbidon
+tile.dendrology:sapling.kiparis.name=Kiparis Arbidon
+tile.dendrology:sapling.kulist.name=Kulist Arbidon
+tile.dendrology:sapling.lata.name=Lata Arbidon
+tile.dendrology:sapling.nucis.name=Nucis Arbidon
+tile.dendrology:sapling.porffor.name=Porffor Arbidon
+tile.dendrology:sapling.salyx.name=Salyx Arbidon
+tile.dendrology:sapling.tuopa.name=Tuopa Arbidon
+
+### Slabs
+tile.dendrology:slab.acemus.name=Acemus Ligno Slabo
+tile.dendrology:slab.cedrum.name=Cedrum Ligno Slabo
+tile.dendrology:slab.cerasu.name=Cerasu Ligno Slabo
+tile.dendrology:slab.delnas.name=Delnas Ligno Slabo
+tile.dendrology:slab.ewcaly.name=Ewcaly Ligno Slabo
+tile.dendrology:slab.hekur.name=Hekur Ligno Slabo
+tile.dendrology:slab.kiparis.name=Kiparis Ligno Slabo
+tile.dendrology:slab.kulist.name=Kulist Ligno Slabo
+tile.dendrology:slab.lata.name=Lata Ligno Slabo
+tile.dendrology:slab.nucis.name=Nucis Ligno Slabo
+tile.dendrology:slab.porffor.name=Porffor Ligno Slabo
+tile.dendrology:slab.salyx.name=Salyx Ligno Slabo
+tile.dendrology:slab.tuopa.name=Tuopa Ligno Slabo
+
+### Stairs
+tile.dendrology:stairs.acemus.name=Acemus Ligno ?tuparo
+tile.dendrology:stairs.cedrum.name=Cedrum Ligno ?tuparo
+tile.dendrology:stairs.cerasu.name=Cerasu Ligno ?tuparo
+tile.dendrology:stairs.delnas.name=Delnas Ligno ?tuparo
+tile.dendrology:stairs.ewcaly.name=Ewcaly Ligno ?tuparo
+tile.dendrology:stairs.hekur.name=Hekur Ligno ?tuparo
+tile.dendrology:stairs.kiparis.name=Kiparis Ligno ?tuparo
+tile.dendrology:stairs.kulist.name=Kulist Ligno ?tuparo
+tile.dendrology:stairs.lata.name=Lata Ligno ?tuparo
+tile.dendrology:stairs.nucis.name=Nucis Ligno ?tuparo
+tile.dendrology:stairs.porffor.name=Porffor Ligno ?tuparo
+tile.dendrology:stairs.salyx.name=Salyx Ligno ?tuparo
+tile.dendrology:stairs.tuopa.name=Tuopa Ligno ?tuparo
+
+# Creatibe Tabs
+itemGroup.dendrology=Antikva Arboj
+
+# Config file comments
+config.dendrology:blacksmithRarity=Kiom ofte antikvaj arbidoj trovi?as en for?isto la brustojn. 0 preventas. Pli altaj valoroj estas malpli malofta.
+config.dendrology:bonusChestRarity=Kiom ofte antikvaj arbidoj trovi?as en bonus brustojn. 0 preventas. Pli altaj valoroj estas malpli malofta.
+config.dendrology:desertTempleRarity=Kiom ofte antikvaj arbidoj trovi?as en dezerta templo brustojn. 0 preventas. Pli altaj valoroj estas malpli malofta.
+config.dendrology:dungeonRarity=Kiom ofte antikvaj arbidoj trovi?as en karcero brustojn. 0 preventas. Pli altaj valoroj estas malpli malofta.
+config.dendrology:jungleTempleRarity=Kiom ofte antikvaj arbidoj trovi?as en ?angalo templo brustojn. 0 preventas. Pli altaj valoroj estas malpli malofta.
+config.dendrology:jungleTempleDispenserRarity=Kiom ofte antikvaj arbidoj trovi?as en ?angalo templo _dispensers_. 0 preventas. Pli altaj valoroj estas malpli malofta.
+config.dendrology:mineshaftCorridorRarity=Kiom ofte antikvaj arbidoj trovi?as en mineshaft koridoro brustojn. 0 preventas. Pli altaj valoroj estas malpli malofta.
+config.dendrology:strongholdCorridorRarity=Kiom ofte antikvaj arbidoj trovi?as en fortikigitan koridoro brustojn. 0 preventas. Pli altaj valoroj estas malpli malofta.
+config.dendrology:strongholdCrossingRarity=Kiom ofte antikvaj arbidoj trovi?as en fortikigitan kruci?o brustojn. 0 preventas. Pli altaj valoroj estas malpli malofta.
+config.dendrology:strongholdLibraryRarity=Kiom ofte antikvaj arbidoj trovi?as en fortikigitan biblioteko brustojn. 0 preventas. Pli altaj valoroj estas malpli malofta.

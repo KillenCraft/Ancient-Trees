@@ -100,7 +100,8 @@ public final class ModBlocks
         int saplingCount = 0;
         for (final ModSaplingBlock sapling : saplingBlocks)
         {
-            registerSaplingBlock(sapling, String.format("sapling%d", saplingCount++), sapling.getSubBlockNames());
+            registerSaplingBlock(sapling, String.format("sapling%d", saplingCount), sapling.getSubBlockNames());
+            saplingCount++;
 
             addSaplingToChest(sapling, VILLAGE_BLACKSMITH, Settings.getBlacksmithRarity());
             addSaplingToChest(sapling, BONUS_CHEST, Settings.getBonusChestRarity());
