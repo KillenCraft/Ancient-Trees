@@ -1,6 +1,7 @@
 package com.scottkillen.mod.dendrology;
 
 import com.scottkillen.mod.dendrology.block.ModBlocks;
+import com.scottkillen.mod.dendrology.compat.minechem.MinechemMod;
 import com.scottkillen.mod.dendrology.config.ConfigHandler;
 import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
 import com.scottkillen.mod.dendrology.content.crafting.Recipes;
@@ -69,7 +70,7 @@ public class TheMod implements OrganizesResources
     {
         Proxy.render.postInit();
         FuelHandler.postInit();
-        ModBlocks.postInit();
+        MinechemMod.integrate();
     }
 
     @Override
