@@ -23,25 +23,11 @@ apply plugin: 'maven'
 group = "com.scottkillen.mod"
 archivesBaseName = "AncientTrees"
 
-ext.apiMinechem = "./api/minechem"
-
 minecraft {
     version = project.mcversion + "-" + project.forgeversion
     runDir = "run"
 
     replace '${mod_version}', project.version
-}
-
-sourceSets {
-    main {
-        java {
-            srcDir project.apiMinechem
-            exclude '**/minechem/api/ChemicalAPI.java'
-            exclude '**/minechem/api/IDecomposerControl.java'
-            exclude '**/minechem/api/INoDecay.java'
-            exclude '**/minechem/api/IRadiationShield.java'
-        }
-    }
 }
 
 processResources

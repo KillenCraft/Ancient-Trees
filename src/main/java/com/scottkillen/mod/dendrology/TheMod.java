@@ -19,7 +19,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 
-@Mod(modid = TheMod.MOD_ID, name = TheMod.MOD_NAME, version = TheMod.MOD_VERSION, useMetadata = true, guiFactory = TheMod.MOD_GUI_FACTORY)
+@Mod(modid = TheMod.MOD_ID, name = TheMod.MOD_NAME, version = TheMod.MOD_VERSION, useMetadata = true,
+        dependencies = TheMod.Mod_DEPENDENCIES, guiFactory = TheMod.MOD_GUI_FACTORY)
 public class TheMod implements OrganizesResources
 {
     public static final String MOD_ID = "dendrology";
@@ -28,6 +29,7 @@ public class TheMod implements OrganizesResources
     static final String MOD_VERSION = "${mod_version}";
     @SuppressWarnings("WeakerAccess")
     static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
+    static final String Mod_DEPENDENCIES = "after:minechem";
     private static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
     @SuppressWarnings("AnonymousInnerClass")
     private static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
