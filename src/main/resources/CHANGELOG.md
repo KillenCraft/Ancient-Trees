@@ -17,10 +17,10 @@
 [sean_link]: https://github.com/seanthebaker
 
 ## 0.3.2
-- Fix the fix for #11. (#12)
+- Fix the fix for [#11](/MinecraftModArchive/Dendrology/issues/11). ([#12](/MinecraftModArchive/Dendrology/issues/12))
 
 ## 0.3.1
-- Added code to prevent exceptions caused by ExtraUtilities. (#11)
+- Added code to prevent exceptions caused by ExtraUtilities. ([#11](/MinecraftModArchive/Dendrology/issues/11))
 
 ## 0.3.0
 - Replaced low quality sapling textures with saplings from [The Painterly Pack][painterlypack_link] by [Rhodox][rhodox_tweet] and friends.
