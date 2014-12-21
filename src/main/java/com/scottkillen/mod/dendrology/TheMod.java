@@ -2,6 +2,8 @@ package com.scottkillen.mod.dendrology;
 
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.compat.forestry.ForestryMod;
+import com.scottkillen.mod.dendrology.compat.gardencollection.GardenCoreMod;
+import com.scottkillen.mod.dendrology.compat.gardencollection.GardenTreesMod;
 import com.scottkillen.mod.dendrology.compat.minechem.MinechemMod;
 import com.scottkillen.mod.dendrology.config.ConfigHandler;
 import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
@@ -65,6 +67,8 @@ public class TheMod implements OrganizesResources
         OreDictHandler.init();
         Recipes.init();
         ForestryMod.integrate(event.getModState());
+        GardenCoreMod.integrate();
+        GardenTreesMod.integrate();
     }
 
     @SuppressWarnings("MethodMayBeStatic")
