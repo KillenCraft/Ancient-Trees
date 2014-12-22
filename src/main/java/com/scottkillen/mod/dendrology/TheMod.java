@@ -1,18 +1,19 @@
 package com.scottkillen.mod.dendrology;
 
+import com.google.common.base.Optional;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.compat.forestry.ForestryMod;
 import com.scottkillen.mod.dendrology.compat.gardencollection.GardenCoreMod;
 import com.scottkillen.mod.dendrology.compat.gardencollection.GardenTreesMod;
 import com.scottkillen.mod.dendrology.compat.minechem.MinechemMod;
-import com.scottkillen.mod.dendrology.config.ConfigHandler;
+import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
 import com.scottkillen.mod.dendrology.content.crafting.Recipes;
 import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
 import com.scottkillen.mod.dendrology.item.ModItems;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
 import com.scottkillen.mod.kore.common.OrganizesResources;
-import cpw.mods.fml.common.FMLCommonHandler;
+import com.scottkillen.mod.kore.config.ConfigEventHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -22,12 +23,14 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = TheMod.MOD_ID, name = TheMod.MOD_NAME, version = TheMod.MOD_VERSION, useMetadata = true,
         dependencies = TheMod.MOD_DEPENDENCIES, guiFactory = TheMod.MOD_GUI_FACTORY)
 public class TheMod implements OrganizesResources
 {
     public static final String MOD_ID = "dendrology";
+    @SuppressWarnings("WeakerAccess")
     public static final String MOD_NAME = "Ancient Trees";
     @SuppressWarnings("WeakerAccess")
     static final String MOD_VERSION = "${mod_version}";
@@ -48,11 +51,24 @@ public class TheMod implements OrganizesResources
     @Instance(MOD_ID)
     public static TheMod INSTANCE;
 
+    @SuppressWarnings("StaticNonFinalField")
+    private static Optional<ConfigEventHandler> configEventHandler = Optional.absent();
+
+    public static Configuration configuration()
+    {
+        if (configEventHandler.isPresent()) return configEventHandler.get().configuration();
+        return new Configuration();
+    }
+
     @SuppressWarnings("MethodMayBeStatic")
     @EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
-        ConfigHandler.preInit(event.getSuggestedConfigurationFile());
+        //noinspection AssignmentToStaticFieldFromInstanceMethod
+        configEventHandler = Optional.of(
+                new ConfigEventHandler(MOD_ID, event.getSuggestedConfigurationFile(), Settings.INSTANCE,
+                        Settings.CONFIG_VERSION));
+        configEventHandler.get().activate();
 
         ModItems.preInit();
         ModBlocks.preInit();
@@ -62,8 +78,6 @@ public class TheMod implements OrganizesResources
     @EventHandler
     public void onFMLInitialization(FMLInitializationEvent event)
     {
-        FMLCommonHandler.instance().bus().register(ConfigHandler.INSTANCE);
-
         OreDictHandler.init();
         Recipes.init();
         ForestryMod.integrate(event.getModState());
