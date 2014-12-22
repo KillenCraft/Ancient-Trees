@@ -4,6 +4,7 @@ import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.util.log.Logger;
+import com.scottkillen.mod.kore.config.ConfigSyncable;
 import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -17,11 +18,17 @@ import static com.google.common.base.Preconditions.*;
 @SuppressWarnings("NonSerializableFieldInSerializableClass")
 public enum ConfigHandler
 {
-    INSTANCE;
+    INSTANCE(Settings.INSTANCE);
+    private final ConfigSyncable sync;
     private static final String CONFIG_VERSION = "1";
     private File fileRef = null;
     private Configuration config = null;
     private Optional<Configuration> configOld = Optional.absent();
+
+    ConfigHandler(ConfigSyncable sync)
+    {
+        this.sync = sync;
+    }
 
     public static void preInit(File configFile)
     {
@@ -83,7 +90,7 @@ public enum ConfigHandler
             }
         }
 
-        Settings.syncConfig(config);
+        sync.syncConfig(config);
 
         convertOldConfig();
         saveConfig();
@@ -103,7 +110,7 @@ public enum ConfigHandler
         {
             // Handle old config versions (none yet)
 
-            Settings.syncConfig(config);
+            sync.syncConfig(config);
             configOld = Optional.absent();
         }
     }

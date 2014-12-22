@@ -97,22 +97,24 @@ public final class ModBlocks
     {
         final ImmutableList<ModSaplingBlock> saplingBlocks = overworldContent.getSaplingBlocks();
 
+        final Settings settings = Settings.INSTANCE;
         int saplingCount = 0;
+
         for (final ModSaplingBlock sapling : saplingBlocks)
         {
             registerSaplingBlock(sapling, String.format("sapling%d", saplingCount), sapling.getSubBlockNames());
             saplingCount++;
 
-            addSaplingToChest(sapling, VILLAGE_BLACKSMITH, Settings.getBlacksmithRarity());
-            addSaplingToChest(sapling, BONUS_CHEST, Settings.getBonusChestRarity());
-            addSaplingToChest(sapling, PYRAMID_DESERT_CHEST, Settings.getDesertTempleRarity());
-            addSaplingToChest(sapling, DUNGEON_CHEST, Settings.getDungeonRarity());
-            addSaplingToChest(sapling, PYRAMID_JUNGLE_CHEST, Settings.getJungleTempleRarity());
-            addSaplingToChest(sapling, PYRAMID_JUNGLE_DISPENSER, Settings.getJungleTempleDispenserRarity());
-            addSaplingToChest(sapling, MINESHAFT_CORRIDOR, Settings.getMineshaftCorridorRarity());
-            addSaplingToChest(sapling, STRONGHOLD_CORRIDOR, Settings.getStrongholdCorridorRarity());
-            addSaplingToChest(sapling, STRONGHOLD_CROSSING, Settings.getStrongholdCrossingRarity());
-            addSaplingToChest(sapling, STRONGHOLD_LIBRARY, Settings.getStrongholdLibraryRarity());
+            addSaplingToChest(sapling, VILLAGE_BLACKSMITH, settings.blacksmithRarity());
+            addSaplingToChest(sapling, BONUS_CHEST, settings.bonusChestRarity());
+            addSaplingToChest(sapling, PYRAMID_DESERT_CHEST, settings.desertTempleRarity());
+            addSaplingToChest(sapling, DUNGEON_CHEST, settings.dungeonRarity());
+            addSaplingToChest(sapling, PYRAMID_JUNGLE_CHEST, settings.jungleTempleRarity());
+            addSaplingToChest(sapling, PYRAMID_JUNGLE_DISPENSER, settings.jungleTempleDispenserRarity());
+            addSaplingToChest(sapling, MINESHAFT_CORRIDOR, settings.mineshaftCorridorRarity());
+            addSaplingToChest(sapling, STRONGHOLD_CORRIDOR, settings.strongholdCorridorRarity());
+            addSaplingToChest(sapling, STRONGHOLD_CROSSING, settings.strongholdCrossingRarity());
+            addSaplingToChest(sapling, STRONGHOLD_LIBRARY, settings.strongholdLibraryRarity());
         }
     }
 
