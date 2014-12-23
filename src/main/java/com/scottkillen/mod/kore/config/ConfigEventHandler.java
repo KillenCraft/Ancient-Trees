@@ -2,7 +2,7 @@ package com.scottkillen.mod.kore.config;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
-import com.scottkillen.mod.dendrology.util.log.Logger;
+import com.scottkillen.mod.kore.common.util.log.Logger;
 import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
@@ -22,10 +22,12 @@ public final class ConfigEventHandler
     private final Configuration configuration;
     private final String configVersion;
     private final String modID;
+    private final Logger logger;
 
     public ConfigEventHandler(String modID, File configFile, ConfigSyncable sync, String configVersion)
     {
         this.modID = modID;
+        logger = Logger.forMod(modID);
         this.configFile = configFile;
         this.sync = sync;
 
@@ -68,15 +70,15 @@ public final class ConfigEventHandler
     {
         final File fileBak = new File(
                 fileRef.getAbsolutePath() + '_' + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".old");
-        Logger.warning(
+        logger.warning(
                 "Your %s config file is out of date and could cause issues. The existing file will be renamed to %s and a new one will be generated.",
                 getModName(modID), fileBak.getName());
-        Logger.warning(
+        logger.warning(
                 "%s will attempt to copy your old settings, but custom mod/tree settings will have to be migrated manually.",
                 getModName(modID));
 
         final boolean success = fileRef.renameTo(fileBak);
-        Logger.warning("Rename %s successful.", success ? "was" : "was not");
+        logger.warning("Rename %s successful.", success ? "was" : "was not");
     }
 
     public Configuration configuration() { return configuration; }
@@ -91,13 +93,13 @@ public final class ConfigEventHandler
             final File fileBak = new File(
                     configFile.getAbsolutePath() + '_' + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) +
                             ".errored");
-            Logger.severe(
+            logger.severe(
                     "An exception occurred while loading your config file. This file will be renamed to %s and a new config file will be generated.",
                     fileBak.getName());
-            Logger.severe("Exception encountered: %s", e.getLocalizedMessage());
+            logger.severe("Exception encountered: %s", e.getLocalizedMessage());
 
             final boolean success = configFile.renameTo(fileBak);
-            Logger.warning("Rename %s successful.", success ? "was" : "was not");
+            logger.warning("Rename %s successful.", success ? "was" : "was not");
 
             final Configuration newConfig = new Configuration(configFile, configVersion);
             final Set<String> categoryNames = configuration.getCategoryNames();
@@ -145,6 +147,7 @@ public final class ConfigEventHandler
     public String toString()
     {
         return Objects.toStringHelper(this).add("configFile", configFile).add("sync", sync)
-                .add("configuration", configuration).add("configVersion", configVersion).add("modID", modID).toString();
+                .add("configuration", configuration).add("configVersion", configVersion).add("modID", modID)
+                .add("logger", logger).toString();
     }
 }

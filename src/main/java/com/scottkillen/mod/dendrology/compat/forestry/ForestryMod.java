@@ -1,7 +1,8 @@
 package com.scottkillen.mod.dendrology.compat.forestry;
 
+import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
-import com.scottkillen.mod.dendrology.util.log.Logger;
+import com.scottkillen.mod.kore.common.util.log.Logger;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Optional.Method;
@@ -19,13 +20,15 @@ public enum ForestryMod
 {
     ;
 
-    private static final String FORESTRY = "Forestry";
+    private static final String MOD_ID = "Forestry";
+    private static final Logger logger = Logger.forMod(TheMod.MOD_ID);
+
     private static final int FORESTER = 2;
     private static final int BUILDER = 5;
 
     public static void integrate(ModState modState)
     {
-        if (Loader.isModLoaded(FORESTRY))
+        if (Loader.isModLoaded(MOD_ID))
         {
             switch (modState)
             {
@@ -37,7 +40,7 @@ public enum ForestryMod
                     break;
                 default:
             }
-        } else Logger.info("Forestry mod not present. %s state integration skipped.", modState);
+        } else logger.info("Forestry mod not present. %s state integration skipped.", modState);
     }
 
     private static void init()
@@ -51,9 +54,10 @@ public enum ForestryMod
         addSaplingRecipes();
     }
 
+    @Method(modid = MOD_ID)
     private static void addBackpackItems()
     {
-        Logger.info("Extending Forestry's backpacks.");
+        logger.info("Extending Forestry's backpacks.");
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
         {
             //noinspection ObjectAllocationInLoop
@@ -74,9 +78,10 @@ public enum ForestryMod
         }
     }
 
+    @Method(modid = MOD_ID)
     private static void addFarmables()
     {
-        Logger.info("Adding farmable saplings to Forestry's farms.");
+        logger.info("Adding farmable saplings to Forestry's farms.");
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
         {
             //noinspection ObjectAllocationInLoop
@@ -87,10 +92,10 @@ public enum ForestryMod
         }
     }
 
-    @Method(modid = FORESTRY)
+    @Method(modid = MOD_ID)
     private static void addSaplingRecipes()
     {
-        Logger.info("Adding sapling recipes to Forestry's fermenter.");
+        logger.info("Adding sapling recipes to Forestry's fermenter.");
 
         final int fermentationValue = ForestryAPI.activeMode.getIntegerSetting("fermenter.yield.sapling");
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())

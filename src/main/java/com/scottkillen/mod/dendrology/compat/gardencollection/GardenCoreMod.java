@@ -2,8 +2,9 @@ package com.scottkillen.mod.dendrology.compat.gardencollection;
 
 import com.jaquadro.minecraft.gardencore.api.SaplingRegistry;
 import com.jaquadro.minecraft.gardencore.api.WoodRegistry;
+import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
-import com.scottkillen.mod.dendrology.util.log.Logger;
+import com.scottkillen.mod.kore.common.util.log.Logger;
 import com.scottkillen.mod.kore.tree.block.ModLogBlock;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional.Method;
@@ -12,20 +13,22 @@ import net.minecraft.item.Item;
 public enum GardenCoreMod
 {
     ;
-    private static final String GARDEN_CORE = "GardenCore";
+
+    private static final String MOD_ID = "GardenCore";
+    private static Logger logger = Logger.forMod(TheMod.MOD_ID);
 
     public static void integrate()
     {
-        if (Loader.isModLoaded(GARDEN_CORE))
+        if (Loader.isModLoaded(MOD_ID))
         {
             registerWood();
-        } else Logger.info("GardenCore mod not present. Integration skipped.");
+        } else logger.info("GardenCore mod not present. Integration skipped.");
     }
 
-    @Method(modid = GARDEN_CORE)
+    @Method(modid = MOD_ID)
     private static void registerWood()
     {
-        Logger.info("Registering wood with GardenCore.");
+        logger.info("Registering wood with GardenCore.");
 
         final WoodRegistry woodReg = WoodRegistry.instance();
         final SaplingRegistry saplingReg = SaplingRegistry.instance();
