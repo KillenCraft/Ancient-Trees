@@ -4,29 +4,26 @@ import com.jaquadro.minecraft.gardencore.api.SaplingRegistry;
 import com.jaquadro.minecraft.gardencore.util.UniqueMetaIdentifier;
 import com.jaquadro.minecraft.gardentrees.world.gen.OrnamentalTreeFactory;
 import com.jaquadro.minecraft.gardentrees.world.gen.OrnamentalTreeRegistry;
+import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.kore.compat.Integrator;
 import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
-import com.scottkillen.mod.dendrology.util.log.Logger;
+import com.scottkillen.mod.kore.common.util.log.Logger;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Optional.Method;
 import net.minecraft.item.Item;
 
-public enum GardenTreesMod
+public final class GardenTreesMod extends Integrator
 {
-    ;
-    private static final String GARDEN_TREES = "GardenTrees";
+    private static final String MOD_ID = "GardenTrees";
+    private static final String MOD_NAME = MOD_ID;
 
-    public static void integrate()
-    {
-        if (Loader.isModLoaded(GARDEN_TREES))
-        {
-            registerSmallTrees();
-        } else Logger.info("GardenTrees mod not present. Integration skipped.");
-    }
+    private static final Logger logger = Logger.forMod(TheMod.MOD_ID);
 
-    @Method(modid = GARDEN_TREES)
+    @Method(modid = MOD_ID)
     private static void registerSmallTrees()
     {
-        Logger.info("Registering small trees with GardenTrees.");
+        logger.info("Registering small trees with GardenTrees.");
 
         final SaplingRegistry saplingReg = SaplingRegistry.instance();
 
@@ -50,11 +47,13 @@ public enum GardenTreesMod
                 //noinspection ContinueStatement
                 continue;
 
-            saplingReg.putExtendedData(sapling, saplingMeta, "sm_generator", factory.create(logBlock.getBlock(), logBlock.meta, leavesBlock.getBlock(), leavesBlock.meta));
+            saplingReg.putExtendedData(sapling, saplingMeta, "sm_generator",
+                    factory.create(logBlock.getBlock(), logBlock.meta, leavesBlock.getBlock(), leavesBlock.meta));
         }
     }
 
     @SuppressWarnings({ "OverlyComplexMethod", "SwitchStatementWithTooManyBranches" })
+    @Method(modid = MOD_ID)
     private static String getOrnametalTreeType(OverworldTreeSpecies tree)
     {
         switch (tree)
@@ -82,5 +81,23 @@ public enum GardenTreesMod
             default:
                 return "small_oak";
         }
+    }
+
+    @Override
+    public void doIntegration(ModState modState)
+    {
+        if (Loader.isModLoaded(MOD_ID) && modState == ModState.INITIALIZED) registerSmallTrees();
+    }
+
+    @Override
+    protected String modID()
+    {
+        return MOD_ID;
+    }
+
+    @Override
+    protected String modName()
+    {
+        return MOD_NAME;
     }
 }

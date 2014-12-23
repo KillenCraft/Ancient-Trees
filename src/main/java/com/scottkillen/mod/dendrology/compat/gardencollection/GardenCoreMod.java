@@ -2,30 +2,27 @@ package com.scottkillen.mod.dendrology.compat.gardencollection;
 
 import com.jaquadro.minecraft.gardencore.api.SaplingRegistry;
 import com.jaquadro.minecraft.gardencore.api.WoodRegistry;
+import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.kore.compat.Integrator;
 import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
-import com.scottkillen.mod.dendrology.util.log.Logger;
+import com.scottkillen.mod.kore.common.util.log.Logger;
 import com.scottkillen.mod.kore.tree.block.ModLogBlock;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Optional.Method;
 import net.minecraft.item.Item;
 
-public enum GardenCoreMod
+public final class GardenCoreMod extends Integrator
 {
-    ;
-    private static final String GARDEN_CORE = "GardenCore";
+    private static final String MOD_ID = "GardenCore";
+    private static final String MOD_NAME = MOD_ID;
 
-    public static void integrate()
-    {
-        if (Loader.isModLoaded(GARDEN_CORE))
-        {
-            registerWood();
-        } else Logger.info("GardenCore mod not present. Integration skipped.");
-    }
+    private static final Logger logger = Logger.forMod(TheMod.MOD_ID);
 
-    @Method(modid = GARDEN_CORE)
+    @Method(modid = MOD_ID)
     private static void registerWood()
     {
-        Logger.info("Registering wood with GardenCore.");
+        logger.info("Registering wood with GardenCore.");
 
         final WoodRegistry woodReg = WoodRegistry.instance();
         final SaplingRegistry saplingReg = SaplingRegistry.instance();
@@ -38,5 +35,23 @@ public enum GardenCoreMod
             saplingReg.registerSapling(Item.getItemFromBlock(tree.getSaplingBlock()), tree.getSaplingMeta(), logBlock,
                     logMeta, tree.getLeavesBlock(), tree.getLeavesMeta());
         }
+    }
+
+    @Override
+    public void doIntegration(ModState modState)
+    {
+        if (Loader.isModLoaded(MOD_ID) && modState == ModState.INITIALIZED) registerWood();
+    }
+
+    @Override
+    protected String modID()
+    {
+        return MOD_ID;
+    }
+
+    @Override
+    protected String modName()
+    {
+        return MOD_NAME;
     }
 }
