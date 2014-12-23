@@ -1,7 +1,9 @@
 package com.scottkillen.mod.dendrology;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
+import com.scottkillen.mod.kore.compat.Integrates;
 import com.scottkillen.mod.dendrology.compat.forestry.ForestryMod;
 import com.scottkillen.mod.dendrology.compat.gardencollection.GardenCoreMod;
 import com.scottkillen.mod.dendrology.compat.gardencollection.GardenTreesMod;
@@ -13,6 +15,7 @@ import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
 import com.scottkillen.mod.kore.common.OrganizesResources;
 import com.scottkillen.mod.kore.config.ConfigEventHandler;
+import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -23,6 +26,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
+import java.util.List;
 
 @Mod(modid = TheMod.MOD_ID, name = TheMod.MOD_NAME, version = TheMod.MOD_VERSION, useMetadata = true,
         dependencies = TheMod.MOD_DEPENDENCIES, guiFactory = TheMod.MOD_GUI_FACTORY)
@@ -37,21 +41,34 @@ public class TheMod implements OrganizesResources
     static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
     @SuppressWarnings("WeakerAccess")
     static final String MOD_DEPENDENCIES = "after:Forestry;after:minechem";
+
     private static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
+
     @SuppressWarnings("AnonymousInnerClass")
     private static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
     {
         @Override
         public Item getTabIconItem() { return Item.getItemFromBlock(Blocks.sapling); }
     };
+
     @SuppressWarnings({
             "StaticNonFinalField", "StaticVariableMayNotBeInitialized", "NonConstantFieldWithUpperCaseName"
     })
     @Instance(MOD_ID)
     public static TheMod INSTANCE;
 
+    private static final List<Integrates> integrators = Lists.newArrayList();
+
     @SuppressWarnings("StaticNonFinalField")
     private static Optional<ConfigEventHandler> configEventHandler = Optional.absent();
+
+    private static void initIntegrators()
+    {
+        integrators.add(new MinechemMod());
+        integrators.add(new ForestryMod());
+        integrators.add(new GardenCoreMod());
+        integrators.add(new GardenTreesMod());
+    }
 
     public static Configuration configuration()
     {
@@ -70,6 +87,14 @@ public class TheMod implements OrganizesResources
         configEventHandler.get().activate();
 
         ModBlocks.preInit();
+        initIntegrators();
+        integrateMods(event.getModState());
+    }
+
+    private static void integrateMods(ModState modState)
+    {
+        for (final Integrates integrator : integrators)
+            integrator.integrate(modState);
     }
 
     @SuppressWarnings("MethodMayBeStatic")
@@ -78,9 +103,7 @@ public class TheMod implements OrganizesResources
     {
         OreDictHandler.init();
         Recipes.init();
-        ForestryMod.integrate(event.getModState());
-        GardenCoreMod.integrate();
-        GardenTreesMod.integrate();
+        integrateMods(event.getModState());
     }
 
     @SuppressWarnings("MethodMayBeStatic")
@@ -89,8 +112,8 @@ public class TheMod implements OrganizesResources
     {
         Proxy.render.postInit();
         FuelHandler.postInit();
-        MinechemMod.integrate();
-        ForestryMod.integrate(event.getModState());
+        integrateMods(event.getModState());
+        integrators.clear();
     }
 
     @Override
