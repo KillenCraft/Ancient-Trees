@@ -10,7 +10,6 @@ import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
 import com.scottkillen.mod.dendrology.content.crafting.Recipes;
 import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
-import com.scottkillen.mod.dendrology.item.ModItems;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
 import com.scottkillen.mod.kore.common.OrganizesResources;
 import com.scottkillen.mod.kore.config.ConfigEventHandler;
@@ -70,7 +69,6 @@ public class TheMod implements OrganizesResources
                         Settings.CONFIG_VERSION));
         configEventHandler.get().activate();
 
-        ModItems.preInit();
         ModBlocks.preInit();
     }
 
