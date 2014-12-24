@@ -19,15 +19,14 @@ import java.util.Random;
 
 import static com.google.common.base.Preconditions.*;
 
-public class ModWoodSlabBlock extends BlockSlab
+public class SlabBlock extends BlockSlab
 {
     public static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<DescribesSlabs> descriptors;
     private final String resourcePrefix;
 
-    public ModWoodSlabBlock(boolean isDouble, List<? extends DescribesSlabs> descriptors,
-                            OrganizesResources resourceOrganizer)
+    public SlabBlock(boolean isDouble, List<? extends DescribesSlabs> descriptors, OrganizesResources resourceOrganizer)
     {
         super(isDouble, Material.wood);
 

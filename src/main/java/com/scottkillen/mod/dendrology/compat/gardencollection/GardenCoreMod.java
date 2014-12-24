@@ -6,7 +6,7 @@ import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.kore.compat.Integrator;
 import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
 import com.scottkillen.mod.kore.common.util.log.Logger;
-import com.scottkillen.mod.kore.tree.block.ModLogBlock;
+import com.scottkillen.mod.kore.tree.block.LogBlock;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Optional.Method;
@@ -29,7 +29,7 @@ public final class GardenCoreMod extends Integrator
 
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
         {
-            final ModLogBlock logBlock = tree.getLogBlock();
+            final LogBlock logBlock = tree.getLogBlock();
             final int logMeta = tree.getLogMeta();
             woodReg.registerWoodType(logBlock, logMeta);
             saplingReg.registerSapling(Item.getItemFromBlock(tree.getSaplingBlock()), tree.getSaplingMeta(), logBlock,

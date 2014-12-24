@@ -5,12 +5,12 @@ import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
 import com.scottkillen.mod.kore.tree.DefinesTree;
-import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
-import com.scottkillen.mod.kore.tree.block.ModLogBlock;
-import com.scottkillen.mod.kore.tree.block.ModPlanksBlock;
-import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
-import com.scottkillen.mod.kore.tree.block.ModStairsBlock;
-import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
+import com.scottkillen.mod.kore.tree.block.LeavesBlock;
+import com.scottkillen.mod.kore.tree.block.LogBlock;
+import com.scottkillen.mod.kore.tree.block.WoodBlock;
+import com.scottkillen.mod.kore.tree.block.SaplingBlock;
+import com.scottkillen.mod.kore.tree.block.StairsBlock;
+import com.scottkillen.mod.kore.tree.block.SlabBlock;
 import com.scottkillen.mod.kore.tree.item.LeavesItem;
 import com.scottkillen.mod.kore.tree.item.LogItem;
 import com.scottkillen.mod.kore.tree.item.PlanksItem;
@@ -71,10 +71,10 @@ public final class ModBlocks
 
     private static void initStairsBlocks()
     {
-        final ImmutableList<ModStairsBlock> stairsBlocks = overworldContent.getStairsBlocks();
+        final ImmutableList<StairsBlock> stairsBlocks = overworldContent.getStairsBlocks();
 
         int stairsCount = 0;
-        for (final ModStairsBlock stairs : stairsBlocks)
+        for (final StairsBlock stairs : stairsBlocks)
         {
             registerStairsBlock(stairs, String.format("stairs%d", stairsCount));
             stairsCount++;
@@ -83,10 +83,10 @@ public final class ModBlocks
 
     private static void initPlanksBlocks()
     {
-        final ImmutableList<ModPlanksBlock> planksBlocks = overworldContent.getPlanksBlocks();
+        final ImmutableList<WoodBlock> planksBlocks = overworldContent.getPlanksBlocks();
 
         int planksCount = 0;
-        for (final ModPlanksBlock wood : planksBlocks)
+        for (final WoodBlock wood : planksBlocks)
         {
             registerPlanksBlock(wood, String.format("wood%d", planksCount), wood.getSubBlockNames());
             planksCount++;
@@ -95,12 +95,12 @@ public final class ModBlocks
 
     private static void initSaplingBlocks()
     {
-        final ImmutableList<ModSaplingBlock> saplingBlocks = overworldContent.getSaplingBlocks();
+        final ImmutableList<SaplingBlock> saplingBlocks = overworldContent.getSaplingBlocks();
 
         final Settings settings = Settings.INSTANCE;
         int saplingCount = 0;
 
-        for (final ModSaplingBlock sapling : saplingBlocks)
+        for (final SaplingBlock sapling : saplingBlocks)
         {
             registerSaplingBlock(sapling, String.format("sapling%d", saplingCount), sapling.getSubBlockNames());
             saplingCount++;
@@ -118,7 +118,7 @@ public final class ModBlocks
         }
     }
 
-    private static void addSaplingToChest(ModSaplingBlock sapling, String chestType, int rarity)
+    private static void addSaplingToChest(SaplingBlock sapling, String chestType, int rarity)
     {
         if (rarity > 0) ChestGenHooks.getInfo(chestType)
                 .addItem(new WeightedRandomChestContent(new ItemStack(sapling), 1, 2, rarity));
@@ -127,9 +127,9 @@ public final class ModBlocks
     private static void initSingleSlabBlocks()
     {
         int slabCount = 0;
-        final ImmutableList<ModWoodSlabBlock> singleSlabBlocks = overworldContent.getSingleSlabBlocks();
-        final ImmutableList<ModWoodSlabBlock> doubleSlabBlocks = overworldContent.getDoubleSlabBlocks();
-        for (final ModWoodSlabBlock slab : singleSlabBlocks)
+        final ImmutableList<SlabBlock> singleSlabBlocks = overworldContent.getSingleSlabBlocks();
+        final ImmutableList<SlabBlock> doubleSlabBlocks = overworldContent.getDoubleSlabBlocks();
+        for (final SlabBlock slab : singleSlabBlocks)
         {
             registerSlabBlock(slab, String.format("sslab%d", slabCount), slab, doubleSlabBlocks.get(slabCount), false);
             slabCount++;
@@ -139,9 +139,9 @@ public final class ModBlocks
     private static void initDoubleSlabBlocks()
     {
         int slabCount = 0;
-        final ImmutableList<ModWoodSlabBlock> doubleSlabBlocks = overworldContent.getDoubleSlabBlocks();
-        final ImmutableList<ModWoodSlabBlock> singleSlabBlocks = overworldContent.getSingleSlabBlocks();
-        for (final ModWoodSlabBlock slab : doubleSlabBlocks)
+        final ImmutableList<SlabBlock> doubleSlabBlocks = overworldContent.getDoubleSlabBlocks();
+        final ImmutableList<SlabBlock> singleSlabBlocks = overworldContent.getSingleSlabBlocks();
+        for (final SlabBlock slab : doubleSlabBlocks)
         {
             registerSlabBlock(slab, String.format("dslab%d", slabCount), singleSlabBlocks.get(slabCount), slab, true);
             slabCount++;
@@ -150,7 +150,7 @@ public final class ModBlocks
 
     private static void initLeavesBlock()
     {
-        final ImmutableList<ModLeavesBlock> leavesBlocks = overworldContent.getLeavesBlocks();
+        final ImmutableList<LeavesBlock> leavesBlocks = overworldContent.getLeavesBlocks();
 
         int leavesCount = 0;
         for (final Block block : leavesBlocks)
@@ -162,10 +162,10 @@ public final class ModBlocks
 
     private static void initLogBlocks()
     {
-        final ImmutableList<ModLogBlock> logBlocks = overworldContent.getLogBlocks();
+        final ImmutableList<LogBlock> logBlocks = overworldContent.getLogBlocks();
 
         int logCount = 0;
-        for (final ModLogBlock block : logBlocks)
+        for (final LogBlock block : logBlocks)
         {
             registerLogBlock(block, String.format("logs%d", logCount), block.getSubBlockNames());
             logCount++;
@@ -191,8 +191,8 @@ public final class ModBlocks
                 subblockNames.toArray(new String[subblockNames.size()]));
     }
 
-    private static void registerSlabBlock(Block block, String name, ModWoodSlabBlock singleSlab,
-                                          ModWoodSlabBlock doubleSlab, boolean isDouble)
+    private static void registerSlabBlock(Block block, String name, SlabBlock singleSlab,
+                                          SlabBlock doubleSlab, boolean isDouble)
     {
         GameRegistry.registerBlock(block, SlabItem.class, name, singleSlab, doubleSlab, isDouble);
     }

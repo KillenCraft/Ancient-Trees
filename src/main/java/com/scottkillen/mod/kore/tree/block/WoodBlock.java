@@ -16,14 +16,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import java.util.List;
 
-public class ModPlanksBlock extends BlockWood
+public class WoodBlock extends BlockWood
 {
     public static final int CAPACITY = 16;
     private final ImmutableList<Named> names;
     private final List<IIcon> icons = Lists.newArrayList();
     private final String resourcePrefix;
 
-    public ModPlanksBlock(List<? extends Named> names, OrganizesResources resourceOrganizer)
+    public WoodBlock(List<? extends Named> names, OrganizesResources resourceOrganizer)
     {
         Preconditions.checkArgument(!names.isEmpty());
         Preconditions.checkArgument(names.size() <= CAPACITY);

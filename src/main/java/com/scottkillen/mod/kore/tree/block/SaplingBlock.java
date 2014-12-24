@@ -24,7 +24,7 @@ import java.util.Random;
 
 import static com.google.common.base.Preconditions.*;
 
-public class ModSaplingBlock extends BlockSapling
+public class SaplingBlock extends BlockSapling
 {
     public static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
@@ -32,7 +32,7 @@ public class ModSaplingBlock extends BlockSapling
     private final List<IIcon> subblockIcons;
     private final String resourcePrefix;
 
-    public ModSaplingBlock(List<? extends ProvidesSapling> trees, OrganizesResources resourceOrganizer)
+    public SaplingBlock(List<? extends ProvidesSapling> trees, OrganizesResources resourceOrganizer)
     {
         checkArgument(!trees.isEmpty());
         checkArgument(trees.size() <= CAPACITY);

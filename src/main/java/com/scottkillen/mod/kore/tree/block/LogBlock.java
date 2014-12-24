@@ -16,13 +16,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import java.util.List;
 
-public class ModLogBlock extends BlockLog
+public class LogBlock extends BlockLog
 {
     public static final int CAPACITY = 4;
     private final ImmutableList<Named> names;
     private final String resourcePrefix;
 
-    public ModLogBlock(List<? extends Named> names, OrganizesResources resourceOrganizer)
+    public LogBlock(List<? extends Named> names, OrganizesResources resourceOrganizer)
     {
         Preconditions.checkArgument(!names.isEmpty());
         Preconditions.checkArgument(names.size() <= CAPACITY);

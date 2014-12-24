@@ -22,14 +22,14 @@ import java.util.Random;
 
 import static com.google.common.base.Preconditions.*;
 
-public class ModLeavesBlock extends BlockLeaves
+public class LeavesBlock extends BlockLeaves
 {
     public static final int CAPACITY = 4;
     private static final int METADATA_MASK = CAPACITY - 1;
     private final ImmutableList<DescribesLeaves> descriptors;
     private final String resourcePrefix;
 
-    public ModLeavesBlock(List<? extends DescribesLeaves> descriptors, OrganizesResources resourceOrganizer)
+    public LeavesBlock(List<? extends DescribesLeaves> descriptors, OrganizesResources resourceOrganizer)
     {
         checkArgument(!descriptors.isEmpty());
         checkArgument(descriptors.size() <= CAPACITY);

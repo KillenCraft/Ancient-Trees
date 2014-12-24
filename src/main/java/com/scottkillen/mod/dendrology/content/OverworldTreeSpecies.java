@@ -20,12 +20,12 @@ import com.scottkillen.mod.dendrology.world.gen.feature.SalyxTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.TuopaTree;
 import com.scottkillen.mod.kore.common.ProvidesPotionEffect;
 import com.scottkillen.mod.kore.tree.DefinesTree;
-import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
-import com.scottkillen.mod.kore.tree.block.ModLogBlock;
-import com.scottkillen.mod.kore.tree.block.ModPlanksBlock;
-import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
-import com.scottkillen.mod.kore.tree.block.ModStairsBlock;
-import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
+import com.scottkillen.mod.kore.tree.block.LeavesBlock;
+import com.scottkillen.mod.kore.tree.block.LogBlock;
+import com.scottkillen.mod.kore.tree.block.WoodBlock;
+import com.scottkillen.mod.kore.tree.block.SaplingBlock;
+import com.scottkillen.mod.kore.tree.block.StairsBlock;
+import com.scottkillen.mod.kore.tree.block.SlabBlock;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.init.Blocks;
@@ -67,13 +67,13 @@ public enum OverworldTreeSpecies implements DefinesTree, ProvidesPotionEffect
     private int saplingMeta;
     private int slabMetadata;
 
-    private ModWoodSlabBlock doubleSlabBlock = null;
-    private ModLeavesBlock leavesBlock = null;
-    private ModLogBlock logBlock = null;
-    private ModPlanksBlock planksBlock = null;
-    private ModSaplingBlock saplingBlock = null;
-    private ModWoodSlabBlock singleSlabBlock = null;
-    private ModStairsBlock stairsBlock = null;
+    private SlabBlock doubleSlabBlock = null;
+    private LeavesBlock leavesBlock = null;
+    private LogBlock logBlock = null;
+    private WoodBlock planksBlock = null;
+    private SaplingBlock saplingBlock = null;
+    private SlabBlock singleSlabBlock = null;
+    private StairsBlock stairsBlock = null;
 
     static
     {
@@ -135,14 +135,14 @@ public enum OverworldTreeSpecies implements DefinesTree, ProvidesPotionEffect
     }
 
     @Override
-    public ModLeavesBlock getLeavesBlock()
+    public LeavesBlock getLeavesBlock()
     {
         checkState(leavesBlock != null);
         return leavesBlock;
     }
 
     @Override
-    public void setLeavesBlock(ModLeavesBlock leavesBlock)
+    public void setLeavesBlock(LeavesBlock leavesBlock)
     {
         checkState(this.leavesBlock == null);
         this.leavesBlock = leavesBlock;
@@ -155,14 +155,14 @@ public enum OverworldTreeSpecies implements DefinesTree, ProvidesPotionEffect
     public void setLeavesMeta(int leavesMeta) { this.leavesMeta = leavesMeta; }
 
     @Override
-    public ModLogBlock getLogBlock()
+    public LogBlock getLogBlock()
     {
         checkState(logBlock != null);
         return logBlock;
     }
 
     @Override
-    public void setLogBlock(ModLogBlock logBlock)
+    public void setLogBlock(LogBlock logBlock)
     {
         checkState(this.logBlock == null);
         this.logBlock = logBlock;
@@ -178,14 +178,14 @@ public enum OverworldTreeSpecies implements DefinesTree, ProvidesPotionEffect
     public String getName() { return name().toLowerCase(); }
 
     @Override
-    public ModPlanksBlock getPlanksBlock()
+    public WoodBlock getPlanksBlock()
     {
         checkState(planksBlock != null);
         return planksBlock;
     }
 
     @Override
-    public void setPlanksBlock(ModPlanksBlock planksBlock)
+    public void setPlanksBlock(WoodBlock planksBlock)
     {
         checkState(this.planksBlock == null);
         this.planksBlock = planksBlock;
@@ -198,7 +198,7 @@ public enum OverworldTreeSpecies implements DefinesTree, ProvidesPotionEffect
     public void setPlanksMeta(int planksMeta) { this.planksMeta = planksMeta; }
 
     @Override
-    public ModWoodSlabBlock getSingleSlabBlock()
+    public SlabBlock getSingleSlabBlock()
     {
         checkState(singleSlabBlock != null);
         return singleSlabBlock;
@@ -211,28 +211,28 @@ public enum OverworldTreeSpecies implements DefinesTree, ProvidesPotionEffect
     public void setSlabMeta(int slabMetadata) { this.slabMetadata = slabMetadata; }
 
     @Override
-    public ModStairsBlock getStairsBlock()
+    public StairsBlock getStairsBlock()
     {
         checkState(stairsBlock != null);
         return stairsBlock;
     }
 
     @Override
-    public void setStairsBlock(ModStairsBlock stairsBlock)
+    public void setStairsBlock(StairsBlock stairsBlock)
     {
         checkState(this.stairsBlock == null);
         this.stairsBlock = stairsBlock;
     }
 
     @Override
-    public ModSaplingBlock getSaplingBlock()
+    public SaplingBlock getSaplingBlock()
     {
         checkState(saplingBlock != null);
         return saplingBlock;
     }
 
     @Override
-    public void setSaplingBlock(ModSaplingBlock saplingBlock)
+    public void setSaplingBlock(SaplingBlock saplingBlock)
     {
         checkState(this.saplingBlock == null);
         this.saplingBlock = saplingBlock;
@@ -245,7 +245,7 @@ public enum OverworldTreeSpecies implements DefinesTree, ProvidesPotionEffect
     public void setSaplingMeta(int saplingMeta) { this.saplingMeta = saplingMeta; }
 
     @Override
-    public void setSlabBlock(ModWoodSlabBlock block, boolean isDouble)
+    public void setSlabBlock(SlabBlock block, boolean isDouble)
     {
         checkState(isDouble ? doubleSlabBlock == null : singleSlabBlock == null);
         if (isDouble) doubleSlabBlock = block;
