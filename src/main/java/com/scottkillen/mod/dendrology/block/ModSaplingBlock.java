@@ -29,6 +29,6 @@ public final class ModSaplingBlock extends SaplingBlock
         if (itemDamage < 0 || itemDamage >= subBlocks.size()) return null;
 
         final DefinesSapling subBlock = subBlocks.get(itemDamage);
-        return subBlock instanceof ProvidesPotionEffect ? ((ProvidesPotionEffect) subBlock).getPotionEffect() : null;
+        return subBlock instanceof ProvidesPotionEffect ? ((ProvidesPotionEffect) subBlock).potionEffect() : null;
     }
 }

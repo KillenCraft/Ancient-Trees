@@ -104,7 +104,7 @@ public enum OverworldTreeSpecies
     }
 
     @Override
-    public String getPotionEffect() { return potionEffect; }
+    public String potionEffect() { return potionEffect; }
 
     @Override
     @SideOnly(Side.CLIENT)
