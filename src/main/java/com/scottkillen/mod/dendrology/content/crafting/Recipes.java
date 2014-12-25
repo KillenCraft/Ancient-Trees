@@ -9,18 +9,17 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 
-public enum Recipes
+@SuppressWarnings("MethodMayBeStatic")
+public final class Recipes
 {
-    ;
-
-    public static void init()
+    public void writeRecipesInCraftingManager()
     {
         initLogRecipes();
         initPlankRecipes();
         initSaplingRecipes();
     }
 
-    private static void initSaplingRecipes()
+    private void initSaplingRecipes()
     {
         CraftingManager.getInstance().addShapelessRecipe(new ItemStack(Items.dye, 1, 9),
                 new ItemStack(OverworldTreeSpecies.CERASU.saplingBlock(), 1,
@@ -40,7 +39,7 @@ public enum Recipes
     }
 
     @SuppressWarnings("ObjectAllocationInLoop")
-    private static void initLogRecipes()
+    private void initLogRecipes()
     {
         for (final DefinesLog definition : ModBlocks.logDefinitions())
             CraftingManager.getInstance()
@@ -48,14 +47,14 @@ public enum Recipes
                             new ItemStack(definition.logBlock(), 1, definition.logSubBlockIndex()));
     }
 
-    private static void initPlankRecipes()
+    private void initPlankRecipes()
     {
         initWoodStairsRecipes();
         initWoodSlabRecipes();
     }
 
     @SuppressWarnings("ObjectAllocationInLoop")
-    private static void initWoodStairsRecipes()
+    private void initWoodStairsRecipes()
     {
         for (final DefinesStairs definition : ModBlocks.stairsDefinitions())
             CraftingManager.getInstance()
@@ -64,7 +63,7 @@ public enum Recipes
     }
 
     @SuppressWarnings("ObjectAllocationInLoop")
-    private static void initWoodSlabRecipes()
+    private void initWoodSlabRecipes()
     {
         for (final DefinesSlab definition : ModBlocks.slabDefinitions())
             CraftingManager.getInstance()

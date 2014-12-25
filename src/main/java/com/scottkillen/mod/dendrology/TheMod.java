@@ -97,8 +97,8 @@ public class TheMod
     @EventHandler
     public void onFMLInitialization(FMLInitializationEvent event)
     {
-        OreDictHandler.init();
-        Recipes.init();
+        new OreDictHandler().registerBlocksWithOreDictinary();
+        new Recipes().writeRecipesInCraftingManager();
         integrateMods(event.getModState());
     }
 

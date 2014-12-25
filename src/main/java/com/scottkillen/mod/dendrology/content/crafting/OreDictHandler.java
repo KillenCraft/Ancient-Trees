@@ -7,12 +7,11 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
-public enum OreDictHandler
+@SuppressWarnings("MethodMayBeStatic")
+public final class OreDictHandler
 {
-    ;
-
     @SuppressWarnings("MethodWithMultipleLoops")
-    public static void init()
+    public void registerBlocksWithOreDictinary()
     {
         for (final Block block : ModBlocks.logBlocks())
             registerWildcardOre(block, "logWood");
@@ -33,7 +32,7 @@ public enum OreDictHandler
             registerWildcardOre(block, "treeLeaves");
     }
 
-    private static void registerWildcardOre(Block block, String name)
+    private void registerWildcardOre(Block block, String name)
     {
         OreDictionary.registerOre(name, new ItemStack(block, 1, WILDCARD_VALUE));
     }
