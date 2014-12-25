@@ -39,7 +39,6 @@ import static net.minecraftforge.common.ChestGenHooks.STRONGHOLD_CROSSING;
 import static net.minecraftforge.common.ChestGenHooks.STRONGHOLD_LIBRARY;
 import static net.minecraftforge.common.ChestGenHooks.VILLAGE_BLACKSMITH;
 
-@SuppressWarnings({ "UtilityClass", "WeakerAccess" })
 public final class ModBlocks
 {
     private static final int DEFAULT_LEAVES_FIRE_ENCOURAGEMENT = 30;
@@ -59,57 +58,11 @@ public final class ModBlocks
     private static final List<LeavesBlock> leavesBlocks = Lists.newArrayList();
     private static final OverworldTreeTaxonomy overworldTaxonomy = new OverworldTreeTaxonomy();
 
-    private ModBlocks()
-    {
-        throw new AssertionError();
-    }
-
-    private static void addSaplingToChest(SaplingBlock sapling, String chestType, int rarity)
-    {
-        if (rarity > 0) ChestGenHooks.getInfo(chestType)
-                .addItem(new WeightedRandomChestContent(new ItemStack(sapling), 1, 2, rarity));
-    }
-
-    private static void initDoubleSlabBlocks()
-    {
-        int slabCount = 0;
-        for (final SlabBlock slab : doubleSlabBlocks)
-        {
-            registerSlabBlock(slab, String.format("dslab%d", slabCount), singleSlabBlocks.get(slabCount), slab, true);
-            slabCount++;
-        }
-    }
-
-    private static void initLeavesBlock()
-    {
-        int leavesCount = 0;
-        for (final Block block : leavesBlocks)
-        {
-            registerLeavesBlock(block, String.format("leaves%d", leavesCount));
-            leavesCount++;
-        }
-    }
-
-    private static void initLogBlocks()
-    {
-        int logCount = 0;
-        for (final LogBlock block : logBlocks)
-        {
-            registerLogBlock(block, String.format("logs%d", logCount), block.getSubBlockNames());
-            logCount++;
-        }
-    }
-
-    private static void initSaplingBlocks()
+    private static void addAllSaplingsToChests()
     {
         final Settings settings = Settings.INSTANCE;
-        int saplingCount = 0;
-
         for (final SaplingBlock sapling : saplingBlocks)
         {
-            registerSaplingBlock(sapling, String.format("sapling%d", saplingCount), sapling.getSubBlockNames());
-            saplingCount++;
-
             addSaplingToChest(sapling, VILLAGE_BLACKSMITH, settings.blacksmithRarity());
             addSaplingToChest(sapling, BONUS_CHEST, settings.bonusChestRarity());
             addSaplingToChest(sapling, PYRAMID_DESERT_CHEST, settings.desertTempleRarity());
@@ -123,7 +76,77 @@ public final class ModBlocks
         }
     }
 
-    private static void initSingleSlabBlocks()
+    private static void addSaplingToChest(SaplingBlock sapling, String chestType, int rarity)
+    {
+        if (rarity > 0) ChestGenHooks.getInfo(chestType)
+                .addItem(new WeightedRandomChestContent(new ItemStack(sapling), 1, 2, rarity));
+    }
+
+    public static Iterable<? extends Block> leavesBlocks() { return ImmutableList.copyOf(leavesBlocks); }
+
+    private static void loadOverWorldContent()
+    {
+        final TreeSpeciesLoader overworldContent = new TreeSpeciesLoader(overworldTaxonomy);
+        overworldContent.load(new OverworldTreeBlockFactory());
+    }
+
+    public static Iterable<? extends Block> logBlocks() { return ImmutableList.copyOf(logBlocks); }
+
+    public static Iterable<? extends DefinesLog> logDefinitions() { return overworldTaxonomy.logDefinitions(); }
+
+    private static void registerAllBlocks()
+    {
+        registerAllLogBlocks();
+        registerAllLeavesBlock();
+        registerAllSaplingBlocks();
+        registerAllWoodBlocks();
+        registerAllStairsBlocks();
+        registerAllSingleSlabBlocks();
+        registerAllDoubleSlabBlocks();
+    }
+
+    private static void registerAllDoubleSlabBlocks()
+    {
+        int slabCount = 0;
+        for (final SlabBlock slab : doubleSlabBlocks)
+        {
+            registerSlabBlock(slab, String.format("dslab%d", slabCount), singleSlabBlocks.get(slabCount), slab, true);
+            slabCount++;
+        }
+    }
+
+    private static void registerAllLeavesBlock()
+    {
+        int leavesCount = 0;
+        for (final Block block : leavesBlocks)
+        {
+            registerLeavesBlock(block, String.format("leaves%d", leavesCount));
+            leavesCount++;
+        }
+    }
+
+    private static void registerAllLogBlocks()
+    {
+        int logCount = 0;
+        for (final LogBlock block : logBlocks)
+        {
+            registerLogBlock(block, String.format("logs%d", logCount), block.getSubBlockNames());
+            logCount++;
+        }
+    }
+
+    private static void registerAllSaplingBlocks()
+    {
+        int saplingCount = 0;
+
+        for (final SaplingBlock sapling : saplingBlocks)
+        {
+            registerSaplingBlock(sapling, String.format("sapling%d", saplingCount), sapling.getSubBlockNames());
+            saplingCount++;
+        }
+    }
+
+    private static void registerAllSingleSlabBlocks()
     {
         int slabCount = 0;
         for (final SlabBlock slab : singleSlabBlocks)
@@ -133,7 +156,7 @@ public final class ModBlocks
         }
     }
 
-    private static void initStairsBlocks()
+    private static void registerAllStairsBlocks()
     {
         int stairsCount = 0;
         for (final StairsBlock stairs : stairsBlocks)
@@ -143,7 +166,7 @@ public final class ModBlocks
         }
     }
 
-    private static void initWoodBlocks()
+    private static void registerAllWoodBlocks()
     {
         int woodBlockCount = 0;
         for (final WoodBlock wood : woodBlocks)
@@ -153,18 +176,21 @@ public final class ModBlocks
         }
     }
 
-    public static void preInit()
+    public static void registerBlock(LeavesBlock leavesBlock) { leavesBlocks.add(leavesBlock); }
+
+    public static void registerBlock(LogBlock logBlock) { logBlocks.add(logBlock); }
+
+    public static void registerBlock(SaplingBlock saplingBlock) { saplingBlocks.add(saplingBlock); }
+
+    public static void registerBlock(SlabBlock singleSlabBlock, SlabBlock doubleSlabBlock)
     {
-        final TreeSpeciesLoader overworldContent = new TreeSpeciesLoader(overworldTaxonomy);
-        overworldContent.load(new OverworldTreeBlockFactory());
-        initLogBlocks();
-        initLeavesBlock();
-        initSaplingBlocks();
-        initWoodBlocks();
-        initStairsBlocks();
-        initSingleSlabBlocks();
-        initDoubleSlabBlocks();
+        singleSlabBlocks.add(singleSlabBlock);
+        doubleSlabBlocks.add(doubleSlabBlock);
     }
+
+    public static void registerBlock(StairsBlock stairsBlock) { stairsBlocks.add(stairsBlock); }
+
+    public static void registerBlock(WoodBlock woodBlock) { woodBlocks.add(woodBlock); }
 
     private static void registerLeavesBlock(Block block, String name)
     {
@@ -204,40 +230,26 @@ public final class ModBlocks
         Blocks.fire.setFireInfo(block, DEFAULT_PLANKS_FIRE_ENCOURAGEMENT, DEFAULT_PLANKS_FLAMMABILITY);
     }
 
-    public static Iterable<? extends Block> logBlocks() { return ImmutableList.copyOf(logBlocks); }
-
-    public static void registerBlock(LogBlock logBlock) { logBlocks.add(logBlock); }
-
-    public static void registerBlock(WoodBlock woodBlock) { woodBlocks.add(woodBlock); }
-
-    public static Iterable<? extends Block> woodBlocks() { return ImmutableList.copyOf(woodBlocks); }
-
-    public static void registerBlock(SlabBlock singleSlabBlock, SlabBlock doubleSlabBlock)
-    {
-        singleSlabBlocks.add(singleSlabBlock);
-        doubleSlabBlocks.add(doubleSlabBlock);
-    }
+    public static Iterable<? extends Block> saplingBlocks() { return ImmutableList.copyOf(saplingBlocks); }
 
     public static Iterable<? extends Block> singleSlabBlocks() { return ImmutableList.copyOf(singleSlabBlocks); }
 
-    public static void registerBlock(StairsBlock stairsBlock) { stairsBlocks.add(stairsBlock); }
+    public static Iterable<? extends DefinesSlab> slabDefinitions() { return overworldTaxonomy.slabDefinitions(); }
 
     public static Iterable<? extends Block> stairsBlocks() { return ImmutableList.copyOf(stairsBlocks); }
-
-    public static void registerBlock(SaplingBlock saplingBlock) { saplingBlocks.add(saplingBlock); }
-
-    public static Iterable<? extends Block> saplingBlocks() { return ImmutableList.copyOf(saplingBlocks); }
-
-    public static void registerBlock(LeavesBlock leavesBlock) { leavesBlocks.add(leavesBlock); }
-
-    public static Iterable<? extends Block> leavesBlocks() { return ImmutableList.copyOf(leavesBlocks); }
-
-    public static Iterable<? extends DefinesLog> logDefinitions() { return overworldTaxonomy.logDefinitions(); }
 
     public static Iterable<? extends DefinesStairs> stairsDefinitions()
     {
         return overworldTaxonomy.stairsDefinitions();
     }
 
-    public static Iterable<? extends DefinesSlab> slabDefinitions() { return overworldTaxonomy.slabDefinitions(); }
+    public static Iterable<? extends Block> woodBlocks() { return ImmutableList.copyOf(woodBlocks); }
+
+    @SuppressWarnings("MethodMayBeStatic")
+    public void loadContent()
+    {
+        loadOverWorldContent();
+        registerAllBlocks();
+        addAllSaplingsToChests();
+    }
 }

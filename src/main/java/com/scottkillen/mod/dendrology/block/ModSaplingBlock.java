@@ -6,6 +6,7 @@ import com.scottkillen.mod.dendrology.content.ProvidesPotionEffect;
 import com.scottkillen.mod.kore.tree.DefinesSapling;
 import com.scottkillen.mod.kore.tree.block.SaplingBlock;
 import net.minecraft.item.ItemStack;
+import java.util.List;
 
 public final class ModSaplingBlock extends SaplingBlock
 {
@@ -23,7 +24,7 @@ public final class ModSaplingBlock extends SaplingBlock
     @SuppressWarnings("ReturnOfNull")
     public String getPotionEffect(ItemStack itemStack)
     {
-        final ImmutableList<DefinesSapling> subBlocks = subBlocks();
+        final List<DefinesSapling> subBlocks = subBlocks();
         final int itemDamage = itemStack.getItemDamage();
         if (itemDamage < 0 || itemDamage >= subBlocks.size()) return null;
 

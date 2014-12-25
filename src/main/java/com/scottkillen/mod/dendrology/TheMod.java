@@ -88,7 +88,7 @@ public class TheMod
                         Settings.CONFIG_VERSION));
         configEventHandler.get().activate();
 
-        ModBlocks.preInit();
+        new ModBlocks().loadContent();
         initIntegrators();
         integrateMods(event.getModState());
     }
