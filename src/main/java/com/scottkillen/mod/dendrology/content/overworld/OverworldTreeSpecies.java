@@ -1,4 +1,4 @@
-package com.scottkillen.mod.dendrology.content;
+package com.scottkillen.mod.dendrology.content.overworld;
 
 
 import com.scottkillen.mod.dendrology.world.AcemusColorizer;
@@ -18,29 +18,39 @@ import com.scottkillen.mod.dendrology.world.gen.feature.NucisTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.PorfforTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.SalyxTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.TuopaTree;
-import com.scottkillen.mod.kore.common.ProvidesPotionEffect;
+import com.scottkillen.mod.dendrology.content.ProvidesPotionEffect;
+import com.scottkillen.mod.kore.tree.DefinesLeaves;
+import com.scottkillen.mod.kore.tree.DefinesLog;
+import com.scottkillen.mod.kore.tree.DefinesSapling;
+import com.scottkillen.mod.kore.tree.DefinesSlab;
+import com.scottkillen.mod.kore.tree.DefinesStairs;
 import com.scottkillen.mod.kore.tree.DefinesTree;
+import com.scottkillen.mod.kore.tree.DefinesWood;
 import com.scottkillen.mod.kore.tree.block.LeavesBlock;
 import com.scottkillen.mod.kore.tree.block.LogBlock;
-import com.scottkillen.mod.kore.tree.block.WoodBlock;
 import com.scottkillen.mod.kore.tree.block.SaplingBlock;
-import com.scottkillen.mod.kore.tree.block.StairsBlock;
 import com.scottkillen.mod.kore.tree.block.SlabBlock;
+import com.scottkillen.mod.kore.tree.block.StairsBlock;
+import com.scottkillen.mod.kore.tree.block.WoodBlock;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import static com.google.common.base.Preconditions.*;
-import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.ACEMUS_COLOR;
-import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.BASIC_COLOR;
-import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.CERASU_COLOR;
-import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.KULIST_COLOR;
-import static com.scottkillen.mod.dendrology.content.OverworldTreeSpecies.Colorizer.NO_COLOR;
+import static com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies.Colorizer.ACEMUS_COLOR;
+import static com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies.Colorizer.BASIC_COLOR;
+import static com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies.Colorizer.CERASU_COLOR;
+import static com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies.Colorizer.KULIST_COLOR;
+import static com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies.Colorizer.NO_COLOR;
 
 @SuppressWarnings({ "NonSerializableFieldInSerializableClass", "ClassHasNoToStringMethod" })
-public enum OverworldTreeSpecies implements DefinesTree, ProvidesPotionEffect
+public enum OverworldTreeSpecies
+        implements DefinesLeaves, DefinesLog, DefinesSapling, DefinesSlab, DefinesStairs, DefinesTree, DefinesWood,
+        ProvidesPotionEffect
 {
     // REORDERING WILL CAUSE DAMAGE TO SAVES
     ACEMUS(ACEMUS_COLOR, new AcemusTree()),
@@ -70,7 +80,7 @@ public enum OverworldTreeSpecies implements DefinesTree, ProvidesPotionEffect
     private SlabBlock doubleSlabBlock = null;
     private LeavesBlock leavesBlock = null;
     private LogBlock logBlock = null;
-    private WoodBlock planksBlock = null;
+    private WoodBlock woodBlock = null;
     private SaplingBlock saplingBlock = null;
     private SlabBlock singleSlabBlock = null;
     private StairsBlock stairsBlock = null;
@@ -135,125 +145,159 @@ public enum OverworldTreeSpecies implements DefinesTree, ProvidesPotionEffect
     }
 
     @Override
-    public LeavesBlock getLeavesBlock()
-    {
-        checkState(leavesBlock != null);
-        return leavesBlock;
-    }
-
-    @Override
-    public void setLeavesBlock(LeavesBlock leavesBlock)
+    public void assignLeavesBlock(LeavesBlock leavesBlock)
     {
         checkState(this.leavesBlock == null);
         this.leavesBlock = leavesBlock;
     }
 
     @Override
-    public int getLeavesMeta() { return leavesMeta; }
+    public void assignLeavesSubBlockIndex(int leavesMeta) { this.leavesMeta = leavesMeta; }
 
     @Override
-    public void setLeavesMeta(int leavesMeta) { this.leavesMeta = leavesMeta; }
-
-    @Override
-    public LogBlock getLogBlock()
+    public LeavesBlock leavesBlock()
     {
-        checkState(logBlock != null);
-        return logBlock;
+        checkState(leavesBlock != null);
+        return leavesBlock;
     }
 
     @Override
-    public void setLogBlock(LogBlock logBlock)
+    public int leavesSubBlockIndex() { return leavesMeta; }
+
+    @Override
+    public DefinesSapling saplingDefinition() { return this; }
+
+    @Override
+    public String speciesName() { return name().toLowerCase(); }
+
+    @Override
+    public void assignLogBlock(LogBlock logBlock)
     {
         checkState(this.logBlock == null);
         this.logBlock = logBlock;
     }
 
     @Override
-    public int getLogMeta() { return logMeta; }
+    public void assignLogSubBlockIndex(int logMeta) { this.logMeta = logMeta; }
 
     @Override
-    public void setLogMeta(int logMeta) { this.logMeta = logMeta; }
-
-    @Override
-    public String getName() { return name().toLowerCase(); }
-
-    @Override
-    public WoodBlock getPlanksBlock()
+    public LogBlock logBlock()
     {
-        checkState(planksBlock != null);
-        return planksBlock;
+        checkState(logBlock != null);
+        return logBlock;
     }
 
     @Override
-    public void setPlanksBlock(WoodBlock planksBlock)
+    public int logSubBlockIndex() { return logMeta; }
+
+    @Override
+    public WoodBlock woodBlock()
     {
-        checkState(this.planksBlock == null);
-        this.planksBlock = planksBlock;
+        checkState(woodBlock != null);
+        return woodBlock;
     }
 
     @Override
-    public int getPlanksMeta() { return planksMeta; }
+    public int woodSubBlockIndex() { return planksMeta; }
 
     @Override
-    public void setPlanksMeta(int planksMeta) { this.planksMeta = planksMeta; }
-
-    @Override
-    public SlabBlock getSingleSlabBlock()
+    public void assignWoodBlock(WoodBlock woodBlock)
     {
-        checkState(singleSlabBlock != null);
-        return singleSlabBlock;
+        checkState(this.woodBlock == null);
+        this.woodBlock = woodBlock;
     }
 
     @Override
-    public int getSlabMeta() { return slabMetadata; }
+    public void assignWoodSubBlockIndex(int planksMeta) { this.planksMeta = planksMeta; }
 
     @Override
-    public void setSlabMeta(int slabMetadata) { this.slabMetadata = slabMetadata; }
-
-    @Override
-    public StairsBlock getStairsBlock()
-    {
-        checkState(stairsBlock != null);
-        return stairsBlock;
-    }
-
-    @Override
-    public void setStairsBlock(StairsBlock stairsBlock)
+    public void assignStairsBlock(StairsBlock stairsBlock)
     {
         checkState(this.stairsBlock == null);
         this.stairsBlock = stairsBlock;
     }
 
     @Override
-    public SaplingBlock getSaplingBlock()
+    public StairsBlock stairsBlock()
     {
-        checkState(saplingBlock != null);
-        return saplingBlock;
+        checkState(stairsBlock != null);
+        return stairsBlock;
     }
 
     @Override
-    public void setSaplingBlock(SaplingBlock saplingBlock)
+    public Block stairsModelBlock() { return woodBlock(); }
+
+    @Override
+    public int stairsModelSubBlockIndex() { return woodSubBlockIndex(); }
+
+    @Override
+    public String stairsName() { return speciesName(); }
+
+    @Override
+    public void assignSaplingBlock(SaplingBlock saplingBlock)
     {
         checkState(this.saplingBlock == null);
         this.saplingBlock = saplingBlock;
     }
 
     @Override
-    public int getSaplingMeta() { return saplingMeta; }
+    public void assignSaplingSubBlockIndex(int saplingMeta) { this.saplingMeta = saplingMeta; }
 
     @Override
-    public void setSaplingMeta(int saplingMeta) { this.saplingMeta = saplingMeta; }
-
-    @Override
-    public void setSlabBlock(SlabBlock block, boolean isDouble)
+    public SaplingBlock saplingBlock()
     {
-        checkState(isDouble ? doubleSlabBlock == null : singleSlabBlock == null);
-        if (isDouble) doubleSlabBlock = block;
-        else singleSlabBlock = block;
+        checkState(saplingBlock != null);
+        return saplingBlock;
     }
 
     @Override
-    public AbstractTree getTreeGen() { return treeGen; }
+    public int saplingSubBlockIndex() { return saplingMeta; }
+
+    @Override
+    public WorldGenerator treeGenerator() { return treeGen; }
+
+    @Override
+    public void assignDoubleSlabBlock(SlabBlock block)
+    {
+        checkState(doubleSlabBlock == null);
+        doubleSlabBlock = block;
+    }
+
+    @Override
+    public void assignSingleSlabBlock(SlabBlock block)
+    {
+        checkState(singleSlabBlock == null);
+        singleSlabBlock = block;
+    }
+
+    @Override
+    public void assignSlabSubBlockIndex(int slabMetadata) { this.slabMetadata = slabMetadata; }
+
+    @Override
+    public SlabBlock doubleSlabBlock()
+    {
+        checkState(doubleSlabBlock != null);
+        return doubleSlabBlock;
+    }
+
+    @Override
+    public SlabBlock singleSlabBlock()
+    {
+        checkState(singleSlabBlock != null);
+        return singleSlabBlock;
+    }
+
+    @Override
+    public int slabSubBlockIndex() { return slabMetadata; }
+
+    @Override
+    public Block slabModelBlock() { return woodBlock(); }
+
+    @Override
+    public int slabModelSubBlockIndex() { return woodSubBlockIndex(); }
+
+    @Override
+    public String slabName() { return speciesName(); }
 
     public enum Colorizer
     {

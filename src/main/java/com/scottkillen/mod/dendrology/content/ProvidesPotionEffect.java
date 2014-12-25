@@ -1,4 +1,4 @@
-package com.scottkillen.mod.kore.common;
+package com.scottkillen.mod.dendrology.content;
 
 public interface ProvidesPotionEffect
 {

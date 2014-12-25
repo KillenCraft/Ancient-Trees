@@ -5,9 +5,9 @@ import com.jaquadro.minecraft.gardencore.util.UniqueMetaIdentifier;
 import com.jaquadro.minecraft.gardentrees.world.gen.OrnamentalTreeFactory;
 import com.jaquadro.minecraft.gardentrees.world.gen.OrnamentalTreeRegistry;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.kore.compat.Integrator;
-import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
+import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.kore.common.util.log.Logger;
+import com.scottkillen.mod.kore.compat.Integrator;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Optional.Method;
@@ -36,8 +36,8 @@ public final class GardenTreesMod extends Integrator
                 //noinspection ContinueStatement
                 continue;
 
-            final Item sapling = Item.getItemFromBlock(tree.getSaplingBlock());
-            final int saplingMeta = tree.getSaplingMeta();
+            final Item sapling = Item.getItemFromBlock(tree.saplingBlock());
+            final int saplingMeta = tree.saplingSubBlockIndex();
 
             final UniqueMetaIdentifier logBlock = saplingReg.getWoodForSapling(sapling, saplingMeta);
             final UniqueMetaIdentifier leavesBlock = saplingReg.getLeavesForSapling(sapling, saplingMeta);

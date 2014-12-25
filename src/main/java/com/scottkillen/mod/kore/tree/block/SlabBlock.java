@@ -2,9 +2,8 @@ package com.scottkillen.mod.kore.tree.block;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import com.scottkillen.mod.kore.common.OrganizesResources;
-import com.scottkillen.mod.kore.tree.DescribesSlabs;
-import com.scottkillen.mod.kore.tree.util.SingleSlabRegistry;
+import com.scottkillen.mod.kore.common.util.slab.SingleSlabRegistry;
+import com.scottkillen.mod.kore.tree.DefinesSlab;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSlab;
@@ -14,33 +13,27 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 import static com.google.common.base.Preconditions.*;
 
-public class SlabBlock extends BlockSlab
+public abstract class SlabBlock extends BlockSlab
 {
     public static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
-    private final ImmutableList<DescribesSlabs> descriptors;
-    private final String resourcePrefix;
+    private final ImmutableList<DefinesSlab> subBlocks;
 
-    public SlabBlock(boolean isDouble, List<? extends DescribesSlabs> descriptors, OrganizesResources resourceOrganizer)
+    protected SlabBlock(boolean isDouble, Collection<? extends DefinesSlab> subBlocks)
     {
         super(isDouble, Material.wood);
 
-        checkArgument(!descriptors.isEmpty());
-        checkArgument(descriptors.size() <= CAPACITY);
-        this.descriptors = ImmutableList.copyOf(descriptors);
-
-        setCreativeTab(resourceOrganizer.getCreativeTab());
+        checkArgument(!subBlocks.isEmpty());
+        checkArgument(subBlocks.size() <= CAPACITY);
+        this.subBlocks = ImmutableList.copyOf(subBlocks);
         setBlockName("slab");
-        setHardness(2.0F);
-        setResistance(5.0F);
-        setStepSound(soundTypeWood);
-
-        resourcePrefix = resourceOrganizer.getResourcePrefix();
     }
 
     private static int mask(int metadata) {return metadata & METADATA_MASK;}
@@ -58,41 +51,40 @@ public class SlabBlock extends BlockSlab
 
     @SideOnly(Side.CLIENT)
     @Override
-    public IIcon getIcon(int side, int metadata)
+    public final IIcon getIcon(int side, int metadata)
     {
-        final DescribesSlabs descriptor = descriptors.get(mask(metadata));
-        return descriptor.getPlanksBlock().getIcon(side, mask(metadata));
+        final DefinesSlab subBlock = subBlocks.get(mask(metadata));
+        return subBlock.slabModelBlock().getIcon(side, mask(metadata));
     }
 
     @Override
-    public Item getItemDropped(int metadata, Random unused, int unused2)
+    public final Item getItemDropped(int metadata, Random unused, int unused2)
     {
-        final DescribesSlabs descriptor = descriptors.get(mask(metadata));
-        return Item.getItemFromBlock(descriptor.getSingleSlabBlock());
+        final DefinesSlab subBlock = subBlocks.get(mask(metadata));
+        return Item.getItemFromBlock(subBlock.singleSlabBlock());
     }
 
     @Override
-    protected ItemStack createStackedBlock(int metadata)
+    protected final ItemStack createStackedBlock(int metadata)
     {
-        final DescribesSlabs descriptor = descriptors.get(mask(metadata));
-        return new ItemStack(Item.getItemFromBlock(descriptor.getSingleSlabBlock()), 2, descriptor.getSlabMeta());
+        final DefinesSlab subBlock = subBlocks.get(mask(metadata));
+        return new ItemStack(Item.getItemFromBlock(subBlock.singleSlabBlock()), 2, subBlock.slabSubBlockIndex());
     }
 
     @Override
-    public String getUnlocalizedName()
+    public final String getUnlocalizedName()
     {
-        //noinspection StringConcatenationMissingWhitespace
-        return "tile." + resourcePrefix + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
+        return String.format("tile.%s%s", resourcePrefix(), getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
     }
 
     @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
+    public final void getSubBlocks(Item item, CreativeTabs unused, List subblocks)
     {
         if (isSingleSlab(item))
         {
-            for (int i = 0; i < descriptors.size(); ++i)
+            for (int i = 0; i < subBlocks.size(); ++i)
             {
                 //noinspection ObjectAllocationInLoop
                 subblocks.add(new ItemStack(item, 1, i));
@@ -102,24 +94,27 @@ public class SlabBlock extends BlockSlab
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerBlockIcons(IIconRegister unused) {}
+    public final void registerBlockIcons(IIconRegister unused) {}
 
     @Override
-    public String func_150002_b(int metadata)
+    public final String func_150002_b(int metadata)
     {
         int metadata1 = metadata;
-        if (metadata1 < 0 || metadata1 >= descriptors.size())
+        if (metadata1 < 0 || metadata1 >= subBlocks.size())
         {
             metadata1 = 0;
         }
 
-        return getUnlocalizedName() + '.' + descriptors.get(metadata1).getName();
+        return getUnlocalizedName() + '.' + subBlocks.get(metadata1).slabName();
     }
+
+    protected abstract String resourcePrefix();
+
+    protected final List<DefinesSlab> subBlocks() { return Collections.unmodifiableList(subBlocks); }
 
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("descriptors", descriptors).add("resourcePrefix", resourcePrefix)
-                .toString();
+        return Objects.toStringHelper(this).add("subBlocks", subBlocks).toString();
     }
 }
