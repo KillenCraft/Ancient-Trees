@@ -3,7 +3,7 @@ package com.scottkillen.mod.kore.tree.loader;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.kore.common.util.slab.SingleDoubleSlab;
-import com.scottkillen.mod.kore.common.util.slab.SingleSlabRegistry;
+import com.scottkillen.mod.kore.common.util.slab.TheSingleSlabRegistry;
 import com.scottkillen.mod.kore.tree.DefinesLeaves;
 import com.scottkillen.mod.kore.tree.DefinesLog;
 import com.scottkillen.mod.kore.tree.DefinesSapling;
@@ -22,6 +22,7 @@ import java.util.List;
 public class TreeSpeciesLoader
 {
     private final TreeTaxonomy taxonomy;
+    private final TheSingleSlabRegistry slabRegistry = TheSingleSlabRegistry.REFERENCE;
 
     public TreeSpeciesLoader(TreeTaxonomy taxonomy)
     {
@@ -100,7 +101,7 @@ public class TreeSpeciesLoader
             if (subBlocks.size() == SlabBlock.CAPACITY)
             {
                 final SingleDoubleSlab slabs = factory.createSlabBlocks(subBlocks);
-                SingleSlabRegistry.add(slabs.singleSlab());
+                slabRegistry.add(slabs.singleSlab());
 
                 subBlocks.clear();
             }
@@ -108,7 +109,7 @@ public class TreeSpeciesLoader
         if (!subBlocks.isEmpty())
         {
             final SingleDoubleSlab slabs = factory.createSlabBlocks(subBlocks);
-            SingleSlabRegistry.add(slabs.singleSlab());
+            slabRegistry.add(slabs.singleSlab());
         }
     }
 
@@ -140,6 +141,6 @@ public class TreeSpeciesLoader
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("taxonomy", taxonomy).toString();
+        return Objects.toStringHelper(this).add("taxonomy", taxonomy).add("slabRegistry", slabRegistry).toString();
     }
 }

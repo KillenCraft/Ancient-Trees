@@ -15,7 +15,7 @@ public final class ConfigGUI extends GuiConfig
     public ConfigGUI(GuiScreen parent)
     {
         super(parent, getConfigElements(), TheMod.MOD_ID, false, false,
-                GuiConfig.getAbridgedConfigPath(TheMod.configuration().toString()));
+                GuiConfig.getAbridgedConfigPath(TheMod.INSTANCE.configuration().toString()));
     }
 
     @SuppressWarnings("unchecked")
@@ -23,7 +23,7 @@ public final class ConfigGUI extends GuiConfig
     {
         final List<IConfigElement> configElements = Lists.newArrayList();
 
-        final Configuration config = TheMod.configuration();
+        final Configuration config = TheMod.INSTANCE.configuration();
         final ConfigElement general = new ConfigElement(config.getCategory(Configuration.CATEGORY_GENERAL));
         configElements.addAll(general.getChildElements());
 
