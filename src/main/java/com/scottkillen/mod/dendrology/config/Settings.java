@@ -24,7 +24,8 @@ public enum Settings implements ConfigSyncable
 
     private static int get(Configuration config, String settingName, int defaultValue)
     {
-        return config.getInt(settingName, Configuration.CATEGORY_GENERAL, defaultValue, 0, Integer.MAX_VALUE, getLocalizedComment(settingName));
+        return config.getInt(settingName, Configuration.CATEGORY_GENERAL, defaultValue, 0, Integer.MAX_VALUE,
+                getLocalizedComment(settingName));
     }
 
     private static String getLocalizedComment(String settingName)
@@ -57,7 +58,7 @@ public enum Settings implements ConfigSyncable
     {
         // Handle old config versions (none yet)
 
-        syncConfig(TheMod.configuration());
+        syncConfig(TheMod.INSTANCE.configuration());
     }
 
     @Override
@@ -65,21 +66,14 @@ public enum Settings implements ConfigSyncable
     {
         blacksmithRarity = get(config, "blacksmithRarity", blacksmithRarity);
         bonusChestRarity = get(config, "bonusChestRarity", bonusChestRarity);
-        desertTempleRarity =
-                get(config, "desertTempleRarity", desertTempleRarity);
+        desertTempleRarity = get(config, "desertTempleRarity", desertTempleRarity);
         dungeonRarity = get(config, "dungeonRarity", dungeonRarity);
-        jungleTempleRarity =
-                get(config, "jungleTempleRarity", jungleTempleRarity);
-        jungleTempleDispenserRarity =
-                get(config, "jungleTempleDispenserRarity", jungleTempleDispenserRarity);
-        mineshaftCorridorRarity =
-                get(config, "mineshaftCorridorRarity", mineshaftCorridorRarity);
-        strongholdCorridorRarity =
-                get(config, "strongholdCorridorRarity", strongholdCorridorRarity);
-        strongholdCrossingRarity =
-                get(config, "strongholdCrossingRarity", strongholdCrossingRarity);
-        strongholdLibraryRarity =
-                get(config, "strongholdLibraryRarity", strongholdLibraryRarity);
+        jungleTempleRarity = get(config, "jungleTempleRarity", jungleTempleRarity);
+        jungleTempleDispenserRarity = get(config, "jungleTempleDispenserRarity", jungleTempleDispenserRarity);
+        mineshaftCorridorRarity = get(config, "mineshaftCorridorRarity", mineshaftCorridorRarity);
+        strongholdCorridorRarity = get(config, "strongholdCorridorRarity", strongholdCorridorRarity);
+        strongholdCrossingRarity = get(config, "strongholdCrossingRarity", strongholdCrossingRarity);
+        strongholdLibraryRarity = get(config, "strongholdLibraryRarity", strongholdLibraryRarity);
     }
 
     @Override
