@@ -7,7 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
 
-public class ClientRenderProxy extends RenderProxy
+public final class ClientRenderProxy extends RenderProxy
 {
     @Override
     public void postInit()

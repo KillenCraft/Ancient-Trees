@@ -4,7 +4,7 @@ import com.google.common.base.Objects;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 
-public class Logger
+public final class Logger
 {
     private final org.apache.logging.log4j.Logger logger;
 

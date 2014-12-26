@@ -1,13 +1,13 @@
 package com.scottkillen.mod.kore.tree.item;
 
-import com.scottkillen.mod.kore.tree.block.LogBlock;
+import com.scottkillen.mod.kore.tree.block.WoodBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemMultiTexture;
 
-public abstract class LogItem extends ItemMultiTexture
+public abstract class WoodItem extends ItemMultiTexture
 {
     // This provides a reminder that you must extend this class and change the constructor to accept your extension of
-    // LogBlock in the second parameter
+    // WoodBlock in the second parameter
 
-    protected LogItem(Block block, LogBlock log, String[] names) { super(block, log, names); }
+    protected WoodItem(Block block, WoodBlock log, String[] names) { super(block, log, names); }
 }

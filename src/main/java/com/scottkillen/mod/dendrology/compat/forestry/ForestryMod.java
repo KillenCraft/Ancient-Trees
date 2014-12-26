@@ -1,9 +1,9 @@
 package com.scottkillen.mod.dendrology.compat.forestry;
 
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.kore.compat.Integrator;
-import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
+import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.kore.common.util.log.Logger;
+import com.scottkillen.mod.kore.compat.Integrator;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Optional.Method;
@@ -34,19 +34,19 @@ public final class ForestryMod extends Integrator
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
         {
             //noinspection ObjectAllocationInLoop
-            final ItemStack sapling = new ItemStack(tree.getSaplingBlock(), 1, tree.getSaplingMeta());
+            final ItemStack sapling = new ItemStack(tree.saplingBlock(), 1, tree.saplingSubBlockIndex());
             BackpackManager.backpackItems[FORESTER].add(sapling);
 
             //noinspection ObjectAllocationInLoop
-            final ItemStack log = new ItemStack(tree.getLogBlock(), 1, tree.getLogMeta());
+            final ItemStack log = new ItemStack(tree.logBlock(), 1, tree.logSubBlockIndex());
             BackpackManager.backpackItems[FORESTER].add(log);
 
             //noinspection ObjectAllocationInLoop
-            final ItemStack leaves = new ItemStack(tree.getLeavesBlock(), 1, tree.getLeavesMeta());
+            final ItemStack leaves = new ItemStack(tree.leavesBlock(), 1, tree.leavesSubBlockIndex());
             BackpackManager.backpackItems[FORESTER].add(leaves);
 
             //noinspection ObjectAllocationInLoop
-            final ItemStack stairs = new ItemStack(tree.getStairsBlock());
+            final ItemStack stairs = new ItemStack(tree.stairsBlock());
             BackpackManager.backpackItems[BUILDER].add(stairs);
         }
     }
@@ -58,7 +58,7 @@ public final class ForestryMod extends Integrator
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
         {
             //noinspection ObjectAllocationInLoop
-            final ItemStack sapling = new ItemStack(tree.getSaplingBlock(), 1, tree.getSaplingMeta());
+            final ItemStack sapling = new ItemStack(tree.saplingBlock(), 1, tree.saplingSubBlockIndex());
             FMLInterModComms.sendMessage("Forestry", "add-farmable-sapling", String.format("farmArboreal@%s.%s",
                     GameData.getBlockRegistry().getNameForObject(Block.getBlockFromItem(sapling.getItem())),
                     sapling.getItemDamage()));
@@ -74,7 +74,7 @@ public final class ForestryMod extends Integrator
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
         {
             //noinspection ObjectAllocationInLoop
-            final ItemStack sapling = new ItemStack(tree.getSaplingBlock(), 1, tree.getSaplingMeta());
+            final ItemStack sapling = new ItemStack(tree.saplingBlock(), 1, tree.saplingSubBlockIndex());
             RecipeManagers.fermenterManager
                     .addRecipe(sapling, fermentationValue, 1.0f, fluidStack("biomass"), fluidStack("water"));
             RecipeManagers.fermenterManager

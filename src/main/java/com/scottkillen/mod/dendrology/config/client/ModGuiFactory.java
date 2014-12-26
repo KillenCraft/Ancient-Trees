@@ -6,7 +6,7 @@ import net.minecraft.client.gui.GuiScreen;
 import java.util.Set;
 
 @SuppressWarnings({ "WeakerAccess", "UnusedDeclaration" })
-public class ModGuiFactory implements IModGuiFactory
+public final class ModGuiFactory implements IModGuiFactory
 {
     @Override
     public void initialize(Minecraft minecraftInstance) { }

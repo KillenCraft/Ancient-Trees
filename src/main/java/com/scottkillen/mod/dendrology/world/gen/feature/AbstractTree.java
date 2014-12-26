@@ -2,10 +2,10 @@ package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
-import com.scottkillen.mod.kore.tree.block.ModLogBlock;
-import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
 import com.scottkillen.mod.kore.tree.DefinesTree;
+import com.scottkillen.mod.kore.tree.block.LeavesBlock;
+import com.scottkillen.mod.kore.tree.block.LogBlock;
+import com.scottkillen.mod.kore.tree.block.SaplingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -56,15 +56,15 @@ public abstract class AbstractTree extends WorldGenAbstractTree
         return true;
     }
 
-    ModLeavesBlock getLeavesBlock() { return tree.getLeavesBlock(); }
+    LeavesBlock getLeavesBlock() { return tree.leavesBlock(); }
 
-    int getLeavesMetadata() { return tree.getLeavesMeta(); }
+    int getLeavesMetadata() { return tree.leavesSubBlockIndex(); }
 
-    protected ModLogBlock getLogBlock() { return tree.getLogBlock(); }
+    protected LogBlock getLogBlock() { return tree.logBlock(); }
 
-    protected int getLogMetadata() { return tree.getLogMeta(); }
+    protected int getLogMetadata() { return tree.leavesSubBlockIndex(); }
 
-    protected ModSaplingBlock getSaplingBlock() { return tree.getSaplingBlock(); }
+    protected SaplingBlock getSaplingBlock() { return tree.saplingBlock(); }
 
     protected boolean placeLeaves(World world, int x, int y, int z)
     {

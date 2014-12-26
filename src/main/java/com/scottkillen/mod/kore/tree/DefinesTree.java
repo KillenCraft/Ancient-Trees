@@ -1,45 +1,20 @@
 package com.scottkillen.mod.kore.tree;
 
-import com.scottkillen.mod.kore.tree.block.ModLeavesBlock;
-import com.scottkillen.mod.kore.tree.block.ModLogBlock;
-import com.scottkillen.mod.kore.tree.block.ModPlanksBlock;
-import com.scottkillen.mod.kore.tree.block.ModSaplingBlock;
-import com.scottkillen.mod.kore.tree.block.ModStairsBlock;
-import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
+import com.scottkillen.mod.kore.tree.block.LeavesBlock;
+import com.scottkillen.mod.kore.tree.block.LogBlock;
+import com.scottkillen.mod.kore.tree.block.SaplingBlock;
 
-public interface DefinesTree extends DescribesLeaves, DescribesSlabs
+public interface DefinesTree
 {
-    ModLeavesBlock getLeavesBlock();
+    LeavesBlock leavesBlock();
 
-    void setLeavesBlock(ModLeavesBlock block);
+    int leavesSubBlockIndex();
 
-    int getLeavesMeta();
+    LogBlock logBlock();
 
-    void setLeavesMeta(int meta);
+    int logSubBlockIndex();
 
-    ModLogBlock getLogBlock();
+    SaplingBlock saplingBlock();
 
-    void setLogBlock(ModLogBlock logBlock);
-
-    int getLogMeta();
-
-    void setLogMeta(int meta);
-
-    void setPlanksBlock(ModPlanksBlock block);
-
-    int getPlanksMeta();
-
-    void setPlanksMeta(int meta);
-
-    void setSaplingBlock(ModSaplingBlock block);
-
-    void setSaplingMeta(int meta);
-
-    void setSlabBlock(ModWoodSlabBlock block, boolean isDouble);
-
-    void setSlabMeta(int meta);
-
-    ModStairsBlock getStairsBlock();
-
-    void setStairsBlock(ModStairsBlock block);
+    int saplingSubBlockIndex();
 }

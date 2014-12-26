@@ -3,7 +3,6 @@ package com.scottkillen.mod.dendrology;
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
-import com.scottkillen.mod.kore.compat.Integrates;
 import com.scottkillen.mod.dendrology.compat.forestry.ForestryMod;
 import com.scottkillen.mod.dendrology.compat.gardencollection.GardenCoreMod;
 import com.scottkillen.mod.dendrology.compat.gardencollection.GardenTreesMod;
@@ -13,7 +12,7 @@ import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
 import com.scottkillen.mod.dendrology.content.crafting.Recipes;
 import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
-import com.scottkillen.mod.kore.common.OrganizesResources;
+import com.scottkillen.mod.kore.compat.Integrates;
 import com.scottkillen.mod.kore.config.ConfigEventHandler;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Mod;
@@ -30,35 +29,30 @@ import java.util.List;
 
 @Mod(modid = TheMod.MOD_ID, name = TheMod.MOD_NAME, version = TheMod.MOD_VERSION, useMetadata = true,
         dependencies = TheMod.MOD_DEPENDENCIES, guiFactory = TheMod.MOD_GUI_FACTORY)
-public class TheMod implements OrganizesResources
+public class TheMod
 {
     public static final String MOD_ID = "dendrology";
     @SuppressWarnings("WeakerAccess")
     public static final String MOD_NAME = "Ancient Trees";
+    @SuppressWarnings("AnonymousInnerClass")
+    public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
+    {
+        @Override
+        public Item getTabIconItem() { return Item.getItemFromBlock(Blocks.sapling); }
+    };
     @SuppressWarnings("WeakerAccess")
     static final String MOD_VERSION = "${mod_version}";
     @SuppressWarnings("WeakerAccess")
     static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
     @SuppressWarnings("WeakerAccess")
     static final String MOD_DEPENDENCIES = "after:Forestry;after:minechem";
-
     private static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
-
-    @SuppressWarnings("AnonymousInnerClass")
-    private static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
-    {
-        @Override
-        public Item getTabIconItem() { return Item.getItemFromBlock(Blocks.sapling); }
-    };
-
+    private static final List<Integrates> integrators = Lists.newArrayList();
     @SuppressWarnings({
             "StaticNonFinalField", "StaticVariableMayNotBeInitialized", "NonConstantFieldWithUpperCaseName"
     })
     @Instance(MOD_ID)
     public static TheMod INSTANCE;
-
-    private static final List<Integrates> integrators = Lists.newArrayList();
-
     @SuppressWarnings("StaticNonFinalField")
     private static Optional<ConfigEventHandler> configEventHandler = Optional.absent();
 
@@ -76,6 +70,14 @@ public class TheMod implements OrganizesResources
         return new Configuration();
     }
 
+    private static void integrateMods(ModState modState)
+    {
+        for (final Integrates integrator : integrators)
+            integrator.integrate(modState);
+    }
+
+    public static String getResourcePrefix() { return RESOURCE_PREFIX; }
+
     @SuppressWarnings("MethodMayBeStatic")
     @EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
@@ -86,23 +88,17 @@ public class TheMod implements OrganizesResources
                         Settings.CONFIG_VERSION));
         configEventHandler.get().activate();
 
-        ModBlocks.preInit();
+        new ModBlocks().loadContent();
         initIntegrators();
         integrateMods(event.getModState());
-    }
-
-    private static void integrateMods(ModState modState)
-    {
-        for (final Integrates integrator : integrators)
-            integrator.integrate(modState);
     }
 
     @SuppressWarnings("MethodMayBeStatic")
     @EventHandler
     public void onFMLInitialization(FMLInitializationEvent event)
     {
-        OreDictHandler.init();
-        Recipes.init();
+        new OreDictHandler().registerBlocksWithOreDictinary();
+        new Recipes().writeRecipesInCraftingManager();
         integrateMods(event.getModState());
     }
 
@@ -115,10 +111,4 @@ public class TheMod implements OrganizesResources
         integrateMods(event.getModState());
         integrators.clear();
     }
-
-    @Override
-    public CreativeTabs getCreativeTab() { return CREATIVE_TAB; }
-
-    @Override
-    public String getResourcePrefix() { return RESOURCE_PREFIX; }
 }

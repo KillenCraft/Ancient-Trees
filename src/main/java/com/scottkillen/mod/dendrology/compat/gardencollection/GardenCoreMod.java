@@ -3,10 +3,10 @@ package com.scottkillen.mod.dendrology.compat.gardencollection;
 import com.jaquadro.minecraft.gardencore.api.SaplingRegistry;
 import com.jaquadro.minecraft.gardencore.api.WoodRegistry;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.kore.compat.Integrator;
-import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
+import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.kore.common.util.log.Logger;
-import com.scottkillen.mod.kore.tree.block.ModLogBlock;
+import com.scottkillen.mod.kore.compat.Integrator;
+import com.scottkillen.mod.kore.tree.block.LogBlock;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Optional.Method;
@@ -29,11 +29,12 @@ public final class GardenCoreMod extends Integrator
 
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
         {
-            final ModLogBlock logBlock = tree.getLogBlock();
-            final int logMeta = tree.getLogMeta();
+            final LogBlock logBlock = tree.logBlock();
+            final int logMeta = tree.logSubBlockIndex();
             woodReg.registerWoodType(logBlock, logMeta);
-            saplingReg.registerSapling(Item.getItemFromBlock(tree.getSaplingBlock()), tree.getSaplingMeta(), logBlock,
-                    logMeta, tree.getLeavesBlock(), tree.getLeavesMeta());
+            saplingReg
+                    .registerSapling(Item.getItemFromBlock(tree.saplingBlock()), tree.saplingSubBlockIndex(), logBlock,
+                            logMeta, tree.leavesBlock(), tree.leavesSubBlockIndex());
         }
     }
 
