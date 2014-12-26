@@ -2,7 +2,7 @@ package com.scottkillen.mod.kore.tree.block;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import com.scottkillen.mod.kore.common.util.slab.SingleSlabRegistry;
+import com.scottkillen.mod.kore.common.util.slab.TheSingleSlabRegistry;
 import com.scottkillen.mod.kore.tree.DefinesSlab;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,6 +24,7 @@ public abstract class SlabBlock extends BlockSlab
 {
     public static final int CAPACITY = 8;
     private static final int METADATA_MASK = CAPACITY - 1;
+    private static final TheSingleSlabRegistry slabRegistry = TheSingleSlabRegistry.REFERENCE;
     private final ImmutableList<DefinesSlab> subBlocks;
 
     protected SlabBlock(boolean isDouble, Collection<? extends DefinesSlab> subBlocks)
@@ -40,7 +41,7 @@ public abstract class SlabBlock extends BlockSlab
 
     public static boolean isSingleSlab(Item item)
     {
-        return SingleSlabRegistry.isSingleSlab(item);
+        return slabRegistry.isSingleSlab(item);
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -113,8 +114,5 @@ public abstract class SlabBlock extends BlockSlab
     protected final List<DefinesSlab> subBlocks() { return Collections.unmodifiableList(subBlocks); }
 
     @Override
-    public String toString()
-    {
-        return Objects.toStringHelper(this).add("subBlocks", subBlocks).toString();
-    }
+    public String toString() { return Objects.toStringHelper(this).add("subBlocks", subBlocks).toString(); }
 }
