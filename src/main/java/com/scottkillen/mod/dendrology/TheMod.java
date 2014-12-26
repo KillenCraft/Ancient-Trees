@@ -18,7 +18,6 @@ import com.scottkillen.mod.kore.config.ConfigEventHandler;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -49,11 +48,7 @@ public class TheMod
     static final String MOD_DEPENDENCIES = "after:Forestry;after:minechem";
     private static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
     private static final List<Integrates> integrators = Lists.newArrayList();
-    @SuppressWarnings({
-            "StaticNonFinalField", "StaticVariableMayNotBeInitialized", "NonConstantFieldWithUpperCaseName"
-    })
-    @Instance(MOD_ID)
-    public static TheMod INSTANCE;
+
     @SuppressWarnings("StaticNonFinalField")
     private static Optional<ConfigEventHandler> configEventHandler = Optional.absent();
 
