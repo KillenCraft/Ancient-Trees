@@ -12,6 +12,7 @@ import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
 import com.scottkillen.mod.dendrology.content.crafting.Recipes;
 import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
+import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
 import com.scottkillen.mod.dendrology.kore.compat.Integrates;
 import com.scottkillen.mod.dendrology.kore.config.ConfigEventHandler;
@@ -22,9 +23,12 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import java.util.List;
 
@@ -46,8 +50,19 @@ public class TheMod
     public static final String MOD_DEPENDENCIES = "after:Forestry;after:minechem";
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
     {
+        private final OverworldTreeSpecies ICON = OverworldTreeSpecies.PORFFOR;
+
+        @SideOnly(Side.CLIENT)
         @Override
-        public Item getTabIconItem() { return Item.getItemFromBlock(Blocks.sapling); }
+        public ItemStack getIconItemStack()
+        {
+            return new ItemStack(ICON.saplingBlock(), 1, ICON.saplingSubBlockIndex());
+        }
+
+        @SuppressWarnings("ReturnOfNull")
+        @SideOnly(Side.CLIENT)
+        @Override
+        public Item getTabIconItem() { return null; }
     };
     private static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
     @Instance(MOD_ID)
