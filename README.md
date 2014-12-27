@@ -3,6 +3,8 @@
 [release]: /MinecraftModArchive/Dendrology/releases/download/v1.0.0/AncientTrees-1.7.10-1.0.0.jar
 [changelog.md]: /MinecraftModArchive/Dendrology/blob/develop/src/main/resources/CHANGELOG.md
 
+![Logo](https://raw.githubusercontent.com/MinecraftModArchive/Dendrology/develop/src/main/resources/assets/logo.png)
+
 "In the time before The Fall, the world was vibrant, teeming with life. The Fall changed the world and only a
 portion of what was has survived.
 
