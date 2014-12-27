@@ -2,8 +2,8 @@ package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.kore.tree.DefinesSlab;
-import com.scottkillen.mod.kore.tree.block.SlabBlock;
+import com.scottkillen.mod.dendrology.kore.tree.DefinesSlab;
+import com.scottkillen.mod.dendrology.kore.tree.block.SlabBlock;
 
 public final class ModSlabBlock extends SlabBlock
 {

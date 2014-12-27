@@ -3,8 +3,8 @@ package com.scottkillen.mod.dendrology.block;
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.content.ProvidesPotionEffect;
-import com.scottkillen.mod.kore.tree.DefinesSapling;
-import com.scottkillen.mod.kore.tree.block.SaplingBlock;
+import com.scottkillen.mod.dendrology.kore.tree.DefinesSapling;
+import com.scottkillen.mod.dendrology.kore.tree.block.SaplingBlock;
 import net.minecraft.item.ItemStack;
 import java.util.List;
 

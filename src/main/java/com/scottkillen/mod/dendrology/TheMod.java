@@ -13,9 +13,8 @@ import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
 import com.scottkillen.mod.dendrology.content.crafting.Recipes;
 import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
-import com.scottkillen.mod.kore.Kore;
-import com.scottkillen.mod.kore.compat.Integrates;
-import com.scottkillen.mod.kore.config.ConfigEventHandler;
+import com.scottkillen.mod.dendrology.kore.compat.Integrates;
+import com.scottkillen.mod.dendrology.kore.config.ConfigEventHandler;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -81,8 +80,6 @@ public class TheMod
     @EventHandler
     public void onFMLPreInitialization(FMLPreInitializationEvent event)
     {
-        Kore.INSTANCE.onFMLPreInitialization(event);
-
         configEventHandler = Optional.of(
                 new ConfigEventHandler(MOD_ID, event.getSuggestedConfigurationFile(), Settings.INSTANCE,
                         Settings.CONFIG_VERSION));
@@ -96,8 +93,6 @@ public class TheMod
     @EventHandler
     public void onFMLInitialization(FMLInitializationEvent event)
     {
-        Kore.INSTANCE.onFMLInitialization(event);
-
         new OreDictHandler().registerBlocksWithOreDictinary();
         new Recipes().writeRecipesInCraftingManager();
         integrateMods(event.getModState());
@@ -106,8 +101,6 @@ public class TheMod
     @EventHandler
     public void onFMLPostInitialization(FMLPostInitializationEvent event)
     {
-        Kore.INSTANCE.onFMLPostInitialization(event);
-
         Proxy.render.postInit();
         FuelHandler.postInit();
         integrateMods(event.getModState());

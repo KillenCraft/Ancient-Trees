@@ -1,6 +1,6 @@
 package com.scottkillen.mod.dendrology.content.fuel;
 
-import com.scottkillen.mod.kore.tree.block.SlabBlock;
+import com.scottkillen.mod.dendrology.kore.tree.block.SlabBlock;
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.ItemStack;

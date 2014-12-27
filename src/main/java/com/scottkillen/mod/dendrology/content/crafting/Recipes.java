@@ -2,9 +2,9 @@ package com.scottkillen.mod.dendrology.content.crafting;
 
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
-import com.scottkillen.mod.kore.tree.DefinesLog;
-import com.scottkillen.mod.kore.tree.DefinesSlab;
-import com.scottkillen.mod.kore.tree.DefinesStairs;
+import com.scottkillen.mod.dendrology.kore.tree.DefinesLog;
+import com.scottkillen.mod.dendrology.kore.tree.DefinesSlab;
+import com.scottkillen.mod.dendrology.kore.tree.DefinesStairs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
