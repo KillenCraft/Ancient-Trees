@@ -13,7 +13,7 @@ world. It is tragic that, for all the good they did, the Ancient Ones could not 
 
 Ancient Trees adds thirteen species of extinct trees to the world. You may find the rare saplings in chests hidden
 throughout the land. You can find them and restore the species... Each species can be used to make the full range of
-woodcraft.
+woodcraft. ([screen shots](screen-shots.md))
 
 [Contributing](#contributing)
 
