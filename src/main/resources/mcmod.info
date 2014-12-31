@@ -1,8 +1,8 @@
 [
 {
   "modid": "koresample",
-  "name": "KoreSampple",
-  "description": "A Minecraft mod core library.",
+  "name": "Kore Sample",
+  "description": "A Minecraft mod that provides a set of tools and base classes for other Minecraft mods the depend on it.",
   "version": "${mod_version}",
   "mcversion": "${minecraft_version}",
   "url": "",
