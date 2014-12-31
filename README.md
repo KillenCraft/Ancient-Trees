@@ -1,6 +1,6 @@
 ## Kore Sample
 **LATEST OFFICIAL VERSION**: [Kore Sample 1.0.0 for MC 1.7.10][release] ([changelog][changelog.md])
-[release]: /MinecraftModArchive/KoreSample/releases/download/v1.0.0/KoreSample-1.7.10-1.0.0.jar
+[release]: https://github.com/MinecraftModArchive/KoreSample/releases/download/v1.0.0/KoreSample-1.7.10-1.0.0.jar
 [changelog.md]: /MinecraftModArchive/KoreSample/blob/develop/src/main/resources/CHANGELOG.md
 
 Kore Sample provides a set of tools and base classes for other Minecraft mods the depend on it.
