@@ -1,0 +1,21 @@
+[
+{
+  "modid": "koresample",
+  "name": "KoreSampple",
+  "description": "A Minecraft mod core library.",
+  "version": "${mod_version}",
+  "mcversion": "${minecraft_version}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": [
+    "ScottKillen"
+  ],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]
