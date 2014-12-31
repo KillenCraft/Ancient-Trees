@@ -102,3 +102,9 @@ artifacts {
     archives sourcesJar
     archives deobfJar
 }
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository (url:"file://" + projectDir + "/build/maven")
+    }
+}
