@@ -1,10 +1,12 @@
 ## Unreleased
 - Added CHANGELOG.md after [tweet by tedyhere][tedy_tweet]
-- Added [GardenStuff][gardenstuff_link] integration.
+- Added [GardenStuff][gardenstuff_link] integration. ([#19](/MinecraftModArchive/Dendrology/issues/19))
 - Added German locale. ([MCManuelLP][mcmanuelLP_link])
+- Broke out common code into a separate mod ([Kore Sample][koresample]) ([#15](/MinecraftModArchive/Dendrology/issues/15))
 [gardenstuff_link]: http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2163513
 [mcmanuelLP_link]: https://github.com/mcmanuellp
 [tedy_tweet]: https://twitter.com/tedyhere/status/546699297782521856
+[koresample]: http://scottk.us/KoreSample
 
 ## 1.0.0
 - Added Great Britain locale. ([Seanthebaker][sean_link])
