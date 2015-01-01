@@ -17,7 +17,16 @@
   "screenshots": [
   ],
   "parent":"",
+  "requiredMods": [
+    "koresample"
+  ],
   "dependencies": [
-  ]
+    "Forestry",
+    "koresample",
+    "minechem"
+  ],
+  "dependants": [
+  ],
+  "useDependencyInformation": true
 }
 ]
