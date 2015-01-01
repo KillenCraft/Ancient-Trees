@@ -3,7 +3,7 @@
 *DEPENDS ON*: [Kore Sample 1.0.0 for MC 1.7.10][koresample]
 [release]: /MinecraftModArchive/Dendrology/releases/download/v1.0.0/AncientTrees-1.7.10-1.1.0.jar
 [changelog.md]: /MinecraftModArchive/Dendrology/blob/develop/src/main/resources/CHANGELOG.md
-[koresample]: http://scottk.us/KoreSample
+[koresample]: /MinecraftModArchive/KoreSample/releases/download/v1.0.0/KoreSample-1.7.10-1.0.0.jar
 
 ![Logo](https://raw.githubusercontent.com/MinecraftModArchive/Dendrology/develop/src/main/resources/assets/logo.png)
 
