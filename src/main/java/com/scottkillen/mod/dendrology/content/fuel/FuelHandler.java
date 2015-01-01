@@ -1,6 +1,6 @@
 package com.scottkillen.mod.dendrology.content.fuel;
 
-import com.scottkillen.mod.kore.tree.block.ModWoodSlabBlock;
+import com.scottkillen.mod.koresample.tree.block.SlabBlock;
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.ItemStack;
@@ -17,7 +17,7 @@ public enum FuelHandler implements IFuelHandler
     @Override
     public int getBurnTime(ItemStack fuel)
     {
-        if (ModWoodSlabBlock.isSingleSlab(fuel.getItem())) return 150;
+        if (SlabBlock.isSingleSlab(fuel.getItem())) return 150;
 
         return 0;
     }

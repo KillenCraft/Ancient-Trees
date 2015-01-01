@@ -1,9 +1,9 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.kore.tree.DefinesTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.ewcaly.LargeEwcalyTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.ewcaly.NormalEwcalyTree;
+import com.scottkillen.mod.koresample.tree.DefinesTree;
 import net.minecraft.world.World;
 import java.util.Random;
 

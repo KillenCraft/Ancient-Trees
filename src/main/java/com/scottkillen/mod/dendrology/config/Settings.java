@@ -1,108 +1,91 @@
 package com.scottkillen.mod.dendrology.config;
 
+import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.koresample.config.ConfigSyncable;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
 
-import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
-
-public enum Settings
+public enum Settings implements ConfigSyncable
 {
-    ;
+    INSTANCE;
+    public static final String CONFIG_VERSION = "1";
 
-    private static int blacksmithRarity = 0;
-    private static int bonusChestRarity = 0;
-    private static int desertTempleRarity = 1;
-    private static int dungeonRarity = 1;
-    private static int jungleTempleRarity = 1;
-    private static int jungleTempleDispenserRarity = 0;
-    private static int mineshaftCorridorRarity = 1;
-    private static int strongholdCorridorRarity = 1;
-    private static int strongholdCrossingRarity = 1;
-    private static int strongholdLibraryRarity = 1;
+    private int blacksmithRarity = 0;
+    private int bonusChestRarity = 0;
+    private int desertTempleRarity = 1;
+    private int dungeonRarity = 1;
+    private int jungleTempleRarity = 1;
+    private int jungleTempleDispenserRarity = 0;
+    private int mineshaftCorridorRarity = 1;
+    private int strongholdCorridorRarity = 1;
+    private int strongholdCrossingRarity = 1;
+    private int strongholdLibraryRarity = 1;
 
-    public static int getBlacksmithRarity()
+    private static int get(Configuration config, String settingName, int defaultValue)
     {
-        return blacksmithRarity;
-    }
-
-    public static int getBonusChestRarity()
-    {
-        return bonusChestRarity;
-    }
-
-    public static int getDesertTempleRarity()
-    {
-        return desertTempleRarity;
-    }
-
-    public static int getDungeonRarity()
-    {
-        return dungeonRarity;
-    }
-
-    public static int getJungleTempleRarity()
-    {
-        return jungleTempleRarity;
-    }
-
-    public static int getJungleTempleDispenserRarity()
-    {
-        return jungleTempleDispenserRarity;
-    }
-
-    public static int getMineshaftCorridorRarity()
-    {
-        return mineshaftCorridorRarity;
-    }
-
-    public static int getStrongholdCorridorRarity()
-    {
-        return strongholdCorridorRarity;
-    }
-
-    public static int getStrongholdCrossingRarity()
-    {
-        return strongholdCrossingRarity;
-    }
-
-    public static int getStrongholdLibraryRarity()
-    {
-        return strongholdLibraryRarity;
-    }
-
-    public static void syncConfig(Configuration config)
-    {
-        blacksmithRarity = get(config, "blacksmithRarity", CATEGORY_GENERAL, blacksmithRarity, 0, Integer.MAX_VALUE);
-        bonusChestRarity = get(config, "bonusChestRarity", CATEGORY_GENERAL, bonusChestRarity, 0, Integer.MAX_VALUE);
-        desertTempleRarity =
-                get(config, "desertTempleRarity", CATEGORY_GENERAL, desertTempleRarity, 0, Integer.MAX_VALUE);
-        dungeonRarity = get(config, "dungeonRarity", CATEGORY_GENERAL, dungeonRarity, 0, Integer.MAX_VALUE);
-        jungleTempleRarity =
-                get(config, "jungleTempleRarity", CATEGORY_GENERAL, jungleTempleRarity, 0, Integer.MAX_VALUE);
-        jungleTempleDispenserRarity =
-                get(config, "jungleTempleDispenserRarity", CATEGORY_GENERAL, jungleTempleDispenserRarity, 0,
-                        Integer.MAX_VALUE);
-        mineshaftCorridorRarity =
-                get(config, "mineshaftCorridorRarity", CATEGORY_GENERAL, mineshaftCorridorRarity, 0, Integer.MAX_VALUE);
-        strongholdCorridorRarity =
-                get(config, "strongholdCorridorRarity", CATEGORY_GENERAL, strongholdCorridorRarity, 0,
-                        Integer.MAX_VALUE);
-        strongholdCrossingRarity =
-                get(config, "strongholdCrossingRarity", CATEGORY_GENERAL, strongholdCrossingRarity, 0,
-                        Integer.MAX_VALUE);
-        strongholdLibraryRarity =
-                get(config, "strongholdLibraryRarity", CATEGORY_GENERAL, strongholdLibraryRarity, 0, Integer.MAX_VALUE);
-    }
-
-    private static int get(Configuration config, String settingName, String category, int defaultValue, int minValue,
-                           int maxValue)
-    {
-        return config.getInt(settingName, category, defaultValue, minValue, maxValue, getLocalizedComment(settingName));
+        return config.getInt(settingName, Configuration.CATEGORY_GENERAL, defaultValue, 0, Integer.MAX_VALUE,
+                getLocalizedComment(settingName));
     }
 
     private static String getLocalizedComment(String settingName)
     {
         return StatCollector.translateToLocal("config." + TheMod.MOD_ID + ':' + settingName);
+    }
+
+    public int blacksmithRarity() { return blacksmithRarity; }
+
+    public int bonusChestRarity() { return bonusChestRarity; }
+
+    public int desertTempleRarity() { return desertTempleRarity; }
+
+    public int dungeonRarity() { return dungeonRarity; }
+
+    public int jungleTempleRarity() { return jungleTempleRarity; }
+
+    public int jungleTempleDispenserRarity() { return jungleTempleDispenserRarity; }
+
+    public int mineshaftCorridorRarity() { return mineshaftCorridorRarity; }
+
+    public int strongholdCorridorRarity() { return strongholdCorridorRarity; }
+
+    public int strongholdCrossingRarity() { return strongholdCrossingRarity; }
+
+    public int strongholdLibraryRarity() { return strongholdLibraryRarity; }
+
+    @Override
+    public void convertOldConfig(Configuration oldConfig)
+    {
+        // Handle old config versions (none yet)
+
+        syncConfig(TheMod.INSTANCE.configuration());
+    }
+
+    @Override
+    public void syncConfig(Configuration config)
+    {
+        blacksmithRarity = get(config, "blacksmithRarity", blacksmithRarity);
+        bonusChestRarity = get(config, "bonusChestRarity", bonusChestRarity);
+        desertTempleRarity = get(config, "desertTempleRarity", desertTempleRarity);
+        dungeonRarity = get(config, "dungeonRarity", dungeonRarity);
+        jungleTempleRarity = get(config, "jungleTempleRarity", jungleTempleRarity);
+        jungleTempleDispenserRarity = get(config, "jungleTempleDispenserRarity", jungleTempleDispenserRarity);
+        mineshaftCorridorRarity = get(config, "mineshaftCorridorRarity", mineshaftCorridorRarity);
+        strongholdCorridorRarity = get(config, "strongholdCorridorRarity", strongholdCorridorRarity);
+        strongholdCrossingRarity = get(config, "strongholdCrossingRarity", strongholdCrossingRarity);
+        strongholdLibraryRarity = get(config, "strongholdLibraryRarity", strongholdLibraryRarity);
+    }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("blacksmithRarity", blacksmithRarity)
+                .add("bonusChestRarity", bonusChestRarity).add("desertTempleRarity", desertTempleRarity)
+                .add("dungeonRarity", dungeonRarity).add("jungleTempleRarity", jungleTempleRarity)
+                .add("jungleTempleDispenserRarity", jungleTempleDispenserRarity)
+                .add("mineshaftCorridorRarity", mineshaftCorridorRarity)
+                .add("strongholdCorridorRarity", strongholdCorridorRarity)
+                .add("strongholdCrossingRarity", strongholdCrossingRarity)
+                .add("strongholdLibraryRarity", strongholdLibraryRarity).toString();
     }
 }

@@ -2,10 +2,10 @@
 {
   "modid": "dendrology",
   "name": "Ancient Trees",
-  "description": "A Minecraft mod that many extinct tree species to the world.",
+  "description": "A Minecraft mod that adds many extinct tree species to the world.",
   "version": "${mod_version}",
   "mcversion": "${minecraft_version}",
-  "url": "",
+  "url": "http://scottk.us/AncientTrees",
   "updateUrl": "",
   "authorList": [
     "ScottKillen",
@@ -13,11 +13,20 @@
     "Ruyuna"
   ],
   "credits": "",
-  "logoFile": "",
+  "logoFile": "assets/logo.png",
   "screenshots": [
   ],
   "parent":"",
+  "requiredMods": [
+    "koresample"
+  ],
   "dependencies": [
-  ]
+    "Forestry",
+    "koresample",
+    "minechem"
+  ],
+  "dependants": [
+  ],
+  "useDependencyInformation": true
 }
 ]

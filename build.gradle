@@ -32,6 +32,17 @@ minecraft {
     replace '${mod_version}', project.version
 }
 
+repositories {
+    mavenLocal()
+    maven {
+        url = 'http://maven.scottkillen.com/'
+    }
+}
+
+dependencies {
+    compile "com.scottkillen.mod:KoreSample:${project.ext.koreversion}:deobf"
+}
+
 sourceSets {
     api {
         java {

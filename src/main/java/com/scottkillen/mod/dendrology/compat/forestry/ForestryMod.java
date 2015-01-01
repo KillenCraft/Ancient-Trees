@@ -1,7 +1,9 @@
 package com.scottkillen.mod.dendrology.compat.forestry;
 
-import com.scottkillen.mod.dendrology.content.OverworldTreeSpecies;
-import com.scottkillen.mod.dendrology.util.log.Logger;
+import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
+import com.scottkillen.mod.koresample.common.util.log.Logger;
+import com.scottkillen.mod.koresample.compat.Integrator;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Optional.Method;
@@ -15,17 +17,90 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-public enum ForestryMod
+public final class ForestryMod extends Integrator
 {
-    ;
+    private static final String MOD_ID = "Forestry";
+    private static final String MOD_NAME = MOD_ID;
 
-    private static final String FORESTRY = "Forestry";
+    private static final Logger logger = Logger.forMod(TheMod.MOD_ID);
+
     private static final int FORESTER = 2;
     private static final int BUILDER = 5;
 
-    public static void integrate(ModState modState)
+    @Method(modid = MOD_ID)
+    private static void addBackpackItems()
     {
-        if (Loader.isModLoaded(FORESTRY))
+        logger.info("Extending Forestry's backpacks.");
+        for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
+        {
+            //noinspection ObjectAllocationInLoop
+            final ItemStack sapling = new ItemStack(tree.saplingBlock(), 1, tree.saplingSubBlockIndex());
+            BackpackManager.backpackItems[FORESTER].add(sapling);
+
+            //noinspection ObjectAllocationInLoop
+            final ItemStack log = new ItemStack(tree.logBlock(), 1, tree.logSubBlockIndex());
+            BackpackManager.backpackItems[FORESTER].add(log);
+
+            //noinspection ObjectAllocationInLoop
+            final ItemStack leaves = new ItemStack(tree.leavesBlock(), 1, tree.leavesSubBlockIndex());
+            BackpackManager.backpackItems[FORESTER].add(leaves);
+
+            //noinspection ObjectAllocationInLoop
+            final ItemStack stairs = new ItemStack(tree.stairsBlock());
+            BackpackManager.backpackItems[BUILDER].add(stairs);
+        }
+    }
+
+    @Method(modid = MOD_ID)
+    private static void addFarmables()
+    {
+        logger.info("Adding farmable saplings to Forestry's farms.");
+        for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
+        {
+            //noinspection ObjectAllocationInLoop
+            final ItemStack sapling = new ItemStack(tree.saplingBlock(), 1, tree.saplingSubBlockIndex());
+            FMLInterModComms.sendMessage("Forestry", "add-farmable-sapling", String.format("farmArboreal@%s.%s",
+                    GameData.getBlockRegistry().getNameForObject(Block.getBlockFromItem(sapling.getItem())),
+                    sapling.getItemDamage()));
+        }
+    }
+
+    @Method(modid = MOD_ID)
+    private static void addSaplingRecipes()
+    {
+        logger.info("Adding sapling recipes to Forestry's fermenter.");
+
+        final int fermentationValue = ForestryAPI.activeMode.getIntegerSetting("fermenter.yield.sapling");
+        for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
+        {
+            //noinspection ObjectAllocationInLoop
+            final ItemStack sapling = new ItemStack(tree.saplingBlock(), 1, tree.saplingSubBlockIndex());
+            RecipeManagers.fermenterManager
+                    .addRecipe(sapling, fermentationValue, 1.0f, fluidStack("biomass"), fluidStack("water"));
+            RecipeManagers.fermenterManager
+                    .addRecipe(sapling, fermentationValue, 1.5f, fluidStack("biomass"), fluidStack("juice"));
+            RecipeManagers.fermenterManager
+                    .addRecipe(sapling, fermentationValue, 1.5f, fluidStack("biomass"), fluidStack("honey"));
+        }
+    }
+
+    @Method(modid = MOD_ID)
+    private static FluidStack fluidStack(String fluidName) { return FluidRegistry.getFluidStack(fluidName, 1000); }
+
+    @Method(modid = MOD_ID)
+    private static void init() { addFarmables(); }
+
+    @Method(modid = MOD_ID)
+    private static void postInit()
+    {
+        addBackpackItems();
+        addSaplingRecipes();
+    }
+
+    @Override
+    public void doIntegration(ModState modState)
+    {
+        if (Loader.isModLoaded(MOD_ID))
         {
             switch (modState)
             {
@@ -37,78 +112,18 @@ public enum ForestryMod
                     break;
                 default:
             }
-        } else Logger.info("Forestry mod not present. %s state integration skipped.", modState);
-    }
-
-    private static void init()
-    {
-        addFarmables();
-    }
-
-    private static void postInit()
-    {
-        addBackpackItems();
-        addSaplingRecipes();
-    }
-
-    private static void addBackpackItems()
-    {
-        Logger.info("Extending Forestry's backpacks.");
-        for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
-        {
-            //noinspection ObjectAllocationInLoop
-            final ItemStack sapling = new ItemStack(tree.getSaplingBlock(), 1, tree.getSaplingMeta());
-            BackpackManager.backpackItems[FORESTER].add(sapling);
-
-            //noinspection ObjectAllocationInLoop
-            final ItemStack log = new ItemStack(tree.getLogBlock(), 1, tree.getLogMeta());
-            BackpackManager.backpackItems[FORESTER].add(log);
-
-            //noinspection ObjectAllocationInLoop
-            final ItemStack leaves = new ItemStack(tree.getLeavesBlock(), 1, tree.getLeavesMeta());
-            BackpackManager.backpackItems[FORESTER].add(leaves);
-
-            //noinspection ObjectAllocationInLoop
-            final ItemStack stairs = new ItemStack(tree.getStairsBlock());
-            BackpackManager.backpackItems[BUILDER].add(stairs);
         }
     }
 
-    private static void addFarmables()
+    @Override
+    protected String modID()
     {
-        Logger.info("Adding farmable saplings to Forestry's farms.");
-        for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
-        {
-            //noinspection ObjectAllocationInLoop
-            final ItemStack sapling = new ItemStack(tree.getSaplingBlock(), 1, tree.getSaplingMeta());
-            FMLInterModComms.sendMessage("Forestry", "add-farmable-sapling", String.format("farmArboreal@%s.%s",
-                    GameData.getBlockRegistry().getNameForObject(Block.getBlockFromItem(sapling.getItem())),
-                    sapling.getItemDamage()));
-        }
+        return MOD_ID;
     }
 
-    @Method(modid = FORESTRY)
-    private static void addSaplingRecipes()
+    @Override
+    protected String modName()
     {
-        Logger.info("Adding sapling recipes to Forestry's fermenter.");
-
-        final int fermentationValue = ForestryAPI.activeMode.getIntegerSetting("fermenter.yield.sapling");
-        for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
-        {
-            //noinspection ObjectAllocationInLoop
-            final ItemStack sapling = new ItemStack(tree.getSaplingBlock(), 1, tree.getSaplingMeta());
-            RecipeManagers.fermenterManager
-                    .addRecipe(sapling, fermentationValue, 1.0f, getFluidStack("biomass"), getFluidStack("water"));
-            RecipeManagers.fermenterManager
-                    .addRecipe(sapling, fermentationValue, 1.5f, getFluidStack("biomass"), getFluidStack("juice"));
-            RecipeManagers.fermenterManager
-                    .addRecipe(sapling, fermentationValue, 1.5f, getFluidStack("biomass"), getFluidStack("honey"));
-        }
+        return MOD_NAME;
     }
-
-    private static FluidStack getFluidStack(String amount)
-    {
-        return FluidRegistry.getFluidStack(amount, 1000);
-    }
-
 }
