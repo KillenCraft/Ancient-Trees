@@ -1,4 +1,4 @@
-## Unreleased
+## 1.1.0
 - Added CHANGELOG.md after [tweet by tedyhere][tedy_tweet]
 - Added [GardenStuff][gardenstuff_link] integration. ([#19](/MinecraftModArchive/Dendrology/issues/19))
 - Added German locale. ([MCManuelLP][mcmanuelLP_link])

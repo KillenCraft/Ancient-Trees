@@ -1,6 +1,6 @@
 ## Ancient Trees
-**LATEST OFFICIAL VERSION**: [Ancient Trees 1.0.0 for MC 1.7.10][release] ([changelog][changelog.md])
-[release]: /MinecraftModArchive/Dendrology/releases/download/v1.0.0/AncientTrees-1.7.10-1.0.0.jar
+**LATEST OFFICIAL VERSION**: [Ancient Trees 1.1.0 for MC 1.7.10][release] ([changelog][changelog.md])
+[release]: /MinecraftModArchive/Dendrology/releases/download/v1.0.0/AncientTrees-1.7.10-1.1.0.jar
 [changelog.md]: /MinecraftModArchive/Dendrology/blob/develop/src/main/resources/CHANGELOG.md
 
 ![Logo](https://raw.githubusercontent.com/MinecraftModArchive/Dendrology/develop/src/main/resources/assets/logo.png)
