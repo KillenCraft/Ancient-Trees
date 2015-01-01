@@ -1,6 +1,7 @@
 rootProject.version = "$mcversion-$version_major.$version_series.$version_revision"
 rootProject.ext.mcversion = mcversion
 rootProject.ext.forgeversion = forgeversion
+rootProject.ext.koreversion = "$mcversion-$koreversion"
 
 task echoVersion << {
 	printNextVersion()

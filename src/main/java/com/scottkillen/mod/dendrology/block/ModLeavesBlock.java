@@ -2,8 +2,8 @@ package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.collect.ImmutableList;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.dendrology.kore.tree.DefinesLeaves;
-import com.scottkillen.mod.dendrology.kore.tree.block.LeavesBlock;
+import com.scottkillen.mod.koresample.tree.DefinesLeaves;
+import com.scottkillen.mod.koresample.tree.block.LeavesBlock;
 
 public final class ModLeavesBlock extends LeavesBlock
 {

@@ -1,13 +1,13 @@
 package com.scottkillen.mod.dendrology.content.overworld;
 
 import com.google.common.collect.ImmutableList;
-import com.scottkillen.mod.dendrology.kore.tree.DefinesLeaves;
-import com.scottkillen.mod.dendrology.kore.tree.DefinesLog;
-import com.scottkillen.mod.dendrology.kore.tree.DefinesSapling;
-import com.scottkillen.mod.dendrology.kore.tree.DefinesSlab;
-import com.scottkillen.mod.dendrology.kore.tree.DefinesStairs;
-import com.scottkillen.mod.dendrology.kore.tree.DefinesWood;
-import com.scottkillen.mod.dendrology.kore.tree.TreeTaxonomy;
+import com.scottkillen.mod.koresample.tree.DefinesLeaves;
+import com.scottkillen.mod.koresample.tree.DefinesLog;
+import com.scottkillen.mod.koresample.tree.DefinesSapling;
+import com.scottkillen.mod.koresample.tree.DefinesSlab;
+import com.scottkillen.mod.koresample.tree.DefinesStairs;
+import com.scottkillen.mod.koresample.tree.DefinesWood;
+import com.scottkillen.mod.koresample.tree.TreeTaxonomy;
 
 public final class OverworldTreeTaxonomy implements TreeTaxonomy
 {

@@ -2,10 +2,10 @@ package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
-import com.scottkillen.mod.dendrology.kore.tree.DefinesTree;
-import com.scottkillen.mod.dendrology.kore.tree.block.LeavesBlock;
-import com.scottkillen.mod.dendrology.kore.tree.block.LogBlock;
-import com.scottkillen.mod.dendrology.kore.tree.block.SaplingBlock;
+import com.scottkillen.mod.koresample.tree.DefinesTree;
+import com.scottkillen.mod.koresample.tree.block.LeavesBlock;
+import com.scottkillen.mod.koresample.tree.block.LogBlock;
+import com.scottkillen.mod.koresample.tree.block.SaplingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;

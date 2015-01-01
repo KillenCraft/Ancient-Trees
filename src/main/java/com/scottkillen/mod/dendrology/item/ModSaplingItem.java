@@ -2,7 +2,7 @@ package com.scottkillen.mod.dendrology.item;
 
 import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
-import com.scottkillen.mod.dendrology.kore.tree.item.SaplingItem;
+import com.scottkillen.mod.koresample.tree.item.SaplingItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 

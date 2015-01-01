@@ -14,8 +14,8 @@ import com.scottkillen.mod.dendrology.content.crafting.Recipes;
 import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
-import com.scottkillen.mod.dendrology.kore.compat.Integrates;
-import com.scottkillen.mod.dendrology.kore.config.ConfigEventHandler;
+import com.scottkillen.mod.koresample.compat.Integrates;
+import com.scottkillen.mod.koresample.config.ConfigEventHandler;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -47,7 +47,7 @@ public class TheMod
     public static final String MOD_NAME = "Ancient Trees";
     public static final String MOD_VERSION = "${mod_version}";
     public static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
-    public static final String MOD_DEPENDENCIES = "after:Forestry;after:minechem";
+    public static final String MOD_DEPENDENCIES = "after:Forestry;after:minechem;required-after:koresample";
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
     {
         private final OverworldTreeSpecies ICON = OverworldTreeSpecies.PORFFOR;

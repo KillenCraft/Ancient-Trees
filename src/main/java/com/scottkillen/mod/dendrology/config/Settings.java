@@ -2,7 +2,7 @@ package com.scottkillen.mod.dendrology.config;
 
 import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.TheMod;
-import com.scottkillen.mod.dendrology.kore.config.ConfigSyncable;
+import com.scottkillen.mod.koresample.config.ConfigSyncable;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
 

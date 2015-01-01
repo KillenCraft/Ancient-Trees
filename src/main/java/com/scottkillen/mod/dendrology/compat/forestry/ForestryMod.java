@@ -2,8 +2,8 @@ package com.scottkillen.mod.dendrology.compat.forestry;
 
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
-import com.scottkillen.mod.dendrology.kore.common.util.log.Logger;
-import com.scottkillen.mod.dendrology.kore.compat.Integrator;
+import com.scottkillen.mod.koresample.common.util.log.Logger;
+import com.scottkillen.mod.koresample.compat.Integrator;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Optional.Method;

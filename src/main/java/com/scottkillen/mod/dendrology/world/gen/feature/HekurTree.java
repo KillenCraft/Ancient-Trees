@@ -1,9 +1,9 @@
 package com.scottkillen.mod.dendrology.world.gen.feature;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.dendrology.kore.tree.DefinesTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.hekur.LargeHekurTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.hekur.NormalHekurTree;
+import com.scottkillen.mod.koresample.tree.DefinesTree;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import java.util.Random;
