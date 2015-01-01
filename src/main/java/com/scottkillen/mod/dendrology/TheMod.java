@@ -26,7 +26,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
@@ -39,15 +38,13 @@ import java.util.List;
         "StaticVariableMayNotBeInitialized",
         "NonConstantFieldWithUpperCaseName"
 })
-@Mod(modid = TheMod.MOD_ID, name = TheMod.MOD_NAME, version = TheMod.MOD_VERSION, useMetadata = true,
-        dependencies = TheMod.MOD_DEPENDENCIES, guiFactory = TheMod.MOD_GUI_FACTORY)
+@Mod(modid = TheMod.MOD_ID, name = TheMod.MOD_NAME, version = TheMod.MOD_VERSION, useMetadata = true, guiFactory = TheMod.MOD_GUI_FACTORY)
 public class TheMod
 {
     public static final String MOD_ID = "dendrology";
     public static final String MOD_NAME = "Ancient Trees";
     public static final String MOD_VERSION = "${mod_version}";
     public static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
-    public static final String MOD_DEPENDENCIES = "after:Forestry;after:minechem;required-after:koresample";
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
     {
         private final OverworldTreeSpecies ICON = OverworldTreeSpecies.PORFFOR;
@@ -65,6 +62,7 @@ public class TheMod
         public Item getTabIconItem() { return null; }
     };
     private static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
+    @SuppressWarnings("PublicField")
     @Instance(MOD_ID)
     public static TheMod INSTANCE;
     private final List<Integrates> integrators = Lists.newArrayList();
