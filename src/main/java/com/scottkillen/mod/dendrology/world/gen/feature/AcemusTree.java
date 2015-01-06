@@ -12,11 +12,14 @@ public class AcemusTree extends AbstractTree
     private final AbstractTree treeGen;
     private final AbstractTree largeTreeGen;
 
-    public AcemusTree()
+    public AcemusTree(boolean fromSapling)
     {
-        treeGen = new VanillaTree();
-        largeTreeGen = new LargeAcemusTree();
+        super(fromSapling);
+        treeGen = new VanillaTree(fromSapling);
+        largeTreeGen = new LargeAcemusTree(fromSapling);
     }
+
+    public AcemusTree() { this(true); }
 
     @Override
     public void setTree(DefinesTree tree)

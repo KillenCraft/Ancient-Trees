@@ -12,11 +12,14 @@ public class KulistTree extends AbstractTree
     private final AbstractTree treeGen;
     private final AbstractTree largeTreeGen;
 
-    public KulistTree()
+    public KulistTree(boolean fromSapling)
     {
-        treeGen = new NormalKulistTree();
-        largeTreeGen = new LargeKulistTree();
+        super(fromSapling);
+        treeGen = new NormalKulistTree(fromSapling);
+        largeTreeGen = new LargeKulistTree(fromSapling);
     }
+
+    public KulistTree() { this(true); }
 
     @Override
     public void setTree(DefinesTree tree)

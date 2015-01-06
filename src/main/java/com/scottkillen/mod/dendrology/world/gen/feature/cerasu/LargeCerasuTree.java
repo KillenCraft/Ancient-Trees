@@ -6,6 +6,8 @@ import static com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpec
 
 public class LargeCerasuTree extends AbstractLargeVanillaTree
 {
+    public LargeCerasuTree(boolean fromSapling) { super(fromSapling); }
+
     @Override
     protected int getUnmaskedLogMeta() { return CERASU.logSubBlockIndex(); }
 }

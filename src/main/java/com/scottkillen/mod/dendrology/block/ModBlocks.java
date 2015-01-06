@@ -141,7 +141,7 @@ public final class ModBlocks
 
         for (final SaplingBlock sapling : saplingBlocks)
         {
-            registerSaplingBlock(sapling, String.format("sapling%d", saplingCount), sapling.getSubBlockNames());
+            registerSaplingBlock(sapling, String.format("sapling%d", saplingCount), sapling.subBlockNames());
             saplingCount++;
         }
     }
@@ -205,7 +205,7 @@ public final class ModBlocks
         Blocks.fire.setFireInfo(block, DEFAULT_LOG_FIRE_ENCOURAGEMENT, DEFAULT_LOG_FLAMMABILITY);
     }
 
-    private static void registerSaplingBlock(Block block, String name, ImmutableList<String> subblockNames)
+    private static void registerSaplingBlock(Block block, String name, List<String> subblockNames)
     {
         GameRegistry.registerBlock(block, ModSaplingItem.class, name, block,
                 subblockNames.toArray(new String[subblockNames.size()]));

@@ -7,6 +7,8 @@ import java.util.Random;
 
 public class VanillaTree extends AbstractTree
 {
+    public VanillaTree(boolean fromSapling) { super(fromSapling); }
+
     @SuppressWarnings("MethodWithMultipleLoops")
     @Override
     protected boolean hasRoomToGrow(World world, int x, int y, int z, int height)

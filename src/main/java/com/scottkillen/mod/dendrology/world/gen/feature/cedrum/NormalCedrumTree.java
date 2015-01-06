@@ -12,6 +12,8 @@ public class NormalCedrumTree extends AbstractTree
     @SuppressWarnings("PackageVisibleField")
     int logDirection = 0;
 
+    public NormalCedrumTree(boolean fromSapling) { super(fromSapling); }
+
     @Override
     protected boolean canBeReplacedByLog(World world, int x, int y, int z)
     {

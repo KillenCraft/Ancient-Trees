@@ -12,11 +12,14 @@ public class EwcalyTree extends AbstractTree
     private final AbstractTree treeGen;
     private final AbstractTree largeTreeGen;
 
-    public EwcalyTree()
+    public EwcalyTree(boolean fromSapling)
     {
-        treeGen = new NormalEwcalyTree();
-        largeTreeGen = new LargeEwcalyTree();
+        super(fromSapling);
+        treeGen = new NormalEwcalyTree(fromSapling);
+        largeTreeGen = new LargeEwcalyTree(fromSapling);
     }
+
+    public EwcalyTree() { this(true); }
 
     @Override
     public void setTree(DefinesTree tree)

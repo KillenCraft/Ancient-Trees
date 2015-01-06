@@ -16,6 +16,8 @@ public class NormalHekurTree extends AbstractTree
 {
     private int logDirection = 0;
 
+    public NormalHekurTree(boolean fromSapling) { super(fromSapling); }
+
     @Override
     protected boolean isPoorGrowthConditions(World world, int x, int y, int z, int unused, IPlantable plantable)
     {
@@ -409,9 +411,7 @@ public class NormalHekurTree extends AbstractTree
     private void clearLogDirection() {logDirection = 0;}
 
     @SuppressWarnings({
-            "OverlyComplexBooleanExpression",
-            "MethodWithMoreThanThreeNegations",
-            "MethodWithMultipleLoops"
+            "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops"
     })
     void branchAndLeaf(World world, int x, int y, int z)
     {
