@@ -1,4 +1,4 @@
-## Unreleased
+## 1.2.0
 - Replaced logo with custom art from [Septolum][Septolum_tweet]
 - Trees will now generate during world gen, though they will be *very* scarce.
 - Reduce virtual sawdust to virtually nil
