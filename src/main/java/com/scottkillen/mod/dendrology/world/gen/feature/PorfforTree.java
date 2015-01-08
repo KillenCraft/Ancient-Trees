@@ -12,11 +12,14 @@ public class PorfforTree extends AbstractTree
     private final AbstractTree treeGen;
     private final AbstractTree largeTreeGen;
 
-    public PorfforTree()
+    public PorfforTree(boolean fromSapling)
     {
-        treeGen = new VanillaTree();
-        largeTreeGen = new LargePorfforTree();
+        super(fromSapling);
+        treeGen = new VanillaTree(fromSapling);
+        largeTreeGen = new LargePorfforTree(fromSapling);
     }
+
+    public PorfforTree() { this(true); }
 
     @Override
     public void setTree(DefinesTree tree)

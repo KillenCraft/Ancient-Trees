@@ -2,6 +2,7 @@ package com.scottkillen.mod.dendrology.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeBlockFactory;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeTaxonomy;
@@ -9,6 +10,7 @@ import com.scottkillen.mod.dendrology.item.ModLogItem;
 import com.scottkillen.mod.dendrology.item.ModSaplingItem;
 import com.scottkillen.mod.dendrology.item.ModSlabItem;
 import com.scottkillen.mod.dendrology.item.ModWoodItem;
+import com.scottkillen.mod.koresample.common.util.log.Logger;
 import com.scottkillen.mod.koresample.tree.DefinesLog;
 import com.scottkillen.mod.koresample.tree.DefinesSlab;
 import com.scottkillen.mod.koresample.tree.DefinesStairs;
@@ -60,6 +62,7 @@ public final class ModBlocks
 
     private static void addAllSaplingsToChests()
     {
+        Logger.forMod(TheMod.MOD_ID).info("Hiding species in chests.");
         final Settings settings = Settings.INSTANCE;
         for (final SaplingBlock sapling : saplingBlocks)
         {
@@ -86,6 +89,7 @@ public final class ModBlocks
 
     private static void loadOverWorldContent()
     {
+        Logger.forMod(TheMod.MOD_ID).info("Loading overworld species.");
         final TreeSpeciesLoader overworldContent = new TreeSpeciesLoader(overworldTaxonomy);
         overworldContent.load(new OverworldTreeBlockFactory());
     }
@@ -141,7 +145,7 @@ public final class ModBlocks
 
         for (final SaplingBlock sapling : saplingBlocks)
         {
-            registerSaplingBlock(sapling, String.format("sapling%d", saplingCount), sapling.getSubBlockNames());
+            registerSaplingBlock(sapling, String.format("sapling%d", saplingCount), sapling.subBlockNames());
             saplingCount++;
         }
     }
@@ -205,7 +209,7 @@ public final class ModBlocks
         Blocks.fire.setFireInfo(block, DEFAULT_LOG_FIRE_ENCOURAGEMENT, DEFAULT_LOG_FLAMMABILITY);
     }
 
-    private static void registerSaplingBlock(Block block, String name, ImmutableList<String> subblockNames)
+    private static void registerSaplingBlock(Block block, String name, List<String> subblockNames)
     {
         GameRegistry.registerBlock(block, ModSaplingItem.class, name, block,
                 subblockNames.toArray(new String[subblockNames.size()]));

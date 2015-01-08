@@ -9,6 +9,10 @@ public class LataTree extends AbstractTree
 {
     private int logDirection = 0;
 
+    public LataTree(boolean fromSapling) { super(fromSapling); }
+
+    public LataTree() { this(true); }
+
     @SuppressWarnings({ "OverlyComplexMethod", "OverlyLongMethod" })
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)

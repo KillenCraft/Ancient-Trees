@@ -26,6 +26,8 @@ public abstract class AbstractLargeVanillaTree extends AbstractTree
     private int[][] leafNodes = null;
     private int logMetaMask = 0;
 
+    protected AbstractLargeVanillaTree(boolean fromSapling) { super(fromSapling); }
+
     @SuppressWarnings("NestedConditionalExpression")
     private static float leafSize(int distance)
     {

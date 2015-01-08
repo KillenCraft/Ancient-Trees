@@ -6,6 +6,10 @@ import java.util.Random;
 
 public class DelnasTree extends AbstractTree
 {
+    public DelnasTree(boolean fromSapling) { super(fromSapling); }
+
+    public DelnasTree() { this(true); }
+
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
@@ -47,9 +51,7 @@ public class DelnasTree extends AbstractTree
     }
 
     @SuppressWarnings({
-            "MethodWithMoreThanThreeNegations",
-            "MethodWithMultipleLoops",
-            "OverlyComplexBooleanExpression"
+            "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops", "OverlyComplexBooleanExpression"
     })
     private void leafGen(World world, int x, int y, int z)
     {

@@ -11,6 +11,8 @@ public class NormalKulistTree extends AbstractTree
 {
     private int logDirection = 0;
 
+    public NormalKulistTree(boolean fromSapling) { super(fromSapling); }
+
     @Override
     protected boolean canBeReplacedByLog(World world, int x, int y, int z)
     {
@@ -124,9 +126,7 @@ public class NormalKulistTree extends AbstractTree
     }
 
     @SuppressWarnings({
-            "OverlyComplexBooleanExpression",
-            "MethodWithMoreThanThreeNegations",
-            "MethodWithMultipleLoops"
+            "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops"
     })
     void leafGen(World world, int x, int y, int z)
     {

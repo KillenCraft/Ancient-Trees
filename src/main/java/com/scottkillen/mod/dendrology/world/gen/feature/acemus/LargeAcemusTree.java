@@ -6,6 +6,8 @@ import static com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpec
 
 public class LargeAcemusTree extends AbstractLargeVanillaTree
 {
+    public LargeAcemusTree(boolean fromSapling) { super(fromSapling); }
+
     @Override
     protected int getUnmaskedLogMeta() { return ACEMUS.logSubBlockIndex(); }
 }

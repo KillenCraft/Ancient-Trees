@@ -12,8 +12,10 @@ import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
 import com.scottkillen.mod.dendrology.content.crafting.Recipes;
 import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
+import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeGenerator;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
+import com.scottkillen.mod.koresample.common.util.log.Logger;
 import com.scottkillen.mod.koresample.compat.Integrates;
 import com.scottkillen.mod.koresample.config.ConfigEventHandler;
 import cpw.mods.fml.common.LoaderState.ModState;
@@ -72,6 +74,7 @@ public class TheMod
 
     private void initIntegrators()
     {
+        Logger.forMod(MOD_ID).info("Preparing integration with other mods.");
         integrators.add(new MinechemMod());
         integrators.add(new ForestryMod());
         integrators.add(new GardenCoreMod());
@@ -106,6 +109,7 @@ public class TheMod
     @EventHandler
     public void onFMLInitialization(FMLInitializationEvent event)
     {
+        Logger.forMod(MOD_ID).info("Adding recipes.");
         new OreDictHandler().registerBlocksWithOreDictinary();
         new Recipes().writeRecipesInCraftingManager();
         integrateMods(event.getModState());
@@ -118,6 +122,8 @@ public class TheMod
         FuelHandler.postInit();
         integrateMods(event.getModState());
         integrators.clear();
+
+        new OverworldTreeGenerator().install();
     }
 
     @Override

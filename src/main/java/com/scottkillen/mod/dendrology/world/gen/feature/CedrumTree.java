@@ -13,11 +13,14 @@ public class CedrumTree extends AbstractTree
     private final AbstractTree treeGen;
     private final AbstractTree largeTreeGen;
 
-    public CedrumTree()
+    public CedrumTree(boolean fromSapling)
     {
-        treeGen = new NormalCedrumTree();
-        largeTreeGen = new LargeCedrumTree();
+        super(fromSapling);
+        treeGen = new NormalCedrumTree(fromSapling);
+        largeTreeGen = new LargeCedrumTree(fromSapling);
     }
+
+    public CedrumTree() { this(true); }
 
     @Override
     public void setTree(DefinesTree tree)
