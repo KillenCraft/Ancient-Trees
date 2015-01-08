@@ -3,7 +3,9 @@
 [release]: https://github.com/MinecraftModArchive/KoreSample/releases/download/v1.0.0/KoreSample-1.7.10-1.0.0.jar
 [changelog.md]: https://github.com/MinecraftModArchive/KoreSample/blob/develop/src/main/resources/CHANGELOG.md
 
-Kore Sample provides a set of tools and base classes for other Minecraft mods the depend on it.
+![KoreSample](https://raw.githubusercontent.com/MinecraftModArchive/KoreSample/develop/src/main/resources/assets/logo.png)
+
+Kore Sample provides a set of tools and base classes for other Minecraft mods that depend on it.
 
 [Contributing](#contributing)
 

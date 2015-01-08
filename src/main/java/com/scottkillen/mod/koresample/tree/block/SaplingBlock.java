@@ -23,6 +23,7 @@ import java.util.Random;
 
 import static com.google.common.base.Preconditions.*;
 
+@SuppressWarnings("AbstractClassNeverImplemented")
 public abstract class SaplingBlock extends BlockSapling
 {
     public static final int CAPACITY = 8;
@@ -51,7 +52,7 @@ public abstract class SaplingBlock extends BlockSapling
 
     protected final List<DefinesSapling> subBlocks() { return Collections.unmodifiableList(subBlocks); }
 
-    public final ImmutableList<String> getSubBlockNames()
+    public final List<String> subBlockNames()
     {
         final List<String> names = Lists.newArrayListWithCapacity(subBlocks.size());
         for (final DefinesSapling subBlock : subBlocks)
@@ -69,7 +70,7 @@ public abstract class SaplingBlock extends BlockSapling
         if (!TerrainGen.saplingGrowTree(world, rand, x, y, z)) return;
 
         final int metadata = mask(world.getBlockMetadata(x, y, z));
-        final WorldGenerator treeGen = subBlocks.get(metadata).treeGenerator();
+        final WorldGenerator treeGen = subBlocks.get(metadata).saplingTreeGenerator();
         world.setBlock(x, y, z, Blocks.air, 0, 4);
         if (!treeGen.generate(world, rand, x, y, z)) world.setBlock(x, y, z, this, metadata, 4);
     }
