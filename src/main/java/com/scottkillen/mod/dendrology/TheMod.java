@@ -12,6 +12,7 @@ import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
 import com.scottkillen.mod.dendrology.content.crafting.Recipes;
 import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
+import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeGenerator;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
 import com.scottkillen.mod.koresample.common.util.log.Logger;
@@ -121,6 +122,8 @@ public class TheMod
         FuelHandler.postInit();
         integrateMods(event.getModState());
         integrators.clear();
+
+        new OverworldTreeGenerator().install();
     }
 
     @Override
