@@ -34,7 +34,7 @@ Push to your fork and [submit a pull request][pr].
 
 At this point, things are waiting on us. We may merge your code as is. We may suggest some changes or improvements or alternatives.
 
-###Some things that will increase the chance thate your pull request is accepted:
+###Some things that will increase the chance that your pull request is accepted:
 
 * Write logical, thought out code.
 * Reuse your code.

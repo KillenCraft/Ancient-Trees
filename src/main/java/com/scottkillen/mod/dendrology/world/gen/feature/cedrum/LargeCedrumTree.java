@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class LargeCedrumTree extends NormalCedrumTree
 {
+    public LargeCedrumTree(boolean fromSapling) { super(fromSapling); }
 
     @SuppressWarnings({ "MethodWithMultipleLoops", "OverlyComplexMethod" })
     @Override

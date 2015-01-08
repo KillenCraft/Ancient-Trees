@@ -22,7 +22,7 @@ public abstract class AbstractTree extends WorldGenAbstractTree
                     ImmutablePair.of(-1, 1), ImmutablePair.of(-1, -1), ImmutablePair.of(1, 1), ImmutablePair.of(1, -1));
     private DefinesTree tree = null;
 
-    protected AbstractTree() { super(true); }
+    protected AbstractTree(boolean fromSapling) { super(fromSapling); }
 
     @SuppressWarnings("WeakerAccess")
     protected boolean canBeReplacedByLog(World world, int x, int y, int z)
@@ -66,24 +66,16 @@ public abstract class AbstractTree extends WorldGenAbstractTree
 
     protected SaplingBlock getSaplingBlock() { return tree.saplingBlock(); }
 
-    protected boolean placeLeaves(World world, int x, int y, int z)
+    protected void placeLeaves(World world, int x, int y, int z)
     {
         if (world.getBlock(x, y, z).canBeReplacedByLeaves(world, x, y, z))
-        {
             setBlockAndNotifyAdequately(world, x, y, z, getLeavesBlock(), getLeavesMetadata());
-            return true;
-        }
-        return false;
     }
 
-    protected boolean placeLog(World world, int x, int y, int z)
+    protected void placeLog(World world, int x, int y, int z)
     {
         if (canBeReplacedByLog(world, x, y, z))
-        {
             setBlockAndNotifyAdequately(world, x, y, z, getLogBlock(), getLogMetadata());
-            return true;
-        }
-        return false;
     }
 
     @Override

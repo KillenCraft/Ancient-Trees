@@ -1,3 +1,9 @@
+## 1.2.0
+- Replaced logo with custom art from [Septolum][Septolum_tweet]
+- Trees will now generate during world gen, though they will be *very* scarce.
+- Reduce virtual sawdust to virtually nil
+[Septolum_tweet]: https://twitter.com/Septolum
+
 ## 1.1.0
 - Added CHANGELOG.md after [tweet by tedyhere][tedy_tweet]
 - Added [GardenStuff][gardenstuff_link] integration. ([#19](/MinecraftModArchive/Dendrology/issues/19))

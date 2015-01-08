@@ -7,6 +7,10 @@ import java.util.Random;
 
 public class KiparisTree extends AbstractTree
 {
+    public KiparisTree(boolean fromSapling) { super(fromSapling); }
+
+    public KiparisTree() { this(true); }
+
     @Override
     protected boolean canBeReplacedByLog(World world, int x, int y, int z)
     {
@@ -65,9 +69,7 @@ public class KiparisTree extends AbstractTree
     }
 
     @SuppressWarnings({
-            "OverlyComplexBooleanExpression",
-            "MethodWithMoreThanThreeNegations",
-            "MethodWithMultipleLoops"
+            "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops"
     })
     private void genExtraLargeLeaves(World world, int x, int y, int z, int dY)
     {
@@ -90,9 +92,7 @@ public class KiparisTree extends AbstractTree
     }
 
     @SuppressWarnings({
-            "OverlyComplexBooleanExpression",
-            "MethodWithMoreThanThreeNegations",
-            "MethodWithMultipleLoops"
+            "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops"
     })
     private void genLargeLeaves(World world, int x, int y, int z, int dY)
     {
@@ -109,9 +109,7 @@ public class KiparisTree extends AbstractTree
     }
 
     @SuppressWarnings({
-            "OverlyComplexBooleanExpression",
-            "MethodWithMoreThanThreeNegations",
-            "MethodWithMultipleLoops"
+            "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations", "MethodWithMultipleLoops"
     })
     private void genMediumLeaves(World world, int x, int y, int z, int dY)
     {

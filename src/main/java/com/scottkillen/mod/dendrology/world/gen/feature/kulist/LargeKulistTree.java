@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class LargeKulistTree extends NormalKulistTree
 {
+    public LargeKulistTree(boolean fromSapling) { super(fromSapling); }
 
     @SuppressWarnings({ "OverlyComplexMethod", "OverlyLongMethod" })
     @Override

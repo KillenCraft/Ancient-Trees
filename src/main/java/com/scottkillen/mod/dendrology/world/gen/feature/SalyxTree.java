@@ -9,6 +9,10 @@ public class SalyxTree extends AbstractTree
 {
     private int logDirection = 0;
 
+    public SalyxTree(boolean fromSapling) { super(fromSapling); }
+
+    public SalyxTree() { this(true); }
+
     @SuppressWarnings("OverlyComplexBooleanExpression")
     private static int calcK(int dX, int dZ)
     {

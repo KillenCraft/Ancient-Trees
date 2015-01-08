@@ -9,26 +9,29 @@ import java.util.Random;
 
 public class CerasuTree extends AbstractTree
 {
-    @Override
-    public String toString()
-    {
-        return Objects.toStringHelper(this).add("treeGen", treeGen).add("largeTreeGen", largeTreeGen).toString();
-    }
-
     private final AbstractTree treeGen;
     private final AbstractTree largeTreeGen;
 
-    public CerasuTree()
+    public CerasuTree(boolean fromSapling)
     {
-        treeGen = new VanillaTree();
-        largeTreeGen = new LargeCerasuTree();
+        super(fromSapling);
+        treeGen = new VanillaTree(fromSapling);
+        largeTreeGen = new LargeCerasuTree(fromSapling);
     }
+
+    public CerasuTree() { this(true); }
 
     @Override
     public void setTree(DefinesTree tree)
     {
         treeGen.setTree(tree);
         largeTreeGen.setTree(tree);
+    }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("treeGen", treeGen).add("largeTreeGen", largeTreeGen).toString();
     }
 
     @Override

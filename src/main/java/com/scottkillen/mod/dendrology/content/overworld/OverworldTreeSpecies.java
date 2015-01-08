@@ -1,6 +1,7 @@
 package com.scottkillen.mod.dendrology.content.overworld;
 
 
+import com.scottkillen.mod.dendrology.content.ProvidesPotionEffect;
 import com.scottkillen.mod.dendrology.world.AcemusColorizer;
 import com.scottkillen.mod.dendrology.world.CerasuColorizer;
 import com.scottkillen.mod.dendrology.world.KulistColorizer;
@@ -18,7 +19,6 @@ import com.scottkillen.mod.dendrology.world.gen.feature.NucisTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.PorfforTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.SalyxTree;
 import com.scottkillen.mod.dendrology.world.gen.feature.TuopaTree;
-import com.scottkillen.mod.dendrology.content.ProvidesPotionEffect;
 import com.scottkillen.mod.koresample.tree.DefinesLeaves;
 import com.scottkillen.mod.koresample.tree.DefinesLog;
 import com.scottkillen.mod.koresample.tree.DefinesSapling;
@@ -53,21 +53,22 @@ public enum OverworldTreeSpecies
         ProvidesPotionEffect
 {
     // REORDERING WILL CAUSE DAMAGE TO SAVES
-    ACEMUS(ACEMUS_COLOR, new AcemusTree()),
-    CEDRUM(NO_COLOR, new CedrumTree()),
-    CERASU(CERASU_COLOR, new CerasuTree()),
-    DELNAS(NO_COLOR, new DelnasTree()),
-    EWCALY(NO_COLOR, new EwcalyTree(), PotionHelper.sugarEffect),
-    HEKUR(BASIC_COLOR, new HekurTree()),
-    KIPARIS(NO_COLOR, new KiparisTree(), PotionHelper.spiderEyeEffect),
-    KULIST(KULIST_COLOR, new KulistTree()),
-    LATA(BASIC_COLOR, new LataTree()),
-    NUCIS(BASIC_COLOR, new NucisTree()),
-    PORFFOR(NO_COLOR, new PorfforTree()),
-    SALYX(NO_COLOR, new SalyxTree()),
-    TUOPA(BASIC_COLOR, new TuopaTree());
+    ACEMUS(ACEMUS_COLOR, new AcemusTree(), new AcemusTree(false)),
+    CEDRUM(NO_COLOR, new CedrumTree(), new CedrumTree(false)),
+    CERASU(CERASU_COLOR, new CerasuTree(), new CerasuTree(false)),
+    DELNAS(NO_COLOR, new DelnasTree(), new DelnasTree(false)),
+    EWCALY(NO_COLOR, new EwcalyTree(), new EwcalyTree(false), PotionHelper.sugarEffect),
+    HEKUR(BASIC_COLOR, new HekurTree(), new HekurTree(false)),
+    KIPARIS(NO_COLOR, new KiparisTree(), new KiparisTree(false), PotionHelper.spiderEyeEffect),
+    KULIST(KULIST_COLOR, new KulistTree(), new KulistTree(false)),
+    LATA(BASIC_COLOR, new LataTree(), new LataTree(false)),
+    NUCIS(BASIC_COLOR, new NucisTree(), new NucisTree(false)),
+    PORFFOR(NO_COLOR, new PorfforTree(), new PorfforTree(false)),
+    SALYX(NO_COLOR, new SalyxTree(), new SalyxTree(false)),
+    TUOPA(BASIC_COLOR, new TuopaTree(), new TuopaTree(false));
 
-    private final AbstractTree treeGen;
+    private final AbstractTree saplingTreeGen;
+    private final AbstractTree worldTreeGen;
     private final Colorizer colorizer;
     private final String potionEffect;
 
@@ -88,19 +89,24 @@ public enum OverworldTreeSpecies
     static
     {
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
-            tree.treeGen.setTree(tree);
+        {
+            tree.saplingTreeGen.setTree(tree);
+            tree.worldTreeGen.setTree(tree);
+        }
     }
 
-    OverworldTreeSpecies(Colorizer colorizer, AbstractTree treeGen, String potionEffect)
+    OverworldTreeSpecies(Colorizer colorizer, AbstractTree saplingTreeGen, AbstractTree worldTreeGen,
+                         String potionEffect)
     {
         this.colorizer = colorizer;
-        this.treeGen = treeGen;
+        this.saplingTreeGen = saplingTreeGen;
+        this.worldTreeGen = worldTreeGen;
         this.potionEffect = potionEffect;
     }
 
-    OverworldTreeSpecies(Colorizer colorizer, AbstractTree treeGen)
+    OverworldTreeSpecies(Colorizer colorizer, AbstractTree saplingTreeGen, AbstractTree worldTreeGen)
     {
-        this(colorizer, treeGen, null);
+        this(colorizer, saplingTreeGen, worldTreeGen, null);
     }
 
     @Override
@@ -164,6 +170,7 @@ public enum OverworldTreeSpecies
     @Override
     public int leavesSubBlockIndex() { return leavesMeta; }
 
+    @SuppressWarnings("ReturnOfThis")
     @Override
     public DefinesSapling saplingDefinition() { return this; }
 
@@ -254,7 +261,14 @@ public enum OverworldTreeSpecies
     public int saplingSubBlockIndex() { return saplingMeta; }
 
     @Override
-    public WorldGenerator treeGenerator() { return treeGen; }
+    @Deprecated
+    public WorldGenerator treeGenerator() { return saplingTreeGen; }
+
+    @Override
+    public WorldGenerator saplingTreeGenerator() { return saplingTreeGen; }
+
+    @Override
+    public WorldGenerator worldTreeGenerator() { return worldTreeGen; }
 
     @Override
     public void assignDoubleSlabBlock(SlabBlock block)

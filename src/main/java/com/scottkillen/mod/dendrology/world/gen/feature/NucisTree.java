@@ -9,6 +9,10 @@ public class NucisTree extends AbstractTree
 {
     private int logDirection = 0;
 
+    public NucisTree(boolean fromSapling) { super(fromSapling); }
+
+    public NucisTree() { this(true); }
+
     @SuppressWarnings({ "OverlyComplexMethod", "OverlyLongMethod" })
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)

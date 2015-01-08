@@ -6,6 +6,8 @@ import static com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpec
 
 public class LargePorfforTree extends AbstractLargeVanillaTree
 {
+    public LargePorfforTree(boolean fromSapling) { super(fromSapling); }
+
     @Override
     protected int getUnmaskedLogMeta() { return PORFFOR.logSubBlockIndex(); }
 }

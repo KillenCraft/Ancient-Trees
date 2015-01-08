@@ -11,6 +11,8 @@ public class NormalEwcalyTree extends AbstractTree
 {
     private int logDirection = 0;
 
+    public NormalEwcalyTree(boolean fromSapling) { super(fromSapling); }
+
     @SuppressWarnings({
             "OverlyComplexBooleanExpression",
             "MethodWithMoreThanThreeNegations",
@@ -169,9 +171,7 @@ public class NormalEwcalyTree extends AbstractTree
     }
 
     @SuppressWarnings({
-            "MethodWithMultipleLoops",
-            "OverlyComplexBooleanExpression",
-            "MethodWithMoreThanThreeNegations"
+            "MethodWithMultipleLoops", "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations"
     })
     private void genLeaves(World world, int x, int y, int z)
     {
@@ -190,9 +190,7 @@ public class NormalEwcalyTree extends AbstractTree
     }
 
     @SuppressWarnings({
-            "MethodWithMultipleLoops",
-            "OverlyComplexBooleanExpression",
-            "MethodWithMoreThanThreeNegations"
+            "MethodWithMultipleLoops", "OverlyComplexBooleanExpression", "MethodWithMoreThanThreeNegations"
     })
     private void genLeavesS(World world, int x, int y, int z)
     {

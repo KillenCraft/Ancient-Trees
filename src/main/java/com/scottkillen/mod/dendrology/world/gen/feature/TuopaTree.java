@@ -6,6 +6,10 @@ import java.util.Random;
 
 public class TuopaTree extends AbstractTree
 {
+    public TuopaTree(boolean fromSapling) { super(fromSapling); }
+
+    public TuopaTree() { this(true); }
+
     @SuppressWarnings({
             "OverlyComplexMethod",
             "OverlyLongMethod",

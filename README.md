@@ -56,6 +56,10 @@ purpose in mind.
 
 #### Licensing
 
+##### Logo
+
+The logo was custom designed by [Septolum](http://septolum.deviantart.com/).
+
 ##### Textures
 
 Some textures are from [The Painterly Pack][pack] by [Rhodox][rhodox_tweet] and friends. Used by permission.

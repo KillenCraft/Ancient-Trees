@@ -13,11 +13,14 @@ public class HekurTree extends AbstractTree
     private final AbstractTree treeGen;
     private final AbstractTree largeTreeGen;
 
-    public HekurTree()
+    public HekurTree(boolean fromSapling)
     {
-        treeGen = new NormalHekurTree();
-        largeTreeGen = new LargeHekurTree();
+        super(fromSapling);
+        treeGen = new NormalHekurTree(fromSapling);
+        largeTreeGen = new LargeHekurTree(fromSapling);
     }
+
+    public HekurTree() { this(true); }
 
     @Override
     public void setTree(DefinesTree tree)
