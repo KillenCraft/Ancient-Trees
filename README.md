@@ -1,6 +1,6 @@
 ## Ancient Trees
 **LATEST OFFICIAL VERSION**: [Ancient Trees 1.2.1 for MC 1.7.10][release] ([changelog][changelog.md])<br />
-*DEPENDS ON*: [Kore Sample 1.1.0 (or later) for MC 1.7.10][koresample]
+*DEPENDS ON*: [Kore Sample 1.2.0 (or later) for MC 1.7.10][koresample]
 [release]: https://github.com/MinecraftModArchive/Dendrology/releases/download/v1.2.1/AncientTrees-1.7.10-1.2.1.jar
 [changelog.md]: https://github.com/MinecraftModArchive/Dendrology/blob/develop/src/main/resources/CHANGELOG.md
 [koresample]: https://github.com/MinecraftModArchive/KoreSample/releases/latest
