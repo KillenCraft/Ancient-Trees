@@ -1,0 +1,114 @@
+##############################
+# Dendrology
+#
+# Português - BRASIL (BR) (pt_BR) localização
+# Tradutor: Al-Myr
+#
+
+# Blocos
+
+### Toras
+tile.dendrology:log.acemus.name=Madeira de Acemus
+tile.dendrology:log.cedrum.name=Madeira de Cedrum
+tile.dendrology:log.cerasu.name=Madeira de Cerasu
+tile.dendrology:log.delnas.name=Madeira de Delnas
+tile.dendrology:log.ewcaly.name=Madeira de Ewcaly
+tile.dendrology:log.hekur.name=Madeira de Hekur
+tile.dendrology:log.kiparis.name=Madeira de Kiparis
+tile.dendrology:log.kulist.name=Madeira de Kulist
+tile.dendrology:log.lata.name=Madeira de Lata
+tile.dendrology:log.nucis.name=Madeira de Nucis
+tile.dendrology:log.porffor.name=Madeira de Porffor
+tile.dendrology:log.salyx.name=Madeira de Salyx
+tile.dendrology:log.tuopa.name=Madeira de Tuopa
+
+### Folhas
+tile.dendrology:leaves.acemus.name=Folhas de Acemus
+tile.dendrology:leaves.cedrum.name=Folhas de Cedrum
+tile.dendrology:leaves.cerasu.name=Folhas de Cerasu
+tile.dendrology:leaves.delnas.name=Folhas de Delnas
+tile.dendrology:leaves.ewcaly.name=Folhas de Ewcaly
+tile.dendrology:leaves.hekur.name=Folhas de Hekur
+tile.dendrology:leaves.kiparis.name=Folhas de Kiparis
+tile.dendrology:leaves.kulist.name=Folhas de Kulist
+tile.dendrology:leaves.lata.name=Folhas de Lata
+tile.dendrology:leaves.nucis.name=Folhas de Nucis
+tile.dendrology:leaves.porffor.name=Folhas de Porffor
+tile.dendrology:leaves.salyx.name=Folhas de Salyx
+tile.dendrology:leaves.tuopa.name=Folhas de Tuopa
+
+### Tábuas
+tile.dendrology:wood.acemus.name=Tábuas de Acemus
+tile.dendrology:wood.cedrum.name=Tábuas de Cedrum
+tile.dendrology:wood.cerasu.name=Tábuas de Cerasu
+tile.dendrology:wood.delnas.name=Tábuas de Delnas
+tile.dendrology:wood.ewcaly.name=Tábuas de Ewcaly
+tile.dendrology:wood.hekur.name=Tábuas de Hekur
+tile.dendrology:wood.kiparis.name=Tábuas de Kiparis
+tile.dendrology:wood.kulist.name=Tábuas de Kulist
+tile.dendrology:wood.lata.name=Tábuas de Lata
+tile.dendrology:wood.nucis.name=Tábuas de Nucis
+tile.dendrology:wood.porffor.name=Tábuas de Porffor
+tile.dendrology:wood.salyx.name=Tábuas de Salyx
+tile.dendrology:wood.tuopa.name=Tábuas de Tuopa
+
+### Mudas
+tile.dendrology:sapling.acemus.name=Muda de Acemus
+tile.dendrology:sapling.cedrum.name=Muda de Cedrum
+tile.dendrology:sapling.cerasu.name=Muda de Cerasu
+tile.dendrology:sapling.delnas.name=Muda de Delnas
+tile.dendrology:sapling.ewcaly.name=Muda de Ewcaly
+tile.dendrology:sapling.hekur.name=Muda de Hekur
+tile.dendrology:sapling.kiparis.name=Muda de Kiparis
+tile.dendrology:sapling.kulist.name=Muda de Kulist
+tile.dendrology:sapling.lata.name=Muda de Lata
+tile.dendrology:sapling.nucis.name=Muda de Nucis
+tile.dendrology:sapling.porffor.name=Muda de Porffor
+tile.dendrology:sapling.salyx.name=Muda de Salyx
+tile.dendrology:sapling.tuopa.name=Muda de Tuopa
+
+### Laje de Madeira
+tile.dendrology:slab.acemus.name=Laje de Madeira de Acemus
+tile.dendrology:slab.cedrum.name=Laje de Madeira de Cedrum
+tile.dendrology:slab.cerasu.name=Laje de Madeira de Cerasu
+tile.dendrology:slab.delnas.name=Laje de Madeira de Delnas
+tile.dendrology:slab.ewcaly.name=Laje de Madeira de Ewcaly
+tile.dendrology:slab.hekur.name=Laje de Madeira de Hekur
+tile.dendrology:slab.kiparis.name=Laje de Madeira de Kiparis
+tile.dendrology:slab.kulist.name=Laje de Madeira de Kulist
+tile.dendrology:slab.lata.name=Laje de Madeira de Lata
+tile.dendrology:slab.nucis.name=Laje de Madeira de Nucis
+tile.dendrology:slab.porffor.name=Laje de Madeira de Porffor
+tile.dendrology:slab.salyx.name=Laje de Madeira de Salyx
+tile.dendrology:slab.tuopa.name=Laje de Madeira de Tuopa
+
+### Escadas de Madeira
+tile.dendrology:stairs.acemus.name=Escadas de Madeira de Acemus
+tile.dendrology:stairs.cedrum.name=Escadas de Madeira de Cedrum
+tile.dendrology:stairs.cerasu.name=Escadas de Madeira de Cerasu
+tile.dendrology:stairs.delnas.name=Escadas de Madeira de Delnas
+tile.dendrology:stairs.ewcaly.name=Escadas de Madeira de Ewcaly
+tile.dendrology:stairs.hekur.name=Escadas de Madeira de Hekur
+tile.dendrology:stairs.kiparis.name=Escadas de Madeira de Kiparis
+tile.dendrology:stairs.kulist.name=Escadas de Madeira de Kulist
+tile.dendrology:stairs.lata.name=Escadas de Madeira de Lata
+tile.dendrology:stairs.nucis.name=Escadas de Madeira de Nucis
+tile.dendrology:stairs.porffor.name=Escadas de Madeira de Porffor
+tile.dendrology:stairs.salyx.name=Escadas de Madeira de Salyx
+tile.dendrology:stairs.tuopa.name=Escadas de Madeira de Tuopa
+
+# Aba do Criativo
+itemGroup.dendrology=Ancient Trees
+
+# Comentários do arquivo de configuração
+config.dendrology:blacksmithRarity=Quantas Mudas Ancestrais são encontradas em baús de ferreiro. 0 desativa. Os valores mais altos são mais comuns.
+config.dendrology:bonusChestRarity=Quantas Mudas Ancestrais são encontradas em baús bônus. 0 desativa. Os valores mais altos são mais comuns.
+config.dendrology:desertTempleRarity=Quantas Mudas Ancestrais são encontradas em baús nos templos do deserto. 0 desativa. Os valores mais altos são mais comuns.
+config.dendrology:dungeonRarity=Quantas Mudas Ancestrais são encontradas em baús de marmorras. 0 desativa. Os valores mais altos são mais comuns.
+config.dendrology:jungleTempleRarity=Quantas Mudas Ancestrais são encontradas em baús nos templos de florestas. 0 desativa. Os valores mais altos são mais comuns.
+config.dendrology:jungleTempleDispenserRarity=Quantas Mudas Ancestrais são encontradas em ejetores nos templos de florestas. 0 desativa. Os valores mais altos são mais comuns.
+config.dendrology:mineshaftCorridorRarity=Quantas Mudas Ancestrais são encontradas em baús nos corredores de minas abandonadas. 0 desativa. Os valores mais altos são mais comuns.
+config.dendrology:overworldTreeGenRarity=Quantas vezes Árvores Ancestrais são encontradas crescendo no mundo. 0 desativa. Os valores mais altos são mais comuns.
+config.dendrology:strongholdCorridorRarity=Quantas Mudas Ancestrais são encontradas em baús nos corredores das fortalezas. 0 desativa. Os valores mais altos são mais comuns.
+config.dendrology:strongholdCrossingRarity=Quantas Mudas Ancestrais são encontradas em baús nos cruzamentos das fortalezas. 0 desativa. Os valores mais altos são mais comuns.
+config.dendrology:strongholdLibraryRarity=Quantas Mudas Ancestrais são encontradas em baús nas bibliotecas das fortalezas. 0 desativa. Os valores mais altos são mais comuns.
