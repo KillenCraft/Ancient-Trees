@@ -57,14 +57,15 @@ processResources
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
     inputs.property "forgeversion", project.ext.forgeversion
+    inputs.property "koreversion", project.ext.koreversion
 
     // replace stuff in the files we want.
     from(sourceSets.main.resources.srcDirs) {
         include '**/*.info'
         include '**/version.properties'
 
-    	expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.forgeversion
+        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
+                .ext.forgeversion, 'kore_version': project.ext.koreversion
     }
 
     // copy everything else, that we didn't do before
@@ -84,7 +85,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
         include '**/version.properties'
 
         expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.forgeversion
+                .ext.forgeversion, 'kore_version': project.ext.koreversion
     }
 
     from(sourceSets.main.allSource) {
@@ -108,7 +109,7 @@ task deobfJar(type: Jar) {
         include '**/version.properties'
 
         expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.forgeversion
+                .ext.forgeversion, 'kore_version': project.ext.koreversion
     }
 
     from(sourceSets.main.output) {
