@@ -1,4 +1,4 @@
-## Unreleased
+## 1.2.0
 - Added boilerplate for forge event listeners
 
 ## 1.1.0
