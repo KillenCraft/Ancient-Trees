@@ -1,6 +1,6 @@
 ## Kore Sample
-**LATEST OFFICIAL VERSION**: [Kore Sample 1.0.0 for MC 1.7.10][release] ([changelog][changelog.md])
-[release]: https://github.com/MinecraftModArchive/KoreSample/releases/download/v1.0.0/KoreSample-1.7.10-1.0.0.jar
+**LATEST OFFICIAL VERSION**: [Kore Sample 1.2.0 for MC 1.7.10][release] ([changelog][changelog.md])
+[release]: https://github.com/MinecraftModArchive/KoreSample/releases/download/v1.2.0/KoreSample-1.7.10-1.2.0.jar
 [changelog.md]: https://github.com/MinecraftModArchive/KoreSample/blob/develop/src/main/resources/CHANGELOG.md
 
 ![KoreSample](https://raw.githubusercontent.com/MinecraftModArchive/KoreSample/develop/src/main/resources/assets/logo.png)

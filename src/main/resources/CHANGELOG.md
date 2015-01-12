@@ -1,3 +1,6 @@
+## 1.2.0
+- Added boilerplate for forge event listeners
+
 ## 1.1.0
 - Added logo made by [CyanideX][cyanidex_twitter]
 - Expand tree definition to include worldGen spawns
