@@ -1,3 +1,6 @@
+## 1.2.1
+- Added version specific dependency for Kore Sample
+
 ## 1.2.0
 - Replaced logo with custom art from [Septolum][Septolum_tweet]
 - Trees will now generate during world gen, though they will be *very* scarce.
