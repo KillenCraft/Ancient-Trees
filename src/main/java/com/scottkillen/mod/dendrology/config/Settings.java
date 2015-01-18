@@ -37,7 +37,7 @@ public enum Settings implements ConfigSyncable
 
     private static String getLocalizedComment(String settingName)
     {
-        return StatCollector.translateToLocal("config." + TheMod.MOD_ID + ':' + settingName);
+        return StatCollector.translateToLocal("config." + TheMod.INSTANCE.modID() + ':' + settingName);
     }
 
     public int blacksmithRarity() { return blacksmithRarity; }

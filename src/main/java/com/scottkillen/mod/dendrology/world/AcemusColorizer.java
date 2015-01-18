@@ -17,8 +17,7 @@ public enum AcemusColorizer implements IResourceManagerReloadListener
 {
     INSTANCE;
     @SuppressWarnings("StaticNonFinalField")
-    private static int[] buffer = new int[256*256];
-    private static final ResourceLocation texture = new ResourceLocation(TheMod.MOD_ID, "textures/colormap/acemus.png");
+    private static int[] buffer = new int[256 * 256];
 
     public static int getInventoryColor()
     {
@@ -35,7 +34,7 @@ public enum AcemusColorizer implements IResourceManagerReloadListener
             if (info != null)
             {
                 //noinspection NumericCastThatLosesPrecision
-                day = (int)(info.getWorldTotalTime() / 24000L) & 0xff;
+                day = (int) (info.getWorldTotalTime() / 24000L) & 0xff;
             }
         }
 
@@ -47,9 +46,13 @@ public enum AcemusColorizer implements IResourceManagerReloadListener
     @Override
     public void onResourceManagerReload(IResourceManager resourceManager)
     {
-        try {
+        try
+        {
             //noinspection AssignmentToStaticFieldFromInstanceMethod
-            buffer = TextureUtil.readImageData(resourceManager, texture);
-        } catch (final IOException ignored) { }
+            buffer = TextureUtil.readImageData(resourceManager,
+                    new ResourceLocation(TheMod.INSTANCE.modID(), "textures/colormap/acemus.png"));
+        } catch (final IOException ignored)
+        {
+        }
     }
 }

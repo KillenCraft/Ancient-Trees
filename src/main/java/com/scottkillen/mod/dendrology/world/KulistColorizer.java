@@ -14,8 +14,7 @@ public enum KulistColorizer implements IResourceManagerReloadListener
 {
     INSTANCE;
     @SuppressWarnings("StaticNonFinalField")
-    private static int[] buffer = new int[256*256];
-    private static final ResourceLocation texture = new ResourceLocation(TheMod.MOD_ID, "textures/colormap/kulist.png");
+    private static int[] buffer = new int[256 * 256];
 
     public static int getInventoryColor()
     {
@@ -32,9 +31,13 @@ public enum KulistColorizer implements IResourceManagerReloadListener
     @Override
     public void onResourceManagerReload(IResourceManager resourceManager)
     {
-        try {
+        try
+        {
             //noinspection AssignmentToStaticFieldFromInstanceMethod
-            buffer = TextureUtil.readImageData(resourceManager, texture);
-        } catch (final IOException ignored) { }
+            buffer = TextureUtil.readImageData(resourceManager,
+                    new ResourceLocation(TheMod.INSTANCE.modID(), "textures/colormap/kulist.png"));
+        } catch (final IOException ignored)
+        {
+        }
     }
 }

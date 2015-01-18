@@ -17,6 +17,7 @@ import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
 import com.scottkillen.mod.koresample.common.util.log.Logger;
 import com.scottkillen.mod.koresample.compat.Integrates;
+import com.scottkillen.mod.koresample.compat.versionchecker.Versioned;
 import com.scottkillen.mod.koresample.config.ConfigEventHandler;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Mod;
@@ -41,13 +42,17 @@ import java.util.List;
         "NonConstantFieldWithUpperCaseName"
 })
 @Mod(modid = TheMod.MOD_ID, name = TheMod.MOD_NAME, version = TheMod.MOD_VERSION, useMetadata = true, guiFactory = TheMod.MOD_GUI_FACTORY)
-public class TheMod
+public final class TheMod implements Versioned
 {
-    public static final String MOD_ID = "dendrology";
-    public static final String MOD_NAME = "Ancient Trees";
-    public static final String MOD_VERSION = "${mod_version}";
-    public static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
-    public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID.toLowerCase())
+    static final String MOD_ID = "dendrology";
+    static final String MOD_NAME = "Ancient Trees";
+    static final String MOD_VERSION = "${mod_version}";
+    static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
+    private static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
+    @SuppressWarnings("PublicField")
+    @Instance(MOD_ID)
+    public static TheMod INSTANCE;
+    private final CreativeTabs creativeTab = new CreativeTabs(MOD_ID.toLowerCase())
     {
         private final OverworldTreeSpecies ICON = OverworldTreeSpecies.PORFFOR;
 
@@ -63,10 +68,6 @@ public class TheMod
         @Override
         public Item getTabIconItem() { return null; }
     };
-    private static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
-    @SuppressWarnings("PublicField")
-    @Instance(MOD_ID)
-    public static TheMod INSTANCE;
     private final List<Integrates> integrators = Lists.newArrayList();
     private Optional<ConfigEventHandler> configEventHandler = Optional.absent();
 
@@ -87,6 +88,11 @@ public class TheMod
         return new Configuration();
     }
 
+    public CreativeTabs creativeTab()
+    {
+        return creativeTab;
+    }
+
     private void integrateMods(ModState modState)
     {
         for (final Integrates integrator : integrators)
@@ -104,6 +110,7 @@ public class TheMod
         new ModBlocks().loadContent();
         initIntegrators();
         integrateMods(event.getModState());
+        com.scottkillen.mod.koresample.TheMod.INSTANCE.addVersionCheck(this);
     }
 
     @EventHandler
@@ -127,9 +134,21 @@ public class TheMod
     }
 
     @Override
+    public String modID()
+    {
+        return MOD_ID;
+    }
+
+    @Override
+    public String versionInfoURL()
+    {
+        return "https://raw.githubusercontent.com/ScottKillen/glowing-ninja/master/AncientTrees.json";
+    }
+
+    @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("integrators", integrators)
+        return Objects.toStringHelper(this).add("creativeTab", creativeTab).add("integrators", integrators)
                 .add("configEventHandler", configEventHandler).toString();
     }
 }

@@ -10,7 +10,7 @@ public final class ModLogBlock extends LogBlock
     public ModLogBlock(Iterable<? extends DefinesLog> subBlocks)
     {
         super(ImmutableList.copyOf(subBlocks));
-        setCreativeTab(TheMod.CREATIVE_TAB);
+        setCreativeTab(TheMod.INSTANCE.creativeTab());
     }
 
     @Override
