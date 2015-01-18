@@ -10,7 +10,7 @@ public final class ModSlabBlock extends SlabBlock
     public ModSlabBlock(boolean isDouble, Iterable<? extends DefinesSlab> subBlocks)
     {
         super(isDouble, ImmutableList.copyOf(subBlocks));
-        setCreativeTab(TheMod.CREATIVE_TAB);
+        setCreativeTab(TheMod.INSTANCE.creativeTab());
         setHardness(2.0F);
         setResistance(5.0F);
         setStepSound(soundTypeWood);

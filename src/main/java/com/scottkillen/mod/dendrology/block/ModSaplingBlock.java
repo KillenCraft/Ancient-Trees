@@ -13,7 +13,7 @@ public final class ModSaplingBlock extends SaplingBlock
     public ModSaplingBlock(Iterable<? extends DefinesSapling> subBlocks)
     {
         super(ImmutableList.copyOf(subBlocks));
-        setCreativeTab(TheMod.CREATIVE_TAB);
+        setCreativeTab(TheMod.INSTANCE.creativeTab());
         setHardness(0.0F);
         setStepSound(soundTypeGrass);
     }

@@ -15,11 +15,10 @@ public final class MinechemMod extends Integrator
     private static final String MOD_ID = "minechem";
     private static final String MOD_NAME = "Minechem";
 
-    private static final Logger logger = Logger.forMod(TheMod.MOD_ID);
-
     @Method(modid = MOD_ID)
     private static void addDecomposerRecipes()
     {
+        final Logger logger = Logger.forMod(TheMod.INSTANCE.modID());
         logger.info("Adding Minechem decomposer recipes.");
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
         {

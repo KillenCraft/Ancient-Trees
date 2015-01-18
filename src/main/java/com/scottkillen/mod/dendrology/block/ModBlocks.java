@@ -62,7 +62,7 @@ public final class ModBlocks
 
     private static void addAllSaplingsToChests()
     {
-        Logger.forMod(TheMod.MOD_ID).info("Hiding species in chests.");
+        Logger.forMod(TheMod.INSTANCE.modID()).info("Hiding species in chests.");
         final Settings settings = Settings.INSTANCE;
         for (final SaplingBlock sapling : saplingBlocks)
         {
@@ -89,7 +89,7 @@ public final class ModBlocks
 
     private static void loadOverWorldContent()
     {
-        Logger.forMod(TheMod.MOD_ID).info("Loading overworld species.");
+        Logger.forMod(TheMod.INSTANCE.modID()).info("Loading overworld species.");
         final TreeSpeciesLoader overworldContent = new TreeSpeciesLoader(overworldTaxonomy);
         overworldContent.load(new OverworldTreeBlockFactory());
     }
