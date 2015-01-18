@@ -9,7 +9,7 @@ public final class ModStairsBlock extends StairsBlock
     public ModStairsBlock(DefinesStairs definition)
     {
         super(definition);
-        setCreativeTab(TheMod.CREATIVE_TAB);
+        setCreativeTab(TheMod.INSTANCE.creativeTab());
     }
 
     @Override

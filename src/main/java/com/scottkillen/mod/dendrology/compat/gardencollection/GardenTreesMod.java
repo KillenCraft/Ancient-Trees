@@ -18,12 +18,10 @@ public final class GardenTreesMod extends Integrator
     private static final String MOD_ID = "GardenTrees";
     private static final String MOD_NAME = MOD_ID;
 
-    private static final Logger logger = Logger.forMod(TheMod.MOD_ID);
-
     @Method(modid = MOD_ID)
     private static void registerSmallTrees()
     {
-        logger.info("Registering small trees with GardenTrees.");
+        Logger.forMod(TheMod.INSTANCE.modID()).info("Registering small trees with GardenTrees.");
 
         final SaplingRegistry saplingReg = SaplingRegistry.instance();
 

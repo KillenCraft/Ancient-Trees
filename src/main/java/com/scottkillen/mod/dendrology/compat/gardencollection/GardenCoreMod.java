@@ -17,12 +17,10 @@ public final class GardenCoreMod extends Integrator
     private static final String MOD_ID = "GardenCore";
     private static final String MOD_NAME = MOD_ID;
 
-    private static final Logger logger = Logger.forMod(TheMod.MOD_ID);
-
     @Method(modid = MOD_ID)
     private static void registerWood()
     {
-        logger.info("Registering wood with GardenCore.");
+        Logger.forMod(TheMod.INSTANCE.modID()).info("Registering wood with GardenCore.");
 
         final WoodRegistry woodReg = WoodRegistry.instance();
         final SaplingRegistry saplingReg = SaplingRegistry.instance();

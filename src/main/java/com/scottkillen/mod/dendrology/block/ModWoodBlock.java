@@ -10,7 +10,7 @@ public final class ModWoodBlock extends WoodBlock
     public ModWoodBlock(Iterable<? extends DefinesWood> subBlocks)
     {
         super(ImmutableList.copyOf(subBlocks));
-        setCreativeTab(TheMod.CREATIVE_TAB);
+        setCreativeTab(TheMod.INSTANCE.creativeTab());
 
         setHardness(2.0f);
         setResistance(5.0f);

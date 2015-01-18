@@ -10,7 +10,7 @@ public final class ModLeavesBlock extends LeavesBlock
     public ModLeavesBlock(Iterable<? extends DefinesLeaves> subBlocks)
     {
         super(ImmutableList.copyOf(subBlocks));
-        setCreativeTab(TheMod.CREATIVE_TAB);
+        setCreativeTab(TheMod.INSTANCE.creativeTab());
     }
 
     @Override

@@ -22,15 +22,13 @@ public final class ForestryMod extends Integrator
     private static final String MOD_ID = "Forestry";
     private static final String MOD_NAME = MOD_ID;
 
-    private static final Logger logger = Logger.forMod(TheMod.MOD_ID);
-
     private static final int FORESTER = 2;
     private static final int BUILDER = 5;
 
     @Method(modid = MOD_ID)
     private static void addBackpackItems()
     {
-        logger.info("Extending Forestry's backpacks.");
+        Logger.forMod(TheMod.INSTANCE.modID()).info("Extending Forestry's backpacks.");
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
         {
             //noinspection ObjectAllocationInLoop
@@ -54,7 +52,7 @@ public final class ForestryMod extends Integrator
     @Method(modid = MOD_ID)
     private static void addFarmables()
     {
-        logger.info("Adding farmable saplings to Forestry's farms.");
+        Logger.forMod(TheMod.INSTANCE.modID()).info("Adding farmable saplings to Forestry's farms.");
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
         {
             //noinspection ObjectAllocationInLoop
@@ -68,7 +66,7 @@ public final class ForestryMod extends Integrator
     @Method(modid = MOD_ID)
     private static void addSaplingRecipes()
     {
-        logger.info("Adding sapling recipes to Forestry's fermenter.");
+        Logger.forMod(TheMod.INSTANCE.modID()).info("Adding sapling recipes to Forestry's fermenter.");
 
         final int fermentationValue = ForestryAPI.activeMode.getIntegerSetting("fermenter.yield.sapling");
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
