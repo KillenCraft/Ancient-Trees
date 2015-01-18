@@ -1,4 +1,4 @@
-## Unreleased
+## 1.2.2
 - Refactored Version Checker integration to be reused by client mods.
 
 ## 1.2.1
