@@ -33,7 +33,7 @@ public final class ConfigEventHandler
 
         final Configuration localConfiguration = new Configuration(configFile, configVersion);
         final Optional<Configuration> oldConfig;
-        if (isConfigVersionMismatch(localConfiguration, configVersion))
+        if (isConfigVersionMismatch(localConfiguration))
         {
             backup(configFile);
             oldConfig = Optional.of(localConfiguration);
@@ -56,9 +56,9 @@ public final class ConfigEventHandler
         return mod == null ? "Unknown" : mod.getName();
     }
 
-    private static boolean isConfigVersionMismatch(Configuration configuration, String configVersion)
+    private static boolean isConfigVersionMismatch(Configuration configuration)
     {
-        return !configVersion.equals(configuration.getDefinedConfigVersion());
+        return !configuration.getLoadedConfigVersion().equals(configuration.getDefinedConfigVersion());
     }
 
     public void activate()
