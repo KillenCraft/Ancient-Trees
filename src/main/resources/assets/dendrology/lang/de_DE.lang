@@ -5,6 +5,11 @@
 # Author: MCManuelLP
 #
 
+# ä - Ã¤ : Ä - Ã„
+# ö - Ã¶ : Ö - 
+# ü - Ã¼ : Ü - Ãœ
+# ß - ÃŸ
+
 #Blocks
 
 ### Logs
@@ -108,6 +113,7 @@ config.dendrology:dungeonRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in Verl
 config.dendrology:jungleTempleRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in Dschungeltempeltruhen. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
 config.dendrology:jungleTempleDispenserRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in Dschungeltempel Werfern. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
 config.dendrology:mineshaftCorridorRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in Minenschacht GÃ¼terloren. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
+config.dendrology:overworldTreeGenRarity=HÃ¤ufigkeit von Vergessenen BÃ¤umen in der Hauptwelt. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
 config.dendrology:strongholdCorridorRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in FestungsgÃ¤ngen. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
 config.dendrology:strongholdCrossingRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in FestungsrÃ¤umen. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
 config.dendrology:strongholdLibraryRarity=HÃ¤ufigkeit von Vergessenen Setzlingen in Festungsbibliothekstruhen. 0 Deaktiviert. Die Anzahl entspricht der HÃ¤ufigkeit, mehr macht mehr.
