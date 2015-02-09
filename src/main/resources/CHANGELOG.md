@@ -1,3 +1,7 @@
+## 1.2.3
+- Fixed failure to detect config version mismatch.
+- Update build environment to Minecraft Forge 10.13.2.1291
+
 ## 1.2.2
 - Refactored Version Checker integration to be reused by client mods.
 
