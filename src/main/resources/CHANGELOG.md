@@ -1,3 +1,6 @@
+## Unreleased
+- Updated build environment to use Minecraft Forge 10.13.2.1291
+
 ## 1.2.2
 - Add support for [Version Checker][vc_url].
 [vc_url]: http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2091981-version-checker-auto-update-mods-and-clean
