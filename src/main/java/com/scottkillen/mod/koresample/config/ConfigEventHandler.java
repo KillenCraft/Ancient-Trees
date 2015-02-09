@@ -74,7 +74,7 @@ public final class ConfigEventHandler
                 "Your %s config file is out of date and could cause issues. The existing file will be renamed to %s and a new one will be generated.",
                 getModName(modID), fileBak.getName());
         logger.warning(
-                "%s will attempt to copy your old settings, but custom mod/tree settings will have to be migrated manually.",
+                "%s will attempt to copy your old settings.",
                 getModName(modID));
 
         final boolean success = fileRef.renameTo(fileBak);
