@@ -1,3 +1,6 @@
+## 1.2.4
+- Corrected incorrect log message.
+
 ## 1.2.3
 - Fixed failure to detect config version mismatch.
 - Update build environment to Minecraft Forge 10.13.2.1291
