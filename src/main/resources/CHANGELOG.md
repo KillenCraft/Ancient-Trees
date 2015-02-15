@@ -1,5 +1,7 @@
 ## Unreleased
-- Updated build environment to use Minecraft Forge 10.13.2.1291
+- Updated build environment to compile against Minecraft Forge 10.13.2.1291
+- Added [Chisel 2][chisel_url] integration.
+[chisel_url]: http://www.curse.com/mc-mods/minecraft/225236-chisel-2
 
 ## 1.2.2
 - Add support for [Version Checker][vc_url].
