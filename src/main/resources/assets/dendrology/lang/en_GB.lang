@@ -98,6 +98,20 @@ tile.dendrology:stairs.salyx.name=Salyx Wood Stairs
 tile.dendrology:stairs.tuopa.name=Tuopa Wood Stairs
 
 ### Chisel
+tile.acemus_planks.name=Acemus Wood Planks
+tile.cedrum_planks.name=Cedrum Wood Planks
+tile.cerasu_planks.name=Kulist Wood Planks
+tile.delnas_planks.name=Delnas Wood Planks
+tile.ewcaly_planks.name=Ewcaly Wood Planks
+tile.hekur_planks.name=Hekur Wood Planks
+tile.kiparis_planks.name=Kiparis Wood Planks
+tile.kulist_planks.name=Kulist Wood Planks
+tile.lata_planks.name=Lata Wood Planks
+tile.nucis_planks.name=Nucis Wood Planks
+tile.porffor_planks.name=Porffor Wood Planks
+tile.salyx_planks.name=Salyx Wood Planks
+tile.tuopa_planks.name=Tuopa Wood Planks
+
 chisel.dendrology:planks.acemus.clean.name=Smooth acemus wood planks
 chisel.dendrology:planks.acemus.short.name=Short acemus wood planks
 chisel.dendrology:planks.acemus.fancy.name=Fancy acemus wood plank arrangement
