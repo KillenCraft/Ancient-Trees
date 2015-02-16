@@ -1,28 +1,14 @@
 package com.scottkillen.mod.koresample.tree.block;
 
 import com.scottkillen.mod.koresample.tree.DefinesStairs;
-import net.minecraft.block.BlockStairs;
 
-public abstract class StairsBlock extends BlockStairs
+// Use com.scottkillen.mod.koresample.common.block.StairsBlock instead
+// This is left to honor the api contract
+@Deprecated
+public abstract class StairsBlock extends com.scottkillen.mod.koresample.common.block.StairsBlock
 {
     protected StairsBlock(DefinesStairs model)
     {
-        super(model.stairsModelBlock(), model.stairsModelSubBlockIndex());
+        super(model);
     }
-
-
-    @SuppressWarnings("WeakerAccess")
-    protected static String getUnwrappedUnlocalizedName(String unlocalizedName)
-    {
-        return unlocalizedName.substring(unlocalizedName.indexOf('.') + 1);
-    }
-
-    @Override
-    public final String getUnlocalizedName()
-    {
-        //noinspection StringConcatenationMissingWhitespace
-        return "tile." + resourcePrefix() + getUnwrappedUnlocalizedName(super.getUnlocalizedName());
-    }
-
-    protected abstract String resourcePrefix();
 }

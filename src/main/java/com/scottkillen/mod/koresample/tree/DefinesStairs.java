@@ -1,6 +1,6 @@
 package com.scottkillen.mod.koresample.tree;
 
-import com.scottkillen.mod.koresample.tree.block.StairsBlock;
+import com.scottkillen.mod.koresample.common.block.StairsBlock;
 import net.minecraft.block.Block;
 
 public interface DefinesStairs

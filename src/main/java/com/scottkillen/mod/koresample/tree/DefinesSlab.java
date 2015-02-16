@@ -1,6 +1,6 @@
 package com.scottkillen.mod.koresample.tree;
 
-import com.scottkillen.mod.koresample.tree.block.SlabBlock;
+import com.scottkillen.mod.koresample.common.block.SlabBlock;
 import net.minecraft.block.Block;
 
 public interface DefinesSlab
