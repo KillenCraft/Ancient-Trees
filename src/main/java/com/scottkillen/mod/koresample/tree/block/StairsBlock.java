@@ -3,6 +3,7 @@ package com.scottkillen.mod.koresample.tree.block;
 import com.scottkillen.mod.koresample.tree.DefinesStairs;
 import net.minecraft.block.BlockStairs;
 
+@SuppressWarnings("AbstractClassNeverImplemented")
 public abstract class StairsBlock extends BlockStairs
 {
     protected StairsBlock(DefinesStairs model)
@@ -10,6 +11,12 @@ public abstract class StairsBlock extends BlockStairs
         super(model.stairsModelBlock(), model.stairsModelSubBlockIndex());
     }
 
+    @Override
+    public boolean getUseNeighborBrightness()
+    {
+        // Fix lighting bugs
+        return true;
+    }
 
     @SuppressWarnings("WeakerAccess")
     protected static String getUnwrappedUnlocalizedName(String unlocalizedName)

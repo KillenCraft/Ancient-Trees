@@ -6,6 +6,7 @@ import com.scottkillen.mod.koresample.common.util.slab.TheSingleSlabRegistry;
 import com.scottkillen.mod.koresample.tree.DefinesSlab;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -20,6 +21,7 @@ import java.util.Random;
 
 import static com.google.common.base.Preconditions.*;
 
+@SuppressWarnings("AbstractClassNeverImplemented")
 public abstract class SlabBlock extends BlockSlab
 {
     public static final int CAPACITY = 8;
@@ -55,7 +57,9 @@ public abstract class SlabBlock extends BlockSlab
     public final IIcon getIcon(int side, int metadata)
     {
         final DefinesSlab subBlock = subBlocks.get(mask(metadata));
-        return subBlock.slabModelBlock().getIcon(side, mask(metadata));
+        final Block modelBlock = subBlock.slabModelBlock();
+        final int modelBlockMetadata = subBlock.slabSubBlockIndex();
+        return modelBlock.getIcon(side, modelBlockMetadata);
     }
 
     @Override
@@ -63,6 +67,13 @@ public abstract class SlabBlock extends BlockSlab
     {
         final DefinesSlab subBlock = subBlocks.get(mask(metadata));
         return Item.getItemFromBlock(subBlock.singleSlabBlock());
+    }
+
+    @Override
+    public boolean getUseNeighborBrightness()
+    {
+        // Fix lighting bugs
+        return true;
     }
 
     @Override
