@@ -58,7 +58,7 @@ public abstract class SlabBlock extends BlockSlab
     {
         final DefinesSlab subBlock = subBlocks.get(mask(metadata));
         final Block modelBlock = subBlock.slabModelBlock();
-        final int modelBlockMetadata = subBlock.slabSubBlockIndex();
+        final int modelBlockMetadata = subBlock.slabModelSubBlockIndex();
         return modelBlock.getIcon(side, modelBlockMetadata);
     }
 
