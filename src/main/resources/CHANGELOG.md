@@ -1,4 +1,4 @@
-## Unreleased
+## 1.2.5
 - Fixed lighting bug for slabs and stairs.
 - Fixed slabs showing wrong textures.
 
