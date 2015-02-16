@@ -4,6 +4,7 @@ import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
+import com.scottkillen.mod.dendrology.compat.chisel.ChiselMod;
 import com.scottkillen.mod.dendrology.compat.forestry.ForestryMod;
 import com.scottkillen.mod.dendrology.compat.gardencollection.GardenCoreMod;
 import com.scottkillen.mod.dendrology.compat.gardencollection.GardenTreesMod;
@@ -80,6 +81,7 @@ public final class TheMod implements Versioned
         integrators.add(new ForestryMod());
         integrators.add(new GardenCoreMod());
         integrators.add(new GardenTreesMod());
+        integrators.add(new ChiselMod());
     }
 
     public Configuration configuration()
