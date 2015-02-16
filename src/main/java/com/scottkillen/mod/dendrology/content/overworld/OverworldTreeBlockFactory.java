@@ -7,6 +7,8 @@ import com.scottkillen.mod.dendrology.block.ModSaplingBlock;
 import com.scottkillen.mod.dendrology.block.ModSlabBlock;
 import com.scottkillen.mod.dendrology.block.ModStairsBlock;
 import com.scottkillen.mod.dendrology.block.ModWoodBlock;
+import com.scottkillen.mod.koresample.common.block.SlabBlock;
+import com.scottkillen.mod.koresample.common.block.StairsBlock;
 import com.scottkillen.mod.koresample.common.util.slab.SingleDoubleSlab;
 import com.scottkillen.mod.koresample.tree.DefinesLeaves;
 import com.scottkillen.mod.koresample.tree.DefinesLog;
@@ -18,8 +20,6 @@ import com.scottkillen.mod.koresample.tree.TreeBlockFactory;
 import com.scottkillen.mod.koresample.tree.block.LeavesBlock;
 import com.scottkillen.mod.koresample.tree.block.LogBlock;
 import com.scottkillen.mod.koresample.tree.block.SaplingBlock;
-import com.scottkillen.mod.koresample.tree.block.SlabBlock;
-import com.scottkillen.mod.koresample.tree.block.StairsBlock;
 import com.scottkillen.mod.koresample.tree.block.WoodBlock;
 
 public final class OverworldTreeBlockFactory implements TreeBlockFactory
