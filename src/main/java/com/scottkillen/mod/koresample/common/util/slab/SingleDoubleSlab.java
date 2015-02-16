@@ -1,7 +1,7 @@
 package com.scottkillen.mod.koresample.common.util.slab;
 
 import com.google.common.base.Objects;
-import com.scottkillen.mod.koresample.tree.block.SlabBlock;
+import com.scottkillen.mod.koresample.common.block.SlabBlock;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 public final class SingleDoubleSlab

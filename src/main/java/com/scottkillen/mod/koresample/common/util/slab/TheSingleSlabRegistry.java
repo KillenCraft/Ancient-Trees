@@ -2,7 +2,7 @@ package com.scottkillen.mod.koresample.common.util.slab;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Sets;
-import com.scottkillen.mod.koresample.tree.block.SlabBlock;
+import com.scottkillen.mod.koresample.common.block.SlabBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import java.util.Set;

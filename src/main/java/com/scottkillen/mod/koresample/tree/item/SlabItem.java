@@ -1,6 +1,6 @@
 package com.scottkillen.mod.koresample.tree.item;
 
-import com.scottkillen.mod.koresample.tree.block.SlabBlock;
+import com.scottkillen.mod.koresample.common.block.SlabBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemSlab;
 

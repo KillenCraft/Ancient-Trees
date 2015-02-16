@@ -15,7 +15,7 @@ import com.scottkillen.mod.koresample.tree.TreeTaxonomy;
 import com.scottkillen.mod.koresample.tree.block.LeavesBlock;
 import com.scottkillen.mod.koresample.tree.block.LogBlock;
 import com.scottkillen.mod.koresample.tree.block.SaplingBlock;
-import com.scottkillen.mod.koresample.tree.block.SlabBlock;
+import com.scottkillen.mod.koresample.common.block.SlabBlock;
 import com.scottkillen.mod.koresample.tree.block.WoodBlock;
 import java.util.List;
 
