@@ -112,6 +112,20 @@ tile.porffor_planks.name=Porffor Wood Planks
 tile.salyx_planks.name=Salyx Wood Planks
 tile.tuopa_planks.name=Tuopa Wood Planks
 
+tile.chisel.acemus_planks.name=Acemus Wood Planks
+tile.chisel.cedrum_planks.name=Cedrum Wood Planks
+tile.chisel.cerasu_planks.name=Kulist Wood Planks
+tile.chisel.delnas_planks.name=Delnas Wood Planks
+tile.chisel.ewcaly_planks.name=Ewcaly Wood Planks
+tile.chisel.hekur_planks.name=Hekur Wood Planks
+tile.chisel.kiparis_planks.name=Kiparis Wood Planks
+tile.chisel.kulist_planks.name=Kulist Wood Planks
+tile.chisel.lata_planks.name=Lata Wood Planks
+tile.chisel.nucis_planks.name=Nucis Wood Planks
+tile.chisel.porffor_planks.name=Porffor Wood Planks
+tile.chisel.salyx_planks.name=Salyx Wood Planks
+tile.chisel.tuopa_planks.name=Tuopa Wood Planks
+
 chisel.dendrology:planks.acemus.clean.name=Smooth acemus wood planks
 chisel.dendrology:planks.acemus.short.name=Short acemus wood planks
 chisel.dendrology:planks.acemus.fancy.name=Fancy acemus wood plank arrangement
