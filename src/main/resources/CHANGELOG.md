@@ -1,4 +1,4 @@
-## Unreleased
+## 1.2.4
 - Fixed missing localizations for chisel blocks.
 
 ## 1.2.3
