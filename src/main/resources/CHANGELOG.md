@@ -1,3 +1,6 @@
+## Unreleased
+- Improved Forestry integration.
+
 ## 1.2.4
 - Fixed missing localizations for chisel blocks.
 
