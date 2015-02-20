@@ -1,5 +1,6 @@
 ## Unreleased
 - Improved Forestry integration.
+- Removed compile time dependency on The Chisel jar.
 
 ## 1.2.4
 - Fixed missing localizations for chisel blocks.
