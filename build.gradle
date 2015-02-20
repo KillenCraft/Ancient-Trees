@@ -24,6 +24,7 @@ group = "com.scottkillen.mod"
 archivesBaseName = "AncientTrees"
 
 ext.apiForestry = "./api/ForestryAPI"
+ext.apiKore = "./api/KoreSample/src/main/java"
 
 minecraft {
     version = project.mcversion + "-" + project.forgeversion
@@ -39,14 +40,11 @@ repositories {
     }
 }
 
-dependencies {
-    compile "com.scottkillen.mod:KoreSample:${project.ext.koreversion}:deobf"
-}
-
 sourceSets {
     api {
         java {
             srcDir project.apiForestry
+            srcDir project.apiKore
         }
     }
 }
