@@ -1,6 +1,5 @@
 package com.scottkillen.mod.dendrology.compat.chisel;
 
-import com.cricketcraft.chisel.Chisel;
 import com.cricketcraft.chisel.block.BlockCarvable;
 import com.cricketcraft.chisel.carving.Carving;
 import com.cricketcraft.chisel.init.ChiselTabs;
@@ -57,7 +56,7 @@ public final class ChiselMod extends Integrator
             Carving.chisel.addVariation(name, species.woodBlock(), count, 0);
             carvablePlanks.setHarvestLevel("axe", 0);
             Carving.chisel.registerOre(name, "wood");
-            Carving.chisel.setVariationSound(name, Chisel.MOD_ID + ":chisel.wood");
+            Carving.chisel.setVariationSound(name, MOD_ID + ":chisel.wood");
             count++;
         }
     }
