@@ -1,3 +1,11 @@
+# Ancient Trees Changelog
+
+## 1.3.0
+- Improved Forestry integration.
+- Removed compile time dependency on The Chisel jar.
+- Fixed crashbug that occurs with the Aether mod.
+- All logs can now be smelted into charcoal.  ([#27](/MinecraftModArchive/Dendrology/issues/27))
+
 ## 1.2.4
 - Fixed missing localizations for chisel blocks.
 

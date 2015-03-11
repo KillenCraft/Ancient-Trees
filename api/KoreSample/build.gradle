@@ -1,0 +1,110 @@
+evaluationDependsOn(':version')
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'forge'
+apply plugin: 'maven'
+
+group = "com.scottkillen.mod"
+archivesBaseName = "KoreSample"
+
+minecraft {
+    version = project.mcversion + "-" + project.forgeversion
+    runDir = "run"
+
+    replace '${mod_version}', project.version
+}
+
+processResources
+{
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+    inputs.property "forgeversion", project.ext.forgeversion
+
+    // replace stuff in the files we want.
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.info'
+        include '**/version.properties'
+
+    	expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
+                .ext.forgeversion
+    }
+
+    // copy everything else, that we didn't do before
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*.info'
+        exclude '**/version.properties'
+    }
+}
+
+jar {
+	includeEmptyDirs = false
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from(sourceSets.main.output) {
+        include '**/*.info'
+        include '**/version.properties'
+
+        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
+                .ext.forgeversion
+    }
+
+    from(sourceSets.main.allSource) {
+        include '**/TheMod.java'
+
+        expand 'mod_version': project.version
+    }
+
+    from(sourceSets.main.allSource) {
+        exclude '**/*.info'
+        exclude '**/version.properties'
+        exclude '**/TheMod.java'
+    }
+
+    classifier = 'sources'
+}
+
+task deobfJar(type: Jar) {
+    from(sourceSets.main.output) {
+        include '**/*.info'
+        include '**/version.properties'
+
+        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
+                .ext.forgeversion
+    }
+
+    from(sourceSets.main.output) {
+        exclude '**/*.info'
+        exclude '**/version.properties'
+    }
+
+    classifier = 'deobf'
+}
+
+artifacts {
+    archives sourcesJar
+    archives deobfJar
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository (url:"file://" + projectDir + "/build/maven")
+    }
+}

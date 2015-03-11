@@ -10,9 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 
 @SuppressWarnings("MethodMayBeStatic")
-public final class Recipes
+public final class Crafter
 {
-    public void writeRecipesInCraftingManager()
+    public void writeRecipes()
     {
         initLogRecipes();
         initPlankRecipes();

@@ -41,7 +41,8 @@ public class OverworldTreeGenerator implements IWorldGenerator
                     final OverworldTreeSpecies species =
                             OverworldTreeSpecies.values()[random.nextInt(OverworldTreeSpecies.values().length)];
                     final WorldGenerator tree = species.worldTreeGenerator();
-                    final int y = random.nextInt(world.getHeightValue(x, z) * 2);
+                    final int maxY = world.getHeightValue(x, z) * 2;
+                    final int y = maxY > 0 ? random.nextInt(maxY) : 0;
                     tree.generate(world, random, x, y, z);
                 }
         }
