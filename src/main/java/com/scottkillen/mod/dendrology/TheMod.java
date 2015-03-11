@@ -12,6 +12,7 @@ import com.scottkillen.mod.dendrology.compat.minechem.MinechemMod;
 import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
 import com.scottkillen.mod.dendrology.content.crafting.Crafter;
+import com.scottkillen.mod.dendrology.content.crafting.Smelter;
 import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeGenerator;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
@@ -121,6 +122,7 @@ public final class TheMod implements Versioned
         Logger.forMod(MOD_ID).info("Adding recipes.");
         new OreDictHandler().registerBlocksWithOreDictinary();
         new Crafter().writeRecipes();
+        new Smelter().registerSmeltings();
         integrateMods(event.getModState());
     }
 
