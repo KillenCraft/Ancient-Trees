@@ -1,5 +1,8 @@
 # Ancient Trees Changelog
 
+## 1.3.1
+- All saplings are now added to chests.  ([#29](/MinecraftModArchive/Dendrology/issues/29))
+
 ## 1.3.0
 - Improved Forestry integration.
 - Removed compile time dependency on The Chisel jar.
