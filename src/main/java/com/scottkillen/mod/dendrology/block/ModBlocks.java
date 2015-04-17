@@ -14,6 +14,7 @@ import com.scottkillen.mod.koresample.common.block.SlabBlock;
 import com.scottkillen.mod.koresample.common.block.StairsBlock;
 import com.scottkillen.mod.koresample.common.util.log.Logger;
 import com.scottkillen.mod.koresample.tree.DefinesLog;
+import com.scottkillen.mod.koresample.tree.DefinesSapling;
 import com.scottkillen.mod.koresample.tree.DefinesSlab;
 import com.scottkillen.mod.koresample.tree.DefinesStairs;
 import com.scottkillen.mod.koresample.tree.block.LeavesBlock;
@@ -29,17 +30,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
 import java.util.List;
-
-import static net.minecraftforge.common.ChestGenHooks.BONUS_CHEST;
-import static net.minecraftforge.common.ChestGenHooks.DUNGEON_CHEST;
-import static net.minecraftforge.common.ChestGenHooks.MINESHAFT_CORRIDOR;
-import static net.minecraftforge.common.ChestGenHooks.PYRAMID_DESERT_CHEST;
-import static net.minecraftforge.common.ChestGenHooks.PYRAMID_JUNGLE_CHEST;
-import static net.minecraftforge.common.ChestGenHooks.PYRAMID_JUNGLE_DISPENSER;
-import static net.minecraftforge.common.ChestGenHooks.STRONGHOLD_CORRIDOR;
-import static net.minecraftforge.common.ChestGenHooks.STRONGHOLD_CROSSING;
-import static net.minecraftforge.common.ChestGenHooks.STRONGHOLD_LIBRARY;
-import static net.minecraftforge.common.ChestGenHooks.VILLAGE_BLACKSMITH;
 
 public final class ModBlocks
 {
@@ -62,27 +52,24 @@ public final class ModBlocks
 
     private static void addAllSaplingsToChests()
     {
-        Logger.forMod(TheMod.INSTANCE.modID()).info("Hiding species in chests.");
+        Logger.forMod(TheMod.INSTANCE.modID()).info("Hiding saplings in chests.");
         final Settings settings = Settings.INSTANCE;
-        for (final SaplingBlock sapling : saplingBlocks)
-        {
-            addSaplingToChest(sapling, VILLAGE_BLACKSMITH, settings.blacksmithRarity());
-            addSaplingToChest(sapling, BONUS_CHEST, settings.bonusChestRarity());
-            addSaplingToChest(sapling, PYRAMID_DESERT_CHEST, settings.desertTempleRarity());
-            addSaplingToChest(sapling, DUNGEON_CHEST, settings.dungeonRarity());
-            addSaplingToChest(sapling, PYRAMID_JUNGLE_CHEST, settings.jungleTempleRarity());
-            addSaplingToChest(sapling, PYRAMID_JUNGLE_DISPENSER, settings.jungleTempleDispenserRarity());
-            addSaplingToChest(sapling, MINESHAFT_CORRIDOR, settings.mineshaftCorridorRarity());
-            addSaplingToChest(sapling, STRONGHOLD_CORRIDOR, settings.strongholdCorridorRarity());
-            addSaplingToChest(sapling, STRONGHOLD_CROSSING, settings.strongholdCrossingRarity());
-            addSaplingToChest(sapling, STRONGHOLD_LIBRARY, settings.strongholdLibraryRarity());
-        }
+
+        for (final DefinesSapling saplingDefinition : overworldTaxonomy.saplingDefinitions())
+            for (final String chestType : Settings.chestTypes())
+                addSaplingToChest(saplingDefinition, chestType, settings.chestRarity(chestType));
     }
 
-    private static void addSaplingToChest(SaplingBlock sapling, String chestType, int rarity)
+    private static void addSaplingToChest(DefinesSapling saplingDefinition, String chestType, int rarity)
     {
-        if (rarity > 0) ChestGenHooks.getInfo(chestType)
-                .addItem(new WeightedRandomChestContent(new ItemStack(sapling), 1, 2, rarity));
+        if (rarity <= 0) return;
+
+        final ItemStack sapling =
+                new ItemStack(saplingDefinition.saplingBlock(), 1, saplingDefinition.saplingSubBlockIndex());
+        final WeightedRandomChestContent chestContent = new WeightedRandomChestContent(sapling, 1, 2, rarity);
+
+        final ChestGenHooks chestGenInfo = ChestGenHooks.getInfo(chestType);
+        chestGenInfo.addItem(chestContent);
     }
 
     public static Iterable<? extends Block> leavesBlocks() { return ImmutableList.copyOf(leavesBlocks); }

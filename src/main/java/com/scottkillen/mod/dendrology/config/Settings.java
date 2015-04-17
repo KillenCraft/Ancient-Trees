@@ -1,27 +1,68 @@
 package com.scottkillen.mod.dendrology.config;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.koresample.config.ConfigSyncable;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
+import java.util.Map;
+
+import static net.minecraftforge.common.ChestGenHooks.BONUS_CHEST;
+import static net.minecraftforge.common.ChestGenHooks.DUNGEON_CHEST;
+import static net.minecraftforge.common.ChestGenHooks.MINESHAFT_CORRIDOR;
+import static net.minecraftforge.common.ChestGenHooks.PYRAMID_DESERT_CHEST;
+import static net.minecraftforge.common.ChestGenHooks.PYRAMID_JUNGLE_CHEST;
+import static net.minecraftforge.common.ChestGenHooks.PYRAMID_JUNGLE_DISPENSER;
+import static net.minecraftforge.common.ChestGenHooks.STRONGHOLD_CORRIDOR;
+import static net.minecraftforge.common.ChestGenHooks.STRONGHOLD_CROSSING;
+import static net.minecraftforge.common.ChestGenHooks.STRONGHOLD_LIBRARY;
+import static net.minecraftforge.common.ChestGenHooks.VILLAGE_BLACKSMITH;
 
 public enum Settings implements ConfigSyncable
 {
     INSTANCE;
     public static final String CONFIG_VERSION = "2";
     private static final int MAX_OVERWORLD_TREE_GEN_RARITY = 10000;
-    private int blacksmithRarity = 0;
-    private int bonusChestRarity = 0;
-    private int desertTempleRarity = 1;
-    private int dungeonRarity = 1;
-    private int jungleTempleRarity = 1;
-    private int jungleTempleDispenserRarity = 0;
-    private int mineshaftCorridorRarity = 1;
-    private int overworldTreeGenRarity = 1;
-    private int strongholdCorridorRarity = 1;
-    private int strongholdCrossingRarity = 1;
-    private int strongholdLibraryRarity = 1;
+    private static final int DEFAULT_OVER_WORLD_TREE_GEN_RARITY = 1;
+    private static final ImmutableMap<String, Integer> DEFAULT_CHEST_RARITIES =
+            ImmutableMap.copyOf(defaultChestRarities());
+    private static final ImmutableMap<String, String> CHEST_CONFIG_NAMES = chestConfigNames();
+    private final Map<String, Integer> chestRarities = defaultChestRarities();
+    private int overworldTreeGenRarity = DEFAULT_OVER_WORLD_TREE_GEN_RARITY;
+
+    private static ImmutableMap<String, String> chestConfigNames()
+    {
+        final Map<String, String> map = Maps.newHashMap();
+        map.put(VILLAGE_BLACKSMITH, "blacksmithRarity");
+        map.put(BONUS_CHEST, "bonusChestRarity");
+        map.put(PYRAMID_DESERT_CHEST, "desertTempleRarity");
+        map.put(DUNGEON_CHEST, "dungeonRarity");
+        map.put(PYRAMID_JUNGLE_CHEST, "jungleTempleRarity");
+        map.put(PYRAMID_JUNGLE_DISPENSER, "jungleTempleDispenserRarity");
+        map.put(MINESHAFT_CORRIDOR, "mineshaftCorridorRarity");
+        map.put(STRONGHOLD_CORRIDOR, "strongholdCorridorRarity");
+        map.put(STRONGHOLD_CROSSING, "strongholdCrossingRarity");
+        map.put(STRONGHOLD_LIBRARY, "strongholdLibraryRarity");
+        return ImmutableMap.copyOf(map);
+    }
+
+    private static Map<String, Integer> defaultChestRarities()
+    {
+        Map<String, Integer> map = Maps.newHashMap();
+        map.put(VILLAGE_BLACKSMITH, 0);
+        map.put(BONUS_CHEST, 0);
+        map.put(PYRAMID_DESERT_CHEST, 1);
+        map.put(DUNGEON_CHEST, 1);
+        map.put(PYRAMID_JUNGLE_CHEST, 1);
+        map.put(PYRAMID_JUNGLE_DISPENSER, 0);
+        map.put(MINESHAFT_CORRIDOR, 1);
+        map.put(STRONGHOLD_CORRIDOR, 1);
+        map.put(STRONGHOLD_CROSSING, 1);
+        map.put(STRONGHOLD_LIBRARY, 1);
+        return map;
+    }
 
     private static int get(Configuration config, String settingName, int defaultValue)
     {
@@ -51,47 +92,41 @@ public enum Settings implements ConfigSyncable
         return StatCollector.translateToLocal("config." + TheMod.INSTANCE.modID() + ':' + settingName);
     }
 
-    public int blacksmithRarity() { return blacksmithRarity; }
+    public static Iterable<String> chestTypes()
+    {
+        return DEFAULT_CHEST_RARITIES.keySet();
+    }
 
-    public int bonusChestRarity() { return bonusChestRarity; }
+    private void loadChestRarity(Configuration config, String category, String chestType)
+    {
+        final int defaultRarity = DEFAULT_CHEST_RARITIES.get(chestType);
+        final String settingName = CHEST_CONFIG_NAMES.get(chestType);
+        final int rarity = get(config, settingName, category, defaultRarity);
+        chestRarities.put(chestType, rarity);
+    }
 
-    public int desertTempleRarity() { return desertTempleRarity; }
-
-    public int dungeonRarity() { return dungeonRarity; }
-
-    public int jungleTempleRarity() { return jungleTempleRarity; }
-
-    public int jungleTempleDispenserRarity() { return jungleTempleDispenserRarity; }
-
-    public int mineshaftCorridorRarity() { return mineshaftCorridorRarity; }
+    public int chestRarity(String chestType)
+    {
+        final Integer rarity = chestRarities.get(chestType);
+        return rarity == null ? 0 : rarity;
+    }
 
     public boolean isOverworldTreeGenEnabled() { return overworldTreeGenRarity != 0; }
 
     public int overworldTreeGenRarity() { return MAX_OVERWORLD_TREE_GEN_RARITY - overworldTreeGenRarity + 1; }
-
-    public int strongholdCorridorRarity() { return strongholdCorridorRarity; }
-
-    public int strongholdCrossingRarity() { return strongholdCrossingRarity; }
-
-    public int strongholdLibraryRarity() { return strongholdLibraryRarity; }
 
     @Override
     public void convertOldConfig(Configuration oldConfig)
     {
         if ("1".equals(oldConfig.getLoadedConfigVersion()))
         {
-            blacksmithRarity = get(oldConfig, "blacksmithRarity", blacksmithRarity);
-            bonusChestRarity = get(oldConfig, "bonusChestRarity", bonusChestRarity);
-            desertTempleRarity = get(oldConfig, "desertTempleRarity", desertTempleRarity);
-            dungeonRarity = get(oldConfig, "dungeonRarity", dungeonRarity);
-            jungleTempleRarity = get(oldConfig, "jungleTempleRarity", jungleTempleRarity);
-            jungleTempleDispenserRarity = get(oldConfig, "jungleTempleDispenserRarity", jungleTempleDispenserRarity);
-            mineshaftCorridorRarity = get(oldConfig, "mineshaftCorridorRarity", mineshaftCorridorRarity);
-            overworldTreeGenRarity =
-                    get(oldConfig, "overworldTreeGenRarity", overworldTreeGenRarity, 0, MAX_OVERWORLD_TREE_GEN_RARITY);
-            strongholdCorridorRarity = get(oldConfig, "strongholdCorridorRarity", strongholdCorridorRarity);
-            strongholdCrossingRarity = get(oldConfig, "strongholdCrossingRarity", strongholdCrossingRarity);
-            strongholdLibraryRarity = get(oldConfig, "strongholdLibraryRarity", strongholdLibraryRarity);
+            for (final String chestType : DEFAULT_CHEST_RARITIES.keySet())
+            {
+                loadChestRarity(oldConfig, Configuration.CATEGORY_GENERAL, chestType);
+            }
+
+            overworldTreeGenRarity = get(oldConfig, "overworldTreeGenRarity", DEFAULT_OVER_WORLD_TREE_GEN_RARITY, 0,
+                    MAX_OVERWORLD_TREE_GEN_RARITY);
         }
 
         syncConfig(TheMod.INSTANCE.configuration());
@@ -101,34 +136,21 @@ public enum Settings implements ConfigSyncable
     public void syncConfig(Configuration config)
     {
         final String chestsCategory = Configuration.CATEGORY_GENERAL + ".chests";
-        blacksmithRarity = get(config, "blacksmithRarity", chestsCategory, blacksmithRarity);
-        bonusChestRarity = get(config, "bonusChestRarity", chestsCategory, bonusChestRarity);
-        desertTempleRarity = get(config, "desertTempleRarity", chestsCategory, desertTempleRarity);
-        dungeonRarity = get(config, "dungeonRarity", chestsCategory, dungeonRarity);
-        jungleTempleRarity = get(config, "jungleTempleRarity", chestsCategory, jungleTempleRarity);
-        jungleTempleDispenserRarity =
-                get(config, "jungleTempleDispenserRarity", chestsCategory, jungleTempleDispenserRarity);
-        mineshaftCorridorRarity = get(config, "mineshaftCorridorRarity", chestsCategory, mineshaftCorridorRarity);
-        strongholdCorridorRarity = get(config, "strongholdCorridorRarity", chestsCategory, strongholdCorridorRarity);
-        strongholdCrossingRarity = get(config, "strongholdCrossingRarity", chestsCategory, strongholdCrossingRarity);
-        strongholdLibraryRarity = get(config, "strongholdLibraryRarity", chestsCategory, strongholdLibraryRarity);
+        for (final String chestType : chestRarities.keySet())
+        {
+            loadChestRarity(config, chestsCategory, chestType);
+        }
 
         final String worldGenCategory = Configuration.CATEGORY_GENERAL + ".worldgen";
-        overworldTreeGenRarity = get(config, "overworldTreeGenRarity", worldGenCategory, overworldTreeGenRarity, 0,
-                MAX_OVERWORLD_TREE_GEN_RARITY);
+        overworldTreeGenRarity =
+                get(config, "overworldTreeGenRarity", worldGenCategory, DEFAULT_OVER_WORLD_TREE_GEN_RARITY, 0,
+                        MAX_OVERWORLD_TREE_GEN_RARITY);
     }
 
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("blacksmithRarity", blacksmithRarity)
-                .add("bonusChestRarity", bonusChestRarity).add("desertTempleRarity", desertTempleRarity)
-                .add("dungeonRarity", dungeonRarity).add("jungleTempleRarity", jungleTempleRarity)
-                .add("jungleTempleDispenserRarity", jungleTempleDispenserRarity)
-                .add("mineshaftCorridorRarity", mineshaftCorridorRarity)
-                .add("overworldTreeGenRarity", overworldTreeGenRarity)
-                .add("strongholdCorridorRarity", strongholdCorridorRarity)
-                .add("strongholdCrossingRarity", strongholdCrossingRarity)
-                .add("strongholdLibraryRarity", strongholdLibraryRarity).toString();
+        return Objects.toStringHelper(this).add("chestRarities", chestRarities)
+                .add("overworldTreeGenRarity", overworldTreeGenRarity).toString();
     }
 }
