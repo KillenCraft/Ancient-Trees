@@ -10,8 +10,8 @@ import com.scottkillen.mod.dendrology.compat.gardencollection.GardenCoreMod;
 import com.scottkillen.mod.dendrology.compat.gardencollection.GardenTreesMod;
 import com.scottkillen.mod.dendrology.compat.minechem.MinechemMod;
 import com.scottkillen.mod.dendrology.config.Settings;
-import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
 import com.scottkillen.mod.dendrology.content.crafting.Crafter;
+import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
 import com.scottkillen.mod.dendrology.content.crafting.Smelter;
 import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeGenerator;
@@ -19,7 +19,6 @@ import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
 import com.scottkillen.mod.koresample.common.util.log.Logger;
 import com.scottkillen.mod.koresample.compat.Integrates;
-import com.scottkillen.mod.koresample.compat.versionchecker.Versioned;
 import com.scottkillen.mod.koresample.config.ConfigEventHandler;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Mod;
@@ -44,7 +43,7 @@ import java.util.List;
         "NonConstantFieldWithUpperCaseName"
 })
 @Mod(modid = TheMod.MOD_ID, name = TheMod.MOD_NAME, version = TheMod.MOD_VERSION, useMetadata = true, guiFactory = TheMod.MOD_GUI_FACTORY)
-public final class TheMod implements Versioned
+public final class TheMod
 {
     static final String MOD_ID = "dendrology";
     static final String MOD_NAME = "Ancient Trees";
@@ -113,7 +112,6 @@ public final class TheMod implements Versioned
         new ModBlocks().loadContent();
         initIntegrators();
         integrateMods(event.getModState());
-        com.scottkillen.mod.koresample.TheMod.INSTANCE.addVersionCheck(this);
     }
 
     @EventHandler
@@ -137,16 +135,9 @@ public final class TheMod implements Versioned
         new OverworldTreeGenerator().install();
     }
 
-    @Override
     public String modID()
     {
         return MOD_ID;
-    }
-
-    @Override
-    public String versionInfoURL()
-    {
-        return "https://raw.githubusercontent.com/ScottKillen/glowing-ninja/master/AncientTrees.json";
     }
 
     @Override
