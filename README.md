@@ -76,7 +76,7 @@ Some textures are from [The Painterly Pack][pack] by [Rhodox][rhodox_tweet] and 
 
 ##### APIs
 
-Included APIs are governed by the licenses under which they where released.
+Included APIs are governed by the licenses under which they were released.
 
 ##### Software
 
