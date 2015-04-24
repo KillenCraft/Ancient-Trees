@@ -2,12 +2,13 @@
 **LATEST OFFICIAL VERSION**: [Ancient Trees 1.3.1 for MC 1.7.10][latest] ([changelog][changelog.md]) ([all
 releases][releases])<br />
 *DEPENDS ON*: [Kore Sample 1.2.5 (or later) for MC 1.7.10][koresample]
+
 [latest]: https://github.com/MinecraftModArchive/Dendrology/releases/latest
 [releases]: https://github.com/MinecraftModArchive/Dendrology/releases
 [changelog.md]: https://github.com/MinecraftModArchive/Dendrology/blob/develop/src/main/resources/CHANGELOG.md
 [koresample]: http://scottk.us/KoreSample
 
-![Logo](https://raw.githubusercontent.com/MinecraftModArchive/Dendrology/develop/src/main/resources/assets/logo.png)
+![Logo](https://raw.githubusercontent.com/MinecraftModArchive/Dendrology/develop/art/logo/logo-128.png)
 
 "In the time before The Fall, the world was vibrant, teeming with life. The Fall changed the world and only a
 portion of what was has survived.
