@@ -60,7 +60,11 @@ purpose in mind.
 
 ##### Logo
 
-The logo was custom designed by [Septolum](http://septolum.deviantart.com/).
+The logo is a colorized version of ['Beech Icon'][beech-icon] by [Lorc][lorc-site] under [CC BY 3.0][ccby30].
+
+[beech-icon]: http://game-icons.net/lorc/originals/beech.html
+[lorc-site]: http://lorcblog.blogspot.com/
+[ccby30]: http://creativecommons.org/licenses/by/3.0/
 
 ##### Textures
 
