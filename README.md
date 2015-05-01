@@ -8,7 +8,7 @@ releases][releases])<br />
 [changelog.md]: https://github.com/MinecraftModArchive/Dendrology/blob/develop/src/main/resources/CHANGELOG.md
 [koresample]: http://scottk.us/KoreSample
 
-![Logo](https://raw.githubusercontent.com/MinecraftModArchive/Dendrology/develop/art/logo/logo-128.png)
+![Ancient Trees](https://raw.githubusercontent.com/MinecraftModArchive/Dendrology/develop/art/logo/logo-128.png)
 
 "In the time before The Fall, the world was vibrant, teeming with life. The Fall changed the world and only a
 portion of what was has survived.
@@ -61,7 +61,7 @@ purpose in mind.
 
 ##### Logo
 
-The logo is a colorized version of ['Beech Icon'][beech-icon] by [Lorc][lorc-site] under [CC BY 3.0][ccby30].
+The logo is a colorized version of ['Beech icon'][beech-icon] by [Lorc][lorc-site] under [CC BY 3.0][ccby30].
 
 [beech-icon]: http://game-icons.net/lorc/originals/beech.html
 [lorc-site]: http://lorcblog.blogspot.com/
