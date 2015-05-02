@@ -16,7 +16,9 @@ public class ChiselWoodSubBlockManager implements SubBlockManager
 {
 	private final String speciesName;
 	private final List<IIcon> icons = Lists.newArrayListWithCapacity(16);
-	private static final ImmutableList<String> TEXTURES = ImmutableList.of("clean", "short", "vertical", "vertical-uneven", "parquet", "fancy", "blinds", "panel-nails", "double-side", "crate", "crate-fancy", "crateex", "large", "chaotic-hor", "chaotic", "double-top");
+	private static final ImmutableList<String> TEXTURES = ImmutableList
+			.of("clean", "short", "vertical", "vertical-uneven", "parquet", "fancy", "blinds", "panel-nails",
+					"double-side", "crate", "crate-fancy", "crateex", "large", "chaotic-hor", "chaotic", "double-top");
 
 	public ChiselWoodSubBlockManager(String speciesName)
 	{

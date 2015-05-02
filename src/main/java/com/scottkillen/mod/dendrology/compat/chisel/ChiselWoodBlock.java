@@ -16,12 +16,15 @@ import java.util.List;
 
 public class ChiselWoodBlock extends Block
 {
-	private static final ImmutableList<String> VARIATIONS = ImmutableList.of("clean", "short", "vertical", "uneven", "parquet", "fancy", "blinds", "panel", "double", "crate", "cratefancy", "scaffold", "large", "chaotic", "verticalchaotic");
+	private static final ImmutableList<String> VARIATIONS = ImmutableList
+			.of("clean", "short", "vertical", "uneven", "parquet", "fancy", "blinds", "panel", "double", "crate",
+					"cratefancy", "scaffold", "large", "chaotic", "verticalchaotic");
 
 	private final SubBlockManager subBlocks;
 	private final String speciesName;
 
-	public ChiselWoodBlock(String speciesName) {
+	public ChiselWoodBlock(String speciesName)
+	{
 		super(Material.wood);
 		subBlocks = new ChiselWoodSubBlockManager(speciesName);
 		setHardness(2.0f);
@@ -33,29 +36,34 @@ public class ChiselWoodBlock extends Block
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int metadata) {
+	public IIcon getIcon(int side, int metadata)
+	{
 		return subBlocks.getIcon(side, metadata);
 	}
 
 	@Override
-	public int damageDropped(int i) {
+	public int damageDropped(int i)
+	{
 		return i;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister register) {
+	public void registerBlockIcons(IIconRegister register)
+	{
 		subBlocks.registerIcons(register);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item item, CreativeTabs tabs, List list) {
+	public void getSubBlocks(Item item, CreativeTabs tabs, List list)
+	{
 		subBlocks.getSubBlocks(item, tabs, list);
 	}
 
 	public String getVariationName(int i)
 	{
-		return StatCollector.translateToLocal(String.format("chisel.%s:planks.%s.%s.name", TheMod.INSTANCE.modID(), speciesName, VARIATIONS.get(i)));
+		return StatCollector.translateToLocal(
+				String.format("chisel.%s:planks.%s.%s.name", TheMod.INSTANCE.modID(), speciesName, VARIATIONS.get(i)));
 	}
 }
