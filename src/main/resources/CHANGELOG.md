@@ -1,5 +1,8 @@
 # Ancient Trees Changelog
 
+## Under development
+- Updated to new Chisel API for integration with Chisel.
+
 ## 1.3.1
 - All saplings are now added to chests.  ([#29](/MinecraftModArchive/Dendrology/issues/29))
 
