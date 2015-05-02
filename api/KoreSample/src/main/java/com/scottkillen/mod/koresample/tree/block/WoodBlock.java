@@ -71,6 +71,7 @@ public abstract class WoodBlock extends BlockWood
             subblocks.add(new ItemStack(item, 1, i));
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public final void registerBlockIcons(IIconRegister iconRegister)
     {

@@ -1,18 +1,20 @@
 package com.scottkillen.mod.dendrology.compat.chisel;
 
-import com.cricketcraft.chisel.block.BlockCarvable;
-import com.cricketcraft.chisel.carving.Carving;
-import com.cricketcraft.chisel.init.ChiselTabs;
-import com.google.common.collect.ImmutableList;
+import com.cricketcraft.chisel.api.carving.CarvableHelper;
+import com.cricketcraft.chisel.api.carving.CarvingUtils;
+import com.cricketcraft.chisel.api.carving.ICarvingRegistry;
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.koresample.compat.Integrator;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Optional.Method;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.StatCollector;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
+import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
 public final class ChiselMod extends Integrator
 {
@@ -25,58 +27,45 @@ public final class ChiselMod extends Integrator
         loadBlocks();
     }
 
+    private static CreativeTabs getChiselCreativeTab()
+    {
+        for (final CreativeTabs tab : CreativeTabs.creativeTabArray)
+            if (tab.getTabLabel().equals("tabWoodChiselBlocks"))
+                return tab;
+
+        return TheMod.INSTANCE.creativeTab();
+    }
+
     @Method(modid = MOD_ID)
     private static void loadBlocks()
     {
-        final ImmutableList<String> variation = ImmutableList
-                .of("clean", "Short", "fancy", "panel", "double", "crate", "cratefancy", "large", "vertical", "uneven",
-                        "parquet", "blinds", "scaffold", "chaotic", "verticalchaotic");
-        final ImmutableList<Integer> metadata = ImmutableList.of(1, 2, 6, 8, 9, 10, 11, 13, 3, 4, 5, 7, 12, 14, 15);
-        final ImmutableList<String> texture = ImmutableList
-                .of("clean", "short", "fancy", "panel-nails", "double", "crate", "crate-fancy", "large", "vertical",
-                        "vertical-uneven", "parquet", "blinds", "crateex", "chaotic-hor", "chaotic");
-
-        int count = 0;
         for (final OverworldTreeSpecies species : OverworldTreeSpecies.values())
         {
             final String name = String.format("%s%s", species.speciesName(), "_planks");
 
-            final BlockCarvable carvablePlanks = newCarvablePlank();
-            carvablePlanks.setCreativeTab(ChiselTabs.tabWoodChiselBlocks).setHardness(2.0F).setResistance(5.0F)
-                    .setStepSound(Block.soundTypeWood);
             final String speciesName = species.speciesName();
-            carvablePlanks.carverHelper.setChiselBlockName(planksChiselBlockName(speciesName));
-            for (int i = 0; i < variation.size(); i++)
-            {
-                carvablePlanks.carverHelper
-                        .addVariation(planksChiselVariationName(speciesName, variation.get(i)), metadata.get(i),
-                                "planks-" + speciesName + '/' + texture.get(i));
-            }
-            carvablePlanks.carverHelper.registerAll(carvablePlanks, name);
-            Carving.chisel.addVariation(name, species.woodBlock(), count, 0);
-            carvablePlanks.setHarvestLevel("axe", 0);
-            Carving.chisel.registerOre(name, "wood");
-            Carving.chisel.setVariationSound(name, MOD_ID + ":chisel.wood");
-            count++;
+            final ChiselWoodBlock carvablePlanks = new ChiselWoodBlock(speciesName);
+
+            CarvableHelper carverHelper = new CarvableHelper(carvablePlanks);
+
+            for (int i = 0; i < 15; i++)
+                carverHelper.addVariation(carvablePlanks.getVariationName(i), i, carvablePlanks);
+
+            carverHelper.registerAll(carvablePlanks, name);
+
+            final ICarvingRegistry chisel = CarvingUtils.getChiselRegistry();
+
+            chisel.addVariation(name, species.woodBlock(), species.woodSubBlockIndex(), 0);
+
+            OreDictionary.registerOre("plankWood", new ItemStack(carvablePlanks, 1, WILDCARD_VALUE));
+
+            carvablePlanks.setCreativeTab(getChiselCreativeTab());
+
+            Blocks.fire.setFireInfo(carvablePlanks, 5, 20);
+
+            chisel.setVariationSound(name, MOD_ID + ":chisel.wood");
         }
     }
-
-    @Method(modid = MOD_ID)
-    private static String planksChiselBlockName(String speciesName)
-    {
-        return StatCollector
-                .translateToLocal(String.format("tile.%s:wood.%s.name", TheMod.INSTANCE.modID(), speciesName));
-    }
-
-    @Method(modid = MOD_ID)
-    private static String planksChiselVariationName(String speciesName, String variation)
-    {
-        return StatCollector.translateToLocal(
-                String.format("chisel.%s:planks.%s.%s.name", TheMod.INSTANCE.modID(), speciesName, variation));
-    }
-
-    @Method(modid = MOD_ID)
-    private static BlockCarvable newCarvablePlank() { return new BlockCarvable(Material.wood); }
 
     @Override
     public void doIntegration(ModState modState)
