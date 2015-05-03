@@ -16,54 +16,54 @@ import java.util.List;
 
 public class ChiselWoodBlock extends Block
 {
-	private static final ImmutableList<String> VARIATIONS = ImmutableList
-			.of("clean", "short", "vertical", "uneven", "parquet", "fancy", "blinds", "panel", "double", "crate",
-					"cratefancy", "scaffold", "large", "chaotic", "verticalchaotic");
+    private static final ImmutableList<String> VARIATIONS = ImmutableList
+            .of("clean", "short", "vertical", "uneven", "parquet", "fancy", "blinds", "panel", "double", "crate",
+                    "cratefancy", "scaffold", "large", "chaotic", "verticalchaotic");
 
-	private final SubBlockManager subBlocks;
-	private final String speciesName;
+    private final SubBlockManager subBlocks;
+    private final String speciesName;
 
-	public ChiselWoodBlock(String speciesName)
-	{
-		super(Material.wood);
-		subBlocks = new ChiselWoodSubBlockManager(speciesName);
-		setHardness(2.0f);
-		setResistance(5.0f);
-		setStepSound(soundTypeWood);
-		setHarvestLevel("axe", 0);
-		this.speciesName = speciesName;
-	}
+    public ChiselWoodBlock(String speciesName)
+    {
+        super(Material.wood);
+        subBlocks = new ChiselWoodSubBlockManager(speciesName);
+        setHardness(2.0f);
+        setResistance(5.0f);
+        setStepSound(soundTypeWood);
+        setHarvestLevel("axe", 0);
+        this.speciesName = speciesName;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int metadata)
-	{
-		return subBlocks.getIcon(side, metadata);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int side, int metadata)
+    {
+        return subBlocks.getIcon(side, metadata);
+    }
 
-	@Override
-	public int damageDropped(int i)
-	{
-		return i;
-	}
+    @Override
+    public int damageDropped(int i)
+    {
+        return i;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister register)
-	{
-		subBlocks.registerIcons(register);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister register)
+    {
+        subBlocks.registerIcons(register);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item item, CreativeTabs tabs, List list)
-	{
-		subBlocks.getSubBlocks(item, tabs, list);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item item, CreativeTabs tabs, List list)
+    {
+        subBlocks.getSubBlocks(item, tabs, list);
+    }
 
-	public String getVariationName(int i)
-	{
-		return StatCollector.translateToLocal(
-				String.format("chisel.%s:planks.%s.%s.name", TheMod.INSTANCE.modID(), speciesName, VARIATIONS.get(i)));
-	}
+    public String getVariationName(int i)
+    {
+        return StatCollector.translateToLocal(
+                String.format("chisel.%s:planks.%s.%s.name", TheMod.INSTANCE.modID(), speciesName, VARIATIONS.get(i)));
+    }
 }
