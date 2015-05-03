@@ -14,7 +14,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import java.util.List;
 
-public class ChiselWoodBlock extends Block
+public final class ChiselWoodBlock extends Block
 {
     private static final ImmutableList<String> VARIATIONS = ImmutableList
             .of("clean", "short", "vertical", "uneven", "parquet", "fancy", "blinds", "panel", "double", "crate",

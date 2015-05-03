@@ -6,6 +6,7 @@ import com.cricketcraft.chisel.api.carving.ICarvingRegistry;
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.koresample.compat.Integrator;
+import com.scottkillen.mod.koresample.tree.block.WoodBlock;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Optional.Method;
@@ -27,10 +28,25 @@ public final class ChiselMod extends Integrator
         loadBlocks();
     }
 
+    private static void assignAttributes(ChiselWoodBlock chiselWoodBlock)
+    {
+        OreDictionary.registerOre("plankWood", new ItemStack(chiselWoodBlock, 1, WILDCARD_VALUE));
+        chiselWoodBlock.setCreativeTab(getChiselCreativeTab());
+        Blocks.fire.setFireInfo(chiselWoodBlock, 5, 20);
+    }
+
+    @Method(modid = MOD_ID)
+    private static void finalizeVariationGroup(WoodBlock woodBlock, int subBlockIndex, String variationGroupName)
+    {
+        final ICarvingRegistry chisel = CarvingUtils.getChiselRegistry();
+        chisel.addVariation(variationGroupName, woodBlock, subBlockIndex, 0);
+        chisel.setVariationSound(variationGroupName, MOD_ID + ":chisel.wood");
+    }
+
     private static CreativeTabs getChiselCreativeTab()
     {
         for (final CreativeTabs tab : CreativeTabs.creativeTabArray)
-            if (tab.getTabLabel().equals("tabWoodChiselBlocks")) return tab;
+            if ("tabWoodChiselBlocks".equals(tab.getTabLabel())) return tab;
 
         return TheMod.INSTANCE.creativeTab();
     }
@@ -40,30 +56,27 @@ public final class ChiselMod extends Integrator
     {
         for (final OverworldTreeSpecies species : OverworldTreeSpecies.values())
         {
-            final String name = String.format("%s%s", species.speciesName(), "_planks");
-
             final String speciesName = species.speciesName();
-            final ChiselWoodBlock carvablePlanks = new ChiselWoodBlock(speciesName);
+            final String variationGroupName = String.format("%s%s", speciesName, "_planks");
+            final ChiselWoodBlock chiselWoodBlock = newChiselWoodBlock(speciesName);
 
-            CarvableHelper carverHelper = new CarvableHelper(carvablePlanks);
-
-            for (int i = 0; i < 15; i++)
-                carverHelper.addVariation(carvablePlanks.getVariationName(i), i, carvablePlanks);
-
-            carverHelper.registerAll(carvablePlanks, name);
-
-            final ICarvingRegistry chisel = CarvingUtils.getChiselRegistry();
-
-            chisel.addVariation(name, species.woodBlock(), species.woodSubBlockIndex(), 0);
-
-            OreDictionary.registerOre("plankWood", new ItemStack(carvablePlanks, 1, WILDCARD_VALUE));
-
-            carvablePlanks.setCreativeTab(getChiselCreativeTab());
-
-            Blocks.fire.setFireInfo(carvablePlanks, 5, 20);
-
-            chisel.setVariationSound(name, MOD_ID + ":chisel.wood");
+            registerVariations(variationGroupName, chiselWoodBlock);
+            finalizeVariationGroup(species.woodBlock(), species.woodSubBlockIndex(), variationGroupName);
+            assignAttributes(chiselWoodBlock);
         }
+    }
+
+    private static ChiselWoodBlock newChiselWoodBlock(String speciesName) {return new ChiselWoodBlock(speciesName);}
+
+    @Method(modid = MOD_ID)
+    private static void registerVariations(String variationGroupName, ChiselWoodBlock chiselWoodBlock)
+    {
+        final CarvableHelper carvableHelper = new CarvableHelper(chiselWoodBlock);
+
+        for (int i = 0; i < 15; i++)
+            carvableHelper.addVariation(chiselWoodBlock.getVariationName(i), i, chiselWoodBlock);
+
+        carvableHelper.registerAll(chiselWoodBlock, variationGroupName);
     }
 
     @Override
