@@ -1,5 +1,9 @@
 # Ancient Trees Changelog
 
+## Unreleased
+- Saplings can now be planted, fertilized and harvested in MineFactory reloaded machines. (Though you should
+  be careful with larger trees!) 
+
 ## 1.3.1
 - All saplings are now added to chests.  ([#29](/MinecraftModArchive/Dendrology/issues/29))
 
