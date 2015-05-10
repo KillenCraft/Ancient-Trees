@@ -4,7 +4,6 @@ import com.jaquadro.minecraft.gardencore.api.SaplingRegistry;
 import com.jaquadro.minecraft.gardencore.api.WoodRegistry;
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
-import com.scottkillen.mod.koresample.common.util.log.Logger;
 import com.scottkillen.mod.koresample.compat.Integrator;
 import com.scottkillen.mod.koresample.tree.block.LogBlock;
 import cpw.mods.fml.common.Loader;
@@ -20,7 +19,7 @@ public final class GardenCoreMod extends Integrator
     @Method(modid = MOD_ID)
     private static void registerWood()
     {
-        Logger.forMod(TheMod.INSTANCE.modID()).info("Registering wood with GardenCore.");
+        TheMod.logger().info("Registering wood with GardenCore.");
 
         final WoodRegistry woodReg = WoodRegistry.instance();
         final SaplingRegistry saplingReg = SaplingRegistry.instance();

@@ -6,7 +6,6 @@ import com.jaquadro.minecraft.gardentrees.world.gen.OrnamentalTreeFactory;
 import com.jaquadro.minecraft.gardentrees.world.gen.OrnamentalTreeRegistry;
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
-import com.scottkillen.mod.koresample.common.util.log.Logger;
 import com.scottkillen.mod.koresample.compat.Integrator;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
@@ -21,7 +20,7 @@ public final class GardenTreesMod extends Integrator
     @Method(modid = MOD_ID)
     private static void registerSmallTrees()
     {
-        Logger.forMod(TheMod.INSTANCE.modID()).info("Registering small trees with GardenTrees.");
+        TheMod.logger().info("Registering small trees with GardenTrees.");
 
         final SaplingRegistry saplingReg = SaplingRegistry.instance();
 

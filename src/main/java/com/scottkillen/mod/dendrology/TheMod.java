@@ -46,7 +46,7 @@ import java.util.List;
 @Mod(modid = TheMod.MOD_ID, name = TheMod.MOD_NAME, version = TheMod.MOD_VERSION, useMetadata = true, guiFactory = TheMod.MOD_GUI_FACTORY)
 public final class TheMod
 {
-    static final String MOD_ID = "dendrology";
+    public static final String MOD_ID = "dendrology";
     static final String MOD_NAME = "Ancient Trees";
     static final String MOD_VERSION = "${mod_version}";
     static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
@@ -74,6 +74,8 @@ public final class TheMod
     private Optional<ConfigEventHandler> configEventHandler = Optional.absent();
 
     public static String getResourcePrefix() { return RESOURCE_PREFIX; }
+
+    public static Logger logger() { return Logger.forMod(MOD_ID); }
 
     private void initIntegrators()
     {
@@ -135,11 +137,6 @@ public final class TheMod
         integrators.clear();
 
         new OverworldTreeGenerator().install();
-    }
-
-    public String modID()
-    {
-        return MOD_ID;
     }
 
     @Override

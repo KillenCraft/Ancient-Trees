@@ -64,15 +64,14 @@ public final class ChiselMod extends Integrator
     @Method(modid = MOD_ID)
     private static String planksChiselBlockName(String speciesName)
     {
-        return StatCollector
-                .translateToLocal(String.format("tile.%s:wood.%s.name", TheMod.INSTANCE.modID(), speciesName));
+        return StatCollector.translateToLocal(String.format("tile.%s:wood.%s.name", TheMod.MOD_ID, speciesName));
     }
 
     @Method(modid = MOD_ID)
     private static String planksChiselVariationName(String speciesName, String variation)
     {
-        return StatCollector.translateToLocal(
-                String.format("chisel.%s:planks.%s.%s.name", TheMod.INSTANCE.modID(), speciesName, variation));
+        return StatCollector
+                .translateToLocal(String.format("chisel.%s:planks.%s.%s.name", TheMod.MOD_ID, speciesName, variation));
     }
 
     @Method(modid = MOD_ID)

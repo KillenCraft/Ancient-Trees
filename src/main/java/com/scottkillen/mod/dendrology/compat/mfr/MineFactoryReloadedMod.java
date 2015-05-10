@@ -2,7 +2,6 @@ package com.scottkillen.mod.dendrology.compat.mfr;
 
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
-import com.scottkillen.mod.koresample.common.util.log.Logger;
 import com.scottkillen.mod.koresample.compat.Integrator;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
@@ -38,7 +37,7 @@ public final class MineFactoryReloadedMod extends Integrator
     @Method(modid = MOD_ID)
     private static void registerLeaves()
     {
-        Logger.forMod(TheMod.INSTANCE.modID()).info("Registering leaves with MineFactory Reloaded.");
+        reportProgress("leaves");
 
         for (final BlockLeaves leavesBlock : ModBlocks.leavesBlocks())
         {
@@ -52,7 +51,7 @@ public final class MineFactoryReloadedMod extends Integrator
     @Method(modid = MOD_ID)
     private static void registerLogs()
     {
-        Logger.forMod(TheMod.INSTANCE.modID()).info("Registering logs with MineFactory Reloaded.");
+        reportProgress("logs");
 
         for (final BlockLog woodBlock : ModBlocks.logBlocks())
             FactoryRegistry.sendMessage("registerHarvestable", new MFRWood(woodBlock));
@@ -62,7 +61,7 @@ public final class MineFactoryReloadedMod extends Integrator
     @Method(modid = MOD_ID)
     private static void registerSaplings()
     {
-        Logger.forMod(TheMod.INSTANCE.modID()).info("Registering saplings with MineFactory Reloaded.");
+        reportProgress("saplings");
 
         for (final BlockSapling saplingBlock : ModBlocks.saplingBlocks())
         {
@@ -70,6 +69,11 @@ public final class MineFactoryReloadedMod extends Integrator
             FactoryRegistry.sendMessage("registerPlantable", mfrSapling);
             FactoryRegistry.sendMessage("registerFertilizable", mfrSapling);
         }
+    }
+
+    private static void reportProgress(String phase)
+    {
+        TheMod.logger().info("Registering %s with MineFactory Reloaded.", phase);
     }
 
     private static void init()

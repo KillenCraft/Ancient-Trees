@@ -12,7 +12,6 @@ import com.scottkillen.mod.dendrology.item.ModSlabItem;
 import com.scottkillen.mod.dendrology.item.ModWoodItem;
 import com.scottkillen.mod.koresample.common.block.SlabBlock;
 import com.scottkillen.mod.koresample.common.block.StairsBlock;
-import com.scottkillen.mod.koresample.common.util.log.Logger;
 import com.scottkillen.mod.koresample.tree.DefinesLog;
 import com.scottkillen.mod.koresample.tree.DefinesSapling;
 import com.scottkillen.mod.koresample.tree.DefinesSlab;
@@ -56,7 +55,7 @@ public final class ModBlocks
     @SuppressWarnings("MethodWithMultipleLoops")
     private static void addAllSaplingsToChests()
     {
-        Logger.forMod(TheMod.INSTANCE.modID()).info("Hiding saplings in chests.");
+        TheMod.logger().info("Hiding saplings in chests.");
         final Settings settings = Settings.INSTANCE;
 
         for (final DefinesSapling saplingDefinition : overworldTaxonomy.saplingDefinitions())
@@ -80,7 +79,7 @@ public final class ModBlocks
 
     private static void loadOverWorldContent()
     {
-        Logger.forMod(TheMod.INSTANCE.modID()).info("Loading overworld species.");
+        TheMod.logger().info("Loading overworld species.");
         final TreeSpeciesLoader overworldContent = new TreeSpeciesLoader(overworldTaxonomy);
         overworldContent.load(new OverworldTreeBlockFactory());
     }

@@ -35,7 +35,7 @@ public enum CerasuColorizer implements IResourceManagerReloadListener
         {
             //noinspection AssignmentToStaticFieldFromInstanceMethod
             buffer = TextureUtil.readImageData(resourceManager,
-                    new ResourceLocation(TheMod.INSTANCE.modID(), "textures/colormap/cerasu.png"));
+                    new ResourceLocation(TheMod.MOD_ID, "textures/colormap/cerasu.png"));
         } catch (final IOException ignored)
         {
         }
