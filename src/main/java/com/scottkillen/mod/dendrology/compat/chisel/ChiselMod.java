@@ -25,6 +25,7 @@ public final class ChiselMod extends Integrator
         loadBlocks();
     }
 
+    @SuppressWarnings("MethodWithMultipleLoops")
     @Method(modid = MOD_ID)
     private static void loadBlocks()
     {
