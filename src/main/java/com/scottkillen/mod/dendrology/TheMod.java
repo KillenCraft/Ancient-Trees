@@ -17,6 +17,7 @@ import com.scottkillen.mod.dendrology.content.crafting.Smelter;
 import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeGenerator;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
+import com.scottkillen.mod.dendrology.item.ModItems;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
 import com.scottkillen.mod.koresample.common.util.log.Logger;
 import com.scottkillen.mod.koresample.compat.Integrates;
@@ -114,6 +115,7 @@ public final class TheMod
         configEventHandler.get().activate();
 
         new ModBlocks().loadContent();
+        new ModItems().loadContent();
         initIntegrators();
         integrateMods(event.getModState());
     }

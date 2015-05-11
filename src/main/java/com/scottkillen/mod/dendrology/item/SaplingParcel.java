@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import java.util.List;
@@ -16,14 +17,14 @@ public class SaplingParcel extends Item
     public SaplingParcel()
     {
         setCreativeTab(TheMod.INSTANCE.creativeTab());
-        setUnlocalizedName("saplingParcel");
+        setUnlocalizedName("parcel");
     }
 
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer player, List information, boolean unused)
     {
         //noinspection unchecked
-        information.add(StatCollector.translateToLocal(String.format("%s%s", TheMod.getResourcePrefix(), "parcel.tooltip"));
+        information.add(StatCollector.translateToLocal(String.format("%s%s", TheMod.getResourcePrefix(), "parcel.tooltip")));
     }
 
     private static String getUnwrappedUnlocalizedName(String unlocalizedName)
@@ -41,8 +42,12 @@ public class SaplingParcel extends Item
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
-        TODO
-        return super.onItemRightClick(itemStack, world, player);
+        if (!world.isRemote)
+        {
+            player.addChatMessage(new ChatComponentText("Parcel opened!"));
+            itemStack.stackSize--;
+        }
+        return itemStack;
     }
 
     @Override
