@@ -89,7 +89,7 @@ public enum Settings implements ConfigSyncable
 
     private static String getLocalizedComment(String settingName)
     {
-        return StatCollector.translateToLocal("config." + TheMod.INSTANCE.modID() + ':' + settingName);
+        return StatCollector.translateToLocal("config." + TheMod.MOD_ID + ':' + settingName);
     }
 
     public static Iterable<String> chestTypes()

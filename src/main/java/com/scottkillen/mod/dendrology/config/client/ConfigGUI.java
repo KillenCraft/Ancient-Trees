@@ -14,7 +14,7 @@ public final class ConfigGUI extends GuiConfig
 {
     public ConfigGUI(GuiScreen parent)
     {
-        super(parent, getConfigElements(), TheMod.INSTANCE.modID(), false, false,
+        super(parent, getConfigElements(), TheMod.MOD_ID, false, false,
                 GuiConfig.getAbridgedConfigPath(TheMod.INSTANCE.configuration().toString()));
     }
 

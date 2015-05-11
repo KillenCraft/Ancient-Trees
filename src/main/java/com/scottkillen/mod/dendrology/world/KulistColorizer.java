@@ -35,7 +35,7 @@ public enum KulistColorizer implements IResourceManagerReloadListener
         {
             //noinspection AssignmentToStaticFieldFromInstanceMethod
             buffer = TextureUtil.readImageData(resourceManager,
-                    new ResourceLocation(TheMod.INSTANCE.modID(), "textures/colormap/kulist.png"));
+                    new ResourceLocation(TheMod.MOD_ID, "textures/colormap/kulist.png"));
         } catch (final IOException ignored)
         {
         }

@@ -3,10 +3,10 @@
 releases][releases])<br />
 *DEPENDS ON*: [Kore Sample 1.2.5 (or later) for MC 1.7.10][koresample]
 
-[latest]: https://github.com/MinecraftModArchive/Dendrology/releases/latest
+[latest]: http://scottk.us/AncientTreesMod
 [releases]: https://github.com/MinecraftModArchive/Dendrology/releases
 [changelog.md]: https://github.com/MinecraftModArchive/Dendrology/blob/develop/src/main/resources/CHANGELOG.md
-[koresample]: http://scottk.us/KoreSample
+[koresample]: http://scottk.us/KoreSampleMod
 
 ![Ancient Trees](https://raw.githubusercontent.com/MinecraftModArchive/Dendrology/develop/art/logo/logo-128.png)
 

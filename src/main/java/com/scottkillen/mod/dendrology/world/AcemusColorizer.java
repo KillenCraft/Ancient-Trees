@@ -50,7 +50,7 @@ public enum AcemusColorizer implements IResourceManagerReloadListener
         {
             //noinspection AssignmentToStaticFieldFromInstanceMethod
             buffer = TextureUtil.readImageData(resourceManager,
-                    new ResourceLocation(TheMod.INSTANCE.modID(), "textures/colormap/acemus.png"));
+                    new ResourceLocation(TheMod.MOD_ID, "textures/colormap/acemus.png"));
         } catch (final IOException ignored)
         {
         }
