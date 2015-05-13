@@ -332,7 +332,7 @@ chisel.dendrology:planks.tuopa.parquet.name=Tuopa wood parquet
 chisel.dendrology:planks.tuopa.blinds.name=Tuopa wood plank blinds
 chisel.dendrology:planks.tuopa.scaffold.name=Tuopa wood scaffold
 chisel.dendrology:planks.tuopa.chaotic.name=Tuopa wood planks in disarray
-chisel.dendrology:planks.tuopa.verticalchaotic.name=Vetical tuopa wood planks in disarray
+chisel.dendrology:planks.tuopa.verticalchaotic.name=Vertical tuopa wood planks in disarray
 
 # Creatibe Tabs
 itemGroup.dendrology=Ancient Trees
@@ -349,3 +349,7 @@ config.dendrology:overworldTreeGenRarity=How often ancient trees are found growi
 config.dendrology:strongholdCorridorRarity=How often ancient saplings are found in stronghold corridor chests. 0 disables. Higher values are less rare.
 config.dendrology:strongholdCrossingRarity=How often ancient saplings are found in stronghold crossing chests. 0 disables. Higher values are less rare.
 config.dendrology:strongholdLibraryRarity=How often ancient saplings are found in stronghold library chests. 0 disables. Higher values are less rare.
+
+# Parcel contents
+dendrology:parcel.empty=The empty parcel crumbles into dust.
+dendrology:parcel.full=Opening the parcel reveals something hidden by the Ancients. (%s)

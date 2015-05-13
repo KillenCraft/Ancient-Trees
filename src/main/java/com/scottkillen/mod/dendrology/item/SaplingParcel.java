@@ -1,9 +1,11 @@
 package com.scottkillen.mod.dendrology.item;
 
 import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.dendrology.content.ParcelManager;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -44,7 +46,22 @@ public class SaplingParcel extends Item
     {
         if (!world.isRemote)
         {
-            player.addChatMessage(new ChatComponentText("Parcel opened!"));
+            final ItemStack content = ParcelManager.INSTANCE.randomItem();
+
+            final String message;
+            if (content == null)
+                message = StatCollector.translateToLocal("dendrology:parcel.empty");
+            else
+            {
+                final String itemName = StatCollector.translateToLocal(itemStack.getItem().getUnlocalizedName(itemStack));
+                message = StatCollector.translateToLocalFormatted("dendrology:parcel.full", itemName);
+
+                final EntityItem entityItem = player.dropPlayerItemWithRandomChoice(content, false);
+                entityItem.delayBeforeCanPickup = 0;
+                entityItem.func_145797_a(player.getCommandSenderName());
+            }
+
+            player.addChatMessage(new ChatComponentText(message));
             itemStack.stackSize--;
         }
         return itemStack;
