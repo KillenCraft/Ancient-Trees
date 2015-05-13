@@ -15,6 +15,10 @@ public class WeightedSet<T>  implements Collection<T>
     private final Random random;
     private final Multiset<T> elements = HashMultiset.create();
 
+    public static <T> WeightedSet<T> newWeightedSet() { return new WeightedSet<T>(); }
+
+    public static <T> WeightedSet<T> newWeightedSet(Random random) { return new WeightedSet<T>(random); }
+
     public WeightedSet()
     {
         this(new Random());
