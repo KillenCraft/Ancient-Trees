@@ -73,15 +73,15 @@ public enum TextureType {
 		
 		@Override
 		protected IIcon getIcon(ICarvingVariation variation, Object cachedObject, IBlockAccess world, int x, int y, int z, int side, int meta) {
-			Pair<IIcon, TextureSubmap> data = (Pair<IIcon, TextureSubmap>) cachedObject;
+			Pair<TextureSubmap, IIcon> data = (Pair<TextureSubmap, IIcon>) cachedObject;
 			if (side < 2)
-				return data.getLeft();
+				return data.getRight();
 
 			Block block = world.getBlock(x, y, z);
 			boolean topConnected = ctm.isConnected(world, x, y + 1, z, side, block, meta);
 			boolean botConnected = ctm.isConnected(world, x, y - 1, z, side, block, meta);
 
-			TextureSubmap map = data.getRight();
+			TextureSubmap map = data.getLeft();
 			if (topConnected && botConnected)
 				return map.getSubIcon(0, 1);
 			if (topConnected && !botConnected)
@@ -120,9 +120,9 @@ public enum TextureType {
 		
 		@Override
 		protected IIcon getIcon(ICarvingVariation variation, Object cachedObject, IBlockAccess world, int x, int y, int z, int side, int meta) {
-			Pair<IIcon, TextureSubmap> data = (Pair<IIcon, TextureSubmap>) cachedObject;
+			Pair<TextureSubmap, IIcon> data = (Pair<TextureSubmap, IIcon>) cachedObject;
 			if (side < 2)
-				return data.getLeft();
+				return data.getRight();
 
 			Block block = ctm.getBlockOrFacade(world, x, y, z, side);
 
@@ -138,7 +138,7 @@ public enum TextureType {
 				n = ctm.isConnected(world, x, y, z + 1, side, block, meta);
 			}
 			
-			TextureSubmap map = data.getRight();
+			TextureSubmap map = data.getLeft();
 			if (p && n)
 				return map.getSubIcon(1, 0);
 			else if (p)
@@ -234,9 +234,6 @@ public enum TextureType {
 			RenderBlocksCTM ret = theRenderBlocksCTM;
 			Triple<?, TextureSubmap, TextureSubmap> data = (Triple<?, TextureSubmap, TextureSubmap>) cachedObject;
 			ret.blockAccess = world;
-			ret.renderMaxX = 1.0;
-			ret.renderMaxY = 1.0;
-			ret.renderMaxZ = 1.0;
 
 			ret.submap = data.getMiddle();
 			ret.submapSmall = data.getRight();
@@ -319,11 +316,11 @@ public enum TextureType {
 		}
 	}
 	
-	public ISubmapManager<?> createManagerFor(ICarvingVariation variation, String texturePath) {
+	public ISubmapManager createManagerFor(ICarvingVariation variation, String texturePath) {
 		return new SubmapManagerDefault(this, variation, texturePath);
 	}
 	
-	public ISubmapManager<?> createManagerFor(ICarvingVariation variation, Block block, int meta) {
+	public ISubmapManager createManagerFor(ICarvingVariation variation, Block block, int meta) {
 		return new SubmapManagerExistingIcon(this, variation, block, meta);
 	}
 	
@@ -342,7 +339,7 @@ public enum TextureType {
 
 	@SideOnly(Side.CLIENT)
 	protected RenderBlocks createRenderContext(RenderBlocks rendererOld, IBlockAccess world, Object cachedObject) {
-		return null;
+		return rendererOld;
 	}
 
 	public static TextureType getTypeFor(CarvableHelper inst, String modid, String path) {
@@ -375,7 +372,7 @@ public enum TextureType {
 	}
 	
 	@SideOnly(Side.CLIENT)
-	private abstract static class SubmapManagerBase<T extends RenderBlocks> implements ISubmapManager<T> {
+	private abstract static class SubmapManagerBase implements ISubmapManager {
 		protected final TextureType type;
 		protected ICarvingVariation variation;
 		protected Object cachedObject;
@@ -396,9 +393,11 @@ public enum TextureType {
 		}
 		
 		@Override
-		public T createRenderContext(RenderBlocks rendererOld, IBlockAccess world) {
+		public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world) {
 			initStatics();
-			return (T) type.createRenderContext(rendererOld, world, cachedObject);
+			RenderBlocks rb = type.createRenderContext(rendererOld, world, cachedObject);
+			rb.setRenderBoundsFromBlock(block);
+			return rb;
 		}
 		
 		@Override
@@ -411,7 +410,7 @@ public enum TextureType {
 	}
 
 	@SideOnly(Side.CLIENT)
-	private static class SubmapManagerDefault extends SubmapManagerBase<RenderBlocks> {
+	private static class SubmapManagerDefault extends SubmapManagerBase {
 
 		private String texturePath;
 		
@@ -427,7 +426,7 @@ public enum TextureType {
 	}
 	
 	@SideOnly(Side.CLIENT)
-	private static class SubmapManagerExistingIcon extends SubmapManagerBase<RenderBlocks> {
+	private static class SubmapManagerExistingIcon extends SubmapManagerBase {
 		
 		private Block block;
 		private int meta;

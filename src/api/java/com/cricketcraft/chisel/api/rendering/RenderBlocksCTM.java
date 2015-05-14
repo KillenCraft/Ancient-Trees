@@ -148,7 +148,7 @@ public class RenderBlocksCTM extends RenderBlocks {
 		}
 	}
 
-	protected static CTM ctm = CTM.getInstance();
+	public CTM ctm = CTM.getInstance();
 
 	// globals added to save the JVM some trouble. No need to constantly create
 	// and destroy ints if we don't have to
@@ -173,7 +173,7 @@ public class RenderBlocksCTM extends RenderBlocks {
 	public TextureSubmap submap;
 	public TextureSubmap submapSmall;
 	public RenderBlocks rendererOld;
-	public ISubmapManager<RenderBlocksCTM> manager;
+	public ISubmapManager manager;
 
 	protected int[][] lightmap = new int[3][3];
 	protected float[][] redmap = new float[3][3];
