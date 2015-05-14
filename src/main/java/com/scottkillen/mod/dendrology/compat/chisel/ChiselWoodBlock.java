@@ -64,6 +64,6 @@ public final class ChiselWoodBlock extends Block
     public String getVariationName(int i)
     {
         return StatCollector.translateToLocal(
-                String.format("chisel.%s:planks.%s.%s.name", TheMod.INSTANCE.modID(), speciesName, VARIATIONS.get(i)));
+                String.format("chisel.%s:planks.%s.%s.name", TheMod.MOD_ID, speciesName, VARIATIONS.get(i)));
     }
 }
