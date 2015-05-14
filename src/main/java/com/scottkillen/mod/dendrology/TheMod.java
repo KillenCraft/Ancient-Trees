@@ -11,12 +11,14 @@ import com.scottkillen.mod.dendrology.compat.gardencollection.GardenTreesMod;
 import com.scottkillen.mod.dendrology.compat.mfr.MineFactoryReloadedMod;
 import com.scottkillen.mod.dendrology.compat.minechem.MinechemMod;
 import com.scottkillen.mod.dendrology.config.Settings;
+import com.scottkillen.mod.dendrology.content.ParcelManager;
 import com.scottkillen.mod.dendrology.content.crafting.Crafter;
 import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
 import com.scottkillen.mod.dendrology.content.crafting.Smelter;
 import com.scottkillen.mod.dendrology.content.fuel.FuelHandler;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeGenerator;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
+import com.scottkillen.mod.dendrology.item.ModItems;
 import com.scottkillen.mod.dendrology.proxy.Proxy;
 import com.scottkillen.mod.koresample.common.util.log.Logger;
 import com.scottkillen.mod.koresample.compat.Integrates;
@@ -114,6 +116,7 @@ public final class TheMod
         configEventHandler.get().activate();
 
         new ModBlocks().loadContent();
+        new ModItems().loadContent();
         initIntegrators();
         integrateMods(event.getModState());
     }
@@ -135,6 +138,7 @@ public final class TheMod
         FuelHandler.postInit();
         integrateMods(event.getModState());
         integrators.clear();
+        ParcelManager.INSTANCE.init();
 
         new OverworldTreeGenerator().install();
     }
