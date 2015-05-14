@@ -10,12 +10,12 @@ import java.util.List;
 
 public interface SubBlockManager
 {
-	@SideOnly(Side.CLIENT)
-	IIcon getIcon(int side, int meta);
+    @SideOnly(Side.CLIENT)
+    IIcon getIcon(int side, int meta);
 
-	@SideOnly(Side.CLIENT)
-	void registerIcons(IIconRegister register);
+    @SideOnly(Side.CLIENT)
+    void registerIcons(IIconRegister register);
 
-	@SideOnly(Side.CLIENT)
-	void getSubBlocks(Item item, CreativeTabs tabs, List list);
+    @SideOnly(Side.CLIENT)
+    void getSubBlocks(Item item, CreativeTabs tabs, List list);
 }

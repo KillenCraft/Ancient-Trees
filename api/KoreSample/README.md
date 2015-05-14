@@ -1,7 +1,7 @@
 ## Kore Sample
 **LATEST OFFICIAL VERSION**: [Kore Sample 1.2.5 for MC 1.7.10][latest] ([changelog][changelog.md]) ([all releases][releases])
 
-[latest]: https://github.com/MinecraftModArchive/KoreSample/releases/latest
+[latest]: http://scottk.us/KoreSampleMod
 [releases]: https://github.com/MinecraftModArchive/KoreSample/releases
 [changelog.md]: https://github.com/MinecraftModArchive/KoreSample/blob/develop/src/main/resources/CHANGELOG.md
 

@@ -12,7 +12,6 @@ import com.scottkillen.mod.dendrology.item.ModSlabItem;
 import com.scottkillen.mod.dendrology.item.ModWoodItem;
 import com.scottkillen.mod.koresample.common.block.SlabBlock;
 import com.scottkillen.mod.koresample.common.block.StairsBlock;
-import com.scottkillen.mod.koresample.common.util.log.Logger;
 import com.scottkillen.mod.koresample.tree.DefinesLog;
 import com.scottkillen.mod.koresample.tree.DefinesSapling;
 import com.scottkillen.mod.koresample.tree.DefinesSlab;
@@ -25,6 +24,9 @@ import com.scottkillen.mod.koresample.tree.item.LeavesItem;
 import com.scottkillen.mod.koresample.tree.loader.TreeSpeciesLoader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockSapling;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
@@ -50,9 +52,10 @@ public final class ModBlocks
     private static final List<LeavesBlock> leavesBlocks = Lists.newArrayList();
     private static final OverworldTreeTaxonomy overworldTaxonomy = new OverworldTreeTaxonomy();
 
+    @SuppressWarnings("MethodWithMultipleLoops")
     private static void addAllSaplingsToChests()
     {
-        Logger.forMod(TheMod.INSTANCE.modID()).info("Hiding saplings in chests.");
+        TheMod.logger().info("Hiding saplings in chests.");
         final Settings settings = Settings.INSTANCE;
 
         for (final DefinesSapling saplingDefinition : overworldTaxonomy.saplingDefinitions())
@@ -72,16 +75,16 @@ public final class ModBlocks
         chestGenInfo.addItem(chestContent);
     }
 
-    public static Iterable<? extends Block> leavesBlocks() { return ImmutableList.copyOf(leavesBlocks); }
+    public static Iterable<? extends BlockLeaves> leavesBlocks() { return ImmutableList.copyOf(leavesBlocks); }
 
     private static void loadOverWorldContent()
     {
-        Logger.forMod(TheMod.INSTANCE.modID()).info("Loading overworld species.");
+        TheMod.logger().info("Loading overworld species.");
         final TreeSpeciesLoader overworldContent = new TreeSpeciesLoader(overworldTaxonomy);
         overworldContent.load(new OverworldTreeBlockFactory());
     }
 
-    public static Iterable<? extends Block> logBlocks() { return ImmutableList.copyOf(logBlocks); }
+    public static Iterable<? extends BlockLog> logBlocks() { return ImmutableList.copyOf(logBlocks); }
 
     public static Iterable<? extends DefinesLog> logDefinitions() { return overworldTaxonomy.logDefinitions(); }
 
@@ -221,7 +224,7 @@ public final class ModBlocks
         Blocks.fire.setFireInfo(block, DEFAULT_PLANKS_FIRE_ENCOURAGEMENT, DEFAULT_PLANKS_FLAMMABILITY);
     }
 
-    public static Iterable<? extends Block> saplingBlocks() { return ImmutableList.copyOf(saplingBlocks); }
+    public static Iterable<? extends BlockSapling> saplingBlocks() { return ImmutableList.copyOf(saplingBlocks); }
 
     public static Iterable<? extends Block> singleSlabBlocks() { return ImmutableList.copyOf(singleSlabBlocks); }
 
