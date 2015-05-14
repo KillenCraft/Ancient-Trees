@@ -1,10 +1,11 @@
 ## Kore Sample
 **LATEST OFFICIAL VERSION**: [Kore Sample 1.2.5 for MC 1.7.10][latest] ([changelog][changelog.md]) ([all releases][releases])
+
 [latest]: https://github.com/MinecraftModArchive/KoreSample/releases/latest
 [releases]: https://github.com/MinecraftModArchive/KoreSample/releases
 [changelog.md]: https://github.com/MinecraftModArchive/KoreSample/blob/develop/src/main/resources/CHANGELOG.md
 
-![KoreSample](https://raw.githubusercontent.com/MinecraftModArchive/KoreSample/develop/src/main/resources/assets/logo.png)
+![Kore Sample](https://raw.githubusercontent.com/MinecraftModArchive/KoreSample/develop/art/logo/logo-128.png)
 
 Kore Sample provides a set of tools and base classes for other Minecraft mods that depend on it.
 
@@ -46,6 +47,16 @@ purpose in mind.
 * * *
 
 #### Licensing
+
+##### Logo
+
+The logo is a colorized version of ['Half tornado icon'][logo-icon] by [Lorc][lorc-site] under [CC BY 3.0][ccby30].
+
+[logo-icon]: http://game-icons.net/lorc/originals/half-tornado.html
+[lorc-site]: http://lorcblog.blogspot.com/
+[ccby30]: http://creativecommons.org/licenses/by/3.0/
+
+##### Software
 
 This is free and unencumbered software released into the public domain.
 
