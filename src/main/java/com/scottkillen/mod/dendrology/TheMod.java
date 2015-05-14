@@ -11,6 +11,7 @@ import com.scottkillen.mod.dendrology.compat.gardencollection.GardenTreesMod;
 import com.scottkillen.mod.dendrology.compat.mfr.MineFactoryReloadedMod;
 import com.scottkillen.mod.dendrology.compat.minechem.MinechemMod;
 import com.scottkillen.mod.dendrology.config.Settings;
+import com.scottkillen.mod.dendrology.content.ParcelManager;
 import com.scottkillen.mod.dendrology.content.crafting.Crafter;
 import com.scottkillen.mod.dendrology.content.crafting.OreDictHandler;
 import com.scottkillen.mod.dendrology.content.crafting.Smelter;
@@ -137,6 +138,7 @@ public final class TheMod
         FuelHandler.postInit();
         integrateMods(event.getModState());
         integrators.clear();
+        ParcelManager.INSTANCE.init();
 
         new OverworldTreeGenerator().install();
     }

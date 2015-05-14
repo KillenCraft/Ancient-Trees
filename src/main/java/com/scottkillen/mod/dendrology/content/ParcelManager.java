@@ -11,12 +11,19 @@ public enum ParcelManager
 {
     INSTANCE;
 
+    @SuppressWarnings("NonSerializableFieldInSerializableClass")
     private final WeightedSet<ItemStack> potentialContent = WeightedSet.newWeightedSet();
 
     public void add(ItemStack itemStack, int weight)
     {
-        final ItemStack element = itemStack.copy();
-        element.stackSize = 1;
+        final ItemStack element;
+        if (itemStack == null)
+            element = null;
+        else
+        {
+            element = itemStack.copy();
+            element.stackSize = 1;
+        }
         potentialContent.setWeight(element, weight);
     }
 
@@ -25,11 +32,11 @@ public enum ParcelManager
     @SuppressWarnings({ "MethodWithMultipleLoops", "ObjectAllocationInLoop" })
     public void init()
     {
-        add(null, 100);
+        add(null, 600);
         for (int i = 0; i < BlockSapling.field_149882_a.length; i++)
-            add(new ItemStack(Blocks.sapling, 1, i), 300);
+            add(new ItemStack(Blocks.sapling, 1, i), 10);
 
-        for (OverworldTreeSpecies species : OverworldTreeSpecies.values())
+        for (final OverworldTreeSpecies species : OverworldTreeSpecies.values())
             add(new ItemStack(species.saplingBlock(), 1, species.saplingSubBlockIndex()), 10);
     }
 

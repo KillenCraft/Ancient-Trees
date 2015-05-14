@@ -53,12 +53,15 @@ public class SaplingParcel extends Item
                 message = StatCollector.translateToLocal("dendrology:parcel.empty");
             else
             {
-                final String itemName = StatCollector.translateToLocal(itemStack.getItem().getUnlocalizedName(itemStack));
+                final String itemName = StatCollector.translateToLocal(content.getItem().getUnlocalizedName(content) + ".name");
                 message = StatCollector.translateToLocalFormatted("dendrology:parcel.full", itemName);
 
                 final EntityItem entityItem = player.dropPlayerItemWithRandomChoice(content, false);
-                entityItem.delayBeforeCanPickup = 0;
-                entityItem.func_145797_a(player.getCommandSenderName());
+                if (entityItem != null)
+                {
+                    entityItem.delayBeforeCanPickup = 0;
+                    entityItem.func_145797_a(player.getCommandSenderName());
+                }
             }
 
             player.addChatMessage(new ChatComponentText(message));
