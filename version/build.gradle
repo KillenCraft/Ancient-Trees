@@ -1,9 +1,9 @@
-rootProject.version = "$mcversion-$version_major.$version_series.$version_revision"
-rootProject.ext.mcversion = mcversion
-rootProject.ext.forgeversion = forgeversion
-rootProject.ext.koreversion = "$mcversion-$koreversion"
-rootProject.ext.chiselversion = chiselversion
-rootProject.ext.forestryversion = forestryversion
+rootProject.version = "$version_mc-$version_major.$version_series.$version_revision"
+rootProject.ext.version_mc = version_mc
+rootProject.ext.version_forge = version_forge
+rootProject.ext.version_kore = "$version_mc-$version_kore"
+rootProject.ext.version_chisel = version_chisel
+rootProject.ext.version_forestry = version_forestry
 
 
 task echoVersion << {
@@ -17,7 +17,7 @@ def saveVersion() {
         entry( key:"version_series", type:"int", value: version_series)
         entry( key:"version_revision", type:"int", value: version_revision)
     }
-    rootProject.version = "$mcversion-$version_major.$version_series.$version_revision"
+    rootProject.version = "$version_mc-$version_major.$version_series.$version_revision"
     printNextVersion()
 }
 

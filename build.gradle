@@ -26,7 +26,7 @@ archivesBaseName = "AncientTrees"
 ext.apiKore = "./api/KoreSample/src/main/java"
 
 minecraft {
-    version = project.mcversion + "-" + project.forgeversion
+    version = project.version_mc + "-" + project.version_forge
     runDir = "run"
 
     replace '${mod_version}', project.version
@@ -40,8 +40,8 @@ repositories {
 }
 
 dependencies {
-    compile "com.cricketcraft.chisel:Chisel2:${project.ext.chiselversion}:api"
-    compile "net.sengir.forestry:forestry_${project.mcversion}:${project.ext.forestryversion}:dev"
+    compile "com.cricketcraft.chisel:Chisel2:${project.ext.version_chisel}:api"
+    compile "net.sengir.forestry:forestry_${project.version_mc}:${project.ext.version_forestry}:dev"
 }
 
 sourceSets {
@@ -56,11 +56,11 @@ processResources
 {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-    inputs.property "forgeversion", project.ext.forgeversion
-    inputs.property "koreversion", project.ext.koreversion
-    inputs.property "chiselversion", project.ext.chiselversion
-    inputs.property "forestryversion", project.ext.forestryversion
+    inputs.property "version_mc", project.minecraft.version
+    inputs.property "version_forge", project.ext.version_forge
+    inputs.property "version_kore", project.ext.version_kore
+    inputs.property "version_chisel", project.ext.version_chisel
+    inputs.property "version_forestry", project.ext.version_forestry
 
     // replace stuff in the files we want.
     from(sourceSets.main.resources.srcDirs) {
@@ -68,7 +68,7 @@ processResources
         include '**/version.properties'
 
         expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.forgeversion, 'kore_version': project.ext.koreversion
+                .ext.version_forge, 'kore_version': project.ext.version_kore
     }
 
     // copy everything else, that we didn't do before
@@ -88,7 +88,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
         include '**/version.properties'
 
         expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.forgeversion, 'kore_version': project.ext.koreversion
+                .ext.version_forge, 'kore_version': project.ext.version_kore
     }
 
     from(sourceSets.main.allSource) {
@@ -112,7 +112,7 @@ task deobfJar(type: Jar) {
         include '**/version.properties'
 
         expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.forgeversion, 'kore_version': project.ext.koreversion
+                .ext.version_forge, 'kore_version': project.ext.version_kore
     }
 
     from(sourceSets.main.output) {
