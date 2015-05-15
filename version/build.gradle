@@ -2,42 +2,44 @@ rootProject.version = "$mcversion-$version_major.$version_series.$version_revisi
 rootProject.ext.mcversion = mcversion
 rootProject.ext.forgeversion = forgeversion
 rootProject.ext.koreversion = "$mcversion-$koreversion"
+rootProject.ext.chiselversion = chiselversion
+
 
 task echoVersion << {
-	printNextVersion()
+    printNextVersion()
 }
 
 def saveVersion() {
-	ant.propertyfile(
-		file: "gradle.properties") {
-		entry( key:"version_major", type:"int", value: version_major)
-		entry( key:"version_series", type:"int", value: version_series)
-		entry( key:"version_revision", type:"int", value: version_revision)
-	}
-	rootProject.version = "$mcversion-$version_major.$version_series.$version_revision"
-	printNextVersion()
+    ant.propertyfile(
+        file: "gradle.properties") {
+        entry( key:"version_major", type:"int", value: version_major)
+        entry( key:"version_series", type:"int", value: version_series)
+        entry( key:"version_revision", type:"int", value: version_revision)
+    }
+    rootProject.version = "$mcversion-$version_major.$version_series.$version_revision"
+    printNextVersion()
 }
 
 def printNextVersion(){
-	println '*************************************************************'
-	println 'The next build will be version: ' +  rootProject.version
-	println '*************************************************************'
+    println '*************************************************************'
+    println 'The next build will be version: ' +  rootProject.version
+    println '*************************************************************'
 }
 
 task bumpMajor << {
-	project.version_major = Integer.parseInt(project.version_major) + 1
-	project.version_series = "0"
-	project.version_revision = "0"
-	saveVersion()
+    project.version_major = Integer.parseInt(project.version_major) + 1
+    project.version_series = "0"
+    project.version_revision = "0"
+    saveVersion()
 }
 
 task bumpSeries << {
-	project.version_series = Integer.parseInt(project.version_series) + 1
-	project.version_revision = "0"
-	saveVersion()
+    project.version_series = Integer.parseInt(project.version_series) + 1
+    project.version_revision = "0"
+    saveVersion()
 }
 
 task bumpRevision << {
-	project.version_revision = Integer.parseInt(project.version_revision) + 1
-	saveVersion()
+    project.version_revision = Integer.parseInt(project.version_revision) + 1
+    saveVersion()
 }

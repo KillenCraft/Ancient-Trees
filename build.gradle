@@ -35,9 +35,13 @@ minecraft {
 
 repositories {
     mavenLocal()
-    maven {
-        url = 'http://maven.scottkillen.com/'
-    }
+    maven { url = 'http://maven.scottkillen.com/' }
+    maven { url = 'http://coloredlightscore.us.to/maven/chisel-2-dev/' }
+}
+
+dependencies {
+    compile "com.cricketcraft.chisel:Chisel2:${project.ext.chiselversion}:api"
+    compile fileTree(dir: 'libs', include: '*.jar')
 }
 
 sourceSets {
@@ -56,6 +60,7 @@ processResources
     inputs.property "mcversion", project.minecraft.version
     inputs.property "forgeversion", project.ext.forgeversion
     inputs.property "koreversion", project.ext.koreversion
+    inputs.property "chiselversion", project.ext.chiselversion
 
     // replace stuff in the files we want.
     from(sourceSets.main.resources.srcDirs) {
@@ -74,7 +79,7 @@ processResources
 }
 
 jar {
-	includeEmptyDirs = false
+    includeEmptyDirs = false
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
