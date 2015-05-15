@@ -3,6 +3,7 @@ rootProject.ext.mcversion = mcversion
 rootProject.ext.forgeversion = forgeversion
 rootProject.ext.koreversion = "$mcversion-$koreversion"
 rootProject.ext.chiselversion = chiselversion
+rootProject.ext.forestryversion = forestryversion
 
 
 task echoVersion << {
