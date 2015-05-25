@@ -68,7 +68,7 @@ processResources
         include '**/version.properties'
 
         expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.version_forge, 'kore_version': project.ext.version_kore
+                .ext.version_forge, 'kore_version': project.ext.version_kore, 'chisel_version': project.ext.version_chisel
     }
 
     // copy everything else, that we didn't do before
@@ -88,7 +88,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
         include '**/version.properties'
 
         expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.version_forge, 'kore_version': project.ext.version_kore
+                .ext.version_forge, 'kore_version': project.ext.version_kore, 'chisel_version': project.ext.version_chisel
     }
 
     from(sourceSets.main.allSource) {
@@ -112,7 +112,7 @@ task deobfJar(type: Jar) {
         include '**/version.properties'
 
         expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.version_forge, 'kore_version': project.ext.version_kore
+                .ext.version_forge, 'kore_version': project.ext.version_kore, 'chisel_version': project.ext.version_chisel
     }
 
     from(sourceSets.main.output) {
