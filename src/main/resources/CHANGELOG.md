@@ -1,7 +1,6 @@
 # Ancient Trees Changelog
 
-## Unreleased
-- Updated to new Chisel API for integration with Chisel.
+## 1.4.0
 - Saplings can now be planted, fertilized and harvested in MineFactory reloaded machines. (Though you should
   be careful with larger trees!)
 - Saplings are now found wrapped in ancient packages inside chests. (This is to allow us more rarity than the
