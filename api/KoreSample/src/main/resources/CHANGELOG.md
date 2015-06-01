@@ -1,5 +1,9 @@
 # Kore Sample Changelog
 
+## 1.3.0
+- Changed logo.
+- Added WeightedSet utility.
+
 ## 1.2.5
 - Fixed lighting bug for slabs and stairs.
 - Fixed slabs showing wrong textures.

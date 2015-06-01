@@ -2,7 +2,6 @@ package com.scottkillen.mod.dendrology.compat.forestry;
 
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
-import com.scottkillen.mod.koresample.common.util.log.Logger;
 import com.scottkillen.mod.koresample.compat.Integrator;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
@@ -35,7 +34,7 @@ public final class ForestryMod extends Integrator
 
     private static void addBackpackItems()
     {
-        Logger.forMod(TheMod.INSTANCE.modID()).info("Extending Forestry's backpacks.");
+        TheMod.logger().info("Extending Forestry's backpacks.");
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
         {
             //noinspection ObjectAllocationInLoop
@@ -58,7 +57,7 @@ public final class ForestryMod extends Integrator
 
     private static void addFarmables()
     {
-        Logger.forMod(TheMod.INSTANCE.modID()).info("Adding farmable saplings to Forestry's farms.");
+        TheMod.logger().info("Adding farmable saplings to Forestry's farms.");
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())
         {
             //noinspection ObjectAllocationInLoop
@@ -82,7 +81,7 @@ public final class ForestryMod extends Integrator
     @Method(modid = MOD_ID)
     private static void addSaplingRecipes()
     {
-        Logger.forMod(TheMod.INSTANCE.modID()).info("Adding sapling recipes to Forestry's fermenter.");
+        TheMod.logger().info("Adding sapling recipes to Forestry's fermenter.");
 
         final int fermentationValue = ForestryAPI.activeMode.getIntegerSetting("fermenter.yield.sapling");
         for (final OverworldTreeSpecies tree : OverworldTreeSpecies.values())

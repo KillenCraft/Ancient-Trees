@@ -1,13 +1,14 @@
 ## Ancient Trees
-**LATEST OFFICIAL VERSION**: [Ancient Trees 1.3.1 for MC 1.7.10][latest] ([changelog][changelog.md]) ([all
+**LATEST OFFICIAL VERSION**: [Ancient Trees 1.4.0 for MC 1.7.10][latest] ([changelog][changelog.md]) ([all
 releases][releases])<br />
-*DEPENDS ON*: [Kore Sample 1.2.5 (or later) for MC 1.7.10][koresample]
-[latest]: https://github.com/MinecraftModArchive/Dendrology/releases/latest
+*DEPENDS ON*: [Kore Sample 1.3.0 (or later) for MC 1.7.10][koresample]
+
+[latest]: http://scottk.us/AncientTreesMod
 [releases]: https://github.com/MinecraftModArchive/Dendrology/releases
 [changelog.md]: https://github.com/MinecraftModArchive/Dendrology/blob/develop/src/main/resources/CHANGELOG.md
-[koresample]: http://scottk.us/KoreSample
+[koresample]: http://scottk.us/KoreSampleMod
 
-![Logo](https://raw.githubusercontent.com/MinecraftModArchive/Dendrology/develop/src/main/resources/assets/logo.png)
+![Ancient Trees](https://raw.githubusercontent.com/MinecraftModArchive/Dendrology/develop/art/logo/logo-128.png)
 
 "In the time before The Fall, the world was vibrant, teeming with life. The Fall changed the world and only a
 portion of what was has survived.
@@ -60,7 +61,11 @@ purpose in mind.
 
 ##### Logo
 
-The logo was custom designed by [Septolum](http://septolum.deviantart.com/).
+The logo is a colorized version of ['Beech icon'][beech-icon] by [Lorc][lorc-site] under [CC BY 3.0][ccby30].
+
+[beech-icon]: http://game-icons.net/lorc/originals/beech.html
+[lorc-site]: http://lorcblog.blogspot.com/
+[ccby30]: http://creativecommons.org/licenses/by/3.0/
 
 ##### Textures
 
@@ -71,7 +76,7 @@ Some textures are from [The Painterly Pack][pack] by [Rhodox][rhodox_tweet] and 
 
 ##### APIs
 
-Included APIs are governed by the licenses under which they where released.
+Included APIs are governed by the licenses under which they were released.
 
 ##### Software
 
