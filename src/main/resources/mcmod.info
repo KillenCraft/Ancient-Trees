@@ -5,7 +5,7 @@
   "description": "A Minecraft mod that adds many extinct tree species to the world.",
   "version": "${mod_version}",
   "mcversion": "${minecraft_version}",
-  "url": "http://scottk.us/AncientTrees",
+  "url": "http://scottk.us/AncientTreesMod",
   "updateUrl": "",
   "authorList": [
     "ScottKillen",
