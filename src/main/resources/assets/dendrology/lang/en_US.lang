@@ -342,6 +342,7 @@ config.dendrology:blacksmithRarity=How often ancient parcels are found in blacks
 config.dendrology:bonusChestRarity=How often ancient parcels are found in bonus chests. 0 disables. Higher values are less rare.
 config.dendrology:desertTempleRarity=How often ancient parcels are found in desert temple chests. 0 disables. Higher values are less rare.
 config.dendrology:dungeonRarity=How often ancient parcels are found in dungeon chests. 0 disables. Higher values are less rare.
+config.dendrology:integrateStorageDrawers=Should this mod make storage drawers out of its wood?
 config.dendrology:jungleTempleRarity=How often ancient parcels are found in jungle temple chests. 0 disables. Higher values are less rare.
 config.dendrology:jungleTempleDispenserRarity=How often ancient parcels are found in jungle temple dispensers. 0 disables. Higher values are less rare.
 config.dendrology:mineshaftCorridorRarity=How often ancient parcels are found in mineshaft corridor chests. 0 disables. Higher values are less rare.
