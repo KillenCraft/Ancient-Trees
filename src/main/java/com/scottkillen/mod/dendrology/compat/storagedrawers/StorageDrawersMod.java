@@ -1,5 +1,6 @@
 package com.scottkillen.mod.dendrology.compat.storagedrawers;
 
+import com.google.common.base.Objects;
 import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.koresample.compat.Integrator;
 import cpw.mods.fml.common.Loader;
@@ -10,7 +11,8 @@ public final class StorageDrawersMod extends Integrator
 {
     static final String MOD_ID = "StorageDrawers";
     private static final String MOD_NAME = "Storage Drawers";
-    private SDBlocks blocks;
+    private SDBlocks blocks = null;
+    private SDRefinedRelocationBlocks rrBlocks = null;
 
     @Override
     public void doIntegration(ModState modState)
@@ -25,19 +27,36 @@ public final class StorageDrawersMod extends Integrator
                 case INITIALIZED:
                     init();
                     break;
+                case POSTINITIALIZED:
+                    postInit();
+                    break;
                 default:
             }
         }
     }
 
-    @Method(modid = MOD_ID)
-    private void init() { blocks.writeRecipes();
+    @SuppressWarnings("AssignmentToNull")
+    private void postInit()
+    {
+        rrBlocks.writeRecipes(blocks);
+
+        blocks = null;
+        rrBlocks = null;
     }
 
     @Method(modid = MOD_ID)
-    private void preInit() {
+    private void init()
+    {
+        rrBlocks = new SDRefinedRelocationBlocks();
+        rrBlocks.setup(blocks);
+        blocks.writeRecipes();
+    }
+
+    @Method(modid = MOD_ID)
+    private void preInit()
+    {
         blocks = new SDBlocks();
-        blocks.init();
+        blocks.setup();
     }
 
     @Override
@@ -50,5 +69,11 @@ public final class StorageDrawersMod extends Integrator
     protected String modName()
     {
         return MOD_NAME;
+    }
+
+    @Override
+    public String toString()
+    {
+        return Objects.toStringHelper(this).add("blocks", blocks).add("rrBlocks", rrBlocks).toString();
     }
 }
