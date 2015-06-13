@@ -97,6 +97,91 @@ tile.dendrology:stairs.porffor.name=Porffor Wood Stairs
 tile.dendrology:stairs.salyx.name=Salyx Wood Stairs
 tile.dendrology:stairs.tuopa.name=Tuopa Wood Stairs
 
+### Storage Drawers
+tile.dendrology.fullDrawers1.acemus.name=Acemus Drawer
+tile.dendrology.fullDrawers1.cedrum.name=Cedrum Drawer
+tile.dendrology.fullDrawers1.cerasu.name=Cerasu Drawer
+tile.dendrology.fullDrawers1.delnas.name=Delnas Drawer
+tile.dendrology.fullDrawers1.ewcaly.name=Ewcaly Drawer
+tile.dendrology.fullDrawers1.hekur.name=Hekur Drawer
+tile.dendrology.fullDrawers1.kiparis.name=Kiparis Drawer
+tile.dendrology.fullDrawers1.kulist.name=Kulist Drawer
+tile.dendrology.fullDrawers1.lata.name=Lata Drawer
+tile.dendrology.fullDrawers1.nucis.name=Nucis Drawer
+tile.dendrology.fullDrawers1.porffor.name=Porffor Drawer
+tile.dendrology.fullDrawers1.salyx.name=Salyx Drawer
+tile.dendrology.fullDrawers1.tuopa.name=Tuopa Drawer
+
+tile.dendrology.fullDrawers2.acemus.name=Acemus Drawers 1x2
+tile.dendrology.fullDrawers2.cedrum.name=Cedrum Drawers 1x2
+tile.dendrology.fullDrawers2.cerasu.name=Cerasu Drawers 1x2
+tile.dendrology.fullDrawers2.delnas.name=Delnas Drawers 1x2
+tile.dendrology.fullDrawers2.ewcaly.name=Ewcaly Drawers 1x2
+tile.dendrology.fullDrawers2.hekur.name=Hekur Drawers 1x2
+tile.dendrology.fullDrawers2.kiparis.name=Kiparis Drawers 1x2
+tile.dendrology.fullDrawers2.kulist.name=Kulist Drawers 1x2
+tile.dendrology.fullDrawers2.lata.name=Lata Drawers 1x2
+tile.dendrology.fullDrawers2.nucis.name=Nucis Drawers 1x2
+tile.dendrology.fullDrawers2.porffor.name=Porffor Drawers 1x2
+tile.dendrology.fullDrawers2.salyx.name=Salyx Drawers 1x2
+tile.dendrology.fullDrawers2.tuopa.name=Tuopa Drawers 1x2
+
+tile.dendrology.fullDrawers4.acemus.name=Acemus Drawers 2x2
+tile.dendrology.fullDrawers4.cedrum.name=Cedrum Drawers 2x2
+tile.dendrology.fullDrawers4.cerasu.name=Cerasu Drawers 2x2
+tile.dendrology.fullDrawers4.delnas.name=Delnas Drawers 2x2
+tile.dendrology.fullDrawers4.ewcaly.name=Ewcaly Drawers 2x2
+tile.dendrology.fullDrawers4.hekur.name=Hekur Drawers 2x2
+tile.dendrology.fullDrawers4.kiparis.name=Kiparis Drawers 2x2
+tile.dendrology.fullDrawers4.kulist.name=Kulist Drawers 2x2
+tile.dendrology.fullDrawers4.lata.name=Lata Drawers 2x2
+tile.dendrology.fullDrawers4.nucis.name=Nucis Drawers 2x2
+tile.dendrology.fullDrawers4.porffor.name=Porffor Drawers 2x2
+tile.dendrology.fullDrawers4.salyx.name=Salyx Drawers 2x2
+tile.dendrology.fullDrawers4.tuopa.name=Tuopa Drawers 2x2
+
+tile.dendrology.halfDrawers2.acemus.name=Compact Acemus Drawers 1x2
+tile.dendrology.halfDrawers2.cedrum.name=Compact Cedrum Drawers 1x2
+tile.dendrology.halfDrawers2.cerasu.name=Compact Cerasu Drawers 1x2
+tile.dendrology.halfDrawers2.delnas.name=Compact Delnas Drawers 1x2
+tile.dendrology.halfDrawers2.ewcaly.name=Compact Ewcaly Drawers 1x2
+tile.dendrology.halfDrawers2.hekur.name=Compact Hekur Drawers 1x2
+tile.dendrology.halfDrawers2.kiparis.name=Compact Kiparis Drawers 1x2
+tile.dendrology.halfDrawers2.kulist.name=Compact Kulist Drawers 1x2
+tile.dendrology.halfDrawers2.lata.name=Compact Lata Drawers 1x2
+tile.dendrology.halfDrawers2.nucis.name=Compact Nucis Drawers 1x2
+tile.dendrology.halfDrawers2.porffor.name=Compact Porffor Drawers 1x2
+tile.dendrology.halfDrawers2.salyx.name=Compact Salyx Drawers 1x2
+tile.dendrology.halfDrawers2.tuopa.name=Compact Tuopa Drawers 1x2
+
+tile.dendrology.halfDrawers4.acemus.name=Compact Acemus Drawers 2x2
+tile.dendrology.halfDrawers4.cedrum.name=Compact Cedrum Drawers 2x2
+tile.dendrology.halfDrawers4.cerasu.name=Compact Cerasu Drawers 2x2
+tile.dendrology.halfDrawers4.delnas.name=Compact Delnas Drawers 2x2
+tile.dendrology.halfDrawers4.ewcaly.name=Compact Ewcaly Drawers 2x2
+tile.dendrology.halfDrawers4.hekur.name=Compact Hekur Drawers 2x2
+tile.dendrology.halfDrawers4.kiparis.name=Compact Kiparis Drawers 2x2
+tile.dendrology.halfDrawers4.kulist.name=Compact Kulist Drawers 2x2
+tile.dendrology.halfDrawers4.lata.name=Compact Lata Drawers 2x2
+tile.dendrology.halfDrawers4.nucis.name=Compact Nucis Drawers 2x2
+tile.dendrology.halfDrawers4.porffor.name=Compact Porffor Drawers 2x2
+tile.dendrology.halfDrawers4.salyx.name=Compact Salyx Drawers 2x2
+tile.dendrology.halfDrawers4.tuopa.name=Compact Tuopa Drawers 2x2
+
+tile.dendrology.trim.acemus.name=Acemus Trim
+tile.dendrology.trim.cedrum.name=Cedrum Trim
+tile.dendrology.trim.cerasu.name=Cerasu Trim
+tile.dendrology.trim.delnas.name=Delnas Trim
+tile.dendrology.trim.ewcaly.name=Ewcaly Trim
+tile.dendrology.trim.hekur.name=Hekur Trim
+tile.dendrology.trim.kiparis.name=Kiparis Trim
+tile.dendrology.trim.kulist.name=Kulist Trim
+tile.dendrology.trim.lata.name=Lata Trim
+tile.dendrology.trim.nucis.name=Nucis Trim
+tile.dendrology.trim.porffor.name=Porffor Trim
+tile.dendrology.trim.salyx.name=Salyx Trim
+tile.dendrology.trim.tuopa.name=Tuopa Trim
+
 ### Chisel
 tile.acemus_planks.name=Acemus Wood Planks
 tile.cedrum_planks.name=Cedrum Wood Planks
