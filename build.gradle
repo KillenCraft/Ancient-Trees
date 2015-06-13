@@ -63,7 +63,8 @@ processResources
         include '**/version.properties'
 
         expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.forgeversion, 'kore_version': project.ext.koreversion
+                .ext.forgeversion, 'kore_version': project.ext.koreversion, 'sd_version': project.ext
+                .version_storagedrawers
     }
 
     // copy everything else, that we didn't do before
@@ -83,7 +84,8 @@ task sourcesJar(type: Jar, dependsOn: classes) {
         include '**/version.properties'
 
         expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.forgeversion, 'kore_version': project.ext.koreversion
+                .ext.forgeversion, 'kore_version': project.ext.koreversion, 'sd_version': project.ext
+                .version_storagedrawers
     }
 
     from(sourceSets.main.allSource) {
@@ -107,7 +109,8 @@ task deobfJar(type: Jar) {
         include '**/version.properties'
 
         expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.forgeversion, 'kore_version': project.ext.koreversion
+                .ext.forgeversion, 'kore_version': project.ext.koreversion, 'sd_version': project.ext
+                .version_storagedrawers
     }
 
     from(sourceSets.main.output) {
