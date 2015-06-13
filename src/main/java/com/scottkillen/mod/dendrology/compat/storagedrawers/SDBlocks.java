@@ -1,6 +1,5 @@
 package com.scottkillen.mod.dendrology.compat.storagedrawers;
 
-import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.jaquadro.minecraft.storagedrawers.api.IStorageDrawersApi;
 import com.jaquadro.minecraft.storagedrawers.api.StorageDrawersApi;
@@ -19,8 +18,10 @@ import cpw.mods.fml.common.Optional.Method;
 import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import java.util.List;
@@ -36,6 +37,34 @@ public final class SDBlocks
 
     private Object packResolver = null;
 
+    public final CreativeTabs creativeTab = new CreativeTabs("storageDrawersAncientTrees")
+    {
+        @Override
+        public Item getTabIconItem()
+        {
+            final IStorageDrawersApi api = getAPI();
+            if (api == null) return Item.getItemFromBlock(Blocks.chest);
+
+            final IBlockConfig config = api.userConfig().blockConfig();
+
+            if (config.isBlockEnabled(config.getBlockConfigName(BlockConfiguration.BasicFull2)))
+                return Item.getItemFromBlock(fullDrawers2);
+            if (config.isBlockEnabled(config.getBlockConfigName(BlockConfiguration.BasicFull4)))
+                return Item.getItemFromBlock(fullDrawers4);
+            if (config.isBlockEnabled(config.getBlockConfigName(BlockConfiguration.BasicFull1)))
+                return Item.getItemFromBlock(fullDrawers1);
+            if (config.isBlockEnabled(config.getBlockConfigName(BlockConfiguration.BasicHalf2)))
+                return Item.getItemFromBlock(halfDrawers2);
+            if (config.isBlockEnabled(config.getBlockConfigName(BlockConfiguration.BasicHalf4)))
+                return Item.getItemFromBlock(halfDrawers4);
+
+            return Item.getItemFromBlock(Blocks.chest);
+        }
+
+        @Override
+        public int func_151243_f() { return 9; }
+    };
+
     private static List<String> speciesNames()
     {
         final List<String> names = Lists.newArrayList();
@@ -48,8 +77,7 @@ public final class SDBlocks
     void setup()
     {
         final IStorageDrawersApi api = getAPI();
-        if (api == null)
-            return;
+        if (api == null) return;
 
         final IPackBlockFactory factory = api.packFactory();
         createBlocks(factory);
@@ -103,12 +131,12 @@ public final class SDBlocks
     {
         final IPackDataResolver resolver = getResolver();
 
-        fullDrawers1 = factory.createBlock(BlockConfiguration.BasicFull1, resolver);
-        fullDrawers2 = factory.createBlock(BlockConfiguration.BasicFull2, resolver);
-        fullDrawers4 = factory.createBlock(BlockConfiguration.BasicFull4, resolver);
-        halfDrawers2 = factory.createBlock(BlockConfiguration.BasicHalf2, resolver);
-        halfDrawers4 = factory.createBlock(BlockConfiguration.BasicHalf4, resolver);
-        trim = factory.createBlock(BlockConfiguration.Trim, resolver);
+        fullDrawers1 = factory.createBlock(BlockConfiguration.BasicFull1, resolver).setCreativeTab(creativeTab);
+        fullDrawers2 = factory.createBlock(BlockConfiguration.BasicFull2, resolver).setCreativeTab(creativeTab);
+        fullDrawers4 = factory.createBlock(BlockConfiguration.BasicFull4, resolver).setCreativeTab(creativeTab);
+        halfDrawers2 = factory.createBlock(BlockConfiguration.BasicHalf2, resolver).setCreativeTab(creativeTab);
+        halfDrawers4 = factory.createBlock(BlockConfiguration.BasicHalf4, resolver).setCreativeTab(creativeTab);
+        trim = factory.createBlock(BlockConfiguration.Trim, resolver).setCreativeTab(creativeTab);
     }
 
     @Method(modid = StorageDrawersMod.MOD_ID)
@@ -120,12 +148,14 @@ public final class SDBlocks
     @Method(modid = StorageDrawersMod.MOD_ID)
     IPackDataResolver getResolver()
     {
-        if (packResolver == null)
-            packResolver = new StandardDataResolver(TheMod.MOD_ID, speciesNames().toArray(new String[] {}), TheMod.INSTANCE.creativeTab());
+        if (packResolver == null) packResolver =
+                new StandardDataResolver(TheMod.MOD_ID, speciesNames().toArray(new String[] {}),
+                        TheMod.INSTANCE.creativeTab());
         return (IPackDataResolver) packResolver;
     }
 
-    public static String getQualifiedName (Block block) {
+    public static String getQualifiedName(Block block)
+    {
         return GameData.getBlockRegistry().getNameForObject(block);
     }
 
@@ -133,8 +163,7 @@ public final class SDBlocks
     public void writeRecipes()
     {
         final IStorageDrawersApi api = getAPI();
-        if (api == null)
-            return;
+        if (api == null) return;
 
         final IBlockConfig config = api.userConfig().blockConfig();
 
@@ -172,41 +201,42 @@ public final class SDBlocks
         final int woodSubBlockIndex = species.woodSubBlockIndex();
 
         final String full1Name = config.getBlockConfigName(BlockConfiguration.BasicFull1);
-        if (config.isBlockEnabled(full1Name))
-            GameRegistry.addRecipe(new ItemStack(fullDrawers1, config.getBlockRecipeOutput(full1Name), drawerMetadata), "xxx", " y ", "xxx", 'x', new ItemStack(planks, 1, woodSubBlockIndex), 'y', Blocks.chest);
+        if (config.isBlockEnabled(full1Name)) GameRegistry
+                .addRecipe(new ItemStack(fullDrawers1, config.getBlockRecipeOutput(full1Name), drawerMetadata), "xxx",
+                        " y ", "xxx", 'x', new ItemStack(planks, 1, woodSubBlockIndex), 'y', Blocks.chest);
 
         final String full2Name = config.getBlockConfigName(BlockConfiguration.BasicFull2);
-        if (config.isBlockEnabled(full2Name))
-            GameRegistry.addRecipe(new ItemStack(fullDrawers2, config.getBlockRecipeOutput(full2Name), drawerMetadata), "xyx", "xxx", "xyx", 'x', new ItemStack(planks, 1, woodSubBlockIndex), 'y', Blocks.chest);
+        if (config.isBlockEnabled(full2Name)) GameRegistry
+                .addRecipe(new ItemStack(fullDrawers2, config.getBlockRecipeOutput(full2Name), drawerMetadata), "xyx",
+                        "xxx", "xyx", 'x', new ItemStack(planks, 1, woodSubBlockIndex), 'y', Blocks.chest);
 
         final String full4Name = config.getBlockConfigName(BlockConfiguration.BasicFull4);
-        if (config.isBlockEnabled(full4Name))
-            GameRegistry.addRecipe(
-                    new ItemStack(fullDrawers4, config.getBlockRecipeOutput(full4Name), drawerMetadata), "yxy",
-                    "xxx", "yxy", 'x', new ItemStack(planks, 1, woodSubBlockIndex), 'y', Blocks.chest);
+        if (config.isBlockEnabled(full4Name)) GameRegistry
+                .addRecipe(new ItemStack(fullDrawers4, config.getBlockRecipeOutput(full4Name), drawerMetadata), "yxy",
+                        "xxx", "yxy", 'x', new ItemStack(planks, 1, woodSubBlockIndex), 'y', Blocks.chest);
 
         final String trimName = config.getBlockConfigName(BlockConfiguration.Trim);
-        if (config.isBlockEnabled(trimName))
-            GameRegistry.addRecipe(new ItemStack(trim, config.getBlockRecipeOutput(trimName), drawerMetadata), "xyx", "yyy", "xyx", 'x', Items.stick, 'y', new ItemStack(planks, 1, woodSubBlockIndex));
+        if (config.isBlockEnabled(trimName)) GameRegistry
+                .addRecipe(new ItemStack(trim, config.getBlockRecipeOutput(trimName), drawerMetadata), "xyx", "yyy",
+                        "xyx", 'x', Items.stick, 'y', new ItemStack(planks, 1, woodSubBlockIndex));
 
         final SlabBlock recipeSlab = species.singleSlabBlock();
         final int slabSubBlockIndex = species.slabSubBlockIndex();
 
         final String half2Name = config.getBlockConfigName(BlockConfiguration.BasicHalf2);
-        if (config.isBlockEnabled(half2Name))
-            GameRegistry.addRecipe(
-                    new ItemStack(halfDrawers2, config.getBlockRecipeOutput(half2Name), drawerMetadata), "xyx",
-                    "xxx", "xyx", 'x', new ItemStack(recipeSlab, 1, slabSubBlockIndex), 'y', Blocks.chest);
+        if (config.isBlockEnabled(half2Name)) GameRegistry
+                .addRecipe(new ItemStack(halfDrawers2, config.getBlockRecipeOutput(half2Name), drawerMetadata), "xyx",
+                        "xxx", "xyx", 'x', new ItemStack(recipeSlab, 1, slabSubBlockIndex), 'y', Blocks.chest);
 
         final String half4Name = config.getBlockConfigName(BlockConfiguration.BasicHalf4);
-        if (config.isBlockEnabled(half4Name))
-            GameRegistry.addRecipe(
-                    new ItemStack(halfDrawers4, config.getBlockRecipeOutput(half4Name), drawerMetadata), "yxy",
-                    "xxx", "yxy", 'x', new ItemStack(recipeSlab, 1, slabSubBlockIndex), 'y', Blocks.chest);
+        if (config.isBlockEnabled(half4Name)) GameRegistry
+                .addRecipe(new ItemStack(halfDrawers4, config.getBlockRecipeOutput(half4Name), drawerMetadata), "yxy",
+                        "xxx", "yxy", 'x', new ItemStack(recipeSlab, 1, slabSubBlockIndex), 'y', Blocks.chest);
     }
 
     @Method(modid = StorageDrawersMod.MOD_ID)
-    public void bindSortingBlocks(IPackBlockFactory factory, Block fullDrawers1, Block fullDrawers2, Block fullDrawers4, Block halfDrawers2, Block halfDrawers4)
+    public void bindSortingBlocks(IPackBlockFactory factory, Block fullDrawers1, Block fullDrawers2, Block fullDrawers4,
+                                  Block halfDrawers2, Block halfDrawers4)
     {
         factory.bindSortingBlock(this.fullDrawers1, fullDrawers1);
         factory.bindSortingBlock(this.fullDrawers2, fullDrawers2);

@@ -421,6 +421,7 @@ chisel.dendrology:planks.tuopa.verticalchaotic.name=Vertical tuopa wood planks i
 
 # Creatibe Tabs
 itemGroup.dendrology=Ancient Trees
+itemGroup.storageDrawersAncientTrees=Storage Drawers: Ancient Trees
 
 # Config file comments
 config.dendrology:blacksmithRarity=How often ancient parcels are found in blacksmith's chests. 0 disables. Higher values are less rare.
