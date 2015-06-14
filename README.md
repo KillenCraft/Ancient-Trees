@@ -71,8 +71,12 @@ The logo is a colorized version of ['Beech icon'][beech-icon] by [Lorc][lorc-sit
 
 Some textures are from [The Painterly Pack][pack] by [Rhodox][rhodox_tweet] and friends. Used by permission.
 
+Some textures (Storage Drawers) were contributed by [Justin Aquadro][jaquadro-profile] and used with implicit 
+permission.
+
 [pack]: http://painterlypack.net/
 [rhodox_tweet]: https://twitter.com/PainterlyPack
+[jaquadro-profile]: https://github.com/jaquadro/
 
 ##### APIs
 
@@ -85,7 +89,6 @@ contains significant portions written by [Justin Aquadro][jaquadro-profile] and 
 terms found [therein][sd-mit].
 
 [sd-package]: /src/main/java/com/scottkillen/mod/dendrology/compat/storagedrawers
-[jaquadro-profile]: https://github.com/jaquadro/
 [sd-mit]: /src/main/java/com/scottkillen/mod/dendrology/compat/storagedrawers/LICENSE
 
 ##### Software
