@@ -5,7 +5,7 @@
   "description": "A Minecraft mod that adds many extinct tree species to the world.",
   "version": "${mod_version}",
   "mcversion": "${minecraft_version}",
-  "url": "http://scottk.us/AncientTrees",
+  "url": "http://scottk.us/AncientTreesMod",
   "updateUrl": "",
   "authorList": [
     "ScottKillen",
@@ -25,7 +25,8 @@
     "Forge",
     "koresample@[${kore_version},${minecraft_version}-2.0.0)",
     "Forestry",
-    "minechem"
+    "minechem",
+    "StorageDrawers@[${sd_version},)"
   ],
   "dependants": [
   ],

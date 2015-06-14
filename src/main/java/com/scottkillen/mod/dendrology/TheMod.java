@@ -10,6 +10,7 @@ import com.scottkillen.mod.dendrology.compat.gardencollection.GardenCoreMod;
 import com.scottkillen.mod.dendrology.compat.gardencollection.GardenTreesMod;
 import com.scottkillen.mod.dendrology.compat.mfr.MineFactoryReloadedMod;
 import com.scottkillen.mod.dendrology.compat.minechem.MinechemMod;
+import com.scottkillen.mod.dendrology.compat.storagedrawers.StorageDrawersMod;
 import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.ParcelManager;
 import com.scottkillen.mod.dendrology.content.crafting.Crafter;
@@ -88,6 +89,7 @@ public final class TheMod
         integrators.add(new GardenTreesMod());
         integrators.add(new ChiselMod());
         integrators.add(new MineFactoryReloadedMod());
+        integrators.add(new StorageDrawersMod());
     }
 
     public Configuration configuration()
