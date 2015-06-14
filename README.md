@@ -80,8 +80,13 @@ Included APIs are governed by the licenses under which they were released.
 
 ##### Storage Drawers
 
-The Storage Drawers integration code (package com.scottkillen.mod.dendrology.compat.storagedrawers) contains 
-significant portions written by Justin Aquadro and is governed by the MIT license and the terms found therein.
+The Storage Drawers integration code (package [com.scottkillen.mod.dendrology.compat.storagedrawers](sd-package)) 
+contains significant portions written by [Justin Aquadro](jaquadro-profile) and is governed by the MIT license and the 
+terms found [therein](sd-mit).
+
+[sd-package][/MinecraftModArchive/Dendrology/tree/develop/src/main/java/com/scottkillen/mod/dendrology/compat]
+[jaquadro-profile][https://github.como/jaquadro]
+[sd-mit][/MinecraftModArchive/Dendrology/blob/develop/src/main/java/com/scottkillen/mod/dendrology/compat/storagedrawers/LICENSE]
 
 ##### Software
 
