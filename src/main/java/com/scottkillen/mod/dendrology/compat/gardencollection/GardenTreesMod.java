@@ -5,6 +5,7 @@ import com.jaquadro.minecraft.gardencore.util.UniqueMetaIdentifier;
 import com.jaquadro.minecraft.gardentrees.world.gen.OrnamentalTreeFactory;
 import com.jaquadro.minecraft.gardentrees.world.gen.OrnamentalTreeRegistry;
 import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.koresample.compat.Integrator;
 import cpw.mods.fml.common.Loader;
@@ -83,18 +84,13 @@ public final class GardenTreesMod extends Integrator
     @Override
     public void doIntegration(ModState modState)
     {
-        if (Loader.isModLoaded(MOD_ID) && modState == ModState.INITIALIZED) registerSmallTrees();
+        if (Loader.isModLoaded(MOD_ID) && Settings.INSTANCE.integrateGardenStuff() && modState == ModState.INITIALIZED)
+            registerSmallTrees();
     }
 
     @Override
-    protected String modID()
-    {
-        return MOD_ID;
-    }
+    protected String modID() { return MOD_ID; }
 
     @Override
-    protected String modName()
-    {
-        return MOD_NAME;
-    }
+    protected String modName() { return MOD_NAME; }
 }

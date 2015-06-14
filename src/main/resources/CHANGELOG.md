@@ -1,5 +1,9 @@
 # Ancient Trees Changelog
 
+## 1.5.0
+- Storage Drawers Integration: Make storage drawers from ancient trees!
+- Switches in configuration file to toggle integration with other mods.
+
 ## 1.4.0
 - Saplings can now be planted, fertilized and harvested in MineFactory Reloaded machines. (Though you should
   be careful with larger trees!)

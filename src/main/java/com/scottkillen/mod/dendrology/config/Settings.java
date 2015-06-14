@@ -30,7 +30,14 @@ public enum Settings implements ConfigSyncable
             ImmutableMap.copyOf(defaultChestRarities());
     private static final ImmutableMap<String, String> CHEST_CONFIG_NAMES = chestConfigNames();
     private final Map<String, Integer> chestRarities = defaultChestRarities();
+
     private int overworldTreeGenRarity = DEFAULT_OVER_WORLD_TREE_GEN_RARITY;
+    private boolean integrateChisel = true;
+    private boolean integrateForestry = true;
+    private boolean integrateGardenStuff = true;
+    private boolean integrateMFR = true;
+    private boolean integrateMinechem = true;
+    private boolean integrateStorageDrawers = true;
 
     private static ImmutableMap<String, String> chestConfigNames()
     {
@@ -72,6 +79,11 @@ public enum Settings implements ConfigSyncable
     private static int get(Configuration config, String settingName, String category, int defaultValue)
     {
         return get(config, settingName, category, defaultValue, 0, Integer.MAX_VALUE);
+    }
+
+    private static boolean get(Configuration config, String settingName, String category, boolean defaultValue)
+    {
+        return config.getBoolean(settingName, category, defaultValue, getLocalizedComment(settingName));
     }
 
     private static int get(Configuration config, String settingName, int defaultValue, int minumumValue,
@@ -145,12 +157,20 @@ public enum Settings implements ConfigSyncable
         overworldTreeGenRarity =
                 get(config, "overworldTreeGenRarity", worldGenCategory, DEFAULT_OVER_WORLD_TREE_GEN_RARITY, 0,
                         MAX_OVERWORLD_TREE_GEN_RARITY);
+
+        final String integrationCategory = Configuration.CATEGORY_GENERAL + ".integration";
+        integrateChisel = get(config, "integrateChisel", integrationCategory, true);
+        integrateForestry = get(config, "integrateForestry", integrationCategory, true);
+        integrateGardenStuff = get(config, "integrateGardenStuff", integrationCategory, true);
+        integrateMFR = get(config, "integrateMFR", integrationCategory, true);
+        integrateMinechem = get(config, "integrateMinechem", integrationCategory, true);
+        integrateStorageDrawers = get(config, "integrateStorageDrawers", integrationCategory, true);
     }
 
-    @Override
-    public String toString()
-    {
-        return Objects.toStringHelper(this).add("chestRarities", chestRarities)
-                .add("overworldTreeGenRarity", overworldTreeGenRarity).toString();
-    }
+    public boolean integrateChisel() { return integrateChisel; }
+    public boolean integrateForestry() { return integrateForestry; }
+    public boolean integrateGardenStuff() { return integrateGardenStuff; }
+    public boolean integrateMFR() { return integrateMFR; }
+    public boolean integrateMinechem() { return integrateMinechem; }
+    public boolean integrateStorageDrawers() { return integrateStorageDrawers; }
 }

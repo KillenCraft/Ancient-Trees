@@ -1,6 +1,7 @@
 package com.scottkillen.mod.dendrology.compat.minechem;
 
 import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.koresample.compat.Integrator;
 import cpw.mods.fml.common.Loader;
@@ -52,7 +53,8 @@ public final class MinechemMod extends Integrator
     @Override
     public void doIntegration(ModState modState)
     {
-        if (Loader.isModLoaded(MOD_ID) && modState == ModState.POSTINITIALIZED) addDecomposerRecipes();
+        if (Loader.isModLoaded(MOD_ID)  && Settings.INSTANCE.integrateMinechem() && modState == ModState.POSTINITIALIZED)
+            addDecomposerRecipes();
     }
 
     @Override
