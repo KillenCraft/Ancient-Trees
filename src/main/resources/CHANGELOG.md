@@ -1,5 +1,8 @@
 # Ancient Trees Changelog
 
+## 1.5.1
+- Fixed crash when Storage Drawers integration is enabled and Refined Relocation is present.
+
 ## 1.5.0
 - Storage Drawers Integration: Make storage drawers from ancient trees!
 - Switches in configuration file to toggle integration with other mods.
