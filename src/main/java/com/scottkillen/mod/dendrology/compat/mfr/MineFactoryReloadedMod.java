@@ -2,6 +2,7 @@ package com.scottkillen.mod.dendrology.compat.mfr;
 
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
+import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.koresample.compat.Integrator;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
@@ -86,7 +87,7 @@ public final class MineFactoryReloadedMod extends Integrator
     @Override
     public void doIntegration(ModState modState)
     {
-        if (Loader.isModLoaded(MOD_ID))
+        if (Loader.isModLoaded(MOD_ID) && Settings.INSTANCE.integrateMFR())
         {
             switch (modState)
             {
