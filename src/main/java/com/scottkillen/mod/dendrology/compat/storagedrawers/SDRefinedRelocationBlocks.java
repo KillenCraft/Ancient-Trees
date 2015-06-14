@@ -71,19 +71,19 @@ public final class SDRefinedRelocationBlocks
         final IBlockConfig config = userConfig.blockConfig();
 
         if (config.isBlockEnabled(config.getBlockConfigName(BlockConfiguration.SortingFull1)))
-            factory.registerBlock(fullDrawers1, "fullDrawers1");
+            factory.registerBlock(fullDrawers1, "fullDrawersSort1");
 
         if (config.isBlockEnabled(config.getBlockConfigName(BlockConfiguration.SortingFull2)))
-            factory.registerBlock(fullDrawers2, "fullDrawers2");
+            factory.registerBlock(fullDrawers2, "fullDrawersSort2");
 
         if (config.isBlockEnabled(config.getBlockConfigName(BlockConfiguration.SortingFull4)))
-            factory.registerBlock(fullDrawers4, "fullDrawers4");
+            factory.registerBlock(fullDrawers4, "fullDrawersSort4");
 
         if (config.isBlockEnabled(config.getBlockConfigName(BlockConfiguration.SortingHalf2)))
-            factory.registerBlock(halfDrawers2, "halfDrawers2");
+            factory.registerBlock(halfDrawers2, "halfDrawersSort2");
 
         if (config.isBlockEnabled(config.getBlockConfigName(BlockConfiguration.SortingHalf4)))
-            factory.registerBlock(halfDrawers4, "halfDrawers4");
+            factory.registerBlock(halfDrawers4, "halfDrawersSort4");
     }
 
     @Method(modid = StorageDrawersMod.MOD_ID)
