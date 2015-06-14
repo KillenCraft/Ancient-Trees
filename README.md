@@ -78,9 +78,14 @@ Some textures are from [The Painterly Pack][pack] by [Rhodox][rhodox_tweet] and 
 
 Included APIs are governed by the licenses under which they were released.
 
+##### Storage Drawers
+
+The Storage Drawers integration code (package com.scottkillen.mod.dendrology.compat.storagedrawers) contains 
+significant portions written by Justin Aquadro and is governed by the MIT license and the terms found therein.
+
 ##### Software
 
-This is free and unencumbered software released into the public domain.
+Except for the exceptions noted above, this is free and unencumbered software released into the public domain.
 
 Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or
 as a compiled binary, for any purpose, commercial or non-commercial, and by any means.
