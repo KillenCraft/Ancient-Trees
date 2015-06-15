@@ -1,0 +1,451 @@
+##############################
+# Dendrology
+#
+# Chinese - China (zh_CN) localization
+# Author: Joccob
+#
+
+#Blocks
+
+### Logs
+tile.dendrology:log.acemus.name=落叶松木
+tile.dendrology:log.cedrum.name=冷杉木
+tile.dendrology:log.cerasu.name=樱木
+tile.dendrology:log.delnas.name=棕榈木
+tile.dendrology:log.ewcaly.name=巴尔杉木
+tile.dendrology:log.hekur.name=柏合欢木
+tile.dendrology:log.kiparis.name=水杉木
+tile.dendrology:log.kulist.name=古槐木
+tile.dendrology:log.lata.name=古榕木
+tile.dendrology:log.nucis.name=刺槐木
+tile.dendrology:log.porffor.name=紫樱木
+tile.dendrology:log.salyx.name=古柳木
+tile.dendrology:log.tuopa.name=铁杉木
+
+### Leaves
+tile.dendrology:leaves.acemus.name=落叶松树叶
+tile.dendrology:leaves.cedrum.name=冷杉树叶
+tile.dendrology:leaves.cerasu.name=樱木树叶
+tile.dendrology:leaves.delnas.name=棕榈树叶
+tile.dendrology:leaves.ewcaly.name=巴尔杉树叶
+tile.dendrology:leaves.hekur.name=柏合欢树叶
+tile.dendrology:leaves.kiparis.name=水杉树叶
+tile.dendrology:leaves.kulist.name=古槐树叶
+tile.dendrology:leaves.lata.name=古榕树叶
+tile.dendrology:leaves.nucis.name=刺槐树叶
+tile.dendrology:leaves.porffor.name=紫樱树叶
+tile.dendrology:leaves.salyx.name=古柳树叶
+tile.dendrology:leaves.tuopa.name=铁杉树叶
+
+### Planks
+tile.dendrology:wood.acemus.name=落叶松木板
+tile.dendrology:wood.cedrum.name=冷杉木板
+tile.dendrology:wood.cerasu.name=樱木木板
+tile.dendrology:wood.delnas.name=棕榈木板
+tile.dendrology:wood.ewcaly.name=巴尔杉木板
+tile.dendrology:wood.hekur.name=柏合欢木板
+tile.dendrology:wood.kiparis.name=水杉木板
+tile.dendrology:wood.kulist.name=古槐木板
+tile.dendrology:wood.lata.name=古榕木板
+tile.dendrology:wood.nucis.name=刺槐木板
+tile.dendrology:wood.porffor.name=紫樱木板
+tile.dendrology:wood.salyx.name=古柳木板
+tile.dendrology:wood.tuopa.name=铁杉木板
+
+### Saplings
+tile.dendrology:sapling.acemus.name=落叶松树苗
+tile.dendrology:sapling.cedrum.name=冷杉树苗
+tile.dendrology:sapling.cerasu.name=樱木树苗
+tile.dendrology:sapling.delnas.name=棕榈树苗
+tile.dendrology:sapling.ewcaly.name=巴尔杉树苗
+tile.dendrology:sapling.hekur.name=柏合欢树苗
+tile.dendrology:sapling.kiparis.name=水杉树苗
+tile.dendrology:sapling.kulist.name=古槐树苗
+tile.dendrology:sapling.lata.name=古榕树苗
+tile.dendrology:sapling.nucis.name=刺槐树苗
+tile.dendrology:sapling.porffor.name=紫樱树苗
+tile.dendrology:sapling.salyx.name=古柳树苗
+tile.dendrology:sapling.tuopa.name=铁杉树苗
+
+### Slabs
+tile.dendrology:slab.acemus.name=落叶松台阶
+tile.dendrology:slab.cedrum.name=冷杉木台阶
+tile.dendrology:slab.cerasu.name=樱木台阶
+tile.dendrology:slab.delnas.name=棕榈木台阶
+tile.dendrology:slab.ewcaly.name=巴尔杉木台阶
+tile.dendrology:slab.hekur.name=柏合欢木台阶
+tile.dendrology:slab.kiparis.name=水杉木台阶
+tile.dendrology:slab.kulist.name=古槐木台阶
+tile.dendrology:slab.lata.name=古榕木台阶
+tile.dendrology:slab.nucis.name=刺槐木台阶
+tile.dendrology:slab.porffor.name=紫樱木台阶
+tile.dendrology:slab.salyx.name=古柳木台阶
+tile.dendrology:slab.tuopa.name=铁杉木台阶
+
+### Stairs
+tile.dendrology:stairs.acemus.name=落叶松楼梯
+tile.dendrology:stairs.cedrum.name=冷杉木楼梯
+tile.dendrology:stairs.cerasu.name=樱木楼梯
+tile.dendrology:stairs.delnas.name=棕榈木楼梯
+tile.dendrology:stairs.ewcaly.name=巴尔杉木楼梯
+tile.dendrology:stairs.hekur.name=柏合欢木楼梯
+tile.dendrology:stairs.kiparis.name=水杉木楼梯
+tile.dendrology:stairs.kulist.name=古槐木楼梯
+tile.dendrology:stairs.lata.name=古榕木楼梯
+tile.dendrology:stairs.nucis.name=刺槐木楼梯
+tile.dendrology:stairs.porffor.name=紫樱木楼梯
+tile.dendrology:stairs.salyx.name=古柳木楼梯
+tile.dendrology:stairs.tuopa.name=铁杉木楼梯
+
+### Storage Drawers
+tile.dendrology.fullDrawers1.acemus.name=落叶松抽屉
+tile.dendrology.fullDrawers1.cedrum.name=冷杉木抽屉
+tile.dendrology.fullDrawers1.cerasu.name=樱木抽屉
+tile.dendrology.fullDrawers1.delnas.name=棕榈木抽屉
+tile.dendrology.fullDrawers1.ewcaly.name=巴尔衫木抽屉
+tile.dendrology.fullDrawers1.hekur.name=柏合欢木抽屉
+tile.dendrology.fullDrawers1.kiparis.name=水杉木抽屉
+tile.dendrology.fullDrawers1.kulist.name=古槐木抽屉
+tile.dendrology.fullDrawers1.lata.name=古榕木抽屉
+tile.dendrology.fullDrawers1.nucis.name=刺槐木抽屉
+tile.dendrology.fullDrawers1.porffor.name=紫樱木抽屉
+tile.dendrology.fullDrawers1.salyx.name=古柳木抽屉
+tile.dendrology.fullDrawers1.tuopa.name=铁衫木抽屉
+
+tile.dendrology.fullDrawers2.acemus.name=落叶松抽屉 1x2
+tile.dendrology.fullDrawers2.cedrum.name=冷杉木抽屉 1x2
+tile.dendrology.fullDrawers2.cerasu.name=樱木抽屉 1x2
+tile.dendrology.fullDrawers2.delnas.name=棕榈木抽屉 1x2
+tile.dendrology.fullDrawers2.ewcaly.name=巴尔衫木抽屉 1x2
+tile.dendrology.fullDrawers2.hekur.name=柏合欢木抽屉 1x2
+tile.dendrology.fullDrawers2.kiparis.name=水杉木抽屉 1x2
+tile.dendrology.fullDrawers2.kulist.name=古槐木抽屉 1x2
+tile.dendrology.fullDrawers2.lata.name=古榕木抽屉 1x2
+tile.dendrology.fullDrawers2.nucis.name=刺槐木抽屉 1x2
+tile.dendrology.fullDrawers2.porffor.name=紫樱木抽屉 1x2
+tile.dendrology.fullDrawers2.salyx.name=古柳木抽屉 1x2
+tile.dendrology.fullDrawers2.tuopa.name=铁衫木抽屉 1x2
+
+tile.dendrology.fullDrawers4.acemus.name=落叶松抽屉 2x2
+tile.dendrology.fullDrawers4.cedrum.name=冷杉木抽屉 2x2
+tile.dendrology.fullDrawers4.cerasu.name=樱木抽屉 2x2
+tile.dendrology.fullDrawers4.delnas.name=棕榈木抽屉 2x2
+tile.dendrology.fullDrawers4.ewcaly.name=巴尔衫木抽屉 2x2
+tile.dendrology.fullDrawers4.hekur.name=柏合欢木抽屉 2x2
+tile.dendrology.fullDrawers4.kiparis.name=水杉木抽屉 2x2
+tile.dendrology.fullDrawers4.kulist.name=古槐木抽屉 2x2
+tile.dendrology.fullDrawers4.lata.name=古榕木抽屉 2x2
+tile.dendrology.fullDrawers4.nucis.name=刺槐木抽屉 2x2
+tile.dendrology.fullDrawers4.porffor.name=紫樱木抽屉 2x2
+tile.dendrology.fullDrawers4.salyx.name=古柳木抽屉 2x2
+tile.dendrology.fullDrawers4.tuopa.name=铁衫木抽屉 2x2
+
+tile.dendrology.halfDrawers2.acemus.name=致密落叶松抽屉 1x2
+tile.dendrology.halfDrawers2.cedrum.name=致密冷杉木抽屉 1x2
+tile.dendrology.halfDrawers2.cerasu.name=致密樱木抽屉 1x2
+tile.dendrology.halfDrawers2.delnas.name=致密棕榈木抽屉 1x2
+tile.dendrology.halfDrawers2.ewcaly.name=致密巴尔衫木抽屉 1x2
+tile.dendrology.halfDrawers2.hekur.name=致密柏合欢木抽屉 1x2
+tile.dendrology.halfDrawers2.kiparis.name=致密水杉木抽屉 1x2
+tile.dendrology.halfDrawers2.kulist.name=致密古槐木抽屉 1x2
+tile.dendrology.halfDrawers2.lata.name=致密古榕木抽屉 1x2
+tile.dendrology.halfDrawers2.nucis.name=致密刺槐木抽屉 1x2
+tile.dendrology.halfDrawers2.porffor.name=致密紫樱木抽屉 1x2
+tile.dendrology.halfDrawers2.salyx.name=致密古柳木抽屉 1x2
+tile.dendrology.halfDrawers2.tuopa.name=致密铁衫木抽屉 1x2
+
+tile.dendrology.halfDrawers4.acemus.name=致密落叶松抽屉 2x2
+tile.dendrology.halfDrawers4.cedrum.name=致密冷杉木抽屉 2x2
+tile.dendrology.halfDrawers4.cerasu.name=致密樱木抽屉 2x2
+tile.dendrology.halfDrawers4.delnas.name=致密棕榈木抽屉 2x2
+tile.dendrology.halfDrawers4.ewcaly.name=致密巴尔衫木抽屉 2x2
+tile.dendrology.halfDrawers4.hekur.name=致密柏合欢木抽屉 2x2
+tile.dendrology.halfDrawers4.kiparis.name=致密水杉木抽屉 2x2
+tile.dendrology.halfDrawers4.kulist.name=致密古槐木抽屉 2x2
+tile.dendrology.halfDrawers4.lata.name=致密古榕木抽屉 2x2
+tile.dendrology.halfDrawers4.nucis.name=致密刺槐木抽屉 2x2
+tile.dendrology.halfDrawers4.porffor.name=致密紫樱木抽屉 2x2
+tile.dendrology.halfDrawers4.salyx.name=致密古柳木抽屉 2x2
+tile.dendrology.halfDrawers4.tuopa.name=致密铁衫木抽屉 2x2
+
+tile.dendrology.trim.acemus.name=落叶松装饰
+tile.dendrology.trim.cedrum.name=冷杉木装饰
+tile.dendrology.trim.cerasu.name=樱木装饰
+tile.dendrology.trim.delnas.name=棕榈木装饰
+tile.dendrology.trim.ewcaly.name=巴尔衫木装饰
+tile.dendrology.trim.hekur.name=柏合欢木装饰
+tile.dendrology.trim.kiparis.name=水杉木装饰
+tile.dendrology.trim.kulist.name=古槐木装饰
+tile.dendrology.trim.lata.name=古榕木装饰
+tile.dendrology.trim.nucis.name=刺槐木装饰
+tile.dendrology.trim.porffor.name=紫樱木装饰
+tile.dendrology.trim.salyx.name=古柳木装饰
+tile.dendrology.trim.tuopa.name=铁衫木装饰
+
+### Chisel
+tile.acemus_planks.name=落叶松木板
+tile.cedrum_planks.name=冷杉木板
+tile.cerasu_planks.name=樱木木板
+tile.delnas_planks.name=棕榈木板
+tile.ewcaly_planks.name=巴尔杉木板
+tile.hekur_planks.name=柏合欢木板
+tile.kiparis_planks.name=水杉木板
+tile.kulist_planks.name=古槐木板
+tile.lata_planks.name=古榕木板
+tile.nucis_planks.name=刺槐木板
+tile.porffor_planks.name=紫樱木板
+tile.salyx_planks.name=古柳木板
+tile.tuopa_planks.name=铁杉木板
+
+tile.chisel.acemus_planks.name=落叶松木板
+tile.chisel.cedrum_planks.name=冷杉木板
+tile.chisel.cerasu_planks.name=樱木板
+tile.chisel.delnas_planks.name=棕榈木板
+tile.chisel.ewcaly_planks.name=巴尔杉木板
+tile.chisel.hekur_planks.name=柏合欢木板
+tile.chisel.kiparis_planks.name=水杉木板
+tile.chisel.kulist_planks.name=古槐木板
+tile.chisel.lata_planks.name=古榕木板
+tile.chisel.nucis_planks.name=刺槐木板
+tile.chisel.porffor_planks.name=紫樱木板
+tile.chisel.salyx_planks.name=古柳木板
+tile.chisel.tuopa_planks.name=铁杉木板
+
+chisel.dendrology:planks.acemus.clean.name=Smooth acemus wood planks
+chisel.dendrology:planks.acemus.short.name=Short acemus wood planks
+chisel.dendrology:planks.acemus.fancy.name=Fancy acemus wood plank arrangement
+chisel.dendrology:planks.acemus.panel.name=Acemus wood panel
+chisel.dendrology:planks.acemus.double.name=Acemus wood double slab
+chisel.dendrology:planks.acemus.crate.name=Acemus wood crate
+chisel.dendrology:planks.acemus.cratefancy.name=Fancy acemus wood crate
+chisel.dendrology:planks.acemus.large.name=Large long acemus wood planks
+chisel.dendrology:planks.acemus.vertical.name=Vertical acemus wood planks
+chisel.dendrology:planks.acemus.uneven.name=Vertical uneven acemus wood planks
+chisel.dendrology:planks.acemus.parquet.name=Acemus wood parquet
+chisel.dendrology:planks.acemus.blinds.name=Acemus wood plank blinds
+chisel.dendrology:planks.acemus.scaffold.name=Acemus wood scaffold
+chisel.dendrology:planks.acemus.chaotic.name=Acemus wood planks in disarray
+chisel.dendrology:planks.acemus.verticalchaotic.name=Vetical acemus wood planks in disarray
+
+chisel.dendrology:planks.cedrum.clean.name=Smooth cedrum wood planks
+chisel.dendrology:planks.cedrum.short.name=Short cedrum wood planks
+chisel.dendrology:planks.cedrum.fancy.name=Fancy cedrum wood plank arrangement
+chisel.dendrology:planks.cedrum.panel.name=Cedrum wood panel
+chisel.dendrology:planks.cedrum.double.name=Cedrum wood double slab
+chisel.dendrology:planks.cedrum.crate.name=Cedrum wood crate
+chisel.dendrology:planks.cedrum.cratefancy.name=Fancy cedrum wood crate
+chisel.dendrology:planks.cedrum.large.name=Large long cedrum wood planks
+chisel.dendrology:planks.cedrum.vertical.name=Vertical cedrum wood planks
+chisel.dendrology:planks.cedrum.uneven.name=Vertical uneven cedrum wood planks
+chisel.dendrology:planks.cedrum.parquet.name=Cedrum wood parquet
+chisel.dendrology:planks.cedrum.blinds.name=Cedrum wood plank blinds
+chisel.dendrology:planks.cedrum.scaffold.name=Cedrum wood scaffold
+chisel.dendrology:planks.cedrum.chaotic.name=Cedrum wood planks in disarray
+chisel.dendrology:planks.cedrum.verticalchaotic.name=Vetical cedrum wood planks in disarray
+
+chisel.dendrology:planks.cerasu.clean.name=Smooth cerasu wood planks
+chisel.dendrology:planks.cerasu.short.name=Short cerasu wood planks
+chisel.dendrology:planks.cerasu.fancy.name=Fancy cerasu wood plank arrangement
+chisel.dendrology:planks.cerasu.panel.name=Cerasu wood panel
+chisel.dendrology:planks.cerasu.double.name=Cerasu wood double slab
+chisel.dendrology:planks.cerasu.crate.name=Cerasu wood crate
+chisel.dendrology:planks.cerasu.cratefancy.name=Fancy cerasu wood crate
+chisel.dendrology:planks.cerasu.large.name=Large long cerasu wood planks
+chisel.dendrology:planks.cerasu.vertical.name=Vertical cerasu wood planks
+chisel.dendrology:planks.cerasu.uneven.name=Vertical uneven cerasu wood planks
+chisel.dendrology:planks.cerasu.parquet.name=Cerasu wood parquet
+chisel.dendrology:planks.cerasu.blinds.name=Cerasu wood plank blinds
+chisel.dendrology:planks.cerasu.scaffold.name=Cerasu wood scaffold
+chisel.dendrology:planks.cerasu.chaotic.name=Cerasu wood planks in disarray
+chisel.dendrology:planks.cerasu.verticalchaotic.name=Vetical cerasu wood planks in disarray
+
+chisel.dendrology:planks.delnas.clean.name=Smooth delnas wood planks
+chisel.dendrology:planks.delnas.short.name=Short delnas wood planks
+chisel.dendrology:planks.delnas.fancy.name=Fancy delnas wood plank arrangement
+chisel.dendrology:planks.delnas.panel.name=Delnas wood panel
+chisel.dendrology:planks.delnas.double.name=Delnas wood double slab
+chisel.dendrology:planks.delnas.crate.name=Delnas wood crate
+chisel.dendrology:planks.delnas.cratefancy.name=Fancy delnas wood crate
+chisel.dendrology:planks.delnas.large.name=Large long delnas wood planks
+chisel.dendrology:planks.delnas.vertical.name=Vertical delnas wood planks
+chisel.dendrology:planks.delnas.uneven.name=Vertical uneven delnas wood planks
+chisel.dendrology:planks.delnas.parquet.name=Delnas wood parquet
+chisel.dendrology:planks.delnas.blinds.name=Delnas wood plank blinds
+chisel.dendrology:planks.delnas.scaffold.name=Delnas wood scaffold
+chisel.dendrology:planks.delnas.chaotic.name=Delnas wood planks in disarray
+chisel.dendrology:planks.delnas.verticalchaotic.name=Vetical delnas wood planks in disarray
+
+chisel.dendrology:planks.ewcaly.clean.name=Smooth ewcaly wood planks
+chisel.dendrology:planks.ewcaly.short.name=Short ewcaly wood planks
+chisel.dendrology:planks.ewcaly.fancy.name=Fancy ewcaly wood plank arrangement
+chisel.dendrology:planks.ewcaly.panel.name=Ewcaly wood panel
+chisel.dendrology:planks.ewcaly.double.name=Ewcaly wood double slab
+chisel.dendrology:planks.ewcaly.crate.name=Ewcaly wood crate
+chisel.dendrology:planks.ewcaly.cratefancy.name=Fancy ewcaly wood crate
+chisel.dendrology:planks.ewcaly.large.name=Large long ewcaly wood planks
+chisel.dendrology:planks.ewcaly.vertical.name=Vertical ewcaly wood planks
+chisel.dendrology:planks.ewcaly.uneven.name=Vertical uneven ewcaly wood planks
+chisel.dendrology:planks.ewcaly.parquet.name=Ewcaly wood parquet
+chisel.dendrology:planks.ewcaly.blinds.name=Ewcaly wood plank blinds
+chisel.dendrology:planks.ewcaly.scaffold.name=Ewcaly wood scaffold
+chisel.dendrology:planks.ewcaly.chaotic.name=Ewcaly wood planks in disarray
+chisel.dendrology:planks.ewcaly.verticalchaotic.name=Vetical ewcaly wood planks in disarray
+
+chisel.dendrology:planks.hekur.clean.name=Smooth hekur wood planks
+chisel.dendrology:planks.hekur.short.name=Short hekur wood planks
+chisel.dendrology:planks.hekur.fancy.name=Fancy hekur wood plank arrangement
+chisel.dendrology:planks.hekur.panel.name=Hekur wood panel
+chisel.dendrology:planks.hekur.double.name=Hekur wood double slab
+chisel.dendrology:planks.hekur.crate.name=Hekur wood crate
+chisel.dendrology:planks.hekur.cratefancy.name=Fancy hekur wood crate
+chisel.dendrology:planks.hekur.large.name=Large long hekur wood planks
+chisel.dendrology:planks.hekur.vertical.name=Vertical hekur wood planks
+chisel.dendrology:planks.hekur.uneven.name=Vertical uneven hekur wood planks
+chisel.dendrology:planks.hekur.parquet.name=Hekur wood parquet
+chisel.dendrology:planks.hekur.blinds.name=Hekur wood plank blinds
+chisel.dendrology:planks.hekur.scaffold.name=Hekur wood scaffold
+chisel.dendrology:planks.hekur.chaotic.name=Hekur wood planks in disarray
+chisel.dendrology:planks.hekur.verticalchaotic.name=Vetical hekur wood planks in disarray
+
+chisel.dendrology:planks.kiparis.clean.name=Smooth kiparis wood planks
+chisel.dendrology:planks.kiparis.short.name=Short kiparis wood planks
+chisel.dendrology:planks.kiparis.fancy.name=Fancy kiparis wood plank arrangement
+chisel.dendrology:planks.kiparis.panel.name=Kiparis wood panel
+chisel.dendrology:planks.kiparis.double.name=Kiparis wood double slab
+chisel.dendrology:planks.kiparis.crate.name=Kiparis wood crate
+chisel.dendrology:planks.kiparis.cratefancy.name=Fancy kiparis wood crate
+chisel.dendrology:planks.kiparis.large.name=Large long kiparis wood planks
+chisel.dendrology:planks.kiparis.vertical.name=Vertical kiparis wood planks
+chisel.dendrology:planks.kiparis.uneven.name=Vertical uneven kiparis wood planks
+chisel.dendrology:planks.kiparis.parquet.name=Kiparis wood parquet
+chisel.dendrology:planks.kiparis.blinds.name=Kiparis wood plank blinds
+chisel.dendrology:planks.kiparis.scaffold.name=Kiparis wood scaffold
+chisel.dendrology:planks.kiparis.chaotic.name=Kiparis wood planks in disarray
+chisel.dendrology:planks.kiparis.verticalchaotic.name=Vetical kiparis wood planks in disarray
+
+chisel.dendrology:planks.kiparis.clean.name=Smooth kiparis wood planks
+chisel.dendrology:planks.kiparis.short.name=Short kiparis wood planks
+chisel.dendrology:planks.kiparis.fancy.name=Fancy kiparis wood plank arrangement
+chisel.dendrology:planks.kiparis.panel.name=Kiparis wood panel
+chisel.dendrology:planks.kiparis.double.name=Kiparis wood double slab
+chisel.dendrology:planks.kiparis.crate.name=Kiparis wood crate
+chisel.dendrology:planks.kiparis.cratefancy.name=Fancy kiparis wood crate
+chisel.dendrology:planks.kiparis.large.name=Large long kiparis wood planks
+chisel.dendrology:planks.kiparis.vertical.name=Vertical kiparis wood planks
+chisel.dendrology:planks.kiparis.uneven.name=Vertical uneven kiparis wood planks
+chisel.dendrology:planks.kiparis.parquet.name=Kiparis wood parquet
+chisel.dendrology:planks.kiparis.blinds.name=Kiparis wood plank blinds
+chisel.dendrology:planks.kiparis.scaffold.name=Kiparis wood scaffold
+chisel.dendrology:planks.kiparis.chaotic.name=Kiparis wood planks in disarray
+chisel.dendrology:planks.kiparis.verticalchaotic.name=Vetical kiparis wood planks in disarray
+
+chisel.dendrology:planks.lata.clean.name=Smooth lata wood planks
+chisel.dendrology:planks.lata.short.name=Short lata wood planks
+chisel.dendrology:planks.lata.fancy.name=Fancy lata wood plank arrangement
+chisel.dendrology:planks.lata.panel.name=Lata wood panel
+chisel.dendrology:planks.lata.double.name=Lata wood double slab
+chisel.dendrology:planks.lata.crate.name=Lata wood crate
+chisel.dendrology:planks.lata.cratefancy.name=Fancy lata wood crate
+chisel.dendrology:planks.lata.large.name=Large long lata wood planks
+chisel.dendrology:planks.lata.vertical.name=Vertical lata wood planks
+chisel.dendrology:planks.lata.uneven.name=Vertical uneven lata wood planks
+chisel.dendrology:planks.lata.parquet.name=Lata wood parquet
+chisel.dendrology:planks.lata.blinds.name=Lata wood plank blinds
+chisel.dendrology:planks.lata.scaffold.name=Lata wood scaffold
+chisel.dendrology:planks.lata.chaotic.name=Lata wood planks in disarray
+chisel.dendrology:planks.lata.verticalchaotic.name=Vetical lata wood planks in disarray
+
+chisel.dendrology:planks.nucis.clean.name=Smooth nucis wood planks
+chisel.dendrology:planks.nucis.short.name=Short nucis wood planks
+chisel.dendrology:planks.nucis.fancy.name=Fancy nucis wood plank arrangement
+chisel.dendrology:planks.nucis.panel.name=Nucis wood panel
+chisel.dendrology:planks.nucis.double.name=Nucis wood double slab
+chisel.dendrology:planks.nucis.crate.name=Nucis wood crate
+chisel.dendrology:planks.nucis.cratefancy.name=Fancy nucis wood crate
+chisel.dendrology:planks.nucis.large.name=Large long nucis wood planks
+chisel.dendrology:planks.nucis.vertical.name=Vertical nucis wood planks
+chisel.dendrology:planks.nucis.uneven.name=Vertical uneven nucis wood planks
+chisel.dendrology:planks.nucis.parquet.name=Nucis wood parquet
+chisel.dendrology:planks.nucis.blinds.name=Nucis wood plank blinds
+chisel.dendrology:planks.nucis.scaffold.name=Nucis wood scaffold
+chisel.dendrology:planks.nucis.chaotic.name=Nucis wood planks in disarray
+chisel.dendrology:planks.nucis.verticalchaotic.name=Vetical nucis wood planks in disarray
+
+chisel.dendrology:planks.porffor.clean.name=Smooth porffor wood planks
+chisel.dendrology:planks.porffor.short.name=Short porffor wood planks
+chisel.dendrology:planks.porffor.fancy.name=Fancy porffor wood plank arrangement
+chisel.dendrology:planks.porffor.panel.name=Porffor wood panel
+chisel.dendrology:planks.porffor.double.name=Porffor wood double slab
+chisel.dendrology:planks.porffor.crate.name=Porffor wood crate
+chisel.dendrology:planks.porffor.cratefancy.name=Fancy porffor wood crate
+chisel.dendrology:planks.porffor.large.name=Large long porffor wood planks
+chisel.dendrology:planks.porffor.vertical.name=Vertical porffor wood planks
+chisel.dendrology:planks.porffor.uneven.name=Vertical uneven porffor wood planks
+chisel.dendrology:planks.porffor.parquet.name=Porffor wood parquet
+chisel.dendrology:planks.porffor.blinds.name=Porffor wood plank blinds
+chisel.dendrology:planks.porffor.scaffold.name=Porffor wood scaffold
+chisel.dendrology:planks.porffor.chaotic.name=Porffor wood planks in disarray
+chisel.dendrology:planks.porffor.verticalchaotic.name=Vetical porffor wood planks in disarray
+
+chisel.dendrology:planks.salyx.clean.name=Smooth salyx wood planks
+chisel.dendrology:planks.salyx.short.name=Short salyx wood planks
+chisel.dendrology:planks.salyx.fancy.name=Fancy salyx wood plank arrangement
+chisel.dendrology:planks.salyx.panel.name=Salyx wood panel
+chisel.dendrology:planks.salyx.double.name=Salyx wood double slab
+chisel.dendrology:planks.salyx.crate.name=Salyx wood crate
+chisel.dendrology:planks.salyx.cratefancy.name=Fancy salyx wood crate
+chisel.dendrology:planks.salyx.large.name=Large long salyx wood planks
+chisel.dendrology:planks.salyx.vertical.name=Vertical salyx wood planks
+chisel.dendrology:planks.salyx.uneven.name=Vertical uneven salyx wood planks
+chisel.dendrology:planks.salyx.parquet.name=Salyx wood parquet
+chisel.dendrology:planks.salyx.blinds.name=Salyx wood plank blinds
+chisel.dendrology:planks.salyx.scaffold.name=Salyx wood scaffold
+chisel.dendrology:planks.salyx.chaotic.name=Salyx wood planks in disarray
+chisel.dendrology:planks.salyx.verticalchaotic.name=Vetical salyx wood planks in disarray
+
+chisel.dendrology:planks.tuopa.clean.name=Smooth tuopa wood planks
+chisel.dendrology:planks.tuopa.short.name=Short tuopa wood planks
+chisel.dendrology:planks.tuopa.fancy.name=Fancy tuopa wood plank arrangement
+chisel.dendrology:planks.tuopa.panel.name=Tuopa wood panel
+chisel.dendrology:planks.tuopa.double.name=Tuopa wood double slab
+chisel.dendrology:planks.tuopa.crate.name=Tuopa wood crate
+chisel.dendrology:planks.tuopa.cratefancy.name=Fancy tuopa wood crate
+chisel.dendrology:planks.tuopa.large.name=Large long tuopa wood planks
+chisel.dendrology:planks.tuopa.vertical.name=Vertical tuopa wood planks
+chisel.dendrology:planks.tuopa.uneven.name=Vertical uneven tuopa wood planks
+chisel.dendrology:planks.tuopa.parquet.name=Tuopa wood parquet
+chisel.dendrology:planks.tuopa.blinds.name=Tuopa wood plank blinds
+chisel.dendrology:planks.tuopa.scaffold.name=Tuopa wood scaffold
+chisel.dendrology:planks.tuopa.chaotic.name=Tuopa wood planks in disarray
+chisel.dendrology:planks.tuopa.verticalchaotic.name=Vertical tuopa wood planks in disarray
+
+# Creatibe Tabs
+itemGroup.dendrology=远古之树
+itemGroup.storageDrawersAncientTrees=储物抽屉| 远古之树
+
+# Config file comments
+config.dendrology:blacksmithRarity=How often ancient parcels are found in blacksmith's chests. 0 disables. Higher values are less rare.
+config.dendrology:bonusChestRarity=How often ancient parcels are found in bonus chests. 0 disables. Higher values are less rare.
+config.dendrology:desertTempleRarity=How often ancient parcels are found in desert temple chests. 0 disables. Higher values are less rare.
+config.dendrology:dungeonRarity=How often ancient parcels are found in dungeon chests. 0 disables. Higher values are less rare.
+config.dendrology:integrateChisel=Should this mod allow its wood to be used to make decorative blocks in Chisel?
+config.dendrology:integrateForestry=Should this mod allow its trees to be recognized by Forestry farms and backpacks?
+config.dendrology:integrateGardenStuff=Should this mod allow its trees to grow as miniatures in GardenStuff's pots?
+config.dendrology:integrateMFR=Should this mod allow its trees to grow in Minefactory Reloaded farms?
+config.dendrology:integrateMinechem=Should this mod allow you to analyze its blocks in Minechem?
+config.dendrology:integrateStorageDrawers=Should this mod allow Storage Drawers to use its wood?
+config.dendrology:jungleTempleRarity=How often ancient parcels are found in jungle temple chests. 0 disables. Higher values are less rare.
+config.dendrology:jungleTempleDispenserRarity=How often ancient parcels are found in jungle temple dispensers. 0 disables. Higher values are less rare.
+config.dendrology:mineshaftCorridorRarity=How often ancient parcels are found in mineshaft corridor chests. 0 disables. Higher values are less rare.
+config.dendrology:overworldTreeGenRarity=How often ancient trees are found growing in the overworld. 0 disables. Higher values are less rare.
+config.dendrology:strongholdCorridorRarity=How often ancient parcels are found in stronghold corridor chests. 0 disables. Higher values are less rare.
+config.dendrology:strongholdCrossingRarity=How often ancient parcels are found in stronghold crossing chests. 0 disables. Higher values are less rare.
+config.dendrology:strongholdLibraryRarity=How often ancient parcels are found in stronghold library chests. 0 disables. Higher values are less rare.
+
+# Items
+item.dendrology:parcel.name=远古布袋
+dendrology:parcel.tooltip=远古人民到底在其中藏了什么?
+
+# Parcel contents
+dendrology:parcel.empty=空袋子破碎化为了灰尘.
+dendrology:parcel.full=获得了布袋中远古人民的礼物. (%s)
