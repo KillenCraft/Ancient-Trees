@@ -4,6 +4,7 @@ import com.cricketcraft.chisel.api.carving.CarvableHelper;
 import com.cricketcraft.chisel.api.carving.CarvingUtils;
 import com.cricketcraft.chisel.api.carving.ICarvingRegistry;
 import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.koresample.compat.Integrator;
 import com.scottkillen.mod.koresample.tree.block.WoodBlock;
@@ -82,7 +83,7 @@ public final class ChiselMod extends Integrator
     @Override
     public void doIntegration(ModState modState)
     {
-        if (Loader.isModLoaded(MOD_ID))
+        if (Loader.isModLoaded(MOD_ID)&& Settings.INSTANCE.integrateChisel())
         {
             switch (modState)
             {
@@ -95,14 +96,8 @@ public final class ChiselMod extends Integrator
     }
 
     @Override
-    protected String modID()
-    {
-        return MOD_ID;
-    }
+    protected String modID() { return MOD_ID; }
 
     @Override
-    protected String modName()
-    {
-        return MOD_NAME;
-    }
+    protected String modName() { return MOD_NAME; }
 }

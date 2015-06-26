@@ -1,5 +1,5 @@
 ## Ancient Trees
-**LATEST OFFICIAL VERSION**: [Ancient Trees 1.4.0 for MC 1.7.10][latest] ([changelog][changelog.md]) ([all
+**LATEST OFFICIAL VERSION**: [Ancient Trees 1.5.1 for MC 1.7.10][latest] ([changelog][changelog.md]) ([all
 releases][releases])<br />
 *DEPENDS ON*: [Kore Sample 1.3.0 (or later) for MC 1.7.10][koresample]
 
@@ -71,16 +71,29 @@ The logo is a colorized version of ['Beech icon'][beech-icon] by [Lorc][lorc-sit
 
 Some textures are from [The Painterly Pack][pack] by [Rhodox][rhodox_tweet] and friends. Used by permission.
 
+Some textures (Storage Drawers) were contributed by [Justin Aquadro][jaquadro-profile] and used with implicit 
+permission.
+
 [pack]: http://painterlypack.net/
 [rhodox_tweet]: https://twitter.com/PainterlyPack
+[jaquadro-profile]: https://github.com/jaquadro/
 
 ##### APIs
 
 Included APIs are governed by the licenses under which they were released.
 
+##### Storage Drawers
+
+The Storage Drawers integration code (package [com.scottkillen.mod.dendrology.compat.storagedrawers][sd-package]) 
+contains significant portions written by [Justin Aquadro][jaquadro-profile] and is governed by the MIT license and the 
+terms found [therein][sd-mit].
+
+[sd-package]: /src/main/java/com/scottkillen/mod/dendrology/compat/storagedrawers
+[sd-mit]: /src/main/java/com/scottkillen/mod/dendrology/compat/storagedrawers/LICENSE
+
 ##### Software
 
-This is free and unencumbered software released into the public domain.
+Except for the exceptions noted above, this is free and unencumbered software released into the public domain.
 
 Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or
 as a compiled binary, for any purpose, commercial or non-commercial, and by any means.

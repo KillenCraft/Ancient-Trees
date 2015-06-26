@@ -3,6 +3,7 @@ package com.scottkillen.mod.dendrology.compat.gardencollection;
 import com.jaquadro.minecraft.gardencore.api.SaplingRegistry;
 import com.jaquadro.minecraft.gardencore.api.WoodRegistry;
 import com.scottkillen.mod.dendrology.TheMod;
+import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.koresample.compat.Integrator;
 import com.scottkillen.mod.koresample.tree.block.LogBlock;
@@ -38,18 +39,13 @@ public final class GardenCoreMod extends Integrator
     @Override
     public void doIntegration(ModState modState)
     {
-        if (Loader.isModLoaded(MOD_ID) && modState == ModState.INITIALIZED) registerWood();
+        if (Loader.isModLoaded(MOD_ID) && Settings.INSTANCE.integrateGardenStuff() && modState == ModState.INITIALIZED)
+            registerWood();
     }
 
     @Override
-    protected String modID()
-    {
-        return MOD_ID;
-    }
+    protected String modID() { return MOD_ID; }
 
     @Override
-    protected String modName()
-    {
-        return MOD_NAME;
-    }
+    protected String modName() { return MOD_NAME; }
 }
