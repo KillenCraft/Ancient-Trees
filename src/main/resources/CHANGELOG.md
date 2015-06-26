@@ -1,5 +1,8 @@
 # Ancient Trees Changelog
 
+## 1.6.0
+- Update Chisel integration to use new Chisel API
+
 ## 1.5.1
 - Fixed crash when Storage Drawers integration is enabled and Refined Relocation is present.
 
@@ -8,7 +11,7 @@
 - Switches in configuration file to toggle integration with other mods.
 
 ## 1.4.0
-- Saplings can now be planted, fertilized and harvested in MineFactory Reloaded machines. (Though you should
+- Saplings can now be planted, fertilized and harvested in MineFactory reloaded machines. (Though you should
   be careful with larger trees!)
 - Saplings are now found wrapped in ancient packages inside chests. (This is to allow us more rarity than the
   vanilla chest loot system.
