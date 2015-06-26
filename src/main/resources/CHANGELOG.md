@@ -1,5 +1,8 @@
 # Ancient Trees Changelog
 
+## 1.6.0
+- Update Chisel integration to use new Chisel API
+
 ## 1.5.1
 - Fixed crash when Storage Drawers integration is enabled and Refined Relocation is present.
 
