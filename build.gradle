@@ -24,7 +24,7 @@ group = "com.scottkillen.mod"
 archivesBaseName = "KoreSample"
 
 minecraft {
-    version = project.mcversion + "-" + project.forgeversion
+    version = project.forgeversion + "-" + project.mcversion
     runDir = "run"
 
     replace '${mod_version}', project.version
