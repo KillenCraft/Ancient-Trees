@@ -26,6 +26,7 @@
     "koresample@[${kore_version},${minecraft_version}-2.0.0)",
     "Forestry",
     "minechem",
+    "chisel@[${chisel_version},)",
     "StorageDrawers@[${sd_version},)"
   ],
   "dependants": [

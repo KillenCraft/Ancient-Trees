@@ -23,11 +23,10 @@ apply plugin: 'maven'
 group = "com.scottkillen.mod"
 archivesBaseName = "AncientTrees"
 
-ext.apiForestry = "./api/ForestryAPI"
 ext.apiKore = "./api/KoreSample/src/main/java"
 
 minecraft {
-    version = project.mcversion + "-" + project.forgeversion
+    version = project.version_mc + "-" + project.version_forge
     runDir = "run"
 
     replace '${mod_version}', project.version
@@ -35,15 +34,20 @@ minecraft {
 
 repositories {
     mavenLocal()
-    maven {
-        url = 'http://maven.scottkillen.com/'
-    }
+    maven { url = 'http://maven.scottkillen.com/' }
+    // maven { url = 'http://coloredlightscore.us.to/maven/chisel-2-dev/' }
+    maven { url = 'http://maven.ic2.player.to/' }
+}
+
+dependencies {
+    // compile "com.cricketcraft.chisel:Chisel2:${project.ext.version_chisel}:api"
+    compile files('libs/Chisel2-2.4.0.38-api.jar')
+    compile "net.sengir.forestry:forestry_${project.version_mc}:${project.ext.version_forestry}:dev"
 }
 
 sourceSets {
     api {
         java {
-            srcDir project.apiForestry
             srcDir project.apiKore
         }
     }
@@ -53,18 +57,20 @@ processResources
 {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-    inputs.property "forgeversion", project.ext.forgeversion
-    inputs.property "koreversion", project.ext.koreversion
+    inputs.property "version_mc", project.minecraft.version
+    inputs.property "version_forge", project.ext.version_forge
+    inputs.property "version_kore", project.ext.version_kore
+    inputs.property "version_chisel", project.ext.version_chisel
+    inputs.property "version_forestry", project.ext.version_forestry
 
     // replace stuff in the files we want.
     from(sourceSets.main.resources.srcDirs) {
         include '**/*.info'
         include '**/version.properties'
 
-        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.forgeversion, 'kore_version': project.ext.koreversion, 'sd_version': project.ext
-                .version_storagedrawers
+        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version,
+                'forge_version': project.ext.version_forge, 'kore_version': project.ext.version_kore,
+                'chisel_version': project.ext.version_chisel, 'sd_version': project.ext.version_storagedrawers
     }
 
     // copy everything else, that we didn't do before
@@ -75,7 +81,7 @@ processResources
 }
 
 jar {
-	includeEmptyDirs = false
+    includeEmptyDirs = false
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
@@ -83,9 +89,9 @@ task sourcesJar(type: Jar, dependsOn: classes) {
         include '**/*.info'
         include '**/version.properties'
 
-        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.forgeversion, 'kore_version': project.ext.koreversion, 'sd_version': project.ext
-                .version_storagedrawers
+        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version,
+                'forge_version': project.ext.version_forge, 'kore_version': project.ext.version_kore,
+                'chisel_version': project.ext.version_chisel, 'sd_version': project.ext.version_storagedrawers
     }
 
     from(sourceSets.main.allSource) {
@@ -108,9 +114,9 @@ task deobfJar(type: Jar) {
         include '**/*.info'
         include '**/version.properties'
 
-        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version, 'forge_version': project
-                .ext.forgeversion, 'kore_version': project.ext.koreversion, 'sd_version': project.ext
-                .version_storagedrawers
+        expand 'mod_version': project.version, 'minecraft_version': project.minecraft.version,
+                'forge_version': project.ext.version_forge, 'kore_version': project.ext.version_kore,
+                'chisel_version': project.ext.version_chisel, 'sd_version': project.ext.version_storagedrawers
     }
 
     from(sourceSets.main.output) {
