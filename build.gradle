@@ -26,7 +26,7 @@ archivesBaseName = "AncientTrees"
 ext.apiKore = "./api/KoreSample/src/main/java"
 
 minecraft {
-    version = project.version_mc + "-" + project.version_forge
+    version = project.version_forge + "-" + project.version_mc
     runDir = "run"
 
     replace '${mod_version}', project.version
