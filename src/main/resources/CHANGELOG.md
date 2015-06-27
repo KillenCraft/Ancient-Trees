@@ -1,5 +1,10 @@
 # Ancient Trees Changelog
 
+## 1.6.2
+- Fix NEI complaining of (non-crash) exception
+- Fix incorrectly registering leaves as "fertilizable" with Minefactory Reloaded
+- Update to latest version (1.3.2) of KoreSample
+
 ## 1.6.1
 - Make a separate creative tab for blocks added for Chisel, rather than hijack Chisel's tab
 - Fix server crash (while looking for Chisel's creative tab)
