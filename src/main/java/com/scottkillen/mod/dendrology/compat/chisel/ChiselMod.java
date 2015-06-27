@@ -3,7 +3,6 @@ package com.scottkillen.mod.dendrology.compat.chisel;
 import com.cricketcraft.chisel.api.carving.CarvableHelper;
 import com.cricketcraft.chisel.api.carving.CarvingUtils;
 import com.cricketcraft.chisel.api.carving.ICarvingRegistry;
-import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.config.Settings;
 import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.koresample.compat.Integrator;
@@ -11,8 +10,11 @@ import com.scottkillen.mod.koresample.tree.block.WoodBlock;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Optional.Method;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -23,16 +25,33 @@ public final class ChiselMod extends Integrator
     private static final String MOD_ID = "chisel";
     private static final String MOD_NAME = "Chisel 2";
 
+    private final CreativeTabs creativeTab = new CreativeTabs("chiselAncientTrees")
+    {
+        private final OverworldTreeSpecies ICON = OverworldTreeSpecies.PORFFOR;
+
+        @SideOnly(Side.CLIENT)
+        @Override
+        public ItemStack getIconItemStack()
+        {
+            return new ItemStack(ICON.woodBlock(), 1, ICON.woodSubBlockIndex());
+        }
+
+        @SuppressWarnings("ReturnOfNull")
+        @SideOnly(Side.CLIENT)
+        @Override
+        public Item getTabIconItem() { return null; }
+    };
+
     @Method(modid = MOD_ID)
-    private static void preInit()
+    private void preInit()
     {
         loadBlocks();
     }
 
-    private static void assignAttributes(ChiselWoodBlock chiselWoodBlock)
+    private void assignAttributes(ChiselWoodBlock chiselWoodBlock)
     {
         OreDictionary.registerOre("plankWood", new ItemStack(chiselWoodBlock, 1, WILDCARD_VALUE));
-        chiselWoodBlock.setCreativeTab(getChiselCreativeTab());
+        chiselWoodBlock.setCreativeTab(creativeTab);
         Blocks.fire.setFireInfo(chiselWoodBlock, 5, 20);
     }
 
@@ -44,16 +63,8 @@ public final class ChiselMod extends Integrator
         chisel.setVariationSound(variationGroupName, MOD_ID + ":chisel.wood");
     }
 
-    private static CreativeTabs getChiselCreativeTab()
-    {
-        for (final CreativeTabs tab : CreativeTabs.creativeTabArray)
-            if ("tabWoodChiselBlocks".equals(tab.getTabLabel())) return tab;
-
-        return TheMod.INSTANCE.creativeTab();
-    }
-
     @Method(modid = MOD_ID)
-    private static void loadBlocks()
+    private void loadBlocks()
     {
         for (final OverworldTreeSpecies species : OverworldTreeSpecies.values())
         {
@@ -67,7 +78,7 @@ public final class ChiselMod extends Integrator
         }
     }
 
-    private static ChiselWoodBlock newChiselWoodBlock(String speciesName) {return new ChiselWoodBlock(speciesName);}
+    private static ChiselWoodBlock newChiselWoodBlock(String speciesName) { return new ChiselWoodBlock(speciesName); }
 
     @Method(modid = MOD_ID)
     private static void registerVariations(String variationGroupName, ChiselWoodBlock chiselWoodBlock)

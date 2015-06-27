@@ -17,6 +17,8 @@ import com.scottkillen.mod.koresample.tree.block.WoodBlock;
 import cpw.mods.fml.common.Optional.Method;
 import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -40,6 +42,7 @@ public final class SDBlocks
     public final CreativeTabs creativeTab = new CreativeTabs("storageDrawersAncientTrees")
     {
         @Override
+        @SideOnly(Side.CLIENT)
         public Item getTabIconItem()
         {
             final IStorageDrawersApi api = getAPI();
@@ -62,6 +65,7 @@ public final class SDBlocks
         }
 
         @Override
+        @SideOnly(Side.CLIENT)
         public int func_151243_f() { return 9; }
     };
 
