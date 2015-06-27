@@ -43,7 +43,6 @@ public final class MineFactoryReloadedMod extends Integrator
         for (final BlockLeaves leavesBlock : ModBlocks.leavesBlocks())
         {
             final MFRLeaves mfrLeaves = new MFRLeaves(leavesBlock);
-            FactoryRegistry.sendMessage("registerFertilizable", mfrLeaves);
             FactoryRegistry.sendMessage("registerHarvestable", mfrLeaves);
         }
     }
