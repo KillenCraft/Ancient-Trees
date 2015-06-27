@@ -1,5 +1,9 @@
 # Ancient Trees Changelog
 
+## 1.6.1
+- Make a separate creative tab for blocks added for Chisel, rather than hijack Chisel's tab
+- Fix server crash (while looking for Chisel's creative tab)
+
 ## 1.6.0
 - Update Chisel integration to use new Chisel API
 
@@ -14,7 +18,7 @@
 - Saplings can now be planted, fertilized and harvested in MineFactory reloaded machines. (Though you should
   be careful with larger trees!)
 - Saplings are now found wrapped in ancient packages inside chests. (This is to allow us more rarity than the
-  vanilla chest loot system.
+  vanilla chest loot system.)
 
 ## 1.3.1
 - All saplings are now added to chests.  ([#29](/MinecraftModArchive/Dendrology/issues/29))
