@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0">
+      <entry_point TYPE="method" FQNAME="com.scottkillen.mod.dendrology.TheMod void onFMLPostInitialization(cpw.mods.fml.common.event.FMLPostInitializationEvent event)" />
+      <entry_point TYPE="method" FQNAME="com.scottkillen.mod.dendrology.TheMod void onFMLInitialization(cpw.mods.fml.common.event.FMLInitializationEvent event)" />
+      <entry_point TYPE="method" FQNAME="com.scottkillen.mod.dendrology.TheMod void onFMLPreInitialization(cpw.mods.fml.common.event.FMLPreInitializationEvent event)" />
+      <entry_point TYPE="class" FQNAME="com.scottkillen.mod.dendrology.TheMod" />
+      <entry_point TYPE="class" FQNAME="com.scottkillen.mod.dendrology.content.overworld.OverworldTreeGenerator" />
+      <entry_point TYPE="field" FQNAME="com.scottkillen.mod.dendrology.TheMod INSTANCE" />
+      <entry_point TYPE="class" FQNAME="com.scottkillen.mod.dendrology.compat.minechem.MinechemMod" />
+      <entry_point TYPE="class" FQNAME="com.scottkillen.mod.dendrology.compat.gardencollection.GardenTreesMod" />
+      <entry_point TYPE="class" FQNAME="com.scottkillen.mod.dendrology.compat.gardencollection.GardenCoreMod" />
+      <entry_point TYPE="class" FQNAME="com.scottkillen.mod.dendrology.compat.forestry.ForestryMod" />
+      <entry_point TYPE="class" FQNAME="com.scottkillen.mod.dendrology.content.crafting.Crafter" />
+      <entry_point TYPE="class" FQNAME="com.scottkillen.mod.dendrology.content.crafting.Smelter" />
+    </entry_points>
+  </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/src/main/resources/assets/dendrology/lang/de_DE.lang" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/assets/dendrology/lang/en_GB.lang" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/assets/dendrology/lang/en_PT.lang" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/assets/dendrology/lang/en_US.lang" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/assets/dendrology/lang/eo_UY.lang" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="false" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

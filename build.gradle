@@ -23,8 +23,6 @@ apply plugin: 'maven'
 group = "com.scottkillen.mod"
 archivesBaseName = "AncientTrees"
 
-ext.apiKore = "./api/KoreSample/src/main/java"
-
 minecraft {
     version = project.version_forge + "-" + project.version_mc
     runDir = "run"
@@ -41,16 +39,9 @@ repositories {
 
 dependencies {
     // compile "com.cricketcraft.chisel:Chisel2:${project.ext.version_chisel}:api"
+    compile "com.scottkillen.mod:KoreSample:${project.ext.version_kore}:deobf"
     compile files('libs/Chisel2-2.4.0.38-api.jar')
     compile "net.sengir.forestry:forestry_${project.version_mc}:${project.ext.version_forestry}:dev"
-}
-
-sourceSets {
-    api {
-        java {
-            srcDir project.apiKore
-        }
-    }
 }
 
 processResources
