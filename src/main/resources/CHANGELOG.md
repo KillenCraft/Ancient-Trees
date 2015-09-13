@@ -1,5 +1,10 @@
 # Ancient Trees Changelog
 
+## 1.6.3
+- Fix some localization errors.
+- Fix for exceptions unhandled by Immersive Engineering ([BluSunrize/ImmersiveEngineering#419](/BluSunrize/ImmersiveEngineering/issues/419))
+- Fix bug that causes MineFactoryReloaded to often plant the wrong sapling.
+
 ## 1.6.2
 - Fix NEI complaining of (non-crash) exception
 - Fix incorrectly registering leaves as "fertilizable" with Minefactory Reloaded
