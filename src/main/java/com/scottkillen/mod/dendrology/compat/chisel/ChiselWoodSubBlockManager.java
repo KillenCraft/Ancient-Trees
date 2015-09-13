@@ -30,7 +30,8 @@ public final class ChiselWoodSubBlockManager implements SubBlockManager
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta)
     {
-        return meta != 9 || side != 0 && side != 1 ? icons.get(meta) : icons.get(15);
+        final int meta1 = meta < 0 || meta >= 16 ? 0 : meta;
+        return meta1 != 9 || side != 0 && side != 1 ? icons.get(meta1) : icons.get(15);
     }
 
     @Override

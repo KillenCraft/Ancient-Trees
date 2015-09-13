@@ -40,7 +40,7 @@ tile.dendrology:leaves.tuopa.name=Tuopa Leaves
 ### Planks
 tile.dendrology:wood.acemus.name=Acemus Wood Planks
 tile.dendrology:wood.cedrum.name=Cedrum Wood Planks
-tile.dendrology:wood.cerasu.name=Kulist Wood Planks
+tile.dendrology:wood.cerasu.name=Cerasu Wood Planks
 tile.dendrology:wood.delnas.name=Delnas Wood Planks
 tile.dendrology:wood.ewcaly.name=Ewcaly Wood Planks
 tile.dendrology:wood.hekur.name=Hekur Wood Planks
@@ -185,7 +185,7 @@ tile.dendrology.trim.tuopa.name=Tuopa Trim
 ### Chisel
 tile.acemus_planks.name=Acemus Wood Planks
 tile.cedrum_planks.name=Cedrum Wood Planks
-tile.cerasu_planks.name=Kulist Wood Planks
+tile.cerasu_planks.name=Cerasu Wood Planks
 tile.delnas_planks.name=Delnas Wood Planks
 tile.ewcaly_planks.name=Ewcaly Wood Planks
 tile.hekur_planks.name=Hekur Wood Planks
@@ -199,7 +199,7 @@ tile.tuopa_planks.name=Tuopa Wood Planks
 
 tile.chisel.acemus_planks.name=Acemus Wood Planks
 tile.chisel.cedrum_planks.name=Cedrum Wood Planks
-tile.chisel.cerasu_planks.name=Kulist Wood Planks
+tile.chisel.cerasu_planks.name=Cerasu Wood Planks
 tile.chisel.delnas_planks.name=Delnas Wood Planks
 tile.chisel.ewcaly_planks.name=Ewcaly Wood Planks
 tile.chisel.hekur_planks.name=Hekur Wood Planks
