@@ -3,7 +3,9 @@ package com.scottkillen.mod.dendrology.compat.mfr;
 import com.scottkillen.mod.dendrology.TheMod;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.config.Settings;
+import com.scottkillen.mod.dendrology.content.overworld.OverworldTreeSpecies;
 import com.scottkillen.mod.koresample.compat.Integrator;
+import com.scottkillen.mod.koresample.tree.DefinesSapling;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.Optional.Method;
@@ -13,6 +15,9 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.FactoryRegistry;
+import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
+import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
+import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 
 public final class MineFactoryReloadedMod extends Integrator
 {
@@ -41,10 +46,7 @@ public final class MineFactoryReloadedMod extends Integrator
         reportProgress("leaves");
 
         for (final BlockLeaves leavesBlock : ModBlocks.leavesBlocks())
-        {
-            final MFRLeaves mfrLeaves = new MFRLeaves(leavesBlock);
-            FactoryRegistry.sendMessage("registerHarvestable", mfrLeaves);
-        }
+            registerHarvestable(new MFRLeaves(leavesBlock));
     }
 
     @SuppressWarnings("ObjectAllocationInLoop")
@@ -54,7 +56,7 @@ public final class MineFactoryReloadedMod extends Integrator
         reportProgress("logs");
 
         for (final BlockLog woodBlock : ModBlocks.logBlocks())
-            FactoryRegistry.sendMessage("registerHarvestable", new MFRWood(woodBlock));
+            registerHarvestable(new MFRWood(woodBlock));
     }
 
     @SuppressWarnings("ObjectAllocationInLoop")
@@ -65,10 +67,28 @@ public final class MineFactoryReloadedMod extends Integrator
 
         for (final BlockSapling saplingBlock : ModBlocks.saplingBlocks())
         {
-            final MFRSapling mfrSapling = new MFRSapling(saplingBlock);
-            FactoryRegistry.sendMessage("registerPlantable", mfrSapling);
-            FactoryRegistry.sendMessage("registerFertilizable", mfrSapling);
+            final MFRSapling sapling = new MFRSapling(saplingBlock);
+            registerPlantable(sapling);
+            registerFertilizable(sapling);
         }
+    }
+
+    @Method(modid = MOD_ID)
+    private static void registerFertilizable(IFactoryFertilizable fertilizable)
+    {
+        FactoryRegistry.sendMessage("registerFertilizable", fertilizable);
+    }
+
+    @Method(modid = MOD_ID)
+    private static void registerHarvestable(IFactoryHarvestable harvestable)
+    {
+        FactoryRegistry.sendMessage("registerHarvestable", harvestable);
+    }
+
+    @Method(modid = MOD_ID)
+    private static void registerPlantable(IFactoryPlantable plantable)
+    {
+        FactoryRegistry.sendMessage("registerPlantable", plantable);
     }
 
     private static void reportProgress(String phase)

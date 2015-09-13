@@ -30,7 +30,7 @@ public final class MFRSapling implements IFactoryPlantable, IFactoryFertilizable
     {
         saplingItem = Item.getItemFromBlock(saplingBlock);
         sapling = saplingBlock;
-        plantedSapling = new ReplacementBlock(saplingBlock);
+        plantedSapling = new ReplacementBlock(saplingBlock).setMeta(true);
     }
 
     @Override
