@@ -41,3 +41,5 @@ At this point, things are waiting on us. We may merge your code as is. We may su
 * Write a [good commit message][commit].
 
 [commit]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
+[![Analytics](https://ga-beacon.appspot.com/UA-940955-7/Dendrology/README.md)](https://github.com/igrigorik/ga-beacon?pixel)

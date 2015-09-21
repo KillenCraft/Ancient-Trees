@@ -15,3 +15,4 @@
 ![](https://cloud.githubusercontent.com/assets/8559428/5548163/8f0f86d6-8b6a-11e4-86b5-ed2e3000dcd2.png)
 ![](https://cloud.githubusercontent.com/assets/8559428/5548164/8f103040-8b6a-11e4-9d39-378e2cd8345f.png)
 ![](https://cloud.githubusercontent.com/assets/8559428/5548165/8f1c3cbe-8b6a-11e4-85c1-c277d3146559.png)
+[![Analytics](https://ga-beacon.appspot.com/UA-940955-7/Dendrology/README.md)](https://github.com/igrigorik/ga-beacon?pixel)
