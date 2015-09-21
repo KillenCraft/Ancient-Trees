@@ -111,3 +111,5 @@ OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWA
 For more information, please refer to [unlicense.org](http://unlicense.org/).
 
 ![Public Domain](https://raw.githubusercontent.com/MinecraftModArchive/assets/master/pd-icon.png)
+
+[![Analytics](https://ga-beacon.appspot.com/UA-940955-7/Dendrology/README.md)](https://github.com/igrigorik/ga-beacon)
