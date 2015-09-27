@@ -26,6 +26,8 @@ woodcraft. ([screen shots](screen-shots.md))
 
 [Mod Packs](#mod-packs)
 
+[Server Hosting](#server-hosting)
+
 [Licensing](#licensing)
 
 ### Contributing
