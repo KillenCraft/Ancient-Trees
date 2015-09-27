@@ -57,6 +57,15 @@ purpose in mind.
 
 * * *
 
+#### Server Hosting
+
+This mod is tested on Akliz Game Servers. Sign up now at [akliz.com/scottkillen][akliz]. Use the code 'scottkillen' to receive a 20% discount on your first month.
+
+[![Akliz Hosting](https://raw.githubusercontent.com/MinecraftModArchive/assets/master/akliz%20660x90%20singular.png)][akliz]
+[akliz]: http://akliz.com/scottkillen
+
+* * *
+
 #### Licensing
 
 ##### Logo
