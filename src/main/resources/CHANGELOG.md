@@ -1,6 +1,6 @@
 # Ancient Trees Changelog
 
-## In development
+## 1.6.4
 - Reduce number of saplings dropped.
 - Give player control over sapling drop frequency.
 
