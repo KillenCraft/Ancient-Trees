@@ -439,6 +439,7 @@ config.dendrology:jungleTempleRarity=How often ancient parcels are found in jung
 config.dendrology:jungleTempleDispenserRarity=How often ancient parcels are found in jungle temple dispensers. 0 disables. Higher values are less rare.
 config.dendrology:mineshaftCorridorRarity=How often ancient parcels are found in mineshaft corridor chests. 0 disables. Higher values are less rare.
 config.dendrology:overworldTreeGenRarity=How often ancient trees are found growing in the overworld. 0 disables. Higher values are less rare.
+config.dendrology:saplingDropRarity=How often saplings drop from ancient ree leaves. 0 disables. Higher values are less rare. '20' is the same rarity as vanilla saplings.
 config.dendrology:strongholdCorridorRarity=How often ancient parcels are found in stronghold corridor chests. 0 disables. Higher values are less rare.
 config.dendrology:strongholdCrossingRarity=How often ancient parcels are found in stronghold crossing chests. 0 disables. Higher values are less rare.
 config.dendrology:strongholdLibraryRarity=How often ancient parcels are found in stronghold library chests. 0 disables. Higher values are less rare.

@@ -1,6 +1,5 @@
 package com.scottkillen.mod.dendrology.config;
 
-import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.scottkillen.mod.dendrology.TheMod;
@@ -32,6 +31,7 @@ public enum Settings implements ConfigSyncable
     private final Map<String, Integer> chestRarities = defaultChestRarities();
 
     private int overworldTreeGenRarity = DEFAULT_OVER_WORLD_TREE_GEN_RARITY;
+    private int saplingDropRarity = 200;
     private boolean integrateChisel = true;
     private boolean integrateForestry = true;
     private boolean integrateGardenStuff = true;
@@ -147,6 +147,8 @@ public enum Settings implements ConfigSyncable
     @Override
     public void syncConfig(Configuration config)
     {
+        saplingDropRarity = get(config, "saplingDropRarity", Configuration.CATEGORY_GENERAL, saplingDropRarity);
+
         final String chestsCategory = Configuration.CATEGORY_GENERAL + ".chests";
         for (final String chestType : chestRarities.keySet())
         {
@@ -167,10 +169,20 @@ public enum Settings implements ConfigSyncable
         integrateStorageDrawers = get(config, "integrateStorageDrawers", integrationCategory, true);
     }
 
+    public int saplingDropRarity()
+    {
+        return saplingDropRarity;
+    }
+
     public boolean integrateChisel() { return integrateChisel; }
+
     public boolean integrateForestry() { return integrateForestry; }
+
     public boolean integrateGardenStuff() { return integrateGardenStuff; }
+
     public boolean integrateMFR() { return integrateMFR; }
+
     public boolean integrateMinechem() { return integrateMinechem; }
+
     public boolean integrateStorageDrawers() { return integrateStorageDrawers; }
 }

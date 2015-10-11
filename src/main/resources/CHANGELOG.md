@@ -1,5 +1,9 @@
 # Ancient Trees Changelog
 
+## In development
+- Reduce number of saplings dropped.
+- Give player control over sapling drop frequency.
+
 ## 1.6.3
 - Fix some localization errors.
 - Fix for exceptions unhandled by Immersive Engineering ([BluSunrize/ImmersiveEngineering#419](/BluSunrize/ImmersiveEngineering/issues/419))
