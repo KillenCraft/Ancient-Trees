@@ -5,10 +5,10 @@
 releases][releases])<br />
 *DEPENDS ON*: [Kore Sample 1.3.2 (or later) for MC 1.7.10][koresample]
 
-[latest]: http://scottk.us/AncientTreesMod
+[latest]: https://www.curseforge.com/minecraft/mc-mods/ancient-trees
 [releases]: https://github.com/MinecraftModArchive/Dendrology/releases
 [changelog.md]: https://github.com/MinecraftModArchive/Dendrology/blob/develop/src/main/resources/CHANGELOG.md
-[koresample]: http://scottk.us/KoreSampleMod
+[koresample]: https://www.curseforge.com/minecraft/mc-mods/kore-sample
 
 _In the time before The Fall, the world was vibrant, teeming with life. The Fall changed the world and only a
 portion of what was has survived. In their wisdom, the Ancient Ones foresaw the Extinction and took steps to preserve trees within chests hidden in the world. It is tragic that, for all the good they did, the Ancient Ones could not save themselves..._
