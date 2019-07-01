@@ -6,8 +6,8 @@ releases][releases])<br />
 *DEPENDS ON*: [Kore Sample 1.3.2 (or later) for MC 1.7.10][koresample]
 
 [latest]: https://www.curseforge.com/minecraft/mc-mods/ancient-trees
-[releases]: https://github.com/MinecraftModArchive/Dendrology/releases
-[changelog.md]: https://github.com/MinecraftModArchive/Dendrology/blob/develop/src/main/resources/CHANGELOG.md
+[releases]: /scottkillen-minecraft-mods/ancient-trees/releases
+[changelog.md]: /scottkillen-minecraft-mods/ancient-trees/blob/master/src/main/resources/CHANGELOG.md
 [koresample]: https://www.curseforge.com/minecraft/mc-mods/kore-sample
 
 _In the time before The Fall, the world was vibrant, teeming with life. The Fall changed the world and only a
@@ -40,8 +40,8 @@ before submitting it.
 you add/change xxx?" or "Hey, I found an exploit.", etc.).
 5. Click `Submit new issue`, and wait for feedback!
 
-[issues]: /MinecraftModArchive/Dendrology/issues
-[new]: /MinecraftModArchive/Dendrology/issues/new
+[issues]: /scottkillen-minecraft-mods/ancient-trees/issues
+[new]: /scottkillen-minecraft-mods/ancient-trees/issues/new
 
 * * *
 
