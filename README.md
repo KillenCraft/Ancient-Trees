@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/MinecraftModArchive/Dendrology/develop/art/logo/logo-128.png" align="right" />
+<img src="https://raw.githubusercontent.com/scottkillen-minecraft-mods/ancient-trees/develop/art/logo/logo-128.png" align="right" />
 
 # Ancient Trees
 **LATEST OFFICIAL VERSION**: [Ancient Trees 1.6.4 for MC 1.7.10][latest] ([changelog][changelog.md]) ([all
