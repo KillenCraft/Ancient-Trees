@@ -6,8 +6,8 @@ releases][releases])<br />
 *DEPENDS ON*: [Kore Sample 1.3.2 (or later) for MC 1.7.10][koresample]
 
 [latest]: https://www.curseforge.com/minecraft/mc-mods/ancient-trees
-[releases]: /scottkillen-minecraft-mods/ancient-trees/releases
-[changelog.md]: /scottkillen-minecraft-mods/ancient-trees/blob/master/src/main/resources/CHANGELOG.md
+[releases]: https://github.com/scottkillen-minecraft-mods/ancient-trees/releases
+[changelog.md]: https://github.com/scottkillen-minecraft-mods/ancient-trees/blob/master/src/main/resources/CHANGELOG.md
 [koresample]: https://www.curseforge.com/minecraft/mc-mods/kore-sample
 
 _In the time before The Fall, the world was vibrant, teeming with life. The Fall changed the world and only a
@@ -40,8 +40,8 @@ before submitting it.
 you add/change xxx?" or "Hey, I found an exploit.", etc.).
 5. Click `Submit new issue`, and wait for feedback!
 
-[issues]: /scottkillen-minecraft-mods/ancient-trees/issues
-[new]: /scottkillen-minecraft-mods/ancient-trees/issues/new
+[issues]: https://github.com/scottkillen-minecraft-mods/ancient-trees/issues
+[new]: https://github.com/scottkillen-minecraft-mods/ancient-trees/issues/new
 
 * * *
 
@@ -60,9 +60,9 @@ purpose in mind.
 
 The logo is a colorized version of ['Beech icon'][beech-icon] by [Lorc][lorc-site] under [CC BY 3.0][ccby30].
 
-[beech-icon]: http://game-icons.net/lorc/originals/beech.html
-[lorc-site]: http://lorcblog.blogspot.com/
-[ccby30]: http://creativecommons.org/licenses/by/3.0/
+[beech-icon]: https://game-icons.net/lorc/originals/beech.html
+[lorc-site]: https://lorcblog.blogspot.com/
+[ccby30]: https://creativecommons.org/licenses/by/3.0/
 
 ### Textures
 
@@ -71,7 +71,7 @@ Some textures are from [The Painterly Pack][pack] by [Rhodox][rhodox_tweet] and 
 Some textures (Storage Drawers) were contributed by [Justin Aquadro][jaquadro-profile] and used with implicit 
 permission.
 
-[pack]: http://painterlypack.net/
+[pack]: https://painterlypack.net/
 [rhodox_tweet]: https://twitter.com/PainterlyPack
 [jaquadro-profile]: https://github.com/jaquadro/
 
@@ -107,6 +107,4 @@ OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWA
 
 For more information, please refer to [unlicense.org](http://unlicense.org/).
 
-![Public Domain](https://raw.githubusercontent.com/MinecraftModArchive/assets/master/pd-icon.png)
-
-![Analytics](https://ga-beacon.appspot.com/UA-940955-7/Dendrology/README.md?flat)
+![Public Domain](https://user-images.githubusercontent.com/1509989/60407300-31826f00-9b88-11e9-8217-2b068b708821.png)
